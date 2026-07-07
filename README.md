@@ -16,14 +16,14 @@ You can try the application online directly at:
 ## 📸 Screenshots
 
 > [!NOTE]
-> **To the Author:** Please take screenshots of your local application and save them in `docs.local/images/` or upload them to your repository, then replace these paths.
+> **To the Author:** Please take screenshots of your local application and save them in the `screenshots/` directory in the root of the project.
 
 ### Main Dashboard
-![Dashboard Preview](docs.local/images/dashboard-placeholder.png)
+![Dashboard Preview](screenshots/dashboard.png)
 *Customize your contribution grid using the drawing board, colors, and layers.*
 
 ### Community Remixes & Presets
-![Presets Preview](docs.local/images/presets-placeholder.png)
+![Presets Preview](screenshots/presets.png)
 *Choose from community templates or create your own remixes.*
 
 ---
