@@ -1,0 +1,67 @@
+"use client";
+
+import React from "react";
+import { GeneratorConfig } from "@/types";
+import { Card } from "@/components/Card";
+
+interface PaletteCardProps {
+  config: GeneratorConfig;
+  onChange: (newConfig: GeneratorConfig) => void;
+}
+
+export const PaletteCard: React.FC<PaletteCardProps> = ({ config, onChange }) => {
+  const isSynth = config.showPaintedInOrange;
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const val = e.target.value;
+    onChange({
+      ...config,
+      showPaintedInOrange: val === "synthwave",
+    });
+  };
+
+  const synthColors = ["#101b31", "#ffce42", "#ff8e31", "#ff4f91", "#d02cff"];
+  const greenColors = ["#161b22", "#103625", "#176d39", "#2ab24e", "#99df3f"];
+  const activeColors = isSynth ? synthColors : greenColors;
+
+  return (
+    <Card collapsible={false} title="Palette">
+      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <select
+          value={isSynth ? "synthwave" : "classic"}
+          onChange={handleSelectChange}
+          style={{
+            width: "100%",
+            backgroundColor: "rgba(255, 255, 255, 0.04)",
+            border: "1px solid var(--border)",
+            color: "var(--text-main)",
+            padding: "8px 12px",
+            borderRadius: "8px",
+            fontWeight: "bold",
+            cursor: "pointer",
+            outline: "none",
+          }}
+        >
+          <option value="classic" style={{ backgroundColor: "#161b22", color: "#c9d1d9" }}>Classic Green</option>
+          <option value="synthwave" style={{ backgroundColor: "#161b22", color: "#c9d1d9" }}>Synthwave</option>
+        </select>
+        <div style={{ display: "flex", gap: "6px", justifyContent: "center", marginTop: "4px" }}>
+          {activeColors.map((color, idx) => (
+            <div
+              key={idx}
+              style={{
+                width: "22px",
+                height: "22px",
+                borderRadius: "5px",
+                backgroundColor: color,
+                border: "1px solid rgba(255, 255, 255, 0.05)",
+                boxShadow: `0 0 10px ${color}33`,
+              }}
+              title={`Level ${idx}`}
+            />
+          ))}
+        </div>
+      </div>
+    </Card>
+  );
+};
