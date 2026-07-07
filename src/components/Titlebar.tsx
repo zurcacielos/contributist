@@ -64,7 +64,6 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
               className="dropdown-menu-content"
               align="end"
               sideOffset={5}
-              onOpenAutoFocus={(e) => e.preventDefault()}
             >
               <DropdownMenu.Item className="dropdown-menu-item" onSelect={onReset}>
                 <FilePlus size={15} style={{ marginRight: 8 }} />

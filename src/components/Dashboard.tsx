@@ -37,7 +37,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
       try {
         const restored = deserializeDesign(designParam, state);
         dispatch({ type: "RESTORE_STATE", payload: restored });
-        setFeelingMode(restored.config.showPaintedInOrange ? "vibe" : "bash");
+        setFeelingMode(restored.config.showPaintedInOrange ? "vibe" : "advanced");
         sessionStorage.setItem(loadedKey, "true");
       } catch (e) {
         console.error("Failed to load design from URL", e);

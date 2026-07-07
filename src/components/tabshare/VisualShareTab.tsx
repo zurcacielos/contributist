@@ -15,7 +15,7 @@ interface VisualShareTabProps {
   aspectRatio: "square" | "story" | "landscape";
   setAspectRatio: (val: "square" | "story" | "landscape") => void;
   feelingMode: FeelingMode;
-  setFeelingMode: React.Dispatch<React.SetStateAction<FeelingMode>>;
+  setFeelingMode: (mode: FeelingMode) => void;
   config: GeneratorConfig;
 }
 

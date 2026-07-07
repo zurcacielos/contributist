@@ -106,7 +106,7 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
         const rl = l as any;
         if (rl.data) {
           Object.entries(rl.data).forEach(([dateStr, val]) => {
-            if (val && val > 0) {
+            if (val && (val as number) > 0) {
               const date = new Date(dateStr);
               if (!isNaN(date.getTime())) {
                 maxArtworkX = Math.max(maxArtworkX, getWeekIndex(date));
@@ -385,7 +385,6 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
                     <ContextMenu.Portal>
                       <ContextMenu.Content 
                         className="context-menu-content"
-                        onOpenAutoFocus={(e) => e.preventDefault()}
                       >
                         <ContextMenu.Item 
                           className="context-menu-item"

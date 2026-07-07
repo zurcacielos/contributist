@@ -1,4 +1,4 @@
-import { Layer, GeneratorConfig } from "@/types";
+import { Layer, GeneratorConfig, MemeLayer } from "@/types";
 import { memeTemplates } from "./memeTemplates";
 import { compositeLayers } from "./layerCompositor";
 
@@ -41,7 +41,7 @@ export function findAutoPosition(
 
   // 2. Gather existing meme intervals to find gaps
   const existingMemes = (layers || []).filter(
-    (l) => l.year === year && l.type === "meme" && l.visible
+    (l): l is MemeLayer => l.year === year && l.type === "meme" && l.visible
   );
 
   const occupiedIntervals: { start: number; end: number }[] = [];

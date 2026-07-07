@@ -18,7 +18,7 @@ interface DrawTabProps {
   state: AppState;
   dispatch: React.Dispatch<AppAction>;
   feelingMode: FeelingMode;
-  setFeelingMode: React.Dispatch<React.SetStateAction<FeelingMode>>;
+  setFeelingMode: (mode: FeelingMode) => void;
   handleSaveConfig: () => void;
   fileInputRef: React.RefObject<HTMLInputElement | null>;
   graphRef: React.RefObject<ActivityGraphRef | null>;
