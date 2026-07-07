@@ -1,0 +1,161 @@
+{
+  "title": "Crazy Cat 🌈",
+  "description": "A retro rainbow cat flying through a grid matrix.",
+  "emoji": "🐱",
+  "config": {
+    "repoUrl": "",
+    "startDate": "2024",
+    "endDate": "2026",
+    "frequencies": "40",
+    "maxCommitsPerDay": 5,
+    "noWeekends": true,
+    "vacationsPerYear": "2",
+    "vacationLengthDays": "14,28,21",
+    "chaos": 50,
+    "realism": 100,
+    "paintedLayer": {},
+    "showAlgoLayer": true,
+    "showPaintedLayer": true,
+    "showPaintedInOrange": true,
+    "layers": [
+      {
+        "id": "bg-2024",
+        "name": "Background",
+        "type": "background",
+        "visible": true,
+        "year": 2024,
+        "baseFrequency": 40
+      },
+      {
+        "id": "bg-2025",
+        "name": "Background",
+        "type": "background",
+        "visible": true,
+        "year": 2025,
+        "baseFrequency": 40,
+        "customFrequency": 25,
+        "cleared": false
+      },
+      {
+        "id": "raster-2025",
+        "name": "Painted",
+        "type": "raster",
+        "visible": true,
+        "year": 2025,
+        "data": {}
+      },
+      {
+        "id": "bg-2026",
+        "name": "Background",
+        "type": "background",
+        "visible": true,
+        "year": 2026,
+        "baseFrequency": 40
+      },
+      {
+        "id": "raster-2026",
+        "name": "Painted",
+        "type": "raster",
+        "visible": true,
+        "year": 2026,
+        "data": {}
+      },
+      {
+        "id": "meme-1783463548483-f5j1h",
+        "name": "🌈 Rainbow Cat",
+        "type": "meme",
+        "visible": true,
+        "templateName": "🌈 Rainbow Cat",
+        "x": 15,
+        "y": 0,
+        "year": 2026
+      },
+      {
+        "id": "meme-1783463548483-w1bbe",
+        "name": "🟩 Monster",
+        "type": "meme",
+        "visible": true,
+        "templateName": "🟩 Monster",
+        "x": 2,
+        "y": 0,
+        "year": 2025
+      },
+      {
+        "id": "meme-1783463548483-p6ufv",
+        "name": "💀 Skull",
+        "type": "meme",
+        "visible": true,
+        "templateName": "💀 Skull",
+        "x": 31,
+        "y": 0,
+        "year": 2025
+      },
+      {
+        "id": "meme-1783463548483-9q4yh",
+        "name": "cat",
+        "type": "meme",
+        "templateName": "custom",
+        "x": 14,
+        "y": 0,
+        "visible": true,
+        "year": 2025,
+        "templateData": [
+          "              ",
+          "           4  ",
+          " 444  44  444 ",
+          "4    4  4  4  ",
+          "4    4  4  4  ",
+          " 444  444   44",
+          "              "
+        ],
+        "textConfig": {
+          "text": "cat",
+          "fontName": "Standard 7-Row",
+          "intensity": 4
+        }
+      },
+      {
+        "id": "raster-2024",
+        "name": "Painted",
+        "type": "raster",
+        "visible": true,
+        "year": 2024,
+        "data": {}
+      },
+      {
+        "id": "meme-1783463559512-lgog7",
+        "name": "💀 Skull",
+        "type": "meme",
+        "visible": true,
+        "templateName": "💀 Skull",
+        "x": 23,
+        "y": 0,
+        "year": 2024
+      },
+      {
+        "id": "meme-1783463560199-9rpgi",
+        "name": "🟩 Monster",
+        "type": "meme",
+        "visible": true,
+        "templateName": "🟩 Monster",
+        "x": 8,
+        "y": 0,
+        "year": 2024
+      },
+      {
+        "id": "meme-1783463564872-ahemn",
+        "name": "👾 Invader",
+        "type": "meme",
+        "visible": true,
+        "templateName": "👾 Invader",
+        "x": 37,
+        "y": 0,
+        "year": 2024
+      }
+    ],
+    "activeLayerId": "meme-1783463564872-ahemn",
+    "gitName": "",
+    "gitEmail": "",
+    "basedOnTemplate": "crazycat01"
+  }
+}

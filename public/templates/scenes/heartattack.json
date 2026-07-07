@@ -1,0 +1,122 @@
+{
+  "title": "Heart Attack ❤️",
+  "description": "Show some love on your profile with a pulsing heart graph.",
+  "emoji": "💖",
+  "config": {
+    "repoUrl": "",
+    "startDate": "2024",
+    "endDate": "2026",
+    "frequencies": "60",
+    "maxCommitsPerDay": 5,
+    "noWeekends": true,
+    "vacationsPerYear": "2",
+    "vacationLengthDays": "14,28,21",
+    "chaos": 50,
+    "realism": 100,
+    "paintedLayer": {},
+    "showAlgoLayer": true,
+    "showPaintedLayer": true,
+    "showPaintedInOrange": false,
+    "layers": [
+      {
+        "id": "bg-2024",
+        "name": "Background",
+        "type": "background",
+        "visible": true,
+        "year": 2024,
+        "baseFrequency": 60,
+        "customFrequency": 20,
+        "cleared": false
+      },
+      {
+        "id": "bg-2025",
+        "name": "Background",
+        "type": "background",
+        "visible": true,
+        "year": 2025,
+        "baseFrequency": 60,
+        "customFrequency": 50,
+        "cleared": false
+      },
+      {
+        "id": "raster-2025",
+        "name": "Painted",
+        "type": "raster",
+        "visible": true,
+        "year": 2025,
+        "data": {}
+      },
+      {
+        "id": "bg-2026",
+        "name": "Background",
+        "type": "background",
+        "visible": true,
+        "year": 2026,
+        "baseFrequency": 60
+      },
+      {
+        "id": "raster-2026",
+        "name": "Painted",
+        "type": "raster",
+        "visible": true,
+        "year": 2026,
+        "data": {}
+      },
+      {
+        "id": "meme-1783450347492-dm96s",
+        "name": "❤️ Heart",
+        "type": "meme",
+        "visible": true,
+        "templateName": "❤️ Heart",
+        "x": 14,
+        "y": 1,
+        "year": 2025
+      },
+      {
+        "id": "meme-1783450347492-tfqw9",
+        "name": "🌈 Rainbow Cat",
+        "type": "meme",
+        "visible": true,
+        "templateName": "🌈 Rainbow Cat",
+        "x": 1,
+        "y": 0,
+        "year": 2026
+      },
+      {
+        "id": "raster-2024",
+        "name": "Painted",
+        "type": "raster",
+        "visible": true,
+        "year": 2024,
+        "data": {}
+      },
+      {
+        "id": "text-1783450359354",
+        "name": "glow up",
+        "type": "meme",
+        "templateName": "custom",
+        "x": 6,
+        "y": 0,
+        "visible": true,
+        "year": 2024,
+        "templateData": [
+          "                              ",
+          "     4                        ",
+          " 444 4  44  4   4    4  4 444 ",
+          "4  4 4 4  4 4 4 4    4  4 4  4",
+          " 444 4 4  4 44 44    4  4 444 ",
+          "   4 4  44  4   4     444 4   ",
+          " 44                       4   "
+        ],
+        "textConfig": {
+          "text": "glow up",
+          "fontName": "Standard 7-Row",
+          "intensity": 4
+        }
+      }
+    ],
+    "activeLayerId": "text-1783450359354",
+    "gitName": "",
+    "gitEmail": ""
+  }
+}
