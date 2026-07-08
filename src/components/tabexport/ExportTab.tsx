@@ -181,10 +181,10 @@ export const ExportTab: React.FC<ExportTabProps> = ({
             gap: "10px"
           }}>
             <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)", display: "flex", alignItems: "center", gap: "8px" }}>
-              <span>⚠️</span> Prerequisite: Create a Remote Repository First
+              <span>⚠️</span> Prerequisite: Create a Remote Repository
             </h3>
             <p style={{ fontSize: "0.9rem", color: "var(--text-main)", margin: "0", lineHeight: "1.5" }}>
-              Create a dummy <strong>EMPTY</strong> contributions repository in your Gitea/Gogs, GitHub, GitLab or other remote. <strong>Do not</strong> add a README, license, or gitignore file.
+              Create BRAND NEW dummy contributions repository with a NEW name, in your Gitea/Gogs, GitHub, GitLab or other remote. <strong>Do not</strong> add a README, license, or gitignore file.
             </p>
             <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "0", lineHeight: "1.4" }}>
               <span style={{
@@ -193,9 +193,9 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                 WebkitTextFillColor: 'transparent',
                 fontWeight: 'bold'
               }}>
-                If the repository already exists, DELETE IT, and create it again.
+                If the repository already exists, DELETE IT, and create it again with a NEW name.
               </span>{" "}
-              If you don't do it, even if you override the repo history on remote, the previous commits may remain orphaned, distorting your contribution graph.
+              If you reuse the same repository, orphan commits may distort your graph.
             </p>
           </div>
 
@@ -368,9 +368,6 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                 i
               </span>
             </h3>
-            <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: "15px", lineHeight: "1.3" }}>
-              Download a zero-dependency script and run it safely on your own machine.
-            </p>
             <div style={{ display: "flex", gap: "15px" }}>
               <button
                 className="btn btn-primary"
