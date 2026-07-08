@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import { GeneratorConfig } from "@/types";
 import { AppAction } from "@/state/appReducer";
-import { isValidExportConfig } from "@/utils/validators";
+import { isValidExportConfig, isValidEmail, isValidRepoUrl } from "@/utils/validators";
 import { downloadFile } from "@/utils/downloadFile";
 
 interface ExportTabProps {
@@ -151,61 +151,118 @@ export const ExportTab: React.FC<ExportTabProps> = ({
   };
 
   return (
-    <section className="layout">
-      {/* Left Sidebar for Git Configuration */}
-      <aside className="sidebar-left" style={{ position: 'sticky', top: '0px', zIndex: 10, alignSelf: 'start' }}>
-        <div className="card" style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "12px" }}>
-          <h3 style={{ fontSize: "1.1rem", margin: "0 0 10px 0", color: "var(--text-main)" }}>Git Identity</h3>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <label htmlFor="repoUrl" style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
-              Repository URL
-            </label>
-            <input
-              id="repoUrl"
-              name="repoUrl"
-              type="url"
-              value={config.repoUrl || ""}
-              onChange={handleChange}
-              placeholder="https://example.com/username/repo.git"
-              style={{ fontSize: "0.95rem", padding: "8px", backgroundColor: "var(--surface)", border: "1px solid var(--border)", borderRadius: "4px", width: "100%", color: "white" }}
-            />
-          </div>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <label htmlFor="gitName" style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
-              Git Username
-            </label>
-            <input
-              id="gitName"
-              name="gitName"
-              type="text"
-              value={config.gitName || ""}
-              onChange={handleChange}
-              placeholder="Your Git user name"
-              style={{ fontSize: "0.95rem", padding: "8px", backgroundColor: "var(--surface)", border: "1px solid var(--border)", borderRadius: "4px", color: "white" }}
-            />
-          </div>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <label htmlFor="gitEmail" style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
-              Git Email
-            </label>
-            <input
-              id="gitEmail"
-              name="gitEmail"
-              type="email"
-              value={config.gitEmail || ""}
-              onChange={handleChange}
-              placeholder="you@example.com"
-              style={{ fontSize: "0.95rem", padding: "8px", backgroundColor: "var(--surface)", border: "1px solid var(--border)", borderRadius: "4px", color: "white" }}
-            />
-          </div>
-        </div>
-      </aside>
-
+    <section style={{ 
+      display: "flex", 
+      flexDirection: "column", 
+      gap: "20px", 
+      padding: "18px 24px 24px",
+      maxWidth: "800px",
+      margin: "0 auto",
+      width: "100%"
+    }}>
       {/* Main Content Area */}
       <section className="workspace" style={{ flex: 1, display: "flex", flexDirection: "column", gap: "20px" }}>
+        {/* Git Identity Card */}
+        <div className="card" style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
+          <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)" }}>Git Identity</h3>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+              <label htmlFor="repoUrl" style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
+                Repository URL
+              </label>
+              <input
+                id="repoUrl"
+                name="repoUrl"
+                type="url"
+                value={config.repoUrl || ""}
+                onChange={handleChange}
+                placeholder="https://example.com/username/repo.git"
+                style={{ 
+                  fontSize: "0.95rem", 
+                  padding: "8px", 
+                  backgroundColor: "var(--surface)", 
+                  border: `1px solid ${config.repoUrl && !isValidRepoUrl(config.repoUrl) ? "#f85149" : "var(--border)"}`, 
+                  borderRadius: "4px", 
+                  width: "100%", 
+                  color: "white" 
+                }}
+              />
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "16px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                <label htmlFor="gitName" style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
+                  Git Username
+                </label>
+                <input
+                  id="gitName"
+                  name="gitName"
+                  type="text"
+                  value={config.gitName || ""}
+                  onChange={handleChange}
+                  placeholder="Your Git user name"
+                  style={{ fontSize: "0.95rem", padding: "8px", backgroundColor: "var(--surface)", border: "1px solid var(--border)", borderRadius: "4px", color: "white", width: "100%" }}
+                />
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                <label htmlFor="gitEmail" style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
+                  Git Email
+                </label>
+                <input
+                  id="gitEmail"
+                  name="gitEmail"
+                  type="email"
+                  value={config.gitEmail || ""}
+                  onChange={handleChange}
+                  placeholder="you@example.com"
+                  style={{ 
+                    fontSize: "0.95rem", 
+                    padding: "8px", 
+                    backgroundColor: "var(--surface)", 
+                    border: `1px solid ${config.gitEmail && !isValidEmail(config.gitEmail) ? "#f85149" : "var(--border)"}`, 
+                    borderRadius: "4px", 
+                    color: "white", 
+                    width: "100%" 
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {!isConfigValid && (
+            <div style={{ 
+              marginTop: "8px", 
+              padding: "12px 16px", 
+              backgroundColor: "rgba(248, 81, 73, 0.08)", 
+              border: "1px solid rgba(248, 81, 73, 0.25)", 
+              borderRadius: "6px",
+              color: "#ff7b72",
+              fontSize: "0.85rem",
+              display: "flex",
+              flexDirection: "column",
+              gap: "6px"
+            }}>
+              <div style={{ fontWeight: "600", marginBottom: "2px", display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>⚠️</span> Configuration Required:
+              </div>
+              {!config.repoUrl ? (
+                <div>• <strong>Repository URL</strong> is required to set up the push origin.</div>
+              ) : !isValidRepoUrl(config.repoUrl) ? (
+                <div>• <strong>Repository URL</strong> must start with <code>https://</code>, <code>git@</code>, or <code>ssh://</code>.</div>
+              ) : null}
+              {!config.gitName || !config.gitName.trim() ? (
+                <div>• <strong>Git Username</strong> is required to sign the commits.</div>
+              ) : null}
+              {!config.gitEmail ? (
+                <div>• <strong>Git Email</strong> is required.</div>
+              ) : !isValidEmail(config.gitEmail) ? (
+                <div>• <strong>Git Email</strong> must be a valid email format (e.g. <code>user@example.com</code>).</div>
+              ) : null}
+            </div>
+          )}
+        </div>
         {result && (
           <div
             style={{
