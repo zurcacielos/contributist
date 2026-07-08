@@ -71,8 +71,9 @@ if ! command -v git &> /dev/null; then
 fi
 
 # 2. Setup directory
-mkdir -p "\${REPO_NAME}_generated"
-cd "\${REPO_NAME}_generated"
+TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
+mkdir -p "\${REPO_NAME}_generated_\${TIMESTAMP}"
+cd "\${REPO_NAME}_generated_\${TIMESTAMP}"
 git init -b main
 
 # 3. Configure local repository identity
@@ -138,8 +139,9 @@ if (!(Get-Command git -ErrorAction SilentlyContinue)) {
 }
 
 # 2. Setup directory
-New-Item -ItemType Directory -Force -Path "\${RepoName}_generated" | Out-Null
-Set-Location "\${RepoName}_generated"
+\$Timestamp = Get-Date -Format "yyyy-MM-dd-HH-mm-ss"
+New-Item -ItemType Directory -Force -Path "\${RepoName}_generated_\${Timestamp}" | Out-Null
+Set-Location "\${RepoName}_generated_\${Timestamp}"
 git init -b main
 
 # 3. Configure local repository identity
