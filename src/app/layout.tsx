@@ -2,8 +2,17 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Contributist',
-  description: 'Design and customize your contribution graphs instantly',
+  title: 'Contributist | GitHub Contribution Graph Generator & Painter',
+  description: 'Contributist is an interactive visual tool to paint custom pixel art on your GitHub contribution graph. Generate and customize your git commit history grid easily.',
+  keywords: [
+    'github contribution generator',
+    'github contribution graph',
+    'github contribution painter',
+    'contributist',
+    'git green grass generator',
+    'github profile customizer',
+    'commit painter'
+  ],
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
