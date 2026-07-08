@@ -20,13 +20,16 @@
 ![Dashboard Preview](screenshots/main-dashboard.png)
 *Customize your contribution grid using the drawing board, colors, and layers.*
 
+### Two flavors: Vives or Bash
+![Vibe mode preview](screenshots/vibe-bash.png)
+
+Pick on top, the flavor you like most. Bash has a few more options for you to play with, such as noise, weekends, and vacation patterns.
+
+
 ### Community Remixes & Presets
 ![Presets Preview](screenshots/community.png)
 
 *Choose from community templates or create your own remixes. Save them, share them. Stay tuned for more community interaction features!*
-
-Note: at the moment the community remixes are stored on public/templates/scenes/ as json files. You can save any composition and download it when you are working in local machine dev mode, in the panel community. Then you should copy that json into the public/templates/scenes and the app will dynamically load it. Click profile, upper right, new, to have a new canvas, then click a community remix template and it will load. You can modify it, then right click the remix button of your choise and click "save to this". This is a temporary solution before I connect the database.
-
 
 ### Layer editing - raster - background - sprites
 ![Layers Preview](screenshots/layers.png)
@@ -62,6 +65,12 @@ Note: at the moment the community remixes are stored on public/templates/scenes/
 - **Community presets:** Load and remix existing scenes (like a running cat, pixel hearts, and more).
 
 ---
+
+### Customize community remixes
+At the moment the community remixes are stored on public/templates/scenes/ as json files. You can save any composition and download it when you are working in local machine dev mode, in the panel community. Then you should copy that json into the public/templates/scenes and the app will dynamically load it. Click profile, upper right, new, to have a new canvas, then click a community remix template and it will load. You can modify it, then right click the remix button of your choise and click "save to this". This is a temporary solution before I connect the database.
+
+---
+
 
 ## 🚀 Getting Started
 
