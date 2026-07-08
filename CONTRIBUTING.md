@@ -14,7 +14,7 @@ We love hearing new ideas, especially crazy, funny, or highly practical features
    If you have a concrete idea that fits the project and want to discuss it with the community, feel free to [Open a Feature Request Issue](https://github.com/zurcacielos/contributist/issues). Please check existing issues first to avoid duplicates.
    
 2. **Connect on LinkedIn:**
-   If you prefer direct discussion or want to reach out professionally, you can contact me directly on my [LinkedIn Profile](https://www.linkedin.com/in/fabian-se/).
+   If you prefer direct discussion or want to reach out professionally, you can contact me directly on my [LinkedIn Profile](https://www.linkedin.com/in/zurcacielos/).
    
 3. **In-App Feedback Button (Coming Soon):**
    We are working on integrating a feedback button directly inside the application's profile menu, allowing you to send suggestions without leaving the app.
