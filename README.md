@@ -18,6 +18,7 @@
 
 ### Main Dashboard
 ![Dashboard Preview](screenshots/main-dashboard.png)
+
 *Customize your contribution grid using the drawing board, colors, and layers.*
 
 ### Two flavors: Vives or Bash
@@ -33,24 +34,28 @@ Pick on top, the flavor you like most. Bash has a few more options for you to pl
 
 ### Layer editing - raster - background - sprites
 ![Layers Preview](screenshots/layers.png)
+
 *Layer editing features allow you to add custom shapes, sprites, and background images to your contribution graph. Change order, hide during editing, add text, and more to come!*
 
 ### Send to git dev mode and cloud mode
 ![Send to git Preview](screenshots/send-to-git.png)
+
 *The send to git feature, has two modes. Local mode, when you do a npn run dev in your local machine, which allows you to generate and send your contributions directly to your git repository without running any local scripts. Cloud mode, when the application is deployed online, it allows you to download the Bash script or Powershell scripts to run the commits yourself on your own machine.*
 
 ### PNG export mode green, blue, vibe
 ![PNG export Preview](screenshots/export-green.png)
 ![PNG export Preview](screenshots/export-blue.png)
+
 *The png export mode allows you to download a png image of your contribution graph, with different color palettes. This is useful for sharing your artwork on social media or other platforms.*
 
 ### URL Export
-
 ![Share Your Design URL](screenshots/share-design-url.png)
+
 *The url export mode allows you to generate a url that can be used to share your artwork with others. Just share the url in the Share screen, and the entire configuration will be encoded for you in that url, so the other person sees your art immediately.*
 
 ### Profile Menu - New, Open, Save
 ![Profile menu](screenshots/profile-menu.png)
+
 *In the profile menu, the new option allows you to create a new artwork. The open option allows you to open an existing artwork. The save option allows you to save your artwork to your computer. Including the github user and repo name that you may have entered in the Send to git section.*
 
 ---
