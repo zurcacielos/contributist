@@ -171,6 +171,32 @@ export const ExportTab: React.FC<ExportTabProps> = ({
     }}>
       {/* Main Content Area */}
       <section className="workspace" style={{ flex: 1, display: "flex", flexDirection: "column", gap: "20px" }}>
+        {/* Prerequisite Info Card */}
+        <div className="card" style={{ 
+          padding: "20px", 
+          display: "flex", 
+          flexDirection: "column", 
+          gap: "10px" 
+        }}>
+          <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)", display: "flex", alignItems: "center", gap: "8px" }}>
+            <span>⚠️</span> Prerequisite: Create a Remote Repository First
+          </h3>
+          <p style={{ fontSize: "0.9rem", color: "var(--text-main)", margin: "0", lineHeight: "1.5" }}>
+            Create a dummy <strong>EMPTY</strong> contributions repository in your Gitea/Gogs, GitHub, GitLab or other remote. <strong>Do not</strong> add a README, license, or gitignore file.
+          </p>
+          <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "0", lineHeight: "1.4" }}>
+            <span style={{
+              background: 'linear-gradient(90deg, #ff007f, #ff00ff, #00d2ff)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold'
+            }}>
+              If the repository already exists, DELETE IT, and create it again.
+            </span>{" "}
+            If you don't do it, even if you override the repo history on remote, the previous commits may remain orphaned, distorting your contribution graph.
+          </p>
+        </div>
+
         {/* Git Identity Card */}
         <div className="card" style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
           <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)" }}>Git Identity</h3>
@@ -389,7 +415,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
             <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: "15px", lineHeight: "1.3" }}>
               In your REMOTE git repository (like Gitea/Gogs or other remote hosts),{" "}
               <span style={{
-                background: 'linear-gradient(90deg, #ff007f, #8e24aa, #00d2ff)',
+                background: 'linear-gradient(90deg, #ff007f, #ff00ff, #00d2ff)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 fontWeight: 'bold'
