@@ -43,6 +43,10 @@ You can try the application online directly at:
 ### URL Export
 *The url export mode allows you to generate a url that can be used to share your artwork with others. Just share the url in the Share screen, and the entire configuration will be encoded for you in that url, so the other person sees your art immediately.*
 
+### Profile Menu - New, Open, Save
+![Profile menu](screenshots/profile-menu.png)
+*In the profile menu, the new option allows you to create a new artwork. The open option allows you to open an existing artwork. The save option allows you to save your artwork to your computer. Including the github user and repo name that you may have entered in the Send to git section.*
+
 ---
 
 ## ✨ Features
