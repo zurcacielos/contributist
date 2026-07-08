@@ -34,7 +34,7 @@ Note: at the moment the community remixes are stored on public/templates/scenes/
 
 ### Send to git dev mode and cloud mode
 ![Send to git Preview](screenshots/send-to-git.png)
-*The send to git feature, has two modes. Local mode, which allows you to generate and send your contributions directly to your git repository without running any local scripts. Cloud mode, when the application is deployed online, it allows you to download the Bash script or Powershell scripts to run the commits yourself on your own machine.*
+*The send to git feature, has two modes. Local mode, when you do a npn run dev in your local machine, which allows you to generate and send your contributions directly to your git repository without running any local scripts. Cloud mode, when the application is deployed online, it allows you to download the Bash script or Powershell scripts to run the commits yourself on your own machine.*
 
 ### PNG export mode green, blue, vibe
 ![PNG export Preview](screenshots/export-green.png)
