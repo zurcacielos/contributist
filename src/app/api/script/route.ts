@@ -32,25 +32,17 @@ export async function POST(request: Request) {
     const authorEmail = config.gitEmail.trim();
     const authorFlag = `--author="${authorName} <${authorEmail}>"`;
 
-    let readmeContent = "# Contributist Generated Activity\n";
-    let markId = 1;
     let fastImportData = "";
     
     commits.forEach((c) => {
-      readmeContent += "Update\n";
       const unixTime = Math.floor(new Date(c.dateStr).getTime() / 1000);
+      const fileContent = `# Contributist Generated Activity\n\nGenerated commit on ${c.dateStr} - ${c.msg}\n`;
       
       fastImportData += `commit refs/heads/main\n`;
-      fastImportData += `mark :${markId}\n`;
       fastImportData += `committer ${authorName} <${authorEmail}> ${unixTime} +0000\n`;
       fastImportData += `data ${Buffer.byteLength(c.msg)}\n${c.msg}\n`;
-      if (markId > 1) {
-        fastImportData += `from :${markId - 1}\n`;
-      }
       fastImportData += `M 100644 inline README.md\n`;
-      fastImportData += `data ${Buffer.byteLength(readmeContent)}\n${readmeContent}\n`;
-      
-      markId++;
+      fastImportData += `data ${Buffer.byteLength(fileContent)}\n${fileContent}\n`;
     });
 
     // BASH SCRIPT
@@ -63,11 +55,18 @@ GIT_EMAIL="${authorEmail}"
 REPO_NAME="${repoName}"
 # -------------------------------
 
-echo "🚀 Starting Git activity generator for \${REPO_NAME}..."
+# --- COLOR CODES ---
+RED='\\033[0;31m'
+GREEN='\\033[0;32m'
+YELLOW='\\033[1;33m'
+CYAN='\\033[0;36m'
+NC='\\033[0m' # No Color
+
+echo -e "\${CYAN}🚀 Starting Git activity generator for \${REPO_NAME}...\${NC}"
 
 # 1. Check if Git is installed
 if ! command -v git &> /dev/null; then
-  echo "❌ Error: 'git' command not found. Please install Git and try again."
+  echo -e "\${RED}❌ Error: 'git' command not found. Please install Git and try again.\${NC}"
   exit 1
 fi
 
@@ -85,7 +84,7 @@ cat << 'EOF' > import.txt
 ${fastImportData}EOF
 
 # 5. Run git fast-import
-echo "⚡ Generating \${REPO_NAME} commits..."
+echo -e "\${CYAN}⚡ Generating \${REPO_NAME} commits...\${NC}"
 git fast-import --date-format=raw < import.txt
 rm import.txt
 
@@ -93,30 +92,33 @@ rm import.txt
 git remote add origin "\${REPO_URL}" 2>/dev/null || git remote set-url origin "\${REPO_URL}"
 
 # 7. Push with robust error handling
-echo "📬 Pushing to remote repository..."
+echo -e "\${CYAN}📬 Pushing to remote repository...\${NC}"
 push_error=\$(git push -u origin main 2>&1)
 push_status=\$?
 
 if [ \$push_status -ne 0 ]; then
-  echo "------------------------------------------------"
-  echo "❌ Git push failed!"
-  echo "\$push_error"
-  echo "------------------------------------------------"
+  echo -e "\${RED}------------------------------------------------\${NC}"
+  echo -e "\${RED}❌ Git push failed!\${NC}"
+  echo -e "\${YELLOW}\$push_error\${NC}"
+  echo -e "\${RED}------------------------------------------------\${NC}"
   
   if echo "\$push_error" | grep -qE "403|Permission to|denied"; then
-    echo "💡 Authentication Error (403 / Permission Denied):"
+    echo -e "\${CYAN}💡 Authentication Error (403 / Permission Denied):\${NC}"
     echo "  - HTTPS: Verify your GitHub Personal Access Token (PAT) has 'repo' write permissions."
     echo "  - SSH: Ensure your SSH key is added to your Git provider (test with: ssh -T git@github.com)."
     echo "  - Access: Confirm your account has owner/collaborator write access to this repository."
   elif echo "\$push_error" | grep -q "repository not found"; then
-    echo "💡 Repository Not Found:"
+    echo -e "\${RED}**************************************************\${NC}"
+    echo -e "\${RED}*  ERROR - ERROR - REPOSITORY NOT FOUND - ERROR  *\${NC}"
+    echo -e "\${RED}**************************************************\${NC}"
+    echo -e "\${CYAN}💡 Repository Not Found:\${NC}"
     echo "  - Please check if you created the empty repository on GitHub/GitLab first."
     echo "  - Verify the Repository URL spelling is correct."
   fi
   exit 1
 fi
 
-echo "✅ Success! Commits pushed to remote main branch."
+echo -e "\${GREEN}✅ Success! Commits pushed to remote main branch.\${NC}"
 `;
 
     // POWERSHELL SCRIPT
@@ -148,11 +150,11 @@ git config user.email "\$GitEmail"
 \$importData = @"
 ${fastImportData}"@
 
-\$importData | Out-File -FilePath import.txt -Encoding utf8
+[System.IO.File]::WriteAllText("import.txt", \$importData)
 
 # 5. Run git fast-import
 Write-Host "⚡ Generating \$RepoName commits..." -ForegroundColor Cyan
-git fast-import --date-format=raw < import.txt
+Get-Content import.txt -Raw | git fast-import --date-format=raw
 Remove-Item import.txt
 
 # 6. Configure remote
@@ -179,6 +181,9 @@ if (\$LASTEXITCODE -ne 0) {
         Write-Host "  - SSH: Ensure your SSH key is added to your Git provider (test with: ssh -T git@github.com)." -ForegroundColor White
         Write-Host "  - Access: Confirm your account has owner/collaborator write access to this repository." -ForegroundColor White
     } elseif (\$pushErrorMsg -match "repository not found") {
+        Write-Host "**************************************************" -ForegroundColor Red
+        Write-Host "*  ERROR - ERROR - REPOSITORY NOT FOUND - ERROR  *" -ForegroundColor Red
+        Write-Host "**************************************************" -ForegroundColor Red
         Write-Host "💡 Repository Not Found:" -ForegroundColor Cyan
         Write-Host "  - Please check if you created the empty repository on GitHub/GitLab first." -ForegroundColor White
         Write-Host "  - Verify the Repository URL spelling is correct." -ForegroundColor White

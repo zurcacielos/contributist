@@ -120,7 +120,11 @@ export function useActivityGraph({ state, dispatch, onEditChange }: UseActivityG
 
     const outMeta: any[] = [];
 
-    const commits = generateCommits({ ...config, paintedLayer: {} }, outMeta);
+    const backgroundOnlyConfig = {
+      ...config,
+      layers: (config.layers || []).filter(l => l.type === 'background')
+    };
+    const commits = generateCommits(backgroundOnlyConfig, outMeta);
 
     const commitCounts: Record<string, number> = {};
     commits.forEach(c => {

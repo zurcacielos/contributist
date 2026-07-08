@@ -80,42 +80,43 @@ describe('Script Generation API Endpoint', () => {
     const ps1 = data.ps1 as string;
 
     // Verify Repository Name Extraction
-    expect(bash).toContain('fake_repo_generated');
-    expect(ps1).toContain('fake_repo_generated');
+    expect(bash).toContain('REPO_NAME="fake_repo"');
+    expect(ps1).toContain('$RepoName = "fake_repo"');
 
     // Verify Git Initialization
     expect(bash).toContain('git init -b main');
     expect(ps1).toContain('git init -b main');
 
     // Verify Commits (Level 4 on Jan 2 = 10 commits, Level 2 on Jan 5 = 3 commits => 13 commits total)
-    const commitCountBash = (bash.match(/git commit -m/g) || []).length;
+    const commitCountBash = (bash.match(/commit refs\/heads\/main/g) || []).length;
     expect(commitCountBash).toBe(13);
 
-    const commitCountPs1 = (ps1.match(/git commit -m/g) || []).length;
+    const commitCountPs1 = (ps1.match(/commit refs\/heads\/main/g) || []).length;
     expect(commitCountPs1).toBe(13);
 
     // Verify Author Credentials
-    expect(bash).toContain('--author="Test Author <test@example.com>"');
-    expect(ps1).toContain('--author="Test Author <test@example.com>"');
+    expect(bash).toContain('committer Test Author <test@example.com>');
+    expect(ps1).toContain('committer Test Author <test@example.com>');
 
     // Verify specific dates appear the correct number of times in the script
-    const jan2BashMatches = (bash.match(/--date="2025-01-02/g) || []).length;
+    const jan2BashMatches = (bash.match(/2025-01-02/g) || []).length;
     expect(jan2BashMatches).toBe(10);
 
-    const jan5BashMatches = (bash.match(/--date="2025-01-05/g) || []).length;
+    const jan5BashMatches = (bash.match(/2025-01-05/g) || []).length;
     expect(jan5BashMatches).toBe(3);
 
-    const jan2Ps1Matches = (ps1.match(/--date="2025-01-02/g) || []).length;
+    const jan2Ps1Matches = (ps1.match(/2025-01-02/g) || []).length;
     expect(jan2Ps1Matches).toBe(10);
 
-    const jan5Ps1Matches = (ps1.match(/--date="2025-01-05/g) || []).length;
+    const jan5Ps1Matches = (ps1.match(/2025-01-05/g) || []).length;
     expect(jan5Ps1Matches).toBe(3);
 
     // Verify Remote and Push
-    expect(bash).toContain('git remote add origin git@example.com:user/fake_repo.git');
+    expect(bash).toContain('REPO_URL="git@example.com:user/fake_repo.git"');
+    expect(bash).toContain('git remote add origin "${REPO_URL}"');
     expect(bash).toContain('git push -u origin main');
     
-    expect(ps1).toContain('git remote add origin git@example.com:user/fake_repo.git');
+    expect(ps1).toContain('git remote add origin "$RepoUrl"');
     expect(ps1).toContain('git push -u origin main');
   });
 });

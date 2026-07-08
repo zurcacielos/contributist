@@ -44,7 +44,11 @@ export async function POST(request: Request) {
     fs.mkdirSync(logsDir, { recursive: true });
 
     // Generate pure algorithmic layer for the logs
-    const pureAlgoCommits = generateCommits({ ...config, paintedLayer: {} });
+    const backgroundOnlyConfig = {
+      ...config,
+      layers: (config.layers || []).filter(l => l.type === 'background')
+    };
+    const pureAlgoCommits = generateCommits(backgroundOnlyConfig);
     const algoLayer: Record<string, number> = {};
     pureAlgoCommits.forEach(c => {
       const dStr = c.dateStr.split("T")[0];

@@ -186,13 +186,13 @@ export function generateCommits(config: GeneratorConfig, outMeta?: YearConfigMet
           }
         } else {
           let pTime = new Date(current);
-          pTime.setUTCHours(12, Math.floor(Math.random() * 60), 0);
+          pTime.setUTCHours(12, Math.floor(dayRng() * 60), 0);
           for (let c = 0; c < targetCommits; c++) {
             commits.push({
               dateStr: pTime.toISOString(),
-              msg: COMMIT_MESSAGES[Math.floor(Math.random() * COMMIT_MESSAGES.length)]
+              msg: getRandomItem(COMMIT_MESSAGES, dayRng)
             });
-            pTime.setUTCMinutes(pTime.getUTCMinutes() + 10 + Math.floor(Math.random() * 20));
+            pTime.setUTCMinutes(pTime.getUTCMinutes() + 10 + Math.floor(dayRng() * 20));
           }
         }
       }
