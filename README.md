@@ -9,7 +9,6 @@
 
 ## 🌐 Live Demo
 
-You can try the application online directly at:
 ### 👉 [**contributist.stupidity.works**](https://contributist.stupidity.works)
 
 ---
