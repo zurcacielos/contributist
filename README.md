@@ -3,15 +3,15 @@
 **Contributist** is an interactive web tool to paint custom pixel art directly onto your Git contribution graph. Design your layout, load templates, and generate a commit history script to customize your profile instantly.
 
 <p>
-  <b>⭐ Give it a star! Fork it! Make it your own! tell me what features you want! 💖</b>
+  <b>⭐ Give it a star! Fork it! Make it your own! 💖</b>
+</p><p>
+  <b>⭐ Send a feature request, ask and I add you to contributors pane here and in the app online! 💖</b>
 </p>
----
 
 ## 🌐 Live Demo
 
 ### 👉 [**contributist.stupidity.works**](https://contributist.stupidity.works)
 
----
 
 ## 📸 Screenshots
 
