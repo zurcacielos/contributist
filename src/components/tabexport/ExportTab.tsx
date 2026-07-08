@@ -50,12 +50,20 @@ export const ExportTab: React.FC<ExportTabProps> = ({
 
       const data = await response.json();
       if (response.ok) {
-        if (type === "bash") {
-          downloadFile(`generate-activity-${getFileTimestamp()}.sh`, data.bash);
-        } else {
-          downloadFile(`generate-activity-${getFileTimestamp()}.ps1`, data.ps1);
+        let repoName = "repo";
+        if (config.repoUrl) {
+          const start = config.repoUrl.lastIndexOf("/") + 1;
+          const end = config.repoUrl.lastIndexOf(".");
+          if (start > 0 && end > start) {
+            repoName = config.repoUrl.substring(start, end);
+          }
         }
-        setResult({ success: true, message: `Successfully downloaded ${type === 'bash' ? 'Bash' : 'PowerShell'} script.` });
+        const timestamp = getFileTimestamp();
+        const extension = type === "bash" ? "sh" : "ps1";
+        const filename = `contributist-generated-${repoName}-${timestamp}.${extension}`;
+
+        downloadFile(filename, type === "bash" ? data.bash : data.ps1);
+        setResult({ success: true, message: `Successfully downloaded script: ${filename}` });
       } else {
         setResult({ success: false, message: data.error || "Failed to generate scripts." });
       }
