@@ -9,8 +9,6 @@ Contributist is an interactive visual tool that lets you paint custom designs di
 You can try the application online directly at:
 ### 👉 [**contributist.stupidity.works**](https://contributist.stupidity.works)
 
-*(Remember to set up your subdomain and registrar DNS records if hosting your own instance!)*
-
 ---
 
 ## 📸 Screenshots
