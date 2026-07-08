@@ -37,6 +37,11 @@ Pick on top, the flavor you like most. Bash has a few more options for you to pl
 
 *Layer editing features allow you to add custom shapes, sprites, and background images to your contribution graph. Change order, hide during editing, add text, and more to come!*
 
+### Memes and Text toolbar for quick fun
+![Memes and Text toolbar Preview](screenshots/meme-text-bar.png)
+
+*The memes and text toolbar, appears in the Selected Year, and allows you to add memes and text to your contribution graph.*
+
 ### Send to git dev mode and cloud mode
 ![Send to git Preview](screenshots/send-to-git.png)
 
