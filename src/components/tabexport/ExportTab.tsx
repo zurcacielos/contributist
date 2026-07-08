@@ -6,6 +6,7 @@ import { GeneratorConfig } from "@/types";
 import { AppAction } from "@/state/appReducer";
 import { isValidExportConfig, isValidEmail, isValidRepoUrl } from "@/utils/validators";
 import { downloadFile } from "@/utils/downloadFile";
+import { getFileTimestamp } from "@/utils/dateHelper";
 
 interface ExportTabProps {
   config: GeneratorConfig;
@@ -50,9 +51,9 @@ export const ExportTab: React.FC<ExportTabProps> = ({
       const data = await response.json();
       if (response.ok) {
         if (type === "bash") {
-          downloadFile("generate-activity.sh", data.bash);
+          downloadFile(`generate-activity-${getFileTimestamp()}.sh`, data.bash);
         } else {
-          downloadFile("generate-activity.ps1", data.ps1);
+          downloadFile(`generate-activity-${getFileTimestamp()}.ps1`, data.ps1);
         }
         setResult({ success: true, message: `Successfully downloaded ${type === 'bash' ? 'Bash' : 'PowerShell'} script.` });
       } else {

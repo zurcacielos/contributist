@@ -6,6 +6,7 @@ import { promisify } from "util";
 import fs from "fs";
 import path from "path";
 import { logEvent } from "@/utils/logger";
+import { getFileTimestamp } from "@/utils/dateHelper";
 
 const execAsync = promisify(exec);
 
@@ -32,9 +33,7 @@ export async function POST(request: Request) {
       repoName = config.repoUrl.substring(start, end);
     }
 
-    const now = new Date();
-    const pad = (n: number) => n.toString().padStart(2, '0');
-    const timestamp = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}-${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}`;
+    const timestamp = getFileTimestamp();
     
     const folderName = `${repoName}-${timestamp}`;
     const generatedDir = path.join(process.cwd(), "generated");
