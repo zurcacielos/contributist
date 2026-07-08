@@ -60,7 +60,10 @@ export function initializeAndMigrateConfig(
  * Downloads the current configuration state as a JSON file.
  */
 export function saveConfig(config: GeneratorConfig): void {
-  downloadFile("contribution-config.json", JSON.stringify(config, null, 2));
+  const now = new Date();
+  const pad = (n: number) => n.toString().padStart(2, '0');
+  const timestamp = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}-${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}`;
+  downloadFile(`contributist-config-${timestamp}.json`, JSON.stringify(config, null, 2));
 }
 
 /**
