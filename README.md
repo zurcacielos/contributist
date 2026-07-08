@@ -1,6 +1,6 @@
 # 🎨 Contributist — Git Contribution Graph Painter
 
-Contributist is an interactive visual tool that lets you paint custom designs directly onto your GitHub, GitLab, Gitea, or any Git-based code hosting service contribution graph. Design pixel art, layer different shapes or text, import pre-built templates, and generate a real Git commit history script to paint your artwork onto your profile.
+**Contributist** is an interactive web tool to paint custom pixel art directly onto your Git contribution graph. Design your layout, load templates, and generate a commit history script to customize your profile instantly.
 
 <p align="center">
   <b>⭐ Give it a star! Fork it! Show some love! 💖</b>
