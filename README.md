@@ -15,8 +15,6 @@ You can try the application online directly at:
 
 ## 📸 Screenshots
 
-> [!NOTE]
-> **To the Author:** Please take screenshots of your local application and save them in the `screenshots/` directory in the root of the project.
 
 ### Main Dashboard
 ![Dashboard Preview](screenshots/main-dashboard.png)
