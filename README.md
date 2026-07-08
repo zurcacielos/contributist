@@ -45,6 +45,7 @@ Pick on top, the flavor you like most. Bash has a few more options for you to pl
 *The png export mode allows you to download a png image of your contribution graph, with different color palettes. This is useful for sharing your artwork on social media or other platforms.*
 
 ### URL Export
+
 ![Share Your Design URL](screenshots/share-design-url.png)
 *The url export mode allows you to generate a url that can be used to share your artwork with others. Just share the url in the Share screen, and the entire configuration will be encoded for you in that url, so the other person sees your art immediately.*
 
