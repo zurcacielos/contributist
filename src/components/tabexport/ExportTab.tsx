@@ -160,237 +160,193 @@ export const ExportTab: React.FC<ExportTabProps> = ({
   };
 
   return (
-    <section style={{ 
-      display: "flex", 
-      flexDirection: "column", 
-      gap: "20px", 
-      padding: "18px 24px 24px",
-      maxWidth: "800px",
-      margin: "0 auto",
-      width: "100%"
-    }}>
-      {/* Main Content Area */}
-      <section className="workspace" style={{ flex: 1, display: "flex", flexDirection: "column", gap: "20px" }}>
-        {/* Prerequisite Info Card */}
-        <div className="card" style={{ 
-          padding: "20px", 
-          display: "flex", 
-          flexDirection: "column", 
-          gap: "10px" 
-        }}>
-          <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)", display: "flex", alignItems: "center", gap: "8px" }}>
-            <span>⚠️</span> Prerequisite: Create a Remote Repository First
-          </h3>
-          <p style={{ fontSize: "0.9rem", color: "var(--text-main)", margin: "0", lineHeight: "1.5" }}>
-            Create a dummy <strong>EMPTY</strong> contributions repository in your Gitea/Gogs, GitHub, GitLab or other remote. <strong>Do not</strong> add a README, license, or gitignore file.
-          </p>
-          <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "0", lineHeight: "1.4" }}>
-            <span style={{
-              background: 'linear-gradient(90deg, #ff007f, #ff00ff, #00d2ff)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              fontWeight: 'bold'
-            }}>
-              If the repository already exists, DELETE IT, and create it again.
-            </span>{" "}
-            If you don't do it, even if you override the repo history on remote, the previous commits may remain orphaned, distorting your contribution graph.
-          </p>
-        </div>
+    <section className="layout" style={{ display: "block", padding: 0 }}>
+      {/* Centered content wrapper to constrain width while keeping scrollbar at the far right */}
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        width: "100%",
+        maxWidth: "800px",
+        margin: "0 auto",
+        padding: "18px 24px 24px"
+      }}>
+        {/* Main Content Area */}
+        <section className="workspace" style={{ flex: 1, display: "flex", flexDirection: "column", gap: "20px" }}>
+          {/* Prerequisite Info Card */}
+          <div className="card" style={{
+            padding: "20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px"
+          }}>
+            <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)", display: "flex", alignItems: "center", gap: "8px" }}>
+              <span>⚠️</span> Prerequisite: Create a Remote Repository First
+            </h3>
+            <p style={{ fontSize: "0.9rem", color: "var(--text-main)", margin: "0", lineHeight: "1.5" }}>
+              Create a dummy <strong>EMPTY</strong> contributions repository in your Gitea/Gogs, GitHub, GitLab or other remote. <strong>Do not</strong> add a README, license, or gitignore file.
+            </p>
+            <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "0", lineHeight: "1.4" }}>
+              <span style={{
+                background: 'linear-gradient(90deg, #ff007f, #ff00ff, #00d2ff)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fontWeight: 'bold'
+              }}>
+                If the repository already exists, DELETE IT, and create it again.
+              </span>{" "}
+              If you don't do it, even if you override the repo history on remote, the previous commits may remain orphaned, distorting your contribution graph.
+            </p>
+          </div>
 
-        {/* Git Identity Card */}
-        <div className="card" style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
-          <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)" }}>Git Identity</h3>
+          {/* Git Identity Card */}
+          <div className="card" style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
+            <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)" }}>Git Identity</h3>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-              <label htmlFor="repoUrl" style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
-                Repository URL
-              </label>
-              <input
-                id="repoUrl"
-                name="repoUrl"
-                type="url"
-                value={config.repoUrl || ""}
-                onChange={handleChange}
-                placeholder="https://example.com/username/repo.git"
-                style={{ 
-                  fontSize: "0.95rem", 
-                  padding: "8px", 
-                  backgroundColor: "var(--surface)", 
-                  border: `1px solid ${config.repoUrl && !isValidRepoUrl(config.repoUrl) ? "#f85149" : "var(--border)"}`, 
-                  borderRadius: "4px", 
-                  width: "100%", 
-                  color: "white" 
-                }}
-              />
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "16px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                <label htmlFor="gitName" style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
-                  Git Username
+                <label htmlFor="repoUrl" style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
+                  Repository URL - HTTPS or SSH - e.g: git@remote.com:username/reponame.git
                 </label>
                 <input
-                  id="gitName"
-                  name="gitName"
-                  type="text"
-                  value={config.gitName || ""}
+                  id="repoUrl"
+                  name="repoUrl"
+                  type="url"
+                  value={config.repoUrl || ""}
                   onChange={handleChange}
-                  placeholder="Your Git user name"
-                  style={{ fontSize: "0.95rem", padding: "8px", backgroundColor: "var(--surface)", border: "1px solid var(--border)", borderRadius: "4px", color: "white", width: "100%" }}
-                />
-              </div>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                <label htmlFor="gitEmail" style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
-                  Git Email
-                </label>
-                <input
-                  id="gitEmail"
-                  name="gitEmail"
-                  type="email"
-                  value={config.gitEmail || ""}
-                  onChange={handleChange}
-                  placeholder="you@example.com"
-                  style={{ 
-                    fontSize: "0.95rem", 
-                    padding: "8px", 
-                    backgroundColor: "var(--surface)", 
-                    border: `1px solid ${config.gitEmail && !isValidEmail(config.gitEmail) ? "#f85149" : "var(--border)"}`, 
-                    borderRadius: "4px", 
-                    color: "white", 
-                    width: "100%" 
+                  placeholder="https://example.com/username/repo.git"
+                  style={{
+                    fontSize: "0.95rem",
+                    padding: "8px",
+                    backgroundColor: "var(--surface)",
+                    border: `1px solid ${config.repoUrl && !isValidRepoUrl(config.repoUrl) ? "#f85149" : "var(--border)"}`,
+                    borderRadius: "4px",
+                    width: "100%",
+                    color: "white"
                   }}
                 />
               </div>
-            </div>
-          </div>
 
-          {!isConfigValid && (
-            <div style={{ 
-              marginTop: "8px", 
-              padding: "12px 16px", 
-              backgroundColor: "rgba(248, 81, 73, 0.08)", 
-              border: "1px solid rgba(248, 81, 73, 0.25)", 
-              borderRadius: "6px",
-              color: "#ff7b72",
-              fontSize: "0.85rem",
-              display: "flex",
-              flexDirection: "column",
-              gap: "6px"
-            }}>
-              <div style={{ fontWeight: "600", marginBottom: "2px", display: "flex", alignItems: "center", gap: "6px" }}>
-                <span>⚠️</span> Configuration Required:
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "8px" }}>
+                  <label htmlFor="gitName" style={{ fontSize: "0.9rem", color: "var(--text-muted)", whiteSpace: "nowrap" }}>
+                    Git Username:
+                  </label>
+                  <input
+                    id="gitName"
+                    name="gitName"
+                    type="text"
+                    value={config.gitName || ""}
+                    onChange={handleChange}
+                    placeholder="Your Git user name"
+                    style={{ fontSize: "0.95rem", padding: "8px", backgroundColor: "var(--surface)", border: "1px solid var(--border)", borderRadius: "4px", color: "white", flex: 1 }}
+                  />
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "8px" }}>
+                  <label htmlFor="gitEmail" style={{ fontSize: "0.9rem", color: "var(--text-muted)", whiteSpace: "nowrap" }}>
+                    Git Email:
+                  </label>
+                  <input
+                    id="gitEmail"
+                    name="gitEmail"
+                    type="email"
+                    value={config.gitEmail || ""}
+                    onChange={handleChange}
+                    placeholder="you@example.com"
+                    style={{
+                      fontSize: "0.95rem",
+                      padding: "8px",
+                      backgroundColor: "var(--surface)",
+                      border: `1px solid ${config.gitEmail && !isValidEmail(config.gitEmail) ? "#f85149" : "var(--border)"}`,
+                      borderRadius: "4px",
+                      color: "white",
+                      flex: 1
+                    }}
+                  />
+                </div>
               </div>
-              {!config.repoUrl ? (
-                <div>• <strong>Repository URL</strong> is required to set up the push origin.</div>
-              ) : !isValidRepoUrl(config.repoUrl) ? (
-                <div>• <strong>Repository URL</strong> must start with <code>https://</code>, <code>git@</code>, or <code>ssh://</code>.</div>
-              ) : null}
-              {!config.gitName || !config.gitName.trim() ? (
-                <div>• <strong>Git Username</strong> is required to sign the commits.</div>
-              ) : null}
-              {!config.gitEmail ? (
-                <div>• <strong>Git Email</strong> is required.</div>
-              ) : !isValidEmail(config.gitEmail) ? (
-                <div>• <strong>Git Email</strong> must be a valid email format (e.g. <code>user@example.com</code>).</div>
-              ) : null}
             </div>
-          )}
-        </div>
-        {result && (
-          <div
-            style={{
-              padding: "12px 16px",
-              borderRadius: "8px",
-              backgroundColor: result.success ? "rgba(56, 139, 253, 0.15)" : "rgba(248, 81, 73, 0.15)",
-              border: `1px solid ${result.success ? "rgba(56, 139, 253, 0.4)" : "rgba(248, 81, 73, 0.4)"}`,
-              color: result.success ? "#58a6ff" : "#f85149",
-              fontSize: "0.9rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "8px",
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", flex: 1 }}>
-              <span style={{ userSelect: "none" }}>
-                {result.success ? "✅" : "⚠️"}
-              </span>
-              <span style={{ wordBreak: "break-word" }}>{result.message}</span>
-            </div>
-            <button
-              type="button"
-              onClick={() => setResult(null)}
+
+            {!isConfigValid && (
+              <div style={{
+                marginTop: "8px",
+                padding: "12px 16px",
+                backgroundColor: "rgba(248, 81, 73, 0.08)",
+                border: "1px solid rgba(248, 81, 73, 0.25)",
+                borderRadius: "6px",
+                color: "#ff7b72",
+                fontSize: "0.85rem",
+                display: "flex",
+                flexDirection: "column",
+                gap: "6px"
+              }}>
+                <div style={{ fontWeight: "600", marginBottom: "2px", display: "flex", alignItems: "center", gap: "6px" }}>
+                  <span>⚠️</span> Configuration Required:
+                </div>
+                {!config.repoUrl ? (
+                  <div>• <strong>Repository URL</strong> is required to set up the push origin.</div>
+                ) : !isValidRepoUrl(config.repoUrl) ? (
+                  <div>• <strong>Repository URL</strong> must start with <code>https://</code>, <code>git@</code>, or <code>ssh://</code>.</div>
+                ) : null}
+                {!config.gitName || !config.gitName.trim() ? (
+                  <div>• <strong>Git Username</strong> is required to sign the commits.</div>
+                ) : null}
+                {!config.gitEmail ? (
+                  <div>• <strong>Git Email</strong> is required.</div>
+                ) : !isValidEmail(config.gitEmail) ? (
+                  <div>• <strong>Git Email</strong> must be a valid email format (e.g. <code>user@example.com</code>).</div>
+                ) : null}
+              </div>
+            )}
+          </div>
+          {result && (
+            <div
               style={{
-                background: "none",
-                border: "none",
-                color: "inherit",
-                cursor: "pointer",
-                fontSize: "1.1rem",
-                opacity: 0.6,
-                padding: "4px",
+                padding: "12px 16px",
+                borderRadius: "8px",
+                backgroundColor: result.success ? "rgba(56, 139, 253, 0.15)" : "rgba(248, 81, 73, 0.15)",
+                border: `1px solid ${result.success ? "rgba(56, 139, 253, 0.4)" : "rgba(248, 81, 73, 0.4)"}`,
+                color: result.success ? "#58a6ff" : "#f85149",
+                fontSize: "0.9rem",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
-                transition: "opacity 0.2s"
+                justifyContent: "space-between",
+                gap: "8px",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.6")}
-              title="Dismiss message"
             >
-              ✕
-            </button>
-          </div>
-        )}
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", flex: 1 }}>
+                <span style={{ userSelect: "none" }}>
+                  {result.success ? "✅" : "⚠️"}
+                </span>
+                <span style={{ wordBreak: "break-word" }}>{result.message}</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setResult(null)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "inherit",
+                  cursor: "pointer",
+                  fontSize: "1.1rem",
+                  opacity: 0.6,
+                  padding: "4px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "opacity 0.2s"
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.6")}
+                title="Dismiss message"
+              >
+                ✕
+              </button>
+            </div>
+          )}
 
-        {/* Self-Service Script */}
-        <div className="card" style={{ padding: "20px" }}>
-          <h3
-            style={{
-              fontSize: "1.1rem",
-              margin: "0 0 10px 0",
-              color: "var(--text-main)",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-            }}
-          >
-            Option 1: Self-Service Script
-            <span
-              className="info-icon"
-              style={{ pointerEvents: "auto" }}
-              data-tooltip-id="info-tooltip"
-              data-tooltip-html="How to run:<br><br>Mac/Linux:<br>bash generate-activity.sh<br><br>Windows:<br>Right-click .ps1 → Run with PowerShell"
-            >
-              i
-            </span>
-          </h3>
-          <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: "15px", lineHeight: "1.3" }}>
-            Download a zero-dependency script and run it safely on your own machine.
-          </p>
-          <div style={{ display: "flex", gap: "15px" }}>
-            <button
-              className="btn btn-primary"
-              onClick={() => handleDownloadScript("bash")}
-              disabled={isWorking || !isConfigValid}
-              style={{ flex: 1, backgroundColor: "var(--surface-hover)", border: "1px solid var(--border)", color: "var(--text-main)", padding: "10px 16px", fontSize: "0.95rem" }}
-            >
-              ⬇️ Download Bash Script (.sh)
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => handleDownloadScript("ps1")}
-              disabled={isWorking || !isConfigValid}
-              style={{ flex: 1, backgroundColor: "var(--surface-hover)", border: "1px solid var(--border)", color: "var(--text-main)", padding: "10px 16px", fontSize: "0.95rem" }}
-            >
-              ⬇️ Download PowerShell Script (.ps1)
-            </button>
-          </div>
-        </div>
-
-        {/* Cloud Generator */}
-        {process.env.NEXT_PUBLIC_LOCAL_GIT_GENERATION_ENABLED === "true" && (
+          {/* Self-Service Script */}
           <div className="card" style={{ padding: "20px" }}>
             <h3
               style={{
@@ -402,150 +358,186 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                 gap: "8px",
               }}
             >
-              Option 2: Cloud Generator (Auto-Push)
+              Option 1: Self-Service Script
               <span
                 className="info-icon"
                 style={{ pointerEvents: "auto" }}
                 data-tooltip-id="info-tooltip"
-                data-tooltip-content="We will create a dummy repo locally on the server and push it directly to your remote URL. Your repo MUST be completely empty."
+                data-tooltip-html="How to run:<br><br>Mac/Linux:<br>bash generate-activity.sh<br><br>Windows:<br>Right-click .ps1 → Run with PowerShell"
               >
                 i
               </span>
             </h3>
             <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: "15px", lineHeight: "1.3" }}>
-              In your REMOTE git repository (like Gitea/Gogs or other remote hosts),{" "}
-              <span style={{
-                background: 'linear-gradient(90deg, #ff007f, #ff00ff, #00d2ff)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontWeight: 'bold'
-              }}>
-                you need to delete the existing dummy repo you use for contributions, and create it again.
-              </span>{" "}
-              If you don't do it, even if you override the repo history on remote, the previous commits may remain orphaned, distorting your contribution graph.
+              Download a zero-dependency script and run it safely on your own machine.
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                <button
-                  className="btn btn-primary"
-                  onClick={handleGenerateLocal}
-                  disabled={isWorking || !isConfigValid}
-                  style={{ padding: "10px 24px", height: "46px", fontSize: "1rem", width: "fit-content" }}
-                >
-                  {isWorking && !localFolder ? (
-                    <span className="loader" style={{ width: "14px", height: "14px", borderWidth: "2px" }} />
-                  ) : (
-                    "💻"
-                  )}{" "}1. Generate Local Repository
-                </button>
-                {localFolder && (
-                  <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "8px" }}>
-                    <div style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontFamily: "monospace" }}>
-                      generated at: <span style={{ color: "#58a6ff" }}>{localPath || `./generated/${localFolder}`}</span>
-                    </div>
-                    <div style={{ display: "flex", gap: "10px" }}>
-                      <button
-                        type="button"
-                        className="btn"
-                        onClick={handleReveal}
-                        style={{
-                          backgroundColor: "var(--surface-hover)",
-                          border: "1px solid var(--border)",
-                          color: "var(--text-main)",
-                          padding: "6px 12px",
-                          fontSize: "0.85rem",
-                          borderRadius: "4px",
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "6px",
-                          transition: "all 0.2s"
-                        }}
-                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--border)")}
-                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--surface-hover)")}
-                      >
-                        📁 Reveal in File Explorer
-                      </button>
-                      <button
-                        type="button"
-                        className="btn"
-                        onClick={handleOpenTerminal}
-                        style={{
-                          backgroundColor: "var(--surface-hover)",
-                          border: "1px solid var(--border)",
-                          color: "var(--text-main)",
-                          padding: "6px 12px",
-                          fontSize: "0.85rem",
-                          borderRadius: "4px",
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "6px",
-                          transition: "all 0.2s"
-                        }}
-                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--border)")}
-                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--surface-hover)")}
-                      >
-                        💻 Open in Terminal
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: "15px", opacity: isPushDisabled ? 0.5 : 1, transition: "opacity 0.2s", width: "100%" }}>
-                {process.env.NEXT_PUBLIC_GIT_OVERRIDE_ENABLED === "true" && (
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "10px" }}>
-                    <label style={{ fontSize: "0.75rem", color: "#ff7b72", fontWeight: "600", textTransform: "uppercase", margin: 0 }}>
-                      Write OVERRIDE to override the remote git commit history (Optional and probably useless).
-                    </label>
-                    <input
-                      type="text"
-                      value={overrideText}
-                      onChange={(e) => setOverrideText(e.target.value)}
-                      placeholder="OVERRIDE"
-                      disabled={isPushDisabled}
-                      style={{
-                        backgroundColor: "#160505",
-                        border: "1px solid #f85149",
-                        color: "#ff7b72",
-                        padding: "6px 10px",
-                        fontSize: "0.85rem",
-                        borderRadius: "6px",
-                        width: "100px",
-                        textAlign: "center",
-                      }}
-                    />
-                  </div>
-                )}
-
-                <button
-                  className="btn btn-primary"
-                  onClick={handlePushRemote}
-                  disabled={isPushDisabled}
-                  style={{
-                    width: "fit-content",
-                    backgroundColor: localFolder ? (overrideText === "OVERRIDE" ? "#da3633" : "var(--primary)") : "var(--surface-hover)",
-                    color: localFolder ? "#fff" : "var(--text-muted)",
-                    padding: "10px 24px",
-                    height: "46px",
-                    fontSize: "1rem",
-                    border: overrideText === "OVERRIDE" && localFolder ? "1px solid #b62324" : "1px solid transparent",
-                  }}
-                >
-                  {isWorking && localFolder ? <span className="loader" /> : "🚀"}
-                  {overrideText === "OVERRIDE" ? " 2. Push to Remote & Override" : " 2. Push to Remote"}
-                  {config.repoUrl ? ` ➔ ${config.repoUrl}` : ""}
-                </button>
-                {pushFailed && (
-                  <div style={{ fontSize: "0.85rem", color: "#ff7b72", marginTop: "8px", fontWeight: "500", lineHeight: "1.4" }}>
-                    💡 Did you deleted and created from scratch an empty dummy contrib repo in your remote?
-                  </div>
-                )}
-              </div>
+            <div style={{ display: "flex", gap: "15px" }}>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleDownloadScript("bash")}
+                disabled={isWorking || !isConfigValid}
+                style={{ flex: 1, backgroundColor: "var(--surface-hover)", border: "1px solid var(--border)", color: "var(--text-main)", padding: "10px 16px", fontSize: "0.95rem" }}
+              >
+                ⬇️ Download Bash Script (.sh)
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleDownloadScript("ps1")}
+                disabled={isWorking || !isConfigValid}
+                style={{ flex: 1, backgroundColor: "var(--surface-hover)", border: "1px solid var(--border)", color: "var(--text-main)", padding: "10px 16px", fontSize: "0.95rem" }}
+              >
+                ⬇️ Download PowerShell Script (.ps1)
+              </button>
             </div>
           </div>
-        )}
-      </section>
+
+          {/* Cloud Generator */}
+          {process.env.NEXT_PUBLIC_LOCAL_GIT_GENERATION_ENABLED === "true" && (
+            <div className="card" style={{ padding: "20px" }}>
+              <h3
+                style={{
+                  fontSize: "1.1rem",
+                  margin: "0 0 10px 0",
+                  color: "var(--text-main)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                Option 2: Cloud Generator (Auto-Push)
+                <span
+                  className="info-icon"
+                  style={{ pointerEvents: "auto" }}
+                  data-tooltip-id="info-tooltip"
+                  data-tooltip-content="We will create a dummy repo locally on the server and push it directly to your remote URL. Your repo MUST be completely empty."
+                >
+                  i
+                </span>
+              </h3>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                  <button
+                    className="btn btn-primary"
+                    onClick={handleGenerateLocal}
+                    disabled={isWorking || !isConfigValid}
+                    style={{ padding: "10px 24px", height: "46px", fontSize: "1rem", width: "fit-content" }}
+                  >
+                    {isWorking && !localFolder ? (
+                      <span className="loader" style={{ width: "14px", height: "14px", borderWidth: "2px" }} />
+                    ) : (
+                      "💻"
+                    )}{" "}1. Generate Local Repository
+                  </button>
+                  {localFolder && (
+                    <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "8px" }}>
+                      <div style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontFamily: "monospace" }}>
+                        generated at: <span style={{ color: "#58a6ff" }}>{localPath || `./generated/${localFolder}`}</span>
+                      </div>
+                      <div style={{ display: "flex", gap: "10px" }}>
+                        <button
+                          type="button"
+                          className="btn"
+                          onClick={handleReveal}
+                          style={{
+                            backgroundColor: "var(--surface-hover)",
+                            border: "1px solid var(--border)",
+                            color: "var(--text-main)",
+                            padding: "6px 12px",
+                            fontSize: "0.85rem",
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "6px",
+                            transition: "all 0.2s"
+                          }}
+                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--border)")}
+                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--surface-hover)")}
+                        >
+                          📁 Reveal in File Explorer
+                        </button>
+                        <button
+                          type="button"
+                          className="btn"
+                          onClick={handleOpenTerminal}
+                          style={{
+                            backgroundColor: "var(--surface-hover)",
+                            border: "1px solid var(--border)",
+                            color: "var(--text-main)",
+                            padding: "6px 12px",
+                            fontSize: "0.85rem",
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "6px",
+                            transition: "all 0.2s"
+                          }}
+                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--border)")}
+                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--surface-hover)")}
+                        >
+                          💻 Open in Terminal
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "15px", opacity: isPushDisabled ? 0.5 : 1, transition: "opacity 0.2s", width: "100%" }}>
+                  {process.env.NEXT_PUBLIC_GIT_OVERRIDE_ENABLED === "true" && (
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "10px" }}>
+                      <label style={{ fontSize: "0.75rem", color: "#ff7b72", fontWeight: "600", textTransform: "uppercase", margin: 0 }}>
+                        Write OVERRIDE to override the remote git commit history (Optional and probably useless).
+                      </label>
+                      <input
+                        type="text"
+                        value={overrideText}
+                        onChange={(e) => setOverrideText(e.target.value)}
+                        placeholder="OVERRIDE"
+                        disabled={isPushDisabled}
+                        style={{
+                          backgroundColor: "#160505",
+                          border: "1px solid #f85149",
+                          color: "#ff7b72",
+                          padding: "6px 10px",
+                          fontSize: "0.85rem",
+                          borderRadius: "6px",
+                          width: "100px",
+                          textAlign: "center",
+                        }}
+                      />
+                    </div>
+                  )}
+
+                  <button
+                    className="btn btn-primary"
+                    onClick={handlePushRemote}
+                    disabled={isPushDisabled}
+                    style={{
+                      width: "fit-content",
+                      backgroundColor: localFolder ? (overrideText === "OVERRIDE" ? "#da3633" : "var(--primary)") : "var(--surface-hover)",
+                      color: localFolder ? "#fff" : "var(--text-muted)",
+                      padding: "10px 24px",
+                      height: "46px",
+                      fontSize: "1rem",
+                      border: overrideText === "OVERRIDE" && localFolder ? "1px solid #b62324" : "1px solid transparent",
+                    }}
+                  >
+                    {isWorking && localFolder ? <span className="loader" /> : "🚀"}
+                    {overrideText === "OVERRIDE" ? " 2. Push to Remote & Override" : " 2. Push to Remote"}
+                    {config.repoUrl ? ` ➔ ${config.repoUrl}` : ""}
+                  </button>
+                  {pushFailed && (
+                    <div style={{ fontSize: "0.85rem", color: "#ff7b72", marginTop: "8px", fontWeight: "500", lineHeight: "1.4" }}>
+                      💡 Did you deleted and created from scratch an empty dummy contrib repo in your remote?
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+      </div>
     </section>
   );
 };
