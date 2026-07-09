@@ -37,7 +37,7 @@ export const FeelingToggler: React.FC<FeelingTogglerProps> = ({ feelingMode, onC
           borderRadius: "999px",
           background: isVibe
             ? "linear-gradient(135deg, #a855f7, #ec4899)" // Vibe gradient (Purple to Pink)
-            : "#086244ff", // Solid Green
+            : "var(--greenbash)", // Solid Green
           boxShadow: isVibe
             ? "0 0 14px rgba(168, 85, 247, 0.55), inset 0 1px rgba(255, 255, 255, 0.2)"
             : "inset 0 1px rgba(255, 255, 255, 0.2)",

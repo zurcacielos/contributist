@@ -5,8 +5,13 @@ body.theme-advanced {
   --surface: #0a0a0a;
   --surface-hover: #151515;
   --border: #1a1a1a;
+  --greenbash: #086244;
   background-color: var(--background);
   background-image: none;
+}
+
+body.theme-advanced .active-year h2 {
+  color: var(--greenbash);
 }
 
 body.theme-advanced .app-shell,
