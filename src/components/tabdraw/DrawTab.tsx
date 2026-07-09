@@ -12,6 +12,7 @@ import { AppState, AppAction } from "@/state/appReducer";
 import { CommunityRemix } from "@/components/CommunityRemix";
 import { Card } from "@/components/Card";
 import { ColorSelector } from "@/components/ColorSelector";
+import { FeelingToggler } from "@/components/FeelingToggler";
 
 interface DrawTabProps {
   config: GeneratorConfig;
@@ -61,6 +62,10 @@ export const DrawTab: React.FC<DrawTabProps> = ({
           gap: "14px"
         }}
       >
+        <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+          <span style={{ fontSize: "0.85rem", color: "#ffffff", fontWeight: "bold", textAlign: "center" }}>UI mode</span>
+          <FeelingToggler feelingMode={feelingMode} onChange={setFeelingMode} style={{ width: "100%" }} />
+        </div>
         {feelingMode === "vibe" ? (
           <BaseVibe config={config} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
         ) : (

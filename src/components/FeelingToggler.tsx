@@ -11,11 +11,11 @@ export const FeelingToggler: React.FC<FeelingTogglerProps> = ({ feelingMode, onC
   const isVibe = feelingMode === "vibe";
 
   return (
-    <div 
-      style={{ 
-        display: "inline-flex", 
-        alignItems: "center", 
-        padding: "2px", 
+    <div
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        padding: "2px",
         background: "rgba(10, 15, 30, 0.65)",
         border: "1px solid rgba(168, 85, 247, 0.5)",
         backdropFilter: "blur(8px)",
@@ -23,7 +23,7 @@ export const FeelingToggler: React.FC<FeelingTogglerProps> = ({ feelingMode, onC
         position: "relative",
         userSelect: "none",
         width: "210px", // Set fixed width for perfect 50/50 split
-        ...style 
+        ...style
       }}
     >
       {/* Sliding background pill */}
@@ -35,12 +35,12 @@ export const FeelingToggler: React.FC<FeelingTogglerProps> = ({ feelingMode, onC
           left: isVibe ? "2px" : "calc(50% + 1px)",
           width: "calc(50% - 3px)",
           borderRadius: "999px",
-          background: isVibe 
+          background: isVibe
             ? "linear-gradient(135deg, #a855f7, #ec4899)" // Vibe gradient (Purple to Pink)
-            : "linear-gradient(135deg, #059669, #10b981)", // Terminal gradient (Emerald to Green)
-          boxShadow: isVibe 
-            ? "0 0 14px rgba(168, 85, 247, 0.55), inset 0 1px rgba(255, 255, 255, 0.2)" 
-            : "0 0 14px rgba(16, 185, 129, 0.55), inset 0 1px rgba(255, 255, 255, 0.2)",
+            : "#086244ff", // Solid Green
+          boxShadow: isVibe
+            ? "0 0 14px rgba(168, 85, 247, 0.55), inset 0 1px rgba(255, 255, 255, 0.2)"
+            : "inset 0 1px rgba(255, 255, 255, 0.2)",
           transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           zIndex: 1,
           pointerEvents: "none"

@@ -384,7 +384,7 @@ button {
 
 .titlebar {
   display: grid;
-  grid-template-columns: auto auto 1fr 210px;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 18px;
   min-height: 50px;

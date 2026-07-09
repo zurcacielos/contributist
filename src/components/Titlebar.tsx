@@ -1,6 +1,6 @@
 import React from 'react';
 import { FeelingMode } from '@/types';
-import { FeelingToggler } from './FeelingToggler';
+
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { FilePlus, FolderOpen, Save } from 'lucide-react';
 
@@ -28,27 +28,30 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
           </p>
         </div>
       </div>
-      <FeelingToggler feelingMode={feelingMode} onChange={setFeelingMode} style={{ marginLeft: "10px" }} />
+
       <nav className="flow" aria-label="creation flow">
         <button
           className={`flow-step ${mainTab === 'draw' ? 'active' : ''}`}
           onClick={() => onTabSwitch('draw')}
+          style={mainTab === 'draw' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
         >
-          <b>1</b> Design
+          <b style={mainTab === 'draw' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>1</b> Design
         </button>
         <i>→</i>
         <button
           className={`flow-step ${mainTab === 'share' ? 'active' : ''}`}
           onClick={() => onTabSwitch('share')}
+          style={mainTab === 'share' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
         >
-          <b>2</b> Share
+          <b style={mainTab === 'share' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>2</b> Share
         </button>
         <i>→</i>
         <button
           className={`flow-step ${mainTab === 'export' ? 'active' : ''}`}
           onClick={() => onTabSwitch('export')}
+          style={mainTab === 'export' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
         >
-          <b>3</b> Send to GIT
+          <b style={mainTab === 'export' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>3</b> Send to GIT
         </button>
       </nav>
       <div className="top-icons" aria-label="quick actions">
