@@ -27,8 +27,8 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
           <h1 style={{ margin: 0, fontSize: "18px", display: "flex", alignItems: "center", gap: "4px" }}>
             Contributist <span>⚡</span>
           </h1>
-          <p style={{ margin: "2px 0 0", fontSize: "12px", color: "var(--text-muted)" }}>
-            Turn your year into pixel art.
+          <p style={{ margin: "2px 0 0", fontSize: "12px", color: "var(--text-muted)", textTransform: "capitalize" }}>
+            Contribution Retribution.
           </p>
         </div>
       </div>
