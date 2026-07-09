@@ -3,6 +3,7 @@ import { Eye, EyeOff, Trash2, RotateCcw, Lock, Unlock } from 'lucide-react';
 import { Layer, MemeLayer } from '@/types';
 import { AppState, AppAction } from '@/state/appReducer';
 import { Card } from '@/components/Card';
+import { SynthFont } from '@/components/SynthFont';
 
 interface LayersPanelProps {
   state: AppState;
@@ -247,14 +248,9 @@ export function LayersPanel({
           onChange={e => { e.stopPropagation(); const newVal = e.target.checked; dispatch({ type: 'SET_CONFIG', payload: { ...state.config, showPaintedInOrange: newVal } }); }}
           style={{ marginRight: '4px' }}
         />
-        <span style={{
-          background: 'linear-gradient(90deg, #ff007f, #8e24aa, #00d2ff)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          fontWeight: 'bold'
-        }}>
+        <SynthFont variation="pink-purple-cyan">
           Show art in Synth
-        </span>
+        </SynthFont>
       </label>
     </Card>
   );

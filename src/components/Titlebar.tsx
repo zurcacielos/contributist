@@ -5,8 +5,8 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { FilePlus, FolderOpen, Save } from 'lucide-react';
 
 interface TitlebarProps {
-  mainTab: "draw" | "share" | "export";
-  onTabSwitch: (tab: "draw" | "share" | "export") => void;
+  mainTab: "draw" | "share" | "export" | "help";
+  onTabSwitch: (tab: "draw" | "share" | "export" | "help") => void;
   feelingMode: FeelingMode;
   setFeelingMode: (mode: FeelingMode) => void;
   onSave: () => void;
@@ -17,7 +17,11 @@ interface TitlebarProps {
 export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, onSave, onLoad, onReset }: TitlebarProps) {
   return (
     <header className="titlebar" style={{ position: 'sticky', top: 0, zIndex: 30, borderBottom: '1px solid var(--border)' }}>
-      <div className="brand" style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+      <div
+        className="brand"
+        onClick={() => onTabSwitch('draw')}
+        style={{ display: 'flex', alignItems: 'center', gap: '14px', cursor: 'pointer' }}
+      >
         <img src="/images/contributist-web.png" alt="Contributist logo" className="logo-img" />
         <div>
           <h1 style={{ margin: 0, fontSize: "18px", display: "flex", alignItems: "center", gap: "4px" }}>
@@ -30,6 +34,26 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
       </div>
 
       <nav className="flow" aria-label="creation flow">
+        <button
+          className={`flow-step ${mainTab === 'help' ? 'active' : ''}`}
+          onClick={() => onTabSwitch('help')}
+          style={{
+            background: "#ffffff",
+            borderColor: "#d4af37",
+            borderStyle: "solid",
+            borderWidth: "1px",
+            backgroundImage: "linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            fontWeight: "bold",
+            boxShadow: mainTab === 'help' ? "0 0 12px rgba(212, 175, 55, 0.6)" : "none",
+            transition: "all 0.2s ease"
+          }}
+        >
+          Help
+        </button>
+        <i style={{ opacity: 0.5, fontSize: "18px" }}>|</i>
         <button
           className={`flow-step ${mainTab === 'draw' ? 'active' : ''}`}
           onClick={() => onTabSwitch('draw')}

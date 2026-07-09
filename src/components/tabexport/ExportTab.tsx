@@ -7,6 +7,7 @@ import { AppAction } from "@/state/appReducer";
 import { isValidExportConfig, isValidEmail, isValidRepoUrl } from "@/utils/validators";
 import { downloadFile } from "@/utils/downloadFile";
 import { getFileTimestamp } from "@/utils/dateHelper";
+import { SynthFont } from "@/components/SynthFont";
 
 interface ExportTabProps {
   config: GeneratorConfig;
@@ -187,14 +188,9 @@ export const ExportTab: React.FC<ExportTabProps> = ({
               Create BRAND NEW dummy contributions repository with a NEW name, in your Gitea/Gogs, GitHub, GitLab or other remote. <strong>Do not</strong> add a README, license, or gitignore file.
             </p>
             <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "0", lineHeight: "1.4" }}>
-              <span style={{
-                background: 'linear-gradient(90deg, #ff007f, #ff00ff, #00d2ff)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontWeight: 'bold'
-              }}>
+              <SynthFont variation="pink-cyan">
                 If the repository already exists, DELETE IT, and create it again with a NEW name.
-              </span>{" "}
+              </SynthFont>{" "}
               If you reuse the same repository, orphan commits may distort your graph.
             </p>
           </div>

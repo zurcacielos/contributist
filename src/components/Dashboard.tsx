@@ -7,6 +7,7 @@ import { Titlebar } from "@/components/Titlebar";
 import { ExportTab } from "@/components/tabexport/ExportTab";
 import { DrawTab } from "@/components/tabdraw/DrawTab";
 import { VisualShareTab } from "@/components/tabshare/VisualShareTab";
+import { HelpTab } from "@/components/tabhelp/HelpTab";
 import { deserializeDesign } from "@/utils/shareSerializer";
 import { ActivityGraphRef } from "@/components/ActivityGraph";
 import { saveConfig, loadConfig } from "@/utils/configHelper";
@@ -19,8 +20,8 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
 
   const config = state.config;
 
-  const [mainTab, setMainTab] = useState<"draw" | "share" | "export">("draw");
-  const [pendingTab, setPendingTab] = useState<"draw" | "share" | "export" | null>(null);
+  const [mainTab, setMainTab] = useState<"draw" | "share" | "export" | "help">("draw");
+  const [pendingTab, setPendingTab] = useState<"draw" | "share" | "export" | "help" | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [shareAspectRatio, setShareAspectRatio] = useState<"square" | "story" | "landscape">("landscape");
 
@@ -85,7 +86,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
 
   const graphRef = useRef<ActivityGraphRef>(null);
 
-  const handleTabSwitch = (tab: "draw" | "share" | "export") => {
+  const handleTabSwitch = (tab: "draw" | "share" | "export" | "help") => {
     if (mainTab === "draw" && tab !== "draw" && graphRef.current) {
       if (graphRef.current.hasUnsavedChanges()) {
         setPendingTab(tab);
@@ -195,6 +196,10 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
           config={config}
           dispatch={dispatch}
         />
+      )}
+
+      {mainTab === "help" && (
+        <HelpTab />
       )}
 
       <Tooltip id="info-tooltip" opacity={1} delayShow={0} style={{ zIndex: 1000, fontSize: "14px", padding: "6px 10px", borderRadius: "6px", maxWidth: "300px" }} />

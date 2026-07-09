@@ -18,3 +18,19 @@ body.theme-vibe::before {
   background-size: 64px 64px;
   mask-image: linear-gradient(to bottom, transparent, #000 16%, #000 82%, transparent);
 }
+
+body.theme-vibe .help-card,
+body.theme-vibe .tech-card {
+  background: rgba(16, 23, 52, .55);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(168, 85, 247, 0.1);
+  backdrop-filter: blur(4px);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+body.theme-vibe .tech-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(236, 72, 153, 0.5);
+  box-shadow: 0 12px 40px 0 rgba(236, 72, 153, 0.2), 0 0 15px rgba(168, 85, 247, 0.2);
+}

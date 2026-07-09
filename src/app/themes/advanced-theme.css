@@ -31,3 +31,16 @@ body.theme-advanced .card {
 body.theme-advanced .activity-graph-main {
   gap: 0 !important;
 }
+
+body.theme-advanced .help-card,
+body.theme-advanced .tech-card {
+  background: #070707;
+  border: 1px solid #1a1a1a;
+  box-shadow: none;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+body.theme-advanced .tech-card:hover {
+  border-color: var(--greenbash);
+}
