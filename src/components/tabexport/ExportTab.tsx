@@ -182,7 +182,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
             gap: "10px"
           }}>
             <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)", display: "flex", alignItems: "center", gap: "8px" }}>
-              <span>⚠️</span> Prerequisite: Create a Remote Repository
+              Create a Remote Repository
             </h3>
             <p style={{ fontSize: "0.9rem", color: "var(--text-main)", margin: "0", lineHeight: "1.5" }}>
               Create a BRAND NEW dummy contributions repository with a NEW name, in your Gitea/Gogs, GitHub, GitLab or other remote. <strong>Do not</strong> add a README, license, or gitignore file.
