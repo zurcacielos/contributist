@@ -858,7 +858,7 @@ em {
   display: inline-block;
   padding: 6px 12px;
   border-radius: 999px;
-  background: rgba(54, 245, 139, .12);
+  /* background: rgba(54, 245, 139, .12); */
   color: var(--green);
   text-transform: uppercase;
   font-weight: 800;
