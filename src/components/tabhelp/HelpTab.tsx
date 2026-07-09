@@ -36,7 +36,7 @@ export function HelpTab() {
           gap: "8px"
         }}>
           <li>Contributist is a git/GitHub/GitLab/Gitea/Bitbucket/SourceHut contribution graph editor for developers.</li>
-          <li><SynthFont>Reclaim your contribution Graph! Make contribution great again! Exercise your individual freedom!</SynthFont></li>
+          <li><SynthFont>Reclaim your contribution Graph! Make contributions great again! Exercise your individual freedom!</SynthFont></li>
           <li>I believe in freedom of expression, freedom of speech, and I think each individual has the right to express its contributions the way it wants.</li>
           <li>Contributist allows corporate developers and others to keep track of contributions not always made into public repositories.</li>
           <li><SynthFont>I believe contribution graphs need to evolve</SynthFont>, after two decades of not doing it, into something more useful for all society, not only devs.</li>
