@@ -1,0 +1,20 @@
+/* src/app/themes/vibe-theme.css */
+
+body.theme-vibe {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(155, 92, 255, .22), transparent 28%),
+    radial-gradient(circle at 85% 12%, rgba(255, 57, 207, .12), transparent 26%),
+    linear-gradient(180deg, #030410 0%, #080d22 62%, #040712 100%);
+}
+
+body.theme-vibe::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(35, 214, 255, .07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 57, 207, .07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, transparent, #000 16%, #000 82%, transparent);
+}

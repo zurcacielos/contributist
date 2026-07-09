@@ -1,0 +1,18 @@
+/* src/app/themes/advanced-theme.css */
+
+body.theme-advanced {
+  --background: #000000;
+  --surface: #0a0a0a;
+  --surface-hover: #151515;
+  --border: #1a1a1a;
+  background-color: var(--background);
+  background-image: none;
+}
+
+body.theme-advanced .app-shell,
+body.theme-advanced .year-card,
+body.theme-advanced .panel,
+body.theme-advanced .card {
+  background: none;
+  box-shadow: none;
+}

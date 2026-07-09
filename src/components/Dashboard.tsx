@@ -78,6 +78,11 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
     localStorage.setItem("contributist-state", JSON.stringify(dataToSave));
   }, [state]);
 
+  useEffect(() => {
+    document.body.classList.remove("theme-vibe", "theme-advanced");
+    document.body.classList.add(`theme-${feelingMode}`);
+  }, [feelingMode]);
+
   const graphRef = useRef<ActivityGraphRef>(null);
 
   const handleTabSwitch = (tab: "draw" | "share" | "export") => {

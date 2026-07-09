@@ -1,17 +1,40 @@
-# 🎨 Contributist — Git Contribution Graph Painter
+### Contributist — Git Contribution Graph Painter
 
 **Contributist** is an interactive web tool to paint custom pixel art directly onto your Git contribution graph. Design your layout, load templates, and generate a commit history script to customize your profile instantly.
 
-<p>
-  <b>⭐ Give it a star! Fork it! Make it your own! 💖</b>
-</p><p>
-  <b>⭐ Send a feature request, ask and I add you to contributors pane here and in the app online! 💖</b>
-</p>
+## Live Demo
 
-## 🌐 Live Demo
+ [**contributist.stupidity.works**](https://contributist.stupidity.works)
 
-### 👉 [**contributist.stupidity.works**](https://contributist.stupidity.works)
+## Install it locally
 
+### Prerequisites
+
+- **Node.js** (v18 or higher recommended)
+- **npm** or **yarn** / **pnpm**
+
+### Installation
+
+1. Clone this repository:
+   ```bash
+   git clone git@github.com:zurcacielos/contributist.git
+   cd contributist
+   ```
+
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running Locally
+
+To start the local Next.js development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
 ## 📸 Screenshots
 
@@ -82,38 +105,6 @@ At the moment the community remixes are stored on public/templates/scenes/ as js
 
 ---
 
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- **Node.js** (v18 or higher recommended)
-- **npm** or **yarn** / **pnpm**
-
-### Installation
-
-1. Clone this repository:
-   ```bash
-   git clone git@github.com:zurcacielos/contributist.git
-   cd contributist
-   ```
-
-2. Install the dependencies:
-   ```bash
-   npm install
-   ```
-
-### Running Locally
-
-To start the local Next.js development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
-
----
 
 ## ⚙️ Environment Variables Configuration
 
