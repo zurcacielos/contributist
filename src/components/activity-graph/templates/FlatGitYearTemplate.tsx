@@ -184,8 +184,8 @@ export const FlatGitYearTemplate: React.FC<FlatGitYearTemplateProps> = ({
         >
           {!isCapturing && isHoveredInThisYear && hoveredDay ? (
             hoveredDay.count > 0 
-              ? `${hoveredDay.count} contributions on ${formatDate(hoveredDay.date)}` 
-              : `No contributions on ${formatDate(hoveredDay.date)}`
+              ? `${hoveredDay.count} commits on ${formatDate(hoveredDay.date)}` 
+              : `No commits on ${formatDate(hoveredDay.date)}`
           ) : (
             "\u00A0"
           )}

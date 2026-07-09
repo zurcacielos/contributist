@@ -150,14 +150,20 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
         }
       }}
       style={{
-        cursor: preview ? "default" : "pointer"
+        cursor: preview ? "default" : "pointer",
+        border: feelingMode === "advanced" ? "none" : undefined
       }}
     >
       <div className="year-meta">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        {/* Left: Year title */}
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
           <h2 style={{ flexDirection: 'row', display: 'flex', alignItems: 'center', gap: '7px' }}>
-            {year}{isActive && <span>⚡</span>}
+            {year}
           </h2>
+        </div>
+
+        {/* Center: Both toolbars centered */}
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px' }}>
           {isActive && !preview && !isCapturing && (
             <div 
               className="no-print"
@@ -183,8 +189,8 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                     }}
                     title={title}
                     style={{
-                      width: "48px",
-                      height: "48px",
+                      width: "36px",
+                      height: "36px",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -214,19 +220,113 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                   </button>
                 );
               })}
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleAddTextLayer();
+                }}
+                style={{
+                  width: "36px",
+                  height: "36px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "8px",
+                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                  backgroundColor: "rgba(255, 255, 255, 0.05)",
+                  color: "rgba(255, 255, 255, 0.5)",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                  fontWeight: "bold",
+                  transition: "all 0.15s ease-in-out"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.12)";
+                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.2)";
+                  e.currentTarget.style.color = "rgba(255, 255, 255, 0.8)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
+                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+                  e.currentTarget.style.color = "rgba(255, 255, 255, 0.5)";
+                }}
+                title="Add custom text"
+              >
+                T
+              </button>
+            </div>
+          )}
+
+          {isActive && !preview && !isCapturing && (
+            <div
+              className="no-print"
+              data-html2canvas-ignore="true"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                background: "rgba(20, 10, 30, 0.5)",
+                backdropFilter: "blur(12px) saturate(180%)",
+                WebkitBackdropFilter: "blur(12px) saturate(180%)",
+                border: "1px solid rgba(168, 85, 247, 0.25)",
+                borderRadius: "12px",
+                padding: "4px 8px",
+                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.15)"
+              }}
+            >
+              {Object.keys(memeTemplates).map((name, index) => (
+                <button
+                  key={name}
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    applyMemeTemplate(name);
+                  }}
+                  style={{
+                    padding: "4px",
+                    borderRadius: "6px",
+                    cursor: "pointer",
+                    transition: "all 0.15s ease-in-out",
+                    backgroundColor: "rgba(255, 255, 255, 0.02)",
+                    border: "1px solid rgba(255, 255, 255, 0.04)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.2)";
+                    e.currentTarget.style.backgroundColor = "rgba(168, 85, 247, 0.25)";
+                    e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.6)";
+                    e.currentTarget.style.boxShadow = "0 0 8px rgba(168, 85, 247, 0.5)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                    e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.02)";
+                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.04)";
+                    e.currentTarget.style.boxShadow = "none";
+                  }}
+                  title={`Add ${name}`}
+                >
+                  <MemeSprite templateName={name} pixelSize={2} pixelColor={memeColors[index]} />
+                </button>
+              ))}
             </div>
           )}
         </div>
-        <div>
+
+        {/* Right: Stats and Freq Controls */}
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
           <div className="year-meta-desc" style={{ display: 'flex', alignItems: 'center', gap: '7px', flexWrap: 'wrap' }}>
-            Contributions: {totalContributions}
+            {!isActive && `Commits: ${totalContributions}`}
 
             {/* Meta and Frequency Controls */}
             {(() => {
               if (isCapturing || preview) return null;
               if (!meta) return null;
               const vacAmt = meta.vacationLengths.length;
-              const vacText = vacAmt > 0 ? ` Vac. ${vacAmt}` : "";
+              const vacText = vacAmt > 0 && !isActive ? ` Vac. ${vacAmt}` : "";
               return (
                 <span
                   className="year-meta-controls"
@@ -331,7 +431,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
         </div>
         <div
           className={`graph-wrap ${isActive && feelingMode !== "advanced" ? '' : 'short'}`}
-          style={isActive ? { minHeight: feelingMode !== "advanced" ? "170px" : "155px" } : {}}
+          style={isActive && feelingMode !== "advanced" ? { minHeight: "170px" } : {}}
         >
           <ContributionGrid
             days={days}
@@ -357,11 +457,22 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
             position: "relative",
             zIndex: 5
           }}>
-            {!isCapturing && isHoveredInThisYear && hoveredDay ? (
-              hoveredDay.count > 0
-                ? `${hoveredDay.count} contributions on ${formatDate(hoveredDay.date)}`
-                : `No contributions on ${formatDate(hoveredDay.date)}`
-            ) : (
+            {!isCapturing && isHoveredInThisYear && hoveredDay ? (() => {
+              let dateLabel = hoveredDay.date;
+              try {
+                const [yStr, mStr, dStr] = hoveredDay.date.split("-");
+                const dObj = new Date(Date.UTC(parseInt(yStr, 10), parseInt(mStr, 10) - 1, parseInt(dStr, 10)));
+                dateLabel = dObj.toLocaleDateString("en-US", {
+                  weekday: "short",
+                  month: "short",
+                  day: "numeric",
+                  timeZone: "UTC"
+                });
+              } catch {}
+              return hoveredDay.count > 0
+                ? `${hoveredDay.count} commits on ${dateLabel}`
+                : `No commits on ${dateLabel}`;
+            })() : (
               "\u00A0"
             )}
           </div>
@@ -395,107 +506,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
             </>
           )}
 
-          {isActive && !isCapturing && (
-            <div
-              className="no-print"
-              data-html2canvas-ignore="true"
-              style={{
-                position: "absolute",
-                bottom: feelingMode !== "advanced" ? "12px" : "8px",
-                left: "50%",
-                transform: "translateX(-50%)",
-                zIndex: 10,
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                background: "rgba(20, 10, 30, 0.5)",
-                backdropFilter: "blur(12px) saturate(180%)",
-                WebkitBackdropFilter: "blur(12px) saturate(180%)",
-                border: "1px solid rgba(168, 85, 247, 0.25)",
-                borderRadius: "16px",
-                padding: "4px 8px",
-                pointerEvents: "auto",
-                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.15)"
-              }}
-            >
-              {Object.keys(memeTemplates).map((name, index) => (
-                <div
-                  key={name}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    applyMemeTemplate(name);
-                  }}
-                  style={{
-                    padding: "4px",
-                    borderRadius: "6px",
-                    cursor: "pointer",
-                    transition: "all 0.15s ease-in-out",
-                    backgroundColor: "rgba(255, 255, 255, 0.02)",
-                    border: "1px solid rgba(255, 255, 255, 0.04)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "scale(1.2)";
-                    e.currentTarget.style.backgroundColor = "rgba(168, 85, 247, 0.25)";
-                    e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.6)";
-                    e.currentTarget.style.boxShadow = "0 0 8px rgba(168, 85, 247, 0.5)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "scale(1)";
-                    e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.02)";
-                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.04)";
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
-                  title={`Add ${name}`}
-                >
-                  <MemeSprite templateName={name} pixelSize={2} pixelColor={memeColors[index]} />
-                </div>
-              ))}
-              
-              {/* Divider and Text Tool Button */}
-              <div style={{ width: "1px", height: "16px", backgroundColor: "rgba(255, 255, 255, 0.15)", margin: "0 2px" }} />
-              
-              <div 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleAddTextLayer();
-                }}
-                style={{
-                  width: "20px",
-                  height: "20px",
-                  borderRadius: "6px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "11px",
-                  fontWeight: "bold",
-                  color: "#fff",
-                  backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  border: "1px solid rgba(255, 255, 255, 0.2)",
-                  transition: "all 0.15s ease-in-out",
-                  userSelect: "none"
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.2)";
-                  e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.25)";
-                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.6)";
-                  e.currentTarget.style.boxShadow = "0 0 8px rgba(255, 255, 255, 0.5)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.2)";
-                  e.currentTarget.style.boxShadow = "none";
-                }}
-                title="Add custom text"
-              >
-                T
-              </div>
-            </div>
-          )}
+
         </div>
       </div>
     </article>
