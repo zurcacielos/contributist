@@ -839,10 +839,7 @@ em {
   overflow: hidden;
 }
 
-.year-card.active-year {
-  border-color: rgba(54, 245, 139, .75);
-  box-shadow: var(--glow-green), inset 0 1px rgba(255, 255, 255, .06);
-}
+
 
 .year-meta {
   display: flex;
