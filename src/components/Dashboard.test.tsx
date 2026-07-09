@@ -39,7 +39,7 @@ describe('Dashboard Integration UI', () => {
     render(<Dashboard initialConfig={mockConfig} />);
     
     // Wait for the async useEffect to run SET_CONFIG and populate layers
-    await screen.findByText(/BASE VIBE/i);
+    await screen.findByText(/Advanced|Base vibe/i);
 
     // 2. Select the year 2025
     const year2025Label = screen.getByText('2025');
@@ -110,7 +110,7 @@ describe('Dashboard Integration UI', () => {
     
     render(<Dashboard initialConfig={mockConfig} />);
     
-    await screen.findByText(/BASE VIBE/i);
+    await screen.findByText(/Advanced|Base vibe/i);
 
     // 1. Select 2025 and verify its base frequency
     const year2025Label = screen.getByText('2025', { selector: 'h2' });
@@ -189,7 +189,7 @@ describe('Dashboard Integration UI', () => {
     };
     render(<Dashboard initialConfig={mockConfig} />);
     
-    await screen.findByText(/BASE VIBE/i);
+    await screen.findByText(/Advanced|Base vibe/i);
 
     // Select Eraser
     const eraserButton = await screen.findByTitle('Erase tool');

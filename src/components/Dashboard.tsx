@@ -15,7 +15,7 @@ import { StoreProvider, useAppStore, useAppDispatch } from "@/state/store";
 function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig }) {
   const state = useAppStore((s) => s);
   const dispatch = useAppDispatch();
-  const [feelingMode, setFeelingMode] = useState<FeelingMode>("vibe");
+  const [feelingMode, setFeelingMode] = useState<FeelingMode>("advanced");
 
   const config = state.config;
 
@@ -62,7 +62,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
     }
 
     const savedFeeling = localStorage.getItem("contributist-feeling-mode");
-    if (savedFeeling === "vibe" || savedFeeling === "bash") {
+    if (savedFeeling === "vibe" || savedFeeling === "advanced") {
       setFeelingMode(savedFeeling as FeelingMode);
     }
 
@@ -139,7 +139,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
       localStorage.removeItem("contributist-feeling-mode");
       sessionStorage.clear();
       dispatch({ type: "RESET_TO_INITIAL", payload: initialConfig });
-      setFeelingMode("vibe");
+      setFeelingMode("advanced");
     }
   };
 
