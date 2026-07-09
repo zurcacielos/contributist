@@ -2,39 +2,26 @@
 
 **Contributist** is an interactive web tool to paint custom pixel art directly onto your Git contribution graph. Design your layout, load templates, and generate a commit history script to customize your profile instantly.
 
-## Live Demo
+## Live Demo --> [**contributist.stupidity.works**](https://contributist.stupidity.works)
 
- [**contributist.stupidity.works**](https://contributist.stupidity.works)
 
-## Install it locally
-
-### Prerequisites
+## Install it locally - Prerequisites -running
 
 - **Node.js** (v18 or higher recommended)
 - **npm** or **yarn** / **pnpm**
 
-### Installation
-
-1. Clone this repository:
    ```bash
    git clone git@github.com:zurcacielos/contributist.git
    cd contributist
    ```
 
-2. Install the dependencies:
    ```bash
    npm install
    ```
 
-### Running Locally
-
-To start the local Next.js development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+   ```bash
+   npm run dev
+   ```
 
 ## 📸 Screenshots
 
@@ -44,10 +31,12 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 *Customize your contribution grid using the drawing board, colors, and layers.*
 
-### Two flavors: Vives or Bash
+### Two UI flavors: Vives or Bash
 ![Vibe mode preview](screenshots/vibe-bash.png)
 
-Pick on top, the flavor you like most. Bash has a few more options for you to play with, such as noise, weekends, and vacation patterns.
+Pick on top, the flavor you like most. Bash is more dev/hacker/linux ui style, and it has a few more options for you to play with and customize the algorithm of your background.
+
+Vibe has a more colorful approach, and controls like reality and chaos, to make it more fun.
 
 
 ### Community Remixes & Presets
@@ -108,31 +97,9 @@ At the moment the community remixes are stored on public/templates/scenes/ as js
 
 ## ⚙️ Environment Variables Configuration
 
-The project configures its default settings through the `.env` file, which is tracked by Git. For local overrides or private repository configuration, **you should create a `.env.local` file** in the root directory (which is ignored by Git).
+The project configures its default settings through the `.env` file, which is tracked by Git. For local overrides or private repository configuration, you can create a `.env.local` file.
 
-### Variables in `.env` / `.env.local`
-
-| Variable | Description | Default Value |
-| :--- | :--- | :--- |
-| `GIT_REPOSITORY_URL` | The target repository SSH or HTTPS URL where git history will be pushed. | `git@example.com:example_user/example_repo.git` |
-| `START_DATE` | Start date or year of the history (e.g. `2022`, `YYYY-MM-DD`). | `2022` |
-| `END_DATE` | End date or year of the history (or `"present"` for current date). | `present` |
-| `FREQUENCIES_DEFAULT` | Base commit frequency range per year (comma-separated). | `30,50,45,35,53` |
-| `VACATIONS_AMOUNT_PER_YEAR` | Frequency of vacation (inactivity) blocks (comma-separated options). | `1,2,2` |
-| `VACATION_LENGTH_DAYS` | Length of each vacation block in days (comma-separated options). | `14,28,21` |
-| `NEXT_PUBLIC_LOCAL_GIT_GENERATION_ENABLED` | **Set to `true` locally** to show the "Cloud Generator (Auto-Push)" UI. | `false` |
-| `NEXT_PUBLIC_GIT_OVERRIDE_ENABLED` | Whether to show the force-push override option input field. | `false` |
-
-### Setting Up `.env.local` Example:
-
-Create a `.env.local` file in your project root:
-```env
-# Your private git repo target
-GIT_REPOSITORY_URL=git@github.com:your-username/your-target-repo.git
-
-# Enable local file-system and terminal operations
-NEXT_PUBLIC_LOCAL_GIT_GENERATION_ENABLED=true
-```
+See the [Environment Variables Guide](environment-vars.md) for the list of available configuration variables and setup examples.
 
 ---
 
