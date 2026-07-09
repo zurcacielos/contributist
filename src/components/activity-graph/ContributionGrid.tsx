@@ -54,7 +54,7 @@ export const ContributionGrid: React.FC<ContributionGridProps> = ({
           <>
             <span style={{ gridRow: 2 }}>Mon</span>
             <span style={{ gridRow: 4 }}>Wed</span>
-            {isActive && <span style={{ gridRow: 6 }}>Fri</span>}
+            <span style={{ gridRow: 6 }}>Fri</span>
           </>
         )}
       </div>

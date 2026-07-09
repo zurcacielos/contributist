@@ -144,6 +144,11 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
           dispatch({ type: 'SET_ACTIVE_YEAR', payload: year });
         }
       }}
+      onMouseEnter={() => {
+        if (!preview && !isActive) {
+          dispatch({ type: 'SET_ACTIVE_YEAR', payload: year });
+        }
+      }}
       style={{
         cursor: preview ? "default" : "pointer"
       }}
