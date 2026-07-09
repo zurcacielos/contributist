@@ -102,7 +102,7 @@ export function LayersPanel({
 
   return (
     <Card
-      title={`Layers of ${state.activeYear}`}
+      title={`${state.activeYear} layers`}
       className="layers"
       style={{ overflowY: "auto", maxHeight: "80vh" }}
       collapsible={false}

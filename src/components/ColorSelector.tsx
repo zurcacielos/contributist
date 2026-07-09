@@ -10,11 +10,11 @@ interface ColorSelectorProps {
 
 export function ColorSelector({ selectedLevel, showPaintedInOrange, onSelect }: ColorSelectorProps) {
   const greenColors = [
-    "var(--surface)", 
-    "#0e4429", 
-    "#006d32", 
-    "#26a641", 
-    "#39d353"
+    "var(--level-0)", 
+    "var(--level-1)", 
+    "var(--level-2)", 
+    "var(--level-3)", 
+    "var(--level-4)"
   ];
 
   const synthColors = [

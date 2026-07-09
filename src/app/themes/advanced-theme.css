@@ -6,11 +6,17 @@ body.theme-advanced {
   --surface-hover: #151515;
   --border: #1a1a1a;
   --greenbash: #086244;
+  --level-3: #1b8a3e;
+  --level-4: #24a148;
   background-color: var(--background);
   background-image: none;
 }
 
 body.theme-advanced .active-year h2 {
+  color: var(--greenbash);
+}
+
+body.theme-advanced .layers h2 {
   color: var(--greenbash);
 }
 
@@ -20,4 +26,8 @@ body.theme-advanced .panel,
 body.theme-advanced .card {
   background: none;
   box-shadow: none;
+}
+
+body.theme-advanced .activity-graph-main {
+  gap: 0 !important;
 }

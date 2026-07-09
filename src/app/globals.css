@@ -949,23 +949,23 @@ em {
   width: 100%;
   height: auto;
   border-radius: 20%;
-  background: #101b31;
+  background: var(--level-0);
 }
 
 .contrib-grid>span.v1 {
-  background: #103625;
+  background: var(--level-1);
 }
 
 .contrib-grid>span.v2 {
-  background: #176d39;
+  background: var(--level-2);
 }
 
 .contrib-grid>span.v3 {
-  background: #2ab24e;
+  background: var(--level-3);
 }
 
 .contrib-grid>span.v4 {
-  background: #99df3f;
+  background: var(--level-4);
 }
 
 .contrib-grid>span.hot1 {
