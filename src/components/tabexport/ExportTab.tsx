@@ -187,17 +187,34 @@ export const ExportTab: React.FC<ExportTabProps> = ({
             <p style={{ fontSize: "0.9rem", color: "var(--text-main)", margin: "0", lineHeight: "1.5" }}>
               Create a BRAND NEW dummy contributions repository with a NEW name, in your Gitea/Gogs, GitHub, GitLab or other remote. <strong>Do not</strong> add a README, license, or gitignore file.
             </p>
-            <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "0", lineHeight: "1.4" }}>
+            <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "0", lineHeight: "1.4", display: "inline-flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
               <SynthFont variation="pink-cyan">
-                If the repository already exists, DELETE IT, and create it again with a NEW name each time.
-              </SynthFont>{" "}
-              If you reuse the same repository, or same name, orphan commits may distort your graph.
+                If the repository already exists, DELETE IT, and create it different one with a DIFFERENT name each time.
+              </SynthFont>
+              <span
+                className="info-icon"
+                style={{ pointerEvents: "auto" }}
+                data-tooltip-id="info-tooltip"
+                data-tooltip-content="If you reuse the same repository, or same name, orphan commits may distort your graph."
+              >
+                i
+              </span>
             </p>
           </div>
 
           {/* Git Identity Card */}
           <div className="card" style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
-            <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)" }}>Git Identity</h3>
+            <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)", display: "flex", alignItems: "center", gap: "8px" }}>
+              Git Identity
+              <span
+                className="info-icon"
+                style={{ pointerEvents: "auto" }}
+                data-tooltip-id="info-tooltip"
+                data-tooltip-content="This is the URL of your Remote Repo, and the info needed to sign your commits. No password required."
+              >
+                i
+              </span>
+            </h3>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -359,7 +376,13 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                 className="info-icon"
                 style={{ pointerEvents: "auto" }}
                 data-tooltip-id="info-tooltip"
-                data-tooltip-html="How to run:<br><br>Mac/Linux:<br>bash generate-activity.sh<br><br>Windows:<br>Right-click .ps1 → Run with PowerShell"
+                data-tooltip-content={`How to run:
+
+Mac/Linux:
+bash generate-activity.sh
+
+Windows:
+Right-click .ps1 → Run with PowerShell`}
               >
                 i
               </span>

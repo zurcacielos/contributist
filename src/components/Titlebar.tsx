@@ -63,19 +63,19 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
         </button>
         <i>→</i>
         <button
-          className={`flow-step ${mainTab === 'share' ? 'active' : ''}`}
-          onClick={() => onTabSwitch('share')}
-          style={mainTab === 'share' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
-        >
-          <b style={mainTab === 'share' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>2</b> Share
-        </button>
-        <i>→</i>
-        <button
           className={`flow-step ${mainTab === 'export' ? 'active' : ''}`}
           onClick={() => onTabSwitch('export')}
           style={mainTab === 'export' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
         >
-          <b style={mainTab === 'export' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>3</b> Send to GIT
+          <b style={mainTab === 'export' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>2</b> Push to GIT
+        </button>
+        <i>→</i>
+        <button
+          className={`flow-step ${mainTab === 'share' ? 'active' : ''}`}
+          onClick={() => onTabSwitch('share')}
+          style={mainTab === 'share' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
+        >
+          <b style={mainTab === 'share' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>3</b> Share (optional)
         </button>
       </nav>
       <div className="top-icons" aria-label="quick actions">

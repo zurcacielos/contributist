@@ -235,7 +235,31 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
       </aside>
 
       {/* Center Preview */}
-      <section className="workspace" id="export-workspace-section" style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", minHeight: "60vh", paddingTop: "10px" }}>
+      <section className="workspace" id="export-workspace-section" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px", minHeight: "60vh", paddingTop: "10px" }}>
+
+        {/* Optional Step Notice */}
+        <div
+          className="card help-card no-print"
+          style={{
+            width: "100%",
+            maxWidth: aspectRatio === "square" ? "500px" : (aspectRatio === "story" ? "360px" : "100%"),
+            padding: "12px 16px",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            border: "1px solid var(--border)",
+            borderRadius: "10px",
+            fontSize: "13px",
+            color: "var(--text-muted)",
+            lineHeight: 1.5
+          }}
+        >
+          <span style={{ fontSize: "16px", flexShrink: 0 }}>ℹ️</span>
+          <span>
+            <strong>Optional:</strong> Pick format and palette on the left. Download a PNG picture to share on social media. Or share a URL to your art.
+          </span>
+        </div>
+
         <div ref={previewRef} className="preview-container-main" id="preview-container-main" style={previewStyle}>
           {/* Header Title inside share frame */}
           {(aspectRatio === "square" || aspectRatio === "story") && (
@@ -352,14 +376,14 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
             <Share2 size={16} /> Share Your Design URL
           </button>
 
-          <div 
-            style={{ 
-              fontSize: "10px", 
-              color: "var(--text-muted)", 
-              backgroundColor: "rgba(255, 255, 255, 0.01)", 
-              border: "1px dashed rgba(255, 255, 255, 0.08)", 
-              borderRadius: "6px", 
-              padding: "8px", 
+          <div
+            style={{
+              fontSize: "10px",
+              color: "var(--text-muted)",
+              backgroundColor: "rgba(255, 255, 255, 0.01)",
+              border: "1px dashed rgba(255, 255, 255, 0.08)",
+              borderRadius: "6px",
+              padding: "8px",
               marginTop: "4px",
               lineHeight: "1.4"
             }}

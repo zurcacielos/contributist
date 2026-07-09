@@ -54,6 +54,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
   showPaintedInOrangeOverride,
   isActive
 }) => {
+  const [isHovered, setIsHovered] = React.useState(false);
   const bgLayerForYear = (state.config.layers || []).find(l => l.type === 'background' && l.year === year) as any;
   const totalContributions = days.reduce((acc, d) => acc + d.count, 0);
   const hoveredYear = hoveredDay ? parseInt(hoveredDay.date.split("-")[0], 10) : null;
@@ -144,21 +145,28 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
           dispatch({ type: 'SET_ACTIVE_YEAR', payload: year });
         }
       }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
         cursor: preview ? "default" : "pointer",
         border: feelingMode === "advanced" ? "none" : undefined
       }}
     >
-      <div className="year-meta">
+      <div className="year-meta" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
         {/* Left: Year title */}
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+        <div style={{ flex: isActive ? "1 1 0%" : "0 0 auto", minWidth: isActive ? 0 : "auto", display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
           <h2 style={{ flexDirection: 'row', display: 'flex', alignItems: 'center', gap: '7px' }}>
             {year}
           </h2>
         </div>
 
         {/* Center: Both toolbars centered */}
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', flex: isActive ? "0 0 auto" : "1 1 0%" }}>
+          {!isActive && isHovered && (
+            <span style={{ color: "var(--text-muted, #8b949e)", fontSize: "13px", fontStyle: "italic", opacity: 0.7, whiteSpace: "nowrap" }}>
+              Click anywhere to select
+            </span>
+          )}
           {isActive && !preview && !isCapturing && (
             <div 
               className="no-print"
@@ -312,7 +320,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
         </div>
 
         {/* Right: Stats and Freq Controls */}
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+        <div style={{ flex: isActive ? "1 1 0%" : "0 0 auto", minWidth: isActive ? 0 : "auto", display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
           <div className="year-meta-desc" style={{ display: 'flex', alignItems: 'center', gap: '7px', flexWrap: 'wrap' }}>
             {!isActive && `Commits: ${totalContributions}`}
 

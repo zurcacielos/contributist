@@ -202,7 +202,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
         <HelpTab />
       )}
 
-      <Tooltip id="info-tooltip" opacity={1} delayShow={0} style={{ zIndex: 1000, fontSize: "14px", padding: "6px 10px", borderRadius: "6px", maxWidth: "300px" }} />
+      <Tooltip id="info-tooltip" opacity={1} delayShow={0} style={{ zIndex: 1000, fontSize: "14px", padding: "6px 10px", borderRadius: "6px", maxWidth: "300px", whiteSpace: "pre-line" }} />
 
       {
         pendingTab && (
