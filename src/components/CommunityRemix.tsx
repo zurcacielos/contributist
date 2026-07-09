@@ -318,7 +318,7 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
   };
 
   return (
-    <Card collapsible={true} title="Community 🌌">
+    <Card collapsible={true} defaultExpanded={false} title="Community 🌌">
       <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "8px" }}>
         {loading ? (
           <div style={{ fontSize: "0.8rem", color: "var(--text-muted)", textAlign: "center" }}>
