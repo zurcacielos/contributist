@@ -23,8 +23,6 @@
    npm run dev
    ```
 
-## 📸 Screenshots
-
 
 ### Main Dashboard
 ![Dashboard Preview](screenshots/main-dashboard.png)

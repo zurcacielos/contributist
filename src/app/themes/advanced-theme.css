@@ -6,6 +6,7 @@ body.theme-advanced {
   --surface-hover: #151515;
   --border: #1a1a1a;
   --greenbash: #086244;
+  --greenbash-selected: #24a148;
   --level-3: #1b8a3e;
   --level-4: #24a148;
   background-color: var(--background);
@@ -13,11 +14,11 @@ body.theme-advanced {
 }
 
 body.theme-advanced .active-year h2 {
-  color: var(--greenbash);
+  color: var(--greenbash-selected);
 }
 
 body.theme-advanced .layers h2 {
-  color: var(--greenbash);
+  color: var(--greenbash-selected);
 }
 
 body.theme-advanced .app-shell,
