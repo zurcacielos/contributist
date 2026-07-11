@@ -3,6 +3,7 @@
 import React from "react";
 import { GeneratorConfig } from "@/types";
 import { Card } from "@/components/Card";
+import { useTranslations } from "next-intl";
 
 interface BaseVibeProps {
   config: GeneratorConfig;
@@ -10,6 +11,7 @@ interface BaseVibeProps {
 }
 
 export function BaseVibe({ config, onChange }: BaseVibeProps) {
+  const t = useTranslations('Sidebar');
   const chaos = config.chaos ?? 50;
   const realism = config.realism ?? 100;
 
@@ -109,7 +111,7 @@ export function BaseVibe({ config, onChange }: BaseVibeProps) {
 
   return (
     <Card
-      title="💖 Base vibe"
+      title={t('baseVibeTitle')}
       className="base-vibe"
       collapsible={true}
       extraHeaderActions={
@@ -117,7 +119,7 @@ export function BaseVibe({ config, onChange }: BaseVibeProps) {
           <button
             type="button"
             onClick={handleReset}
-            title="Reset to default vibe"
+            title={t('resetVibe')}
             style={{
               width: "28px",
               height: "28px",
@@ -143,7 +145,7 @@ export function BaseVibe({ config, onChange }: BaseVibeProps) {
     >
       <div style={{ display: "flex", gap: "10px", margin: "10px 0", alignItems: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1 }}>
-          <span style={{ fontSize: "0.85rem", color: "#dce1ff" }}>From</span>
+          <span style={{ fontSize: "0.85rem", color: "#dce1ff" }}>{t('from')}</span>
           <input
             type="text"
             name="startDate"
@@ -155,7 +157,7 @@ export function BaseVibe({ config, onChange }: BaseVibeProps) {
           />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1 }}>
-          <span style={{ fontSize: "0.85rem", color: "#dce1ff" }}>To</span>
+          <span style={{ fontSize: "0.85rem", color: "#dce1ff" }}>{t('to')}</span>
           <input
             type="text"
             name="endDate"
@@ -169,12 +171,12 @@ export function BaseVibe({ config, onChange }: BaseVibeProps) {
       </div>
 
       <div className="control-row">
-        <span>🎢 Chaos</span>
+        <span>🎢 {t('chaos')}</span>
         <input type="range" name="chaos" min="0" max="100" value={chaos} onChange={handleSliderChange} />
         <b>{chaos}%</b>
       </div>
       <div className="control-row">
-        <span>😎 Realism</span>
+        <span>😎 {t('realism')}</span>
         <input type="range" name="realism" min="0" max="100" value={realism} onChange={handleSliderChange} />
         <b>{realism}%</b>
       </div>
@@ -204,7 +206,7 @@ export function BaseVibe({ config, onChange }: BaseVibeProps) {
           e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.4)";
         }}
       >
-        Apply
+        {t('apply')}
       </button>
     </Card>
   );

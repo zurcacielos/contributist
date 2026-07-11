@@ -1,5 +1,6 @@
 import React from "react";
 import { FeelingMode } from "@/types";
+import { useTranslations } from "next-intl";
 
 interface FeelingTogglerProps {
   feelingMode: FeelingMode;
@@ -9,6 +10,7 @@ interface FeelingTogglerProps {
 
 export const FeelingToggler: React.FC<FeelingTogglerProps> = ({ feelingMode, onChange, style }) => {
   const isVibe = feelingMode === "vibe";
+  const t = useTranslations('Sidebar');
 
   return (
     <div
@@ -71,7 +73,7 @@ export const FeelingToggler: React.FC<FeelingTogglerProps> = ({ feelingMode, onC
           gap: "4px"
         }}
       >
-        <span>Vibes</span>
+        <span>{t('vibes')}</span>
       </button>
 
       {/* Advanced label button */}

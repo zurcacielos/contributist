@@ -4,6 +4,7 @@ import React from "react";
 import { Tooltip } from "react-tooltip";
 import { GeneratorConfig } from "@/types";
 import { Card } from "@/components/Card";
+import { useTranslations } from "next-intl";
 
 interface TechnicalBackgroundProps {
   config: GeneratorConfig;
@@ -14,6 +15,7 @@ export function TechnicalBackground({
   config,
   onChange,
 }: TechnicalBackgroundProps) {
+  const t = useTranslations('Sidebar');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
     let finalValue: any = value;
@@ -41,14 +43,14 @@ export function TechnicalBackground({
 
   return (
     <Card
-      title="⚙️ Advanced"
+      title={t('technicalTitle')}
       className="base-vibe"
       collapsible={true}
       extraHeaderActions={<></>}
     >
       <div style={{ display: "flex", gap: "10px", margin: "10px 0", alignItems: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1 }}>
-          <span style={{ fontSize: "0.85rem", color: "#dce1ff" }}>From</span>
+          <span style={{ fontSize: "0.85rem", color: "#dce1ff" }}>{t('from')}</span>
           <input
             type="text"
             name="startDate"
@@ -61,7 +63,7 @@ export function TechnicalBackground({
           />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1 }}>
-          <span style={{ fontSize: "0.85rem", color: "#dce1ff" }}>To</span>
+          <span style={{ fontSize: "0.85rem", color: "#dce1ff" }}>{t('to')}</span>
           <input
             type="text"
             name="endDate"
@@ -76,8 +78,8 @@ export function TechnicalBackground({
 
       <div className="control-row compact">
         <span style={{ display: "flex", alignItems: "center" }}>
-          Commit Freq. %
-          <InfoIcon text="Base probability per year. Accepts CSV values (e.g., 30,50,45) which cycle through the years. Put a zero for a blank background." />
+          {t('commitFreq')}
+          <InfoIcon text={t('commitFreqTip')} />
         </span>
         <input
           type="text"
@@ -91,7 +93,7 @@ export function TechnicalBackground({
       </div>
 
       <div className="control-row compact">
-        <span>Max.Com/Day</span>
+        <span>{t('maxComDay')}</span>
         <input
           type="number"
           name="maxCommitsPerDay"
@@ -105,7 +107,7 @@ export function TechnicalBackground({
       </div>
 
       <div className="control-row compact">
-        <span>Weekends</span>
+        <span>{t('weekends')}</span>
         <button
           type="button"
           onClick={() => onChange({ ...config, noWeekends: !config.noWeekends })}
@@ -121,14 +123,14 @@ export function TechnicalBackground({
             transition: "all 0.2s ease"
           }}
         >
-          {!config.noWeekends ? "ON" : "OFF"}
+          {!config.noWeekends ? t('on') : t('off')}
         </button>
       </div>
 
       <div className="control-row compact">
         <span style={{ display: "flex", alignItems: "center" }}>
-          Vacations
-          <InfoIcon text="Amount of vacations per year, meaning patches of inactivity, to pick randomly (comma-separated).&#10;E.g.: 1,2,2 means there's double the chance to have 2 vacations on each year." />
+          {t('vacations')}
+          <InfoIcon text={t('vacationsTip')} />
         </span>
         <input
           type="text"
@@ -143,8 +145,8 @@ export function TechnicalBackground({
 
       <div className="control-row compact">
         <span style={{ display: "flex", alignItems: "center" }}>
-          Days/Vacation
-          <InfoIcon text="Length of each vacation in days to pick randomly (comma-separated).&#10;E.g.: 14,28,14 means higher chance of 14 days." />
+          {t('daysVacation')}
+          <InfoIcon text={t('daysVacationTip')} />
         </span>
         <input
           type="text"

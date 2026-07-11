@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useTranslations } from "next-intl";
 
 interface Day {
   date: string;
@@ -37,6 +38,7 @@ export const ContributionGrid: React.FC<ContributionGridProps> = ({
   preview,
   isFlatGit
 }) => {
+  const t = useTranslations('Calendar');
   const gridRef = useRef<HTMLDivElement>(null);
   const lastHoveredIdxRef = useRef<number | null>(null);
   const columnsCount = Math.ceil(days.length / 7);
@@ -124,15 +126,15 @@ export const ContributionGrid: React.FC<ContributionGridProps> = ({
       <div className="days">
         {isFlatGit ? (
           <>
-            <span style={{ gridRow: 2 }}>M</span>
-            <span style={{ gridRow: 4 }}>W</span>
-            <span style={{ gridRow: 6 }}>F</span>
+            <span style={{ gridRow: 2 }}>{t('m')}</span>
+            <span style={{ gridRow: 4 }}>{t('w')}</span>
+            <span style={{ gridRow: 6 }}>{t('f')}</span>
           </>
         ) : (
           <>
-            <span style={{ gridRow: 2 }}>Mon</span>
-            <span style={{ gridRow: 4 }}>Wed</span>
-            <span style={{ gridRow: 6 }}>Fri</span>
+            <span style={{ gridRow: 2 }}>{t('mon')}</span>
+            <span style={{ gridRow: 4 }}>{t('wed')}</span>
+            <span style={{ gridRow: 6 }}>{t('fri')}</span>
           </>
         )}
       </div>

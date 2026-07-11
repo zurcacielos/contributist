@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Card } from "@/components/Card";
 import { GeneratorConfig } from "@/types";
 import { AppAction } from "@/state/appReducer";
+import { useTranslations } from "next-intl";
 import { downloadFile } from "@/utils/downloadFile";
 import * as ContextMenu from "@radix-ui/react-context-menu";
 
@@ -25,6 +26,7 @@ interface Scene {
 }
 
 export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch, activeYear }) => {
+  const t = useTranslations('Sidebar');
   const [scenes, setScenes] = useState<Scene[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -318,15 +320,15 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
   };
 
   return (
-    <Card collapsible={true} defaultExpanded={false} title="Community 🌌">
+    <Card collapsible={true} defaultExpanded={false} title={t('community')}>
       <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "8px" }}>
         {loading ? (
           <div style={{ fontSize: "0.8rem", color: "var(--text-muted)", textAlign: "center" }}>
-            Loading community scenes...
+            {t('loading')}
           </div>
         ) : scenes.length === 0 ? (
           <div style={{ fontSize: "0.8rem", color: "var(--text-muted)", textAlign: "center" }}>
-            No community scenes found in public/templates/scenes/
+            {t('noScenes')}
           </div>
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -390,7 +392,7 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
                           className="context-menu-item"
                           onSelect={() => handleSaveIntoRemix(scene)}
                         >
-                          💾 Save current into this
+                          {t('saveInto')}
                         </ContextMenu.Item>
                       </ContextMenu.Content>
                     </ContextMenu.Portal>
@@ -429,7 +431,7 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
             e.currentTarget.style.borderColor = "var(--border)";
           }}
         >
-          📤 Publish (Download JSON)
+          {t('publish')}
         </button>
       </div>
     </Card>

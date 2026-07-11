@@ -7,6 +7,7 @@ import { MemeSprite } from "@/components/MemeSprite";
 import { Move, Pencil, Eraser } from 'lucide-react';
 import { getDistinctiveColors } from "@/utils/paletteHelper";
 import { findAutoPosition } from "@/utils/positionHelper";
+import { useTranslations } from "next-intl";
 
 interface Day {
   date: string;
@@ -54,6 +55,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
   showPaintedInOrangeOverride,
   isActive
 }) => {
+  const t = useTranslations('Calendar');
   const [isHovered, setIsHovered] = React.useState(false);
   const bgLayerForYear = (state.config.layers || []).find(l => l.type === 'background' && l.year === year) as any;
   const totalContributions = days.reduce((acc, d) => acc + d.count, 0);
@@ -430,7 +432,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
       </div>
       <div className="graph-scroll-container">
         <div className="months">
-          <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+          <span>{t('jan')}</span><span>{t('feb')}</span><span>{t('mar')}</span><span>{t('apr')}</span><span>{t('may')}</span><span>{t('jun')}</span><span>{t('jul')}</span><span>{t('aug')}</span><span>{t('sep')}</span><span>{t('oct')}</span><span>{t('nov')}</span><span>{t('dec')}</span>
         </div>
         <div
           className={`graph-wrap ${isActive && feelingMode !== "advanced" ? '' : 'short'}`}

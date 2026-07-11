@@ -47,7 +47,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
     const serialized = serializeDesign(state);
     const shareUrl = `${window.location.origin}${window.location.pathname}?design=${serialized}`;
     navigator.clipboard.writeText(shareUrl);
-    alert("Share link with your design copied to clipboard!");
+    alert(t('copiedAlert'));
   };
 
   const activeStyle = localStyle;
@@ -107,12 +107,12 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
     <section className="layout share-layout" style={{ marginTop: "14px" }}>
       {/* Left Sidebar - Export Config */}
       <aside className="sidebar-left panel" style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-        <Card collapsible={false} title="Export Preset">
+        <Card collapsible={false} title={t('presetTitle')}>
           <div className="export-preset-container" id="export-preset-container" style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
             {/* Rendering Style */}
             <div className="render-style-section" id="render-style-section">
               <span style={{ fontSize: "12px", fontWeight: "bold", color: "var(--text-muted)", display: "block", marginBottom: "8px" }}>
-                RENDER STYLE
+                {t('renderStyle')}
               </span>
               <div className="render-style-buttons" id="render-style-buttons" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                 <button
@@ -130,7 +130,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                     textAlign: "center"
                   }}
                 >
-                  ⚡ Full Vibe
+                  {t('fullVibe')}
                 </button>
                 <div style={{ display: "flex", gap: "8px", width: "100%" }}>
                   <button
@@ -148,7 +148,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                       textAlign: "center"
                     }}
                   >
-                    🖥️ Simple Git
+                    {t('simpleGit')}
                   </button>
                   <button
                     onClick={() => handleStyleChange("flatgit")}
@@ -165,7 +165,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                       textAlign: "center"
                     }}
                   >
-                    🦊 Flat Git
+                    {t('flatGit')}
                   </button>
                 </div>
               </div>
@@ -176,7 +176,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
             {/* Theme Palettes */}
             <div className="palette-alternator-section" id="palette-alternator-section">
               <span style={{ fontSize: "12px", fontWeight: "bold", color: "var(--text-muted)", display: "block", marginBottom: "8px" }}>
-                PALETTE
+                {t('palette')}
               </span>
               <div className="palette-alternator-button-wrapper" id="palette-alternator-button-wrapper" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 {/* Classic Green Option */}
@@ -197,7 +197,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                     transition: "all 0.2s ease"
                   }}
                 >
-                  <span style={{ fontSize: "12px", fontWeight: "bold", color: "var(--text-main)" }}>Classic Green</span>
+                  <span style={{ fontSize: "12px", fontWeight: "bold", color: "var(--text-main)" }}>{t('classicGreen')}</span>
                   <div style={{ display: "flex", gap: "4px" }}>
                     {["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"].map((c, i) => (
                       <div key={i} style={{ width: "12px", height: "12px", borderRadius: "3px", backgroundColor: c, border: i === 0 ? "1px solid rgba(255,255,255,0.08)" : "none" }} />
@@ -223,7 +223,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                     transition: "all 0.2s ease"
                   }}
                 >
-                  <span style={{ fontSize: "12px", fontWeight: "bold", color: "var(--text-main)" }}>Synthwave</span>
+                  <span style={{ fontSize: "12px", fontWeight: "bold", color: "var(--text-main)" }}>{t('synthwave')}</span>
                   <div style={{ display: "flex", gap: "4px" }}>
                     {["#161b22", "#2d0a4e", "#008e43", "#00d2ff", "#ff007f"].map((c, i) => (
                       <div key={i} style={{ width: "12px", height: "12px", borderRadius: "3px", backgroundColor: c, border: i === 0 ? "1px solid #ff007f" : "none" }} />
@@ -344,7 +344,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
               transition: "all 0.2s",
             }}
           >
-            <Share2 size={16} /> {isCapturing ? "Capturing..." : "Export PNG"}
+            <Share2 size={16} /> {isCapturing ? t('capturing') : t('exportPng')}
           </button>
 
           <button
@@ -375,7 +375,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
               e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.4)";
             }}
           >
-            <Share2 size={16} /> Share Your Design URL
+            <Share2 size={16} /> {t('shareUrl')}
           </button>
 
           <div
@@ -391,14 +391,14 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
             }}
           >
             <span style={{ display: "block", fontWeight: "bold", color: "#e1e4e8", marginBottom: "4px" }}>
-              🔒 Privacy Guarantee:
+              {t('privacyTitle')}
             </span>
-            <span>Only grid cells (art), layers, years, colors, and timeline speed are shared. <b>Your private Git remote URL, name, and email are strictly filtered out and never shared.</b></span>
+            <span>{t('privacyDesc')}</span>
           </div>
 
           <div className="share-the-hype-card" id="share-the-hype-card" style={{ display: "flex", flexDirection: "column", gap: "8px", background: "rgba(255,255,255,0.02)", border: "1px solid var(--border)", borderRadius: "10px", padding: "12px", marginTop: "6px" }}>
             <span style={{ fontSize: "11px", fontWeight: "bold", color: "var(--text-muted)", textAlign: "center", display: "block" }}>
-              SHARE THE HYPE
+              {t('shareHype')}
             </span>
             <div className="share-hype-icons" id="share-hype-icons" style={{ display: "flex", justifyContent: "center", gap: "12px", fontSize: "20px" }}>
               <span title="TikTok" style={{ cursor: "pointer" }}>🎵</span>

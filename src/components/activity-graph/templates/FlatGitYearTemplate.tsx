@@ -1,6 +1,7 @@
 import React from "react";
 import { AppState, AppAction } from "@/state/appReducer";
 import { ContributionGrid } from "../ContributionGrid";
+import { useTranslations } from "next-intl";
 
 interface Day {
   date: string;
@@ -43,6 +44,7 @@ export const FlatGitYearTemplate: React.FC<FlatGitYearTemplateProps> = ({
   preview,
   showPaintedInOrangeOverride
 }) => {
+  const t = useTranslations('Calendar');
   const totalContributions = days.reduce((acc, d) => acc + d.count, 0);
   const hoveredYear = hoveredDay ? parseInt(hoveredDay.date.split("-")[0], 10) : null;
   const isHoveredInThisYear = hoveredYear === year;
@@ -91,7 +93,7 @@ export const FlatGitYearTemplate: React.FC<FlatGitYearTemplateProps> = ({
               gridTemplateColumns: "repeat(12, 1fr)" 
             }}
           >
-            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+            <span>{t('jan')}</span><span>{t('feb')}</span><span>{t('mar')}</span><span>{t('apr')}</span><span>{t('may')}</span><span>{t('jun')}</span><span>{t('jul')}</span><span>{t('aug')}</span><span>{t('sep')}</span><span>{t('oct')}</span><span>{t('nov')}</span><span>{t('dec')}</span>
           </div>
 
           <div className="flatgit-template-grid-inner" id={`flatgit-template-grid-inner-${year}`}>

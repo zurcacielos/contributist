@@ -4,6 +4,7 @@ import { Layer, MemeLayer } from '@/types';
 import { AppState, AppAction } from '@/state/appReducer';
 import { Card } from '@/components/Card';
 import { SynthFont } from '@/components/SynthFont';
+import { useTranslations } from 'next-intl';
 
 interface LayersPanelProps {
   state: AppState;
@@ -28,6 +29,7 @@ export function LayersPanel({
   showPaintedInOrange,
   onTogglePaintedInOrange,
 }: LayersPanelProps) {
+  const t = useTranslations('Sidebar');
   const [draggedId, setDraggedId] = React.useState<string | null>(null);
 
   const allLayers = state.config.layers || [];
@@ -91,7 +93,7 @@ export function LayersPanel({
   if (!state.activeYear) {
     return (
       <Card
-        title="Layers"
+        title={t('layers')}
         className="layers"
         style={{ overflowY: "auto", maxHeight: "80vh" }}
         collapsible={false}
@@ -103,7 +105,7 @@ export function LayersPanel({
 
   return (
     <Card
-      title={`${state.activeYear} layers`}
+      title={t('yearLayers', { year: state.activeYear })}
       className="layers"
       style={{ overflowY: "auto", maxHeight: "80vh" }}
       collapsible={false}
