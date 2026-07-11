@@ -91,6 +91,7 @@ export function LanguageSelector() {
 
       {isOpen && (
         <div
+          className="language-dropdown"
           style={{
             position: 'absolute',
             top: 'calc(100% + 6px)',
