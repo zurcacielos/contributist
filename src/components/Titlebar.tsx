@@ -3,6 +3,8 @@ import { FeelingMode } from '@/types';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { FilePlus, FolderOpen, Save } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { LanguageSelector } from './LanguageSelector';
 
 interface TitlebarProps {
   mainTab: "draw" | "share" | "export" | "help";
@@ -15,6 +17,8 @@ interface TitlebarProps {
 }
 
 export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, onSave, onLoad, onReset }: TitlebarProps) {
+  const t = useTranslations('Titlebar');
+
   return (
     <header className="titlebar" style={{ position: 'sticky', top: 0, zIndex: 30, borderBottom: '1px solid var(--border)' }}>
       <div
@@ -51,7 +55,7 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
             transition: "all 0.2s ease"
           }}
         >
-          Help
+          {t('help')}
         </button>
         <i style={{ opacity: 0.5, fontSize: "18px" }}>|</i>
         <button
@@ -59,7 +63,7 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
           onClick={() => onTabSwitch('draw')}
           style={mainTab === 'draw' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
         >
-          <b style={mainTab === 'draw' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>1</b> Design
+          <b style={mainTab === 'draw' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>1</b> {t('design')}
         </button>
         <i>→</i>
         <button
@@ -67,7 +71,7 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
           onClick={() => onTabSwitch('export')}
           style={mainTab === 'export' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
         >
-          <b style={mainTab === 'export' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>2</b> Push to GIT
+          <b style={mainTab === 'export' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>2</b> {t('push')}
         </button>
         <i>→</i>
         <button
@@ -75,10 +79,11 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
           onClick={() => onTabSwitch('share')}
           style={mainTab === 'share' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
         >
-          <b style={mainTab === 'share' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>3</b> Share (optional)
+          <b style={mainTab === 'share' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>3</b> {t('share')}
         </button>
       </nav>
       <div className="top-icons" aria-label="quick actions">
+        <LanguageSelector />
         <a 
           href="https://github.com/zurcacielos/contributist"
           target="_blank"

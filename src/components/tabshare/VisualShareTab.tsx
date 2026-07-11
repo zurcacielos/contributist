@@ -8,6 +8,7 @@ import { Card } from "@/components/Card";
 import { Eye, Flame, Trophy, Zap, Share2 } from "lucide-react";
 import { exportAsPNG } from "@/utils/canvasExport";
 import { serializeDesign } from "@/utils/shareSerializer";
+import { useTranslations } from "next-intl";
 
 interface VisualShareTabProps {
   state: AppState;
@@ -28,6 +29,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
   setFeelingMode,
   config,
 }) => {
+  const t = useTranslations('Share');
   const [isCapturing, setIsCapturing] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
 
@@ -256,7 +258,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
         >
           <span style={{ fontSize: "16px", flexShrink: 0 }}>ℹ️</span>
           <span>
-            <strong>Optional:</strong> Pick format and palette on the left. Download a PNG picture to share on social media. Or share a URL to your art.
+            {t('notice')}
           </span>
         </div>
 

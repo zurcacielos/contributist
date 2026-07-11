@@ -1,0 +1,56 @@
+{
+  "Titlebar": {
+    "help": "Help",
+    "design": "Design",
+    "push": "Push to GIT",
+    "share": "Share (optional)"
+  },
+  "Help": {
+    "whyTitle": "Why Contributist?",
+    "manifesto1": "Contributist is a git/GitHub/GitLab/Gitea/Bitbucket/SourceHut contribution graph editor for developers.",
+    "manifesto2": "Reclaim your contribution Graph! Make contributions great again! Exercise your individual freedom!",
+    "manifesto3": "Contributist allows corporate developers and others to keep track of contributions not always made into public repositories.",
+    "manifesto4": "I believe contribution graphs need to evolve, after two decades of not doing it, into something more useful for all society, not only devs.",
+    "howItWorks": "How It Works",
+    "step1Prefix": "1. Design a contribution graph, ",
+    "step1Synth": "use the tool Draw, TEXT, and MEME icons",
+    "step2Text": "2. Export to PNG or share the URL to your art! Or... Download a Bash or PowerShell script that commits to a dummy local repository and pushes to your remote/GitHub/GitLab/Gitea/Bitbucket/SourceHut.",
+    "techTitle": "Powered by Modern Technologies",
+    "reactDesc": "Component architecture and dynamic state synchronization.",
+    "nextDesc": "React framework for hydration, layout, and API routing.",
+    "zustandDesc": "Ultralight, hooks-based centralized state manager.",
+    "githubTitle": "GitHub Open Source",
+    "githubDesc": "Fully open-source repository hosted on GitHub. Contribute or fork!",
+    "vercelTitle": "Deployed on Vercel",
+    "vercelDesc": "Hosted on Vercel's edge network, integrating serverless routes and CI/CD pipelines with full Analytics.",
+    "algoTitle": "Custom Engineering & Algorithms",
+    "proceduralNoiseTitle": "Procedural Noise Simulator",
+    "proceduralNoiseDesc": "Generates stochastic contribution patterns factoring in weekends, noise levels, and vacation blocks for realistic textures.",
+    "layerCompositingTitle": "Layer Compositing Engine",
+    "layerCompositingDesc": "Composites vector-drawn canvas overlays and procedural background layers dynamically through store state reducers.",
+    "stateSerializationTitle": "State Serialization",
+    "stateSerializationDesc": "Compresses calendar draw matrices into compact base64 URL query hashes for database-free sharing.",
+    "gitTranspilationTitle": "Git Shell Transpilers",
+    "gitTranspilationDesc": "Translates calendar cells to historic Unix epoch timestamps, compiling optimized Bash and PowerShell scripts.",
+    "coordinateProjectionTitle": "Geometric Event Delegation",
+    "coordinateProjectionDesc": "Delegates events at container level, projecting client mouse coordinate vectors over bounding box geometry to map cell indexes."
+  },
+  "Export": {
+    "repoTitle": "Create a Remote Repository",
+    "dummyWarning": "Create a BRAND NEW dummy contributions repository with a NEW name, in your Gitea/Gogs, GitHub, GitLab or other remote. Do not add a README, license, or gitignore file.",
+    "existWarning": "If the repository already exists, DELETE IT, and create it different one with a DIFFERENT name each time.",
+    "existTooltip": "If you reuse the same repository, or same name, orphan commits may distort your graph.",
+    "identityTitle": "Git Identity",
+    "identityTooltip": "This is the URL of your Remote Repo, and the info needed to sign your commits. No password required.",
+    "repoLabel": "Repository URL - HTTPS or SSH - e.g: git@remote.com:username/reponame.git",
+    "usernameLabel": "Git Username:",
+    "emailLabel": "Git Email:",
+    "option1Title": "Option 1: Self-Service Script",
+    "option1Tooltip": "How to run:\n\nMac/Linux:\nbash generate-activity.sh\n\nWindows:\nRight-click .ps1 → Run with PowerShell",
+    "option2Title": "Option 2: Cloud Generator (Auto-Push)",
+    "option2Tooltip": "We will create a dummy repo locally on the server and push it directly to your remote URL. Your repo MUST be completely empty."
+  },
+  "Share": {
+    "notice": "Optional: Pick format and palette on the left. Download a PNG picture to share on social media. Or share a URL to your art."
+  }
+}

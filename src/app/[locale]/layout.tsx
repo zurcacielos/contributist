@@ -1,6 +1,10 @@
-import type { Metadata } from 'next'
-import './globals.css'
-import { Analytics } from '@vercel/analytics/react'
+import {routing} from '@/i18n/routing';
+import {notFound} from 'next/navigation';
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
+import { Analytics } from '@vercel/analytics/react';
+import '../globals.css';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Contributist | GitHub Contribution Graph Generator & Painter',
@@ -27,19 +31,33 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
-}
+};
 
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
+  params
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+
+  // Validate that the incoming locale is valid
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  // Get messages for NextIntlClientProvider
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body>
-        {children}
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
         <Analytics />
       </body>
     </html>
-  )
+  );
 }

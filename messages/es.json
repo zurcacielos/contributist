@@ -1,0 +1,56 @@
+{
+  "Titlebar": {
+    "help": "Ayuda",
+    "design": "Diseño",
+    "push": "Subir a GIT",
+    "share": "Compartir (opcional)"
+  },
+  "Help": {
+    "whyTitle": "¿Por qué Contributist?",
+    "manifesto1": "Contributist es un editor de gráficos de contribución de git/GitHub/GitLab/Gitea/Bitbucket/SourceHut para desarrolladores.",
+    "manifesto2": "¡Reclama tu gráfico de contribuciones! ¡Haz que las contribuciones vuelvan a ser grandiosas! ¡Ejerce tu libertad individual!",
+    "manifesto3": "Contributist permite a los desarrolladores corporativos y a otros llevar un registro de las contribuciones que no siempre se realizan en repositorios públicos.",
+    "manifesto4": "Creo que los gráficos de contribución deben evolucionar, después de dos décadas sin hacerlo, hacia algo más útil para toda la sociedad, no solo para los desarrolladores.",
+    "howItWorks": "Cómo funciona",
+    "step1Prefix": "1. Diseña un gráfico de contribución, ",
+    "step1Synth": "usa las herramientas de dibujo, texto e iconos de memes",
+    "step2Text": "2. ¡Exporta a PNG o comparte el enlace de tu diseño! O... descarga un script en Bash o PowerShell que haga los commits en un repositorio local ficticio y los suba a tu servidor remoto/GitHub/GitLab/Gitea/Bitbucket/SourceHut.",
+    "techTitle": "Impulsado por tecnologías modernas",
+    "reactDesc": "Arquitectura de componentes y sincronización dinámica de estado.",
+    "nextDesc": "Framework de React para hidratación, maquetado y enrutamiento de API.",
+    "zustandDesc": "Gestor de estado centralizado ultraligero basado en hooks.",
+    "githubTitle": "GitHub Código Abierto",
+    "githubDesc": "Repositorio completamente de código abierto alojado en GitHub. ¡Contribuye o haz un fork!",
+    "vercelTitle": "Desplegado en Vercel",
+    "vercelDesc": "Alojado en la red edge de Vercel, integrando rutas serverless y pipelines de CI/CD con analíticas completas.",
+    "algoTitle": "Ingeniería personalizada y algoritmos",
+    "proceduralNoiseTitle": "Simulador de ruido procedimental",
+    "proceduralNoiseDesc": "Genera patrones de contribución estocásticos teniendo en cuenta fines de semana, niveles de ruido y bloques de vacaciones para lograr texturas realistas.",
+    "layerCompositingTitle": "Motor de composición de capas",
+    "layerCompositingDesc": "Combina dinámicamente superposiciones de lienzo dibujadas por vectores y capas de fondo procedimentales mediante reductoras de estado.",
+    "stateSerializationTitle": "Serialización de estado",
+    "stateSerializationDesc": "Comprime matrices de dibujo del calendario en hashes de consulta de URL base64 compactos para compartir sin base de datos.",
+    "gitTranspilationTitle": "Transpiladores de shell de Git",
+    "gitTranspilationDesc": "Traduce celdas del calendario en marcas de tiempo Unix históricas, compilando scripts Bash y PowerShell optimizados.",
+    "coordinateProjectionTitle": "Delegación geométrica de eventos",
+    "coordinateProjectionDesc": "Delega eventos a nivel de contenedor, proyectando vectores de coordenadas del mouse sobre la geometría del cuadro delimitador para mapear índices de celdas."
+  },
+  "Export": {
+    "repoTitle": "Crear un repositorio remoto",
+    "dummyWarning": "Crea un repositorio de contribuciones ficticio COMPLETAMENTE NUEVO con un nombre NUEVO en tu Gitea/Gogs, GitHub, GitLab u otro remoto. No agregues un archivo README, licencia o gitignore.",
+    "existWarning": "Si el repositorio ya existe, ELIMÍNALO y créalo diferente con un nombre DIFERENTE cada vez.",
+    "existTooltip": "Si reutilizas el mismo repositorio o el mismo nombre, los commits huérfanos pueden distorsionar tu gráfico.",
+    "identityTitle": "Identidad de Git",
+    "identityTooltip": "Esta es la URL de tu repositorio remoto y la información necesaria para firmar tus commits. No se requiere contraseña.",
+    "repoLabel": "URL del repositorio - HTTPS o SSH - ej: git@remote.com:usuario/nombrerepo.git",
+    "usernameLabel": "Usuario de Git:",
+    "emailLabel": "Email de Git:",
+    "option1Title": "Opción 1: Script de autoservicio",
+    "option1Tooltip": "Cómo ejecutar:\n\nMac/Linux:\nbash generate-activity.sh\n\nWindows:\nClic derecho en .ps1 → Ejecutar con PowerShell",
+    "option2Title": "Opción 2: Generador en la nube (Auto-Push)",
+    "option2Tooltip": "Crearemos un repositorio ficticio localmente en el servidor y lo empujaremos directamente a tu URL remota. Tu repositorio DEBE estar completamente vacío."
+  },
+  "Share": {
+    "notice": "Opcional: Elige el formato y la paleta de la izquierda. Descarga una imagen PNG para compartir en redes sociales, o comparte el enlace de tu diseño."
+  }
+}

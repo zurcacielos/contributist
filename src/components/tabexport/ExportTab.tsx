@@ -8,6 +8,7 @@ import { isValidExportConfig, isValidEmail, isValidRepoUrl } from "@/utils/valid
 import { downloadFile } from "@/utils/downloadFile";
 import { getFileTimestamp } from "@/utils/dateHelper";
 import { SynthFont } from "@/components/SynthFont";
+import { useTranslations } from "next-intl";
 
 interface ExportTabProps {
   config: GeneratorConfig;
@@ -18,6 +19,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
   config,
   dispatch,
 }) => {
+  const t = useTranslations('Export');
   const [overrideText, setOverrideText] = useState("");
   const [isWorking, setIsWorking] = useState(false);
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
@@ -182,20 +184,20 @@ export const ExportTab: React.FC<ExportTabProps> = ({
             gap: "10px"
           }}>
             <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)", display: "flex", alignItems: "center", gap: "8px" }}>
-              Create a Remote Repository
+              {t('repoTitle')}
             </h3>
             <p style={{ fontSize: "0.9rem", color: "var(--text-main)", margin: "0", lineHeight: "1.5" }}>
-              Create a BRAND NEW dummy contributions repository with a NEW name, in your Gitea/Gogs, GitHub, GitLab or other remote. <strong>Do not</strong> add a README, license, or gitignore file.
+              {t('dummyWarning')}
             </p>
             <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "0", lineHeight: "1.4", display: "inline-flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
               <SynthFont variation="pink-cyan">
-                If the repository already exists, DELETE IT, and create it different one with a DIFFERENT name each time.
+                {t('existWarning')}
               </SynthFont>
               <span
                 className="info-icon"
                 style={{ pointerEvents: "auto" }}
                 data-tooltip-id="info-tooltip"
-                data-tooltip-content="If you reuse the same repository, or same name, orphan commits may distort your graph."
+                data-tooltip-content={t('existTooltip')}
               >
                 i
               </span>
@@ -205,12 +207,12 @@ export const ExportTab: React.FC<ExportTabProps> = ({
           {/* Git Identity Card */}
           <div className="card" style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
             <h3 style={{ fontSize: "1.1rem", margin: "0", color: "var(--text-main)", display: "flex", alignItems: "center", gap: "8px" }}>
-              Git Identity
+              {t('identityTitle')}
               <span
                 className="info-icon"
                 style={{ pointerEvents: "auto" }}
                 data-tooltip-id="info-tooltip"
-                data-tooltip-content="This is the URL of your Remote Repo, and the info needed to sign your commits. No password required."
+                data-tooltip-content={t('identityTooltip')}
               >
                 i
               </span>
@@ -219,7 +221,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                 <label htmlFor="repoUrl" style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
-                  Repository URL - HTTPS or SSH - e.g: git@remote.com:username/reponame.git
+                  {t('repoLabel')}
                 </label>
                 <input
                   id="repoUrl"
@@ -243,7 +245,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "8px" }}>
                   <label htmlFor="gitName" style={{ fontSize: "0.9rem", color: "var(--text-muted)", whiteSpace: "nowrap" }}>
-                    Git Username:
+                    {t('usernameLabel')}
                   </label>
                   <input
                     id="gitName"
@@ -258,7 +260,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
 
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "8px" }}>
                   <label htmlFor="gitEmail" style={{ fontSize: "0.9rem", color: "var(--text-muted)", whiteSpace: "nowrap" }}>
-                    Git Email:
+                    {t('emailLabel')}
                   </label>
                   <input
                     id="gitEmail"
@@ -371,18 +373,12 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                 gap: "8px",
               }}
             >
-              Option 1: Self-Service Script
+              {t('option1Title')}
               <span
                 className="info-icon"
                 style={{ pointerEvents: "auto" }}
                 data-tooltip-id="info-tooltip"
-                data-tooltip-content={`How to run:
-
-Mac/Linux:
-bash generate-activity.sh
-
-Windows:
-Right-click .ps1 → Run with PowerShell`}
+                data-tooltip-content={t('option1Tooltip')}
               >
                 i
               </span>
@@ -420,12 +416,12 @@ Right-click .ps1 → Run with PowerShell`}
                   gap: "8px",
                 }}
               >
-                Option 2: Cloud Generator (Auto-Push)
+                {t('option2Title')}
                 <span
                   className="info-icon"
                   style={{ pointerEvents: "auto" }}
                   data-tooltip-id="info-tooltip"
-                  data-tooltip-content="We will create a dummy repo locally on the server and push it directly to your remote URL. Your repo MUST be completely empty."
+                  data-tooltip-content={t('option2Tooltip')}
                 >
                   i
                 </span>

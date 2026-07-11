@@ -1,0 +1,56 @@
+{
+  "Titlebar": {
+    "help": "帮助",
+    "design": "设计",
+    "push": "推送到 GIT",
+    "share": "分享 (可选)"
+  },
+  "Help": {
+    "whyTitle": "为什么选择 Contributist？",
+    "manifesto1": "Contributist 是一款面向开发者的 git/GitHub/GitLab/Gitea/Bitbucket/SourceHut 提交图编辑器。",
+    "manifesto2": "收回你的提交图！让提交图再次伟大！行使 your 个人自由！",
+    "manifesto3": "Contributist 允许企业开发者和其他人追踪那些不总是提交到公共仓库的贡献。",
+    "manifesto4": "我相信，在经历了二十年一成不变之后，提交图需要进化成对全社会（不仅仅是开发者）都更有用的东西。",
+    "howItWorks": "工作原理",
+    "step1Prefix": "1. 设计一个提交图，",
+    "step1Synth": "使用画笔、文字和表情包图标工具",
+    "step2Text": "2. 导出为 PNG 或分享你的设计链接！或者……下载一个 Bash 或 PowerShell 脚本，该脚本会提交到一个本地临时仓库并推送到你的远程/GitHub/GitLab/Gitea/Bitbucket/SourceHut 仓库。",
+    "techTitle": "由现代技术驱动",
+    "reactDesc": "组件架构和动态状态同步。",
+    "nextDesc": "用于页面水合、布局和 API 路由的 React 框架。",
+    "zustandDesc": "超轻量、基于 React Hooks 的集中式状态管理器。",
+    "githubTitle": "GitHub 开源",
+    "githubDesc": "托管在 GitHub 上的完全开源项目。欢迎贡献或 Fork！",
+    "vercelTitle": "部署在 Vercel",
+    "vercelDesc": "托管在 Vercel 的边缘网络上，集成了无服务器路由、CI/CD 流程以及完整的分析功能。",
+    "algoTitle": "自定义工程与算法",
+    "proceduralNoiseTitle": "程序噪声模拟器",
+    "proceduralNoiseDesc": "生成随机的提交模式，结合周末、噪声级别和假期区间，以获得逼真的提交纹理。",
+    "layerCompositingTitle": "图层合成引擎",
+    "layerCompositingDesc": "通过状态管理器动态合成矢量绘制的画布叠加层和程序背景层。",
+    "stateSerializationTitle": "状态序列化",
+    "stateSerializationDesc": "将日历绘制矩阵压缩为紧凑的 base64 URL 参数哈希值，实现无需数据库的分享。",
+    "gitTranspilationTitle": "Git 脚本转译器",
+    "gitTranspilationDesc": "将日历网格转换为历史 Unix 时间戳，编译为高度优化的 Bash 和 PowerShell 脚本。",
+    "coordinateProjectionTitle": "几何事件委托",
+    "coordinateProjectionDesc": "在容器级别委托事件，将客户端鼠标坐标投影在边界框几何体上，以映射单元格索引。"
+  },
+  "Export": {
+    "repoTitle": "创建远程仓库",
+    "dummyWarning": "在你的 Gitea/Gogs、GitHub、GitLab 或其他托管端创建一个全新的、名称全新的占位贡献仓库。请勿添加 README、开源许可证或 gitignore 文件。",
+    "existWarning": "如果仓库已存在，请将其删除，并且每次使用不同的新名称重新创建。",
+    "existTooltip": "如果你重复使用同一个仓库或同一个名称，孤立的提交可能会扭曲你的提交图。",
+    "identityTitle": "Git 身份",
+    "identityTooltip": "这是你的远程仓库 URL 以及签署提交所需的信息。不需要密码。",
+    "repoLabel": "仓库 URL - HTTPS 或 SSH - 例如: git@remote.com:username/reponame.git",
+    "usernameLabel": "Git 用户名:",
+    "emailLabel": "Git 邮箱:",
+    "option1Title": "选项 1：自助脚本",
+    "option1Tooltip": "如何运行：\n\nMac/Linux:\nbash generate-activity.sh\n\nWindows:\n右键点击 .ps1 文件 → 选择“使用 PowerShell 运行”",
+    "option2Title": "选项 2：云端生成器 (自动推送)",
+    "option2Tooltip": "我们将在服务器本地创建一个占位仓库，并直接推送到你的远程 URL。你的仓库必须完全为空。"
+  },
+  "Share": {
+    "notice": "可选：在左侧选择格式和调色板。下载 PNG 图片以分享在社交媒体上，或者分享你的设计链接。"
+  }
+}
