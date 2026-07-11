@@ -4,6 +4,7 @@ import { parseYear } from "@/types";
 import { generateCommits } from "@/utils/gitGenerator";
 import { compositeLayers } from "@/utils/layerCompositor";
 import { exportAsPNG } from "@/utils/canvasExport";
+import { useLocale } from "next-intl";
 
 interface UseActivityGraphProps {
   state: AppState;
@@ -12,6 +13,7 @@ interface UseActivityGraphProps {
 }
 
 export function useActivityGraph({ state, dispatch, onEditChange }: UseActivityGraphProps) {
+  const locale = useLocale();
   const { config, activeTool, selectedLevel } = state;
   const [mounted, setMounted] = useState(false);
   const [isCapturing, setIsCapturing] = useState(false);
@@ -203,7 +205,7 @@ export function useActivityGraph({ state, dispatch, onEditChange }: UseActivityG
     try {
       const [yearStr, monthStr, dayStr] = dateStr.split("-");
       const date = new Date(Date.UTC(parseInt(yearStr, 10), parseInt(monthStr, 10) - 1, parseInt(dayStr, 10)));
-      return date.toLocaleDateString("en-US", {
+      return date.toLocaleDateString(locale, {
         weekday: "long",
         year: "numeric",
         month: "long",
