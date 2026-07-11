@@ -29,7 +29,7 @@ export function HelpTab() {
         {/* Welcome / Header */}
         <section style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           <h2 style={{ fontSize: "28px", display: "flex", alignItems: "center", gap: "10px", margin: 0, textTransform: "none", letterSpacing: "normal" }}>
-            <HelpCircle size={28} style={{ color: "var(--primary, #2ea043)" }} /> About Contributist
+            <HelpCircle size={28} style={{ color: "var(--primary, #2ea043)" }} /> Why Contributist?
           </h2>
           <ul style={{
             fontSize: "16px",
@@ -43,7 +43,6 @@ export function HelpTab() {
           }}>
             <li>Contributist is a git/GitHub/GitLab/Gitea/Bitbucket/SourceHut contribution graph editor for developers.</li>
             <li><SynthFont>Reclaim your contribution Graph! Make contributions great again! Exercise your individual freedom!</SynthFont></li>
-            <li>I believe in freedom of expression, freedom of speech, and I think each individual has the right to express its contributions the way it wants.</li>
             <li>Contributist allows corporate developers and others to keep track of contributions not always made into public repositories.</li>
             <li><SynthFont>I believe contribution graphs need to evolve</SynthFont>, after two decades of not doing it, into something more useful for all society, not only devs.</li>
           </ul>
