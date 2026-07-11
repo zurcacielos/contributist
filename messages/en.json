@@ -69,6 +69,8 @@
     "copiedAlert": "Share link with your design copied to clipboard!"
   },
   "Calendar": {
+    "commitsCount": "Commits: {count}",
+    "vacationsCount": "Vac. {count}",
     "jan": "Jan",
     "feb": "Feb",
     "mar": "Mar",
@@ -86,7 +88,14 @@
     "fri": "Fri",
     "m": "M",
     "w": "W",
-    "f": "F"
+    "f": "F",
+    "clickSelect": "Click anywhere to select",
+    "toolMove": "Move tool",
+    "toolDraw": "Draw tool",
+    "toolErase": "Erase tool",
+    "toolText": "Add custom text",
+    "toolAddMeme": "Add {name}",
+    "tooltipLevel": "{style} Level {level}"
   },
   "Sidebar": {
     "uiMode": "UI mode",
@@ -115,6 +124,36 @@
     "vacations": "Vacations",
     "vacationsTip": "Amount of vacations per year, meaning patches of inactivity, to pick randomly (comma-separated).\nE.g.: 1,2,2 means there's double the chance to have 2 vacations on each year.",
     "daysVacation": "Days/Vacation",
-    "daysVacationTip": "Length of each vacation in days to pick randomly (comma-separated).\nE.g.: 14,28,14 means higher chance of 14 days."
+    "daysVacationTip": "Length of each vacation in days to pick randomly (comma-separated).\nE.g.: 14,28,14 means higher chance of 14 days.",
+    "showSynthArt": "Show art in Synth",
+    "tooltipCollapse": "Collapse panel",
+    "tooltipExpand": "Expand panel",
+    "tooltipUnlock": "Unlock layer",
+    "tooltipLock": "Lock layer",
+    "tooltipResetBg": "Reset background to default",
+    "tooltipClearBg": "Clear background",
+    "tooltipClearDrawing": "Clear drawing",
+    "tooltipDeleteLayer": "Delete layer",
+    "tooltipLocked": "Locked",
+    "tooltipDragReorder": "Drag to reorder",
+    "backgroundLayerName": "Background",
+    "paintedLayerName": "Painted",
+    "tooltipLeftClickRemix": "Left click to remix, Right click to save current into this",
+    "tooltipClickRemix": "Click to remix this design",
+    "selectYearPrompt": "Select a year!"
+  },
+  "Alerts": {
+    "invalidJson": "Invalid JSON file",
+    "confirmReset": "Are you sure you want to reset everything? Your current drawing and layers will be lost.",
+    "saveSuccess": "Successfully saved current design into \"{title}\"!",
+    "saveFail": "Failed to save design: {error}",
+    "saveError": "Error saving design: {message}"
+  },
+  "Modal": {
+    "unsavedChanges": "Unsaved Changes",
+    "savePrompt": "Would you like to save changes?",
+    "cancel": "Cancel",
+    "discard": "Discard",
+    "save": "Save"
   }
 }

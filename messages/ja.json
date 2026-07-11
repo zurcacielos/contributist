@@ -33,7 +33,7 @@
     "gitTranspilationTitle": "Gitシェル・トランスパイラ",
     "gitTranspilationDesc": "カレンダーセルを歴史的なUnixタイムスタンプに変換し、最適化されたBashおよびPowerShellスクリプトをコンパイルします。",
     "coordinateProjectionTitle": "幾何学的イベント委譲",
-    "coordinateProjectionDesc": "コンテナレベルでイベントを委譲し、マウスのクライアント座標ベクトルをバунディングボックスに投影してセルのインデックスをマッピングします。"
+    "coordinateProjectionDesc": "コンテナレベルでイベントを委譲し、マウスのクライアント座標ベクトルをバウンディングボックスに投影してセルのインデックスをマッピングします。"
   },
   "Export": {
     "repoTitle": "リモートリポジトリの作成",
@@ -47,7 +47,7 @@
     "emailLabel": "Gitメールアドレス:",
     "option1Title": "オプション 1: セルフサービス・スクリプト",
     "option1Tooltip": "実行方法:\n\nMac/Linux:\nbash generate-activity.sh\n\nWindows:\n.ps1ファイルを右クリック → 「PowerShellで実行」を選択",
-    "option2Title": "オプション 2: クラウドジェネレーター (自动プッシュ)",
+    "option2Title": "オプション 2: クラウドジェネレーター (自動プッシュ)",
     "option2Tooltip": "サーバー上でダミーリポジトリを一時的に作成し、指定されたリモートURLに直接プッシュします。リポジトリは完全に空である必要があります。"
   },
   "Share": {
@@ -69,6 +69,8 @@
     "copiedAlert": "デザインの共有リンクをクリップボードにコピーしました！"
   },
   "Calendar": {
+    "commitsCount": "コミット数: {count}",
+    "vacationsCount": "休暇: {count}",
     "jan": "1月",
     "feb": "2月",
     "mar": "3月",
@@ -86,12 +88,19 @@
     "fri": "金",
     "m": "月",
     "w": "水",
-    "f": "金"
+    "f": "金",
+    "clickSelect": "クリックして選択",
+    "toolMove": "移動ツール",
+    "toolDraw": "描画ツール",
+    "toolErase": "消しゴムツール",
+    "toolText": "カスタムテキストを追加",
+    "toolAddMeme": "{name}を追加",
+    "tooltipLevel": "{style} レベル {level}"
   },
   "Sidebar": {
     "uiMode": "UIモード",
     "vibes": "雰囲気",
-    "baseVibeTitle": "💖 基础雰囲気",
+    "baseVibeTitle": "💖 基礎雰囲気",
     "technicalTitle": "⚙️ 詳細設定",
     "from": "開始",
     "to": "終了",
@@ -115,6 +124,36 @@
     "vacations": "年間の休暇数",
     "vacationsTip": "年間の休暇数（アクティビティのない期間）をランダムに選択（カンマ区切り）。\n例：1,2,2は、毎年2回の休暇を取る確率が1回の2倍であることを意味します。",
     "daysVacation": "休暇の日数",
-    "daysVacationTip": "各休暇の長さ（日数）をランダムに選択（カンマ区切り）。\n例：14,28,14は、14日間の確率が高いことを意味します。"
+    "daysVacationTip": "各休暇の長さ（日数）をランダムに選択（カンマ区切り）。\n例：14,28,14は、14日間の確率が高いことを意味します。",
+    "showSynthArt": "Synthでアートを表示",
+    "tooltipCollapse": "パネルを折りたたむ",
+    "tooltipExpand": "パネルを展開",
+    "tooltipUnlock": "レイヤーのロックを解除",
+    "tooltipLock": "レイヤーをロック",
+    "tooltipResetBg": "背景をデフォルトに戻す",
+    "tooltipClearBg": "背景をクリア",
+    "tooltipClearDrawing": "描画をクリア",
+    "tooltipDeleteLayer": "レイヤーを削除",
+    "tooltipLocked": "ロック中",
+    "tooltipDragReorder": "ドラッグして順序を変更",
+    "backgroundLayerName": "背景",
+    "paintedLayerName": "描画",
+    "tooltipLeftClickRemix": "左クリックでリミックス、右クリックで現在のデザインをここに保存",
+    "tooltipClickRemix": "クリックしてこのデザインをリミックス",
+    "selectYearPrompt": "年を選択してください！"
+  },
+  "Alerts": {
+    "invalidJson": "無効なJSONファイルです",
+    "confirmReset": "すべてリセットしてもよろしいですか？現在の描画とレイヤーは失われます。",
+    "saveSuccess": "現在のデザインを「{title}」に正常に保存しました！",
+    "saveFail": "デザインの保存に失敗しました: {error}",
+    "saveError": "デザインの保存中にエラーが発生しました: {message}"
+  },
+  "Modal": {
+    "unsavedChanges": "未保存の変更",
+    "savePrompt": "変更を保存しますか？",
+    "cancel": "キャンセル",
+    "discard": "破棄",
+    "save": "保存"
   }
 }

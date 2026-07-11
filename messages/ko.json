@@ -69,6 +69,8 @@
     "copiedAlert": "디자인 공유 링크가 클립보드에 복사되었습니다!"
   },
   "Calendar": {
+    "commitsCount": "커밋 수: {count}",
+    "vacationsCount": "휴가: {count}",
     "jan": "1월",
     "feb": "2월",
     "mar": "3월",
@@ -86,7 +88,14 @@
     "fri": "금",
     "m": "월",
     "w": "수",
-    "f": "금"
+    "f": "금",
+    "clickSelect": "클릭하여 선택",
+    "toolMove": "이동 도구",
+    "toolDraw": "그리기 도구",
+    "toolErase": "지우개 도구",
+    "toolText": "사용자 정의 텍스트 추가",
+    "toolAddMeme": "{name} 추가",
+    "tooltipLevel": "{style} 레벨 {level}"
   },
   "Sidebar": {
     "uiMode": "화면 모드",
@@ -101,7 +110,7 @@
     "resetVibe": "기본 설정으로 초기화",
     "layers": "레이어",
     "yearLayers": "{year}년 레이어",
-    "community": "커뮤니티 🌌",
+    "community": "커뮤니ที 🌌",
     "loading": "커뮤니티 장면 불러오는 중...",
     "noScenes": "public/templates/scenes/ 경로에서 커뮤니티 장면을 찾을 수 없습니다",
     "publish": "📤 게시 (JSON 다운로드)",
@@ -115,6 +124,36 @@
     "vacations": "연간 휴가 수",
     "vacationsTip": "연간 휴가 횟수(활동이 없는 기간)를 랜덤으로 선택합니다(쉼표 구분).\n예: 1,2,2는 매년 2회의 휴가를 가질 확률이 1회의 두 배임을 의미합니다.",
     "daysVacation": "휴가 일수",
-    "daysVacationTip": "각 휴가의 길이(일수)를 랜덤으로 선택합니다(쉼표 구분).\n예: 14,28,14는 14일일 확률이 높음을 의미합니다."
+    "daysVacationTip": "각 휴가의 길이(일수)를 랜덤으로 선택합니다(쉼표 구분).\n예: 14,28,14는 14일일 확률이 높음을 의미합니다.",
+    "showSynthArt": "Synth 스타일로 보기",
+    "tooltipCollapse": "패널 접기",
+    "tooltipExpand": "패널 펼치기",
+    "tooltipUnlock": "레이어 잠금 해제",
+    "tooltipLock": "레이어 잠금",
+    "tooltipResetBg": "배경을 기본값으로 초기화",
+    "tooltipClearBg": "배경 지우기",
+    "tooltipClearDrawing": "그림 지우기",
+    "tooltipDeleteLayer": "레이어 삭제",
+    "tooltipLocked": "잠김",
+    "tooltipDragReorder": "드래그하여 순서 변경",
+    "backgroundLayerName": "배경",
+    "paintedLayerName": "그림",
+    "tooltipLeftClickRemix": "클릭하여 템플릿 적용, 우클릭하여 현재 디자인을 여기에 저장",
+    "tooltipClickRemix": "클릭하여 이 디자인 템플릿 적용",
+    "selectYearPrompt": "연도를 선택하세요!"
+  },
+  "Alerts": {
+    "invalidJson": "유효하지 않은 JSON 파일",
+    "confirmReset": "모든 설정을 초기화하시겠습니까? 현재 그린 내용과 레이어가 손실됩니다.",
+    "saveSuccess": "현재 디자인을 \"{title}\"에 성공적으로 저장했습니다!",
+    "saveFail": "디자인 저장 실패: {error}",
+    "saveError": "디자인 저장 중 오류 발생: {message}"
+  },
+  "Modal": {
+    "unsavedChanges": "저장되지 않은 변경 사항",
+    "savePrompt": "변경 사항을 저장하시겠습니까?",
+    "cancel": "취소",
+    "discard": "저장하지 않음",
+    "save": "저장"
   }
 }

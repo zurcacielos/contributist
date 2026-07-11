@@ -66,9 +66,11 @@
     "privacyTitle": "🔒 隐私保证:",
     "privacyDesc": "仅共享网格单元格 (画作)、图层、年份、颜色和时间线速度。你的私人 Git 远程 URL、姓名和电子邮件地址会被严格过滤，绝不共享。",
     "shareHype": "分享喜悦 (Hype)",
-    "copiedAlert": "包含你设计图的分享链接已复制到剪贴板！"
+    "copiedAlert": "包含你设计图的分享链接已复制 to 剪贴板！"
   },
   "Calendar": {
+    "commitsCount": "提交数: {count}",
+    "vacationsCount": "假期: {count}",
     "jan": "1月",
     "feb": "2月",
     "mar": "3月",
@@ -86,7 +88,14 @@
     "fri": "周五",
     "m": "一",
     "w": "三",
-    "f": "五"
+    "f": "五",
+    "clickSelect": "点击任意位置以选择",
+    "toolMove": "移动工具",
+    "toolDraw": "绘制工具",
+    "toolErase": "擦除工具",
+    "toolText": "添加自定义文本",
+    "toolAddMeme": "添加 {name}",
+    "tooltipLevel": "{style} 等级 {level}"
   },
   "Sidebar": {
     "uiMode": "界面模式",
@@ -115,6 +124,36 @@
     "vacations": "年假期数",
     "vacationsTip": "每年的假期数，即不活跃的时间段，随机挑选（逗号分隔）。\n例如：1,2,2 表示每年有 2 次假期的概率是 1 次假期的两倍。",
     "daysVacation": "单次假期天数",
-    "daysVacationTip": "每次假期的天数，随机挑选（逗号分隔）。\n例如：14,28,14 表示 14 天假期概率更大。"
+    "daysVacationTip": "每次假期的天数，随机挑选（逗号分隔）。\n例如：14,28,14 表示 14 天假期概率更大。",
+    "showSynthArt": "在 Synth 样式下显示作品",
+    "tooltipCollapse": "折叠面板",
+    "tooltipExpand": "展开面板",
+    "tooltipUnlock": "解锁图层",
+    "tooltipLock": "锁定图层",
+    "tooltipResetBg": "重置背景为默认",
+    "tooltipClearBg": "清除背景",
+    "tooltipClearDrawing": "清除画布",
+    "tooltipDeleteLayer": "删除图层",
+    "tooltipLocked": "已锁定",
+    "tooltipDragReorder": "拖动以重新排序",
+    "backgroundLayerName": "背景层",
+    "paintedLayerName": "手绘层",
+    "tooltipLeftClickRemix": "左键点击以套用模板，右键点击以保存当前设计",
+    "tooltipClickRemix": "点击以套用此设计模板",
+    "selectYearPrompt": "选择一个年份！"
+  },
+  "Alerts": {
+    "invalidJson": "无效的 JSON 文件",
+    "confirmReset": "确定要重置所有内容吗？当前的绘制和图层都将丢失。",
+    "saveSuccess": "成功将当前设计保存至 \"{title}\"！",
+    "saveFail": "保存设计失败: {error}",
+    "saveError": "保存设计时出错: {message}"
+  },
+  "Modal": {
+    "unsavedChanges": "未保存的更改",
+    "savePrompt": "您想保存更改吗？",
+    "cancel": "取消",
+    "discard": "放弃更改",
+    "save": "保存"
   }
 }

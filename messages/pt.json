@@ -69,6 +69,8 @@
     "copiedAlert": "Link para compartilhar o seu design copiado para a área de transferência!"
   },
   "Calendar": {
+    "commitsCount": "Commits: {count}",
+    "vacationsCount": "Férias: {count}",
     "jan": "Jan",
     "feb": "Fev",
     "mar": "Mar",
@@ -86,7 +88,14 @@
     "fri": "Sex",
     "m": "S",
     "w": "Q",
-    "f": "S"
+    "f": "S",
+    "clickSelect": "Clique em qualquer lugar para selecionar",
+    "toolMove": "Ferramenta de movimentação",
+    "toolDraw": "Ferramenta de desenho",
+    "toolErase": "Ferramenta de borracha",
+    "toolText": "Adicionar texto personalizado",
+    "toolAddMeme": "Adicionar {name}",
+    "tooltipLevel": "{style} Nível {level}"
   },
   "Sidebar": {
     "uiMode": "Modo de interface",
@@ -115,6 +124,36 @@
     "vacations": "Férias",
     "vacationsTip": "Quantidade de férias por ano, ou seja, períodos de inatividade, para escolher aleatoriamente (separados por vírgula).\nEx: 1,2,2 significa que há o dobro de tempo de ter 2 férias por ano.",
     "daysVacation": "Dias/Férias",
-    "daysVacationTip": "Duração de cada férias em dias para escolher aleatoriamente (separados por vírgula).\nEx: 14,28,14 significa maior chance de férias de 14 dias."
+    "daysVacationTip": "Duração de cada férias em dias para escolher aleatoriamente (separados por vírgula).\nEx: 14,28,14 significa maior chance de férias de 14 dias.",
+    "showSynthArt": "Mostrar arte em Synth",
+    "tooltipCollapse": "Recolher painel",
+    "tooltipExpand": "Expandir painel",
+    "tooltipUnlock": "Desbloquear camada",
+    "tooltipLock": "Bloquear camada",
+    "tooltipResetBg": "Redefinir plano de fundo para o padrão",
+    "tooltipClearBg": "Limpar plano de fundo",
+    "tooltipClearDrawing": "Limpar desenho",
+    "tooltipDeleteLayer": "Excluir camada",
+    "tooltipLocked": "Bloqueado",
+    "tooltipDragReorder": "Arrastar para reordenar",
+    "backgroundLayerName": "Fundo",
+    "paintedLayerName": "Pintado",
+    "tooltipLeftClickRemix": "Clique esquerdo para remixar, Clique direito para salvar o design atual neste",
+    "tooltipClickRemix": "Clique para remixar este design",
+    "selectYearPrompt": "Selecione um ano!"
+  },
+  "Alerts": {
+    "invalidJson": "Arquivo JSON inválido",
+    "confirmReset": "Tem certeza de que deseja redefinir tudo? Seu desenho e camadas atuais serão perdidos.",
+    "saveSuccess": "Design atual salvo com sucesso em \"{title}\"!",
+    "saveFail": "Falha ao salvar design: {error}",
+    "saveError": "Erro ao salvar design: {message}"
+  },
+  "Modal": {
+    "unsavedChanges": "Alterações não salvas",
+    "savePrompt": "Deseja salvar as alterações?",
+    "cancel": "Cancelar",
+    "discard": "Descartar",
+    "save": "Salvar"
   }
 }

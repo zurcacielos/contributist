@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 
 interface ColorSelectorProps {
   selectedLevel: number;
@@ -9,6 +10,7 @@ interface ColorSelectorProps {
 }
 
 export function ColorSelector({ selectedLevel, showPaintedInOrange, onSelect }: ColorSelectorProps) {
+  const t = useTranslations('Calendar');
   const greenColors = [
     "var(--level-0)", 
     "var(--level-1)", 
@@ -75,7 +77,7 @@ export function ColorSelector({ selectedLevel, showPaintedInOrange, onSelect }: 
                 flexShrink: 0,
                 ...extraStyles
               }}
-              title={`${isSynth ? 'Synth' : 'Classic'} Level ${level}`}
+              title={t('tooltipLevel', { style: isSynth ? 'Synth' : 'Classic', level })}
               onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.15)")}
               onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
             />

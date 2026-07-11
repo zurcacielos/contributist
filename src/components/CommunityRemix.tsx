@@ -27,6 +27,7 @@ interface Scene {
 
 export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch, activeYear }) => {
   const t = useTranslations('Sidebar');
+  const tAlerts = useTranslations('Alerts');
   const [scenes, setScenes] = useState<Scene[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -297,11 +298,6 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
       });
 
       if (res.ok) {
-        const refreshRes = await fetch(`/api/scenes?t=${Date.now()}`, { cache: "no-store" });
-        if (refreshRes.ok) {
-          const data = await refreshRes.json();
-          setScenes(data.scenes || []);
-        }
         dispatch({
           type: "SET_CONFIG",
           payload: {
@@ -309,13 +305,13 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
             basedOnTemplate: scene.id
           }
         });
-        alert(`Successfully saved current design into "${scene.title}"!`);
+        alert(tAlerts('saveSuccess', { title: scene.title }));
       } else {
         const data = await res.json();
-        alert(`Failed to save design: ${data.error || "Unknown error"}`);
+        alert(tAlerts('saveFail', { error: data.error || "Unknown error" }));
       }
     } catch (err: any) {
-      alert(`Error saving design: ${err.message}`);
+      alert(tAlerts('saveError', { message: err.message }));
     }
   };
 
@@ -331,7 +327,7 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
             {t('noScenes')}
           </div>
         ) : (
-          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px", maxHeight: "250px", overflowY: "auto", paddingRight: "4px" }}>
             {scenes.map((scene) => {
               const isDev = process.env.NODE_ENV === "development";
               const isActiveScene = isDev && config.basedOnTemplate === scene.id;
@@ -359,7 +355,7 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
                     e.currentTarget.style.backgroundColor = isActiveScene ? "rgba(168, 85, 247, 0.12)" : "rgba(168, 85, 247, 0.05)";
                     e.currentTarget.style.borderColor = isActiveScene ? "rgba(168, 85, 247, 0.6)" : "rgba(168, 85, 247, 0.2)";
                   }}
-                  title={isDev ? "Left click to remix, Right click to save current into this" : "Click to remix this design"}
+                  title={isDev ? t('tooltipLeftClickRemix') : t('tooltipClickRemix')}
                 >
                   <div style={{ display: "flex", gap: "8px", alignItems: "center", flex: 1, minWidth: 0 }}>
                     <span style={{ fontSize: "1.4rem" }}>{scene.emoji}</span>

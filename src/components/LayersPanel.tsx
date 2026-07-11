@@ -98,7 +98,7 @@ export function LayersPanel({
         style={{ overflowY: "auto", maxHeight: "80vh" }}
         collapsible={false}
       >
-        <p>Select a year!</p>
+        <p>{t('selectYearPrompt')}</p>
       </Card>
     );
   }
@@ -113,7 +113,7 @@ export function LayersPanel({
         <button
           onClick={handleToggleAll}
           style={{ background: "transparent", border: "none", cursor: "pointer", color: allVisible ? "var(--text-main)" : "var(--text-muted)", display: "flex", alignItems: "center", padding: "0 5px" }}
-          title={allVisible ? "Hide all layers" : "Show all layers"}
+          title={allVisible ? t('tooltipCollapse') : t('tooltipExpand')}
         >
           {allVisible ? <Eye size={16} /> : <EyeOff size={16} />}
         </button>
@@ -183,7 +183,11 @@ export function LayersPanel({
                   />
                 ) : (
                   <span style={{ fontSize: "0.85rem", color: layer.visible ? "var(--text-main)" : "var(--text-muted)", flex: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                    {layer.type === 'meme' ? cleanDisplayName(layer.name) : layer.name}
+                    {layer.type === 'meme' ? cleanDisplayName(layer.name) : (
+                      layer.type === 'background' && layer.name === 'Background' ? t('backgroundLayerName') : (
+                        layer.type === 'raster' && layer.name === 'Painted' ? t('paintedLayerName') : layer.name
+                      )
+                    )}
                   </span>
                 )}
               </div>
@@ -193,7 +197,7 @@ export function LayersPanel({
                 <button
                   onClick={e => toggleLock(layer.id, e)}
                   style={{ background: "none", border: "none", cursor: "pointer", color: isLocked ? "#a855f7" : "var(--text-muted)", display: "flex", alignItems: "center", padding: 0 }}
-                  title={isLocked ? "Unlock layer" : "Lock layer"}
+                  title={isLocked ? t('tooltipUnlock') : t('tooltipLock')}
                 >
                   {isLocked ? <Lock size={14} /> : <Unlock size={14} />}
                 </button>
@@ -204,7 +208,7 @@ export function LayersPanel({
                       <button
                         onClick={e => { e.stopPropagation(); const newLayers = allLayers.map(l => l.id === layer.id ? { ...l, cleared: false, customFrequency: undefined } : l); dispatch({ type: 'SET_CONFIG', payload: { ...state.config, layers: newLayers } }); }}
                         style={{ background: "none", border: "none", cursor: "pointer", color: "#58a6ff", display: "flex", alignItems: "center", padding: 0 }}
-                        title="Reset background to default"
+                        title={t('tooltipResetBg')}
                         disabled={isLocked}
                       >
                         <RotateCcw size={15} />
@@ -215,7 +219,7 @@ export function LayersPanel({
                       <button
                         onClick={e => handleDelete(layer.id, e)}
                         style={{ background: "none", border: "none", cursor: "pointer", color: "#f85149", display: "flex", alignItems: "center", padding: 0 }}
-                        title="Clear background"
+                        title={t('tooltipClearBg')}
                         disabled={isLocked}
                       >
                         <Trash2 size={15} />
@@ -227,13 +231,13 @@ export function LayersPanel({
                     onClick={e => handleDelete(layer.id, e)}
                     style={{ background: "none", border: "none", cursor: "pointer", color: "#f85149", display: "flex", alignItems: "center", padding: 0, opacity: (layers.length > 1 && !isLocked) ? 1 : 0.3 }}
                     disabled={layers.length <= 1 || isLocked}
-                    title={layer.type === 'raster' ? "Clear drawing" : "Delete layer"}
+                    title={layer.type === 'raster' ? t('tooltipClearDrawing') : t('tooltipDeleteLayer')}
                   >
                     <Trash2 size={15} />
                   </button>
                 )}
 
-                <div style={{ cursor: isLocked ? "not-allowed" : "grab", color: "var(--text-muted)", display: "flex", alignItems: "center", fontSize: "1rem" }} title={isLocked ? "Locked" : "Drag to reorder"}>
+                <div style={{ cursor: isLocked ? "not-allowed" : "grab", color: "var(--text-muted)", display: "flex", alignItems: "center", fontSize: "1rem" }} title={isLocked ? t('tooltipLocked') : t('tooltipDragReorder')}>
                   ≡
                 </div>
               </div>
@@ -251,7 +255,7 @@ export function LayersPanel({
           style={{ marginRight: '4px' }}
         />
         <SynthFont variation="pink-purple-cyan">
-          Show art in Synth
+          {t('showSynthArt')}
         </SynthFont>
       </label>
     </Card>

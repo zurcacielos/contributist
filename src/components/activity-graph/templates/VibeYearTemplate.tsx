@@ -166,7 +166,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', flex: isActive ? "0 0 auto" : "1 1 0%" }}>
           {!isActive && isHovered && (
             <span style={{ color: "var(--text-muted, #8b949e)", fontSize: "13px", fontStyle: "italic", opacity: 0.7, whiteSpace: "nowrap" }}>
-              Click anywhere to select
+              {t('clickSelect')}
             </span>
           )}
           {isActive && !preview && !isCapturing && (
@@ -179,11 +179,12 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
               }}
             >
               {[
-                { id: "move" as const, icon: Move, title: "Move tool" },
-                { id: "pen" as const, icon: Pencil, title: "Draw tool" },
-                { id: "eraser" as const, icon: Eraser, title: "Erase tool" }
-              ].map(({ id: toolId, icon: Icon, title }) => {
+                { id: "move" as const, icon: Move },
+                { id: "pen" as const, icon: Pencil },
+                { id: "eraser" as const, icon: Eraser }
+              ].map(({ id: toolId, icon: Icon }) => {
                 const isSelected = state.activeTool === toolId;
+                const toolTitle = toolId === 'move' ? t('toolMove') : (toolId === 'pen' ? t('toolDraw') : t('toolErase'));
                 return (
                   <button
                     key={toolId}
@@ -192,7 +193,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                       e.stopPropagation();
                       handleSelectTool(toolId);
                     }}
-                    title={title}
+                    title={toolTitle}
                     style={{
                       width: "36px",
                       height: "36px",
@@ -257,7 +258,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                   e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
                   e.currentTarget.style.color = "rgba(255, 255, 255, 0.5)";
                 }}
-                title="Add custom text"
+                title={t('toolText')}
               >
                 T
               </button>
@@ -312,7 +313,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                     e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.04)";
                     e.currentTarget.style.boxShadow = "none";
                   }}
-                  title={`Add ${name}`}
+                  title={t('toolAddMeme', { name })}
                 >
                   <MemeSprite templateName={name} pixelSize={2} pixelColor={memeColors[index]} />
                 </button>
@@ -324,14 +325,14 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
         {/* Right: Stats and Freq Controls */}
         <div style={{ flex: isActive ? "1 1 0%" : "0 0 auto", minWidth: isActive ? 0 : "auto", display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
           <div className="year-meta-desc" style={{ display: 'flex', alignItems: 'center', gap: '7px', flexWrap: 'wrap' }}>
-            {!isActive && `Commits: ${totalContributions}`}
+            {!isActive && t('commitsCount', { count: totalContributions })}
 
             {/* Meta and Frequency Controls */}
             {(() => {
               if (isCapturing || preview) return null;
               if (!meta) return null;
               const vacAmt = meta.vacationLengths.length;
-              const vacText = vacAmt > 0 && !isActive ? ` Vac. ${vacAmt}` : "";
+              const vacText = vacAmt > 0 && !isActive ? ` ${t('vacationsCount', { count: vacAmt })}` : "";
               return (
                 <span
                   className="year-meta-controls"

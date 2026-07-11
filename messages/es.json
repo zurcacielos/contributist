@@ -21,7 +21,7 @@
     "zustandDesc": "Gestor de estado centralizado ultraligero basado en hooks.",
     "githubTitle": "GitHub Código Abierto",
     "githubDesc": "Repositorio completamente de código abierto alojado en GitHub. ¡Contribuye o haz un fork!",
-    "vercelTitle": "Desplegado en Vercel",
+    "vercelTitle": "Desplegado en Veles",
     "vercelDesc": "Alojado en la red edge de Vercel, integrando rutas serverless y pipelines de CI/CD con analíticas completas.",
     "algoTitle": "Ingeniería personalizada y algoritmos",
     "proceduralNoiseTitle": "Simulador de ruido procedimental",
@@ -39,7 +39,7 @@
     "repoTitle": "Crear un repositorio remoto",
     "dummyWarning": "Crea un repositorio de contribuciones ficticio COMPLETAMENTE NUEVO con un nombre NUEVO en tu Gitea/Gogs, GitHub, GitLab u otro remoto. No agregues un archivo README, licencia o gitignore.",
     "existWarning": "Si el repositorio ya existe, ELIMÍNALO y créalo diferente con un nombre DIFERENTE cada vez.",
-    "existTooltip": "Si reutilizas el mismo repositorio o el mismo nombre, los commits huérfanos pueden distorsionar tu gráfico.",
+    "existTooltip": "Si reutilizas el mismo repositorio o el mismo nombre, los commits huérfanos pueden distorcionar tu gráfico.",
     "identityTitle": "Identidad de Git",
     "identityTooltip": "Esta es la URL de tu repositorio remoto y la información necesaria para firmar tus commits. No se requiere contraseña.",
     "repoLabel": "URL del repositorio - HTTPS o SSH - ej: git@remote.com:usuario/nombrerepo.git",
@@ -69,6 +69,8 @@
     "copiedAlert": "¡Enlace para compartir con tu diseño copiado al portapapeles!"
   },
   "Calendar": {
+    "commitsCount": "Commits: {count}",
+    "vacationsCount": "Vac. {count}",
     "jan": "Ene",
     "feb": "Feb",
     "mar": "Mar",
@@ -86,7 +88,14 @@
     "fri": "Vie",
     "m": "L",
     "w": "M",
-    "f": "V"
+    "f": "V",
+    "clickSelect": "Haga clic en cualquier lugar para seleccionar",
+    "toolMove": "Herramienta Mover",
+    "toolDraw": "Herramienta Dibujar",
+    "toolErase": "Herramienta Borrar",
+    "toolText": "Agregar texto personalizado",
+    "toolAddMeme": "Agregar {name}",
+    "tooltipLevel": "{style} Nivel {level}"
   },
   "Sidebar": {
     "uiMode": "Modo interfaz",
@@ -115,6 +124,36 @@
     "vacations": "Vacaciones",
     "vacationsTip": "Cantidad de vacaciones por año (períodos de inactividad) a elegir al azar (separadas por comas).\nEj.: 1,2,2 significa doble probabilidad de tener 2 vacaciones cada año.",
     "daysVacation": "Días/Vacación",
-    "daysVacationTip": "Duración de cada vacación en días a elegir al azar (separadas por comas).\nEj.: 14,28,14 significa mayor probabilidad de 14 días."
+    "daysVacationTip": "Duración de cada vacación en días a elegir al azar (separadas por comas).\nEj.: 14,28,14 significa mayor probabilidad de 14 días.",
+    "showSynthArt": "Mostrar arte en Synth",
+    "tooltipCollapse": "Colapsar panel",
+    "tooltipExpand": "Expandir panel",
+    "tooltipUnlock": "Desbloquear capa",
+    "tooltipLock": "Bloquear capa",
+    "tooltipResetBg": "Restablecer fondo por defecto",
+    "tooltipClearBg": "Limpiar fondo",
+    "tooltipClearDrawing": "Borrar dibujo",
+    "tooltipDeleteLayer": "Eliminar capa",
+    "tooltipLocked": "Bloqueado",
+    "tooltipDragReorder": "Arrastrar para reordenar",
+    "backgroundLayerName": "Fondo",
+    "paintedLayerName": "Pintado",
+    "tooltipLeftClickRemix": "Clic izquierdo para remixar, Clic derecho para guardar diseño actual aquí",
+    "tooltipClickRemix": "Clic para remixar este diseño",
+    "selectYearPrompt": "¡Seleccione un año!"
+  },
+  "Alerts": {
+    "invalidJson": "Archivo JSON no válido",
+    "confirmReset": "¿Está seguro de que desea reiniciar todo? Se perderán el dibujo y las capas actuales.",
+    "saveSuccess": "¡Diseño actual guardado con éxito en \"{title}\"!",
+    "saveFail": "Error al guardar el diseño: {error}",
+    "saveError": "Error al salvar el diseño: {message}"
+  },
+  "Modal": {
+    "unsavedChanges": "Cambios sin guardar",
+    "savePrompt": "¿Desea guardar los cambios?",
+    "cancel": "Cancelar",
+    "discard": "Descartar",
+    "save": "Guardar"
   }
 }

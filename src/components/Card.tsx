@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface CardProps {
   title: React.ReactNode;
@@ -19,6 +20,7 @@ export const Card: React.FC<CardProps> = ({
   style,
   children
 }) => {
+  const t = useTranslations('Sidebar');
   const [expanded, setExpanded] = useState(defaultExpanded);
 
   const handleToggle = () => {
@@ -47,7 +49,7 @@ export const Card: React.FC<CardProps> = ({
           {collapsible && (
             <button
               type="button"
-              aria-label={expanded ? "Collapse panel" : "Expand panel"}
+              aria-label={expanded ? t('tooltipCollapse') : t('tooltipExpand')}
               onClick={(e) => {
                 e.stopPropagation();
                 setExpanded(!expanded);

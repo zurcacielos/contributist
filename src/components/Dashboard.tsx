@@ -12,8 +12,11 @@ import { deserializeDesign } from "@/utils/shareSerializer";
 import { ActivityGraphRef } from "@/components/ActivityGraph";
 import { saveConfig, loadConfig } from "@/utils/configHelper";
 import { StoreProvider, useAppStore, useAppDispatch } from "@/state/store";
+import { useTranslations } from "next-intl";
 
 function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig }) {
+  const tAlerts = useTranslations('Alerts');
+  const tModal = useTranslations('Modal');
   const state = useAppStore((s) => s);
   const dispatch = useAppDispatch();
   const [feelingMode, setFeelingMode] = useState<FeelingMode>("advanced");
@@ -119,7 +122,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
     loadConfig(
       file,
       (loadedConfig) => dispatch({ type: 'SET_CONFIG', payload: loadedConfig }),
-      () => alert("Invalid JSON file")
+      () => alert(tAlerts('invalidJson'))
     );
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
@@ -140,7 +143,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
   };
 
   const handleReset = () => {
-    if (confirm("Are you sure you want to reset everything? Your current drawing and layers will be lost.")) {
+    if (confirm(tAlerts('confirmReset'))) {
       localStorage.removeItem("contributist-state");
       localStorage.removeItem("contributist-feeling-mode");
       sessionStorage.clear();
@@ -208,12 +211,12 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
         pendingTab && (
           <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "rgba(0,0,0,0.6)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2000 }}>
             <section className="card" style={{ width: "400px", padding: "25px", display: "flex", flexDirection: "column", gap: "20px" }}>
-              <h3 style={{ margin: 0, fontSize: "1.2rem", color: "var(--text-main)" }}>Unsaved Changes</h3>
-              <p style={{ margin: 0, color: "var(--text-muted)", fontSize: "0.95rem" }}>Would you like to save changes?</p>
+              <h3 style={{ margin: 0, fontSize: "1.2rem", color: "var(--text-main)" }}>{tModal('unsavedChanges')}</h3>
+              <p style={{ margin: 0, color: "var(--text-muted)", fontSize: "0.95rem" }}>{tModal('savePrompt')}</p>
               <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "10px" }}>
-                <button className="btn btn-primary" onClick={() => setPendingTab(null)} style={{ backgroundColor: "transparent", border: "1px solid var(--border)", color: "var(--text-muted)", padding: "8px 16px" }}>Cancel</button>
-                <button className="btn btn-primary" onClick={() => { graphRef.current?.discardChanges(); setMainTab(pendingTab); setPendingTab(null); }} style={{ backgroundColor: "transparent", border: "1px solid #b62324", color: "#ff7b72", padding: "8px 16px" }}>Discard</button>
-                <button className="btn btn-primary" onClick={() => { graphRef.current?.saveChanges(); setMainTab(pendingTab); setPendingTab(null); }} style={{ backgroundColor: "#238636", border: "none", color: "#fff", padding: "8px 16px" }}>Save</button>
+                <button className="btn btn-primary" onClick={() => setPendingTab(null)} style={{ backgroundColor: "transparent", border: "1px solid var(--border)", color: "var(--text-muted)", padding: "8px 16px" }}>{tModal('cancel')}</button>
+                <button className="btn btn-primary" onClick={() => { graphRef.current?.discardChanges(); setMainTab(pendingTab); setPendingTab(null); }} style={{ backgroundColor: "transparent", border: "1px solid #b62324", color: "#ff7b72", padding: "8px 16px" }}>{tModal('discard')}</button>
+                <button className="btn btn-primary" onClick={() => { graphRef.current?.saveChanges(); setMainTab(pendingTab); setPendingTab(null); }} style={{ backgroundColor: "#238636", border: "none", color: "#fff", padding: "8px 16px" }}>{tModal('save')}</button>
               </div>
             </section>
           </div>

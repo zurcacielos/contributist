@@ -69,6 +69,8 @@
     "copiedAlert": "Le lien de partage avec votre design a été copié dans le presse-papiers !"
   },
   "Calendar": {
+    "commitsCount": "Commits : {count}",
+    "vacationsCount": "Vac. {count}",
     "jan": "Janv",
     "feb": "Févr",
     "mar": "Mars",
@@ -86,7 +88,14 @@
     "fri": "Ven",
     "m": "L",
     "w": "M",
-    "f": "V"
+    "f": "V",
+    "clickSelect": "Cliquez n'importe où pour sélectionner",
+    "toolMove": "Outil de déplacement",
+    "toolDraw": "Outil de dessin",
+    "toolErase": "Outil de gomme",
+    "toolText": "Ajouter un texte personnalisé",
+    "toolAddMeme": "Ajouter {name}",
+    "tooltipLevel": "{style} Niveau {level}"
   },
   "Sidebar": {
     "uiMode": "Mode interface",
@@ -115,6 +124,36 @@
     "vacations": "Vacances",
     "vacationsTip": "Nombre de vacances par an (périodes d'inactivité) à choisir de manière aléatoire (séparées par des virgules).\nEx: 1,2,2 signifie qu'il y a deux fois plus de chances d'avoir 2 vacances par an.",
     "daysVacation": "Jours/Vacance",
-    "daysVacationTip": "Durée de chaque vacance en jours à choisir de manière aléatoire (séparées par des virgules).\nEx: 14,28,14 signifie plus de chances de vacances de 14 jours."
+    "daysVacationTip": "Durée de chaque vacance en jours à choisir de manière aléatoire (séparées par des virgules).\nEx: 14,28,14 signifie plus de chances de vacances de 14 jours.",
+    "showSynthArt": "Afficher l'art en Synth",
+    "tooltipCollapse": "Réduire le panneau",
+    "tooltipExpand": "Développer le panneau",
+    "tooltipUnlock": "Déverrouiller le calque",
+    "tooltipLock": "Verrouiller le calque",
+    "tooltipResetBg": "Réinitialiser l'arrière-plan",
+    "tooltipClearBg": "Effacer l'arrière-plan",
+    "tooltipClearDrawing": "Effacer le dessin",
+    "tooltipDeleteLayer": "Supprimer le calque",
+    "tooltipLocked": "Verrouillé",
+    "tooltipDragReorder": "Faire glisser pour réordonner",
+    "backgroundLayerName": "Arrière-plan",
+    "paintedLayerName": "Dessin",
+    "tooltipLeftClickRemix": "Clic gauche pour remixer, clic droit pour sauvegarder le design actuel",
+    "tooltipClickRemix": "Cliquez pour remixer ce design",
+    "selectYearPrompt": "Sélectionnez une année !"
+  },
+  "Alerts": {
+    "invalidJson": "Fichier JSON invalide",
+    "confirmReset": "Êtes-vous sûr de vouloir tout réinitialiser ? Votre dessin et vos calques actuels seront perdus.",
+    "saveSuccess": "Design actuel sauvegardé avec succès dans \"{title}\" !",
+    "saveFail": "Échec de la sauvegarde du design : {error}",
+    "saveError": "Erreur lors de la sauvegarde du design : {message}"
+  },
+  "Modal": {
+    "unsavedChanges": "Modifications non sauvegardées",
+    "savePrompt": "Voulez-vous sauvegarder les modifications ?",
+    "cancel": "Annuler",
+    "discard": "Ignorer",
+    "save": "Sauvegarder"
   }
 }

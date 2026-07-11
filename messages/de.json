@@ -69,6 +69,8 @@
     "copiedAlert": "Teilungslink mit Ihrem Design wurde in die Zwischenablage kopiert!"
   },
   "Calendar": {
+    "commitsCount": "Commits: {count}",
+    "vacationsCount": "Urlaube: {count}",
     "jan": "Jan",
     "feb": "Feb",
     "mar": "März",
@@ -86,7 +88,14 @@
     "fri": "Frei",
     "m": "M",
     "w": "M",
-    "f": "F"
+    "f": "F",
+    "clickSelect": "Zum Auswählen klicken",
+    "toolMove": "Verschieben-Werkzeug",
+    "toolDraw": "Zeichnen-Werkzeug",
+    "toolErase": "Radiergummi-Werkzeug",
+    "toolText": "Benutzerdefinierten Text hinzufügen",
+    "toolAddMeme": "{name} hinzufügen",
+    "tooltipLevel": "{style} Stufe {level}"
   },
   "Sidebar": {
     "uiMode": "UI-Modus",
@@ -115,6 +124,36 @@
     "vacations": "Urlaube",
     "vacationsTip": "Anzahl der Urlaube pro Jahr (Inaktivitätsphasen), die zufällig ausgewählt werden (kommagetrennt).\nZ.B.: 1,2,2 bedeutet doppelte Wahrscheinlichkeit für 2 Urlaube pro Jahr.",
     "daysVacation": "Tage/Urlaub",
-    "daysVacationTip": "Dauer jedes Urlaubs in Tagen, die zufällig ausgewählt wird (kommagetrennt).\nZ.B.: 14,28,14 bedeutet höhere Wahrscheinlichkeit für 14 Tage."
+    "daysVacationTip": "Dauer jedes Urlaubs in Tagen, die zufällig ausgewählt wird (kommagetrennt).\nZ.B.: 14,28,14 bedeutet höhere Wahrscheinlichkeit für 14 Tage.",
+    "showSynthArt": "Urlaubs-Zeichnung in Synth anzeigen",
+    "tooltipCollapse": "Bereich einklappen",
+    "tooltipExpand": "Bereich ausklappen",
+    "tooltipUnlock": "Ebene entsperren",
+    "tooltipLock": "Ebene sperren",
+    "tooltipResetBg": "Hintergrund auf Standard zurücksetzen",
+    "tooltipClearBg": "Hintergrund löschen",
+    "tooltipClearDrawing": "Zeichnung löschen",
+    "tooltipDeleteLayer": "Ebene löschen",
+    "tooltipLocked": "Gesperrt",
+    "tooltipDragReorder": "Ziehen zum Umsortieren",
+    "backgroundLayerName": "Hintergrund",
+    "paintedLayerName": "Gezeichnet",
+    "tooltipLeftClickRemix": "Linksklick für Remix, Rechtsklick zum Speichern des aktuellen Designs",
+    "tooltipClickRemix": "Klicken für einen Remix dieses Designs",
+    "selectYearPrompt": "Wählen Sie ein Jahr aus!"
+  },
+  "Alerts": {
+    "invalidJson": "Ungültige JSON-Datei",
+    "confirmReset": "Sind Sie sicher, dass Sie alles zurücksetzen möchten? Ihre aktuelle Zeichnung und Ihre Ebenen gehen verloren.",
+    "saveSuccess": "Aktuelles Design erfolgreich in \"{title}\" gespeichert!",
+    "saveFail": "Fehler beim Speichern des Designs: {error}",
+    "saveError": "Fehler beim Speichern des Designs: {message}"
+  },
+  "Modal": {
+    "unsavedChanges": "Ungespeicherte Änderungen",
+    "savePrompt": "Möchten Sie die Änderungen speichern?",
+    "cancel": "Abbrechen",
+    "discard": "Verwerfen",
+    "save": "Speichern"
   }
 }
