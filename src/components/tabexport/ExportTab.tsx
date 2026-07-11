@@ -297,20 +297,20 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                 gap: "6px"
               }}>
                 <div style={{ fontWeight: "600", marginBottom: "2px", display: "flex", alignItems: "center", gap: "6px" }}>
-                  <span>⚠️</span> Configuration Required:
+                  <span>⚠️</span> {t('configRequired')}
                 </div>
                 {!config.repoUrl ? (
-                  <div>• <strong>Repository URL</strong> is required to set up the push origin.</div>
+                  <div>• {t('repoUrlRequired')}</div>
                 ) : !isValidRepoUrl(config.repoUrl) ? (
-                  <div>• <strong>Repository URL</strong> must start with <code>https://</code>, <code>git@</code>, or <code>ssh://</code>.</div>
+                  <div>• {t('repoUrlInvalid')}</div>
                 ) : null}
                 {!config.gitName || !config.gitName.trim() ? (
-                  <div>• <strong>Git Username</strong> is required to sign the commits.</div>
+                  <div>• {t('usernameRequired')}</div>
                 ) : null}
                 {!config.gitEmail ? (
-                  <div>• <strong>Git Email</strong> is required.</div>
+                  <div>• {t('emailRequired')}</div>
                 ) : !isValidEmail(config.gitEmail) ? (
-                  <div>• <strong>Git Email</strong> must be a valid email format (e.g. <code>user@example.com</code>).</div>
+                  <div>• {t('emailInvalid')}</div>
                 ) : null}
               </div>
             )}
@@ -354,7 +354,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
                 onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.6")}
-                title="Dismiss message"
+                title={t('dismissMessage')}
               >
                 ✕
               </button>
@@ -390,7 +390,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                 disabled={isWorking || !isConfigValid}
                 style={{ flex: 1, backgroundColor: "var(--surface-hover)", border: "1px solid var(--border)", color: "var(--text-main)", padding: "10px 16px", fontSize: "0.95rem" }}
               >
-                ⬇️ Download Bash Script (.sh)
+                ⬇️ {t('downloadBash')}
               </button>
               <button
                 className="btn btn-primary"
@@ -398,7 +398,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                 disabled={isWorking || !isConfigValid}
                 style={{ flex: 1, backgroundColor: "var(--surface-hover)", border: "1px solid var(--border)", color: "var(--text-main)", padding: "10px 16px", fontSize: "0.95rem" }}
               >
-                ⬇️ Download PowerShell Script (.ps1)
+                ⬇️ {t('downloadPowerShell')}
               </button>
             </div>
           </div>
@@ -439,12 +439,12 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                       <span className="loader" style={{ width: "14px", height: "14px", borderWidth: "2px" }} />
                     ) : (
                       "💻"
-                    )}{" "}1. Generate Local Repository
+                    )}{" "}{t('generateLocal')}
                   </button>
                   {localFolder && (
                     <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "8px" }}>
                       <div style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontFamily: "monospace" }}>
-                        generated at: <span style={{ color: "#58a6ff" }}>{localPath || `./generated/${localFolder}`}</span>
+                        {t('generatedAt')} <span style={{ color: "#58a6ff" }}>{localPath || `./generated/${localFolder}`}</span>
                       </div>
                       <div style={{ display: "flex", gap: "10px" }}>
                         <button
@@ -467,7 +467,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                           onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--border)")}
                           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--surface-hover)")}
                         >
-                          📁 Reveal in File Explorer
+                          📁 {t('revealExplorer')}
                         </button>
                         <button
                           type="button"
@@ -489,7 +489,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                           onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--border)")}
                           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--surface-hover)")}
                         >
-                          💻 Open in Terminal
+                          💻 {t('openTerminal')}
                         </button>
                       </div>
                     </div>
@@ -499,7 +499,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                   {process.env.NEXT_PUBLIC_GIT_OVERRIDE_ENABLED === "true" && (
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "10px" }}>
                       <label style={{ fontSize: "0.75rem", color: "#ff7b72", fontWeight: "600", textTransform: "uppercase", margin: 0 }}>
-                        Write OVERRIDE to override the remote git commit history (Optional and probably useless).
+                        {t('overrideWarning')}
                       </label>
                       <input
                         type="text"
@@ -536,12 +536,12 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                     }}
                   >
                     {isWorking && localFolder ? <span className="loader" /> : "🚀"}
-                    {overrideText === "OVERRIDE" ? " 2. Push to Remote & Override" : " 2. Push to Remote"}
+                    {overrideText === "OVERRIDE" ? t('pushRemoteOverride') : t('pushRemote')}
                     {config.repoUrl ? ` ➔ ${config.repoUrl}` : ""}
                   </button>
                   {pushFailed && (
                     <div style={{ fontSize: "0.85rem", color: "#ff7b72", marginTop: "8px", fontWeight: "500", lineHeight: "1.4" }}>
-                      💡 Did you deleted and created from scratch an empty dummy contrib repo in your remote?
+                      💡 {t('pushFailTip')}
                     </div>
                   )}
                 </div>
