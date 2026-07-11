@@ -1,9 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- x-default / Root -->
   <url>
     <loc>https://contributist.stupidity.works/</loc>
-    <lastmod>2026-07-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://contributist.stupidity.works/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://contributist.stupidity.works/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://contributist.stupidity.works/es" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://contributist.stupidity.works/zh" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://contributist.stupidity.works/ru" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://contributist.stupidity.works/pt" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://contributist.stupidity.works/ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://contributist.stupidity.works/fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://contributist.stupidity.works/de" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://contributist.stupidity.works/ko" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://contributist.stupidity.works/hi" />
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <!-- English -->
+  <url>
+    <loc>https://contributist.stupidity.works/en</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://contributist.stupidity.works/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://contributist.stupidity.works/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://contributist.stupidity.works/es" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://contributist.stupidity.works/zh" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://contributist.stupidity.works/ru" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://contributist.stupidity.works/pt" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://contributist.stupidity.works/ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://contributist.stupidity.works/fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://contributist.stupidity.works/de" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://contributist.stupidity.works/ko" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://contributist.stupidity.works/hi" />
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Spanish -->
+  <url>
+    <loc>https://contributist.stupidity.works/es</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://contributist.stupidity.works/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://contributist.stupidity.works/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://contributist.stupidity.works/es" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://contributist.stupidity.works/zh" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://contributist.stupidity.works/ru" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://contributist.stupidity.works/pt" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://contributist.stupidity.works/ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://contributist.stupidity.works/fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://contributist.stupidity.works/de" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://contributist.stupidity.works/ko" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://contributist.stupidity.works/hi" />
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Chinese -->
+  <url>
+    <loc>https://contributist.stupidity.works/zh</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://contributist.stupidity.works/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://contributist.stupidity.works/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://contributist.stupidity.works/es" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://contributist.stupidity.works/zh" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://contributist.stupidity.works/ru" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://contributist.stupidity.works/pt" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://contributist.stupidity.works/ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://contributist.stupidity.works/fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://contributist.stupidity.works/de" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://contributist.stupidity.works/ko" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://contributist.stupidity.works/hi" />
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Russian -->
+  <url>
+    <loc>https://contributist.stupidity.works/ru</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://contributist.stupidity.works/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://contributist.stupidity.works/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://contributist.stupidity.works/es" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://contributist.stupidity.works/zh" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://contributist.stupidity.works/ru" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://contributist.stupidity.works/pt" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://contributist.stupidity.works/ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://contributist.stupidity.works/fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://contributist.stupidity.works/de" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://contributist.stupidity.works/ko" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://contributist.stupidity.works/hi" />
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Portuguese -->
+  <url>
+    <loc>https://contributist.stupidity.works/pt</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://contributist.stupidity.works/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://contributist.stupidity.works/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://contributist.stupidity.works/es" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://contributist.stupidity.works/zh" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://contributist.stupidity.works/ru" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://contributist.stupidity.works/pt" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://contributist.stupidity.works/ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://contributist.stupidity.works/fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://contributist.stupidity.works/de" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://contributist.stupidity.works/ko" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://contributist.stupidity.works/hi" />
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Japanese -->
+  <url>
+    <loc>https://contributist.stupidity.works/ja</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://contributist.stupidity.works/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://contributist.stupidity.works/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://contributist.stupidity.works/es" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://contributist.stupidity.works/zh" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://contributist.stupidity.works/ru" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://contributist.stupidity.works/pt" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://contributist.stupidity.works/ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://contributist.stupidity.works/fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://contributist.stupidity.works/de" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://contributist.stupidity.works/ko" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://contributist.stupidity.works/hi" />
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- French -->
+  <url>
+    <loc>https://contributist.stupidity.works/fr</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://contributist.stupidity.works/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://contributist.stupidity.works/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://contributist.stupidity.works/es" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://contributist.stupidity.works/zh" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://contributist.stupidity.works/ru" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://contributist.stupidity.works/pt" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://contributist.stupidity.works/ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://contributist.stupidity.works/fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://contributist.stupidity.works/de" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://contributist.stupidity.works/ko" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://contributist.stupidity.works/hi" />
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- German -->
+  <url>
+    <loc>https://contributist.stupidity.works/de</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://contributist.stupidity.works/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://contributist.stupidity.works/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://contributist.stupidity.works/es" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://contributist.stupidity.works/zh" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://contributist.stupidity.works/ru" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://contributist.stupidity.works/pt" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://contributist.stupidity.works/ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://contributist.stupidity.works/fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://contributist.stupidity.works/de" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://contributist.stupidity.works/ko" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://contributist.stupidity.works/hi" />
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Korean -->
+  <url>
+    <loc>https://contributist.stupidity.works/ko</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://contributist.stupidity.works/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://contributist.stupidity.works/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://contributist.stupidity.works/es" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://contributist.stupidity.works/zh" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://contributist.stupidity.works/ru" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://contributist.stupidity.works/pt" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://contributist.stupidity.works/ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://contributist.stupidity.works/fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://contributist.stupidity.works/de" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://contributist.stupidity.works/ko" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://contributist.stupidity.works/hi" />
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Hindi -->
+  <url>
+    <loc>https://contributist.stupidity.works/hi</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://contributist.stupidity.works/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://contributist.stupidity.works/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://contributist.stupidity.works/es" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://contributist.stupidity.works/zh" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://contributist.stupidity.works/ru" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://contributist.stupidity.works/pt" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://contributist.stupidity.works/ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://contributist.stupidity.works/fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://contributist.stupidity.works/de" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://contributist.stupidity.works/ko" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://contributist.stupidity.works/hi" />
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
