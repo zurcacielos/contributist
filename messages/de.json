@@ -95,7 +95,18 @@
     "toolErase": "Radiergummi-Werkzeug",
     "toolText": "Benutzerdefinierten Text hinzufügen",
     "toolAddMeme": "{name} hinzufügen",
-    "tooltipLevel": "{style} Stufe {level}"
+    "tooltipLevel": "{style} Stufe {level}",
+    "commitsOnDate": "{count} Commits am {date}",
+    "noCommitsOnDate": "Keine Commits am {date}",
+    "freqLabel": "Häuf. {percentage}%",
+    "totalContributionsInYear": "{count} Beiträge im Jahr {year}",
+    "contribSettings": "Beitragseinstellungen ▾",
+    "learnCount": "Wie wir Beiträge zählen",
+    "less": "Weniger",
+    "more": "Mehr",
+    "activityInYear": "Aktivität im Jahr {year}",
+    "viewAll": "Alle anzeigen",
+    "gitLabLegend": "Issues, Merge Requests, Pushes und Kommentare."
   },
   "Sidebar": {
     "uiMode": "UI-Modus",

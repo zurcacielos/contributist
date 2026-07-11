@@ -95,7 +95,18 @@
     "toolErase": "Herramienta Borrar",
     "toolText": "Agregar texto personalizado",
     "toolAddMeme": "Agregar {name}",
-    "tooltipLevel": "{style} Nivel {level}"
+    "tooltipLevel": "{style} Nivel {level}",
+    "commitsOnDate": "{count} commits el {date}",
+    "noCommitsOnDate": "Sin commits el {date}",
+    "freqLabel": "Frec. {percentage}%",
+    "totalContributionsInYear": "{count} contribuciones en {year}",
+    "contribSettings": "Ajustes de contribución ▾",
+    "learnCount": "Aprenda cómo contamos las contribuciones",
+    "less": "Menos",
+    "more": "Más",
+    "activityInYear": "Actividad en {year}",
+    "viewAll": "Ver todo",
+    "gitLabLegend": "Issues, merge requests, commits y comentarios."
   },
   "Sidebar": {
     "uiMode": "Modo interfaz",

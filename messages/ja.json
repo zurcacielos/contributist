@@ -95,7 +95,18 @@
     "toolErase": "消しゴムツール",
     "toolText": "カスタムテキストを追加",
     "toolAddMeme": "{name}を追加",
-    "tooltipLevel": "{style} レベル {level}"
+    "tooltipLevel": "{style} レベル {level}",
+    "commitsOnDate": "{date}に{count}コミット",
+    "noCommitsOnDate": "{date}にコミットなし",
+    "freqLabel": "頻度 {percentage}%",
+    "totalContributionsInYear": "{year}年に{count}回コントリビュート",
+    "contribSettings": "コントリビューション設定 ▾",
+    "learnCount": "カウント方法について",
+    "less": "低め",
+    "more": "高め",
+    "activityInYear": "{year}年のアクティビティ",
+    "viewAll": "すべて表示",
+    "gitLabLegend": "課題、マージリクエスト、プッシュ、コメント。"
   },
   "Sidebar": {
     "uiMode": "UIモード",

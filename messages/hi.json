@@ -95,7 +95,18 @@
     "toolErase": "इरेज़र टूल",
     "toolText": "कस्टम टेक्स्ट जोड़ें",
     "toolAddMeme": "{name} जोड़ें",
-    "tooltipLevel": "{style} स्तर {level}"
+    "tooltipLevel": "{style} स्तर {level}",
+    "commitsOnDate": "{date} को {count} कमिट",
+    "noCommitsOnDate": "{date} को कोई कमिट नहीं",
+    "freqLabel": "आवृत्ति {percentage}%",
+    "totalContributionsInYear": "{year} में {count} योगदान",
+    "contribSettings": "योगदान सेटिंग्स ▾",
+    "learnCount": "जानें कि हम योगदानों की गणना कैसे करते हैं",
+    "less": "कम",
+    "more": "अधिक",
+    "activityInYear": "{year} में गतिविधि",
+    "viewAll": "सभी देखें",
+    "gitLabLegend": "मुद्दे, विलय अनुरोध, पुश और टिप्पणियां।"
   },
   "Sidebar": {
     "uiMode": "स्क्रीन मोड",

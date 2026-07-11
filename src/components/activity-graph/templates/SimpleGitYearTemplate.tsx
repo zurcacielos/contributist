@@ -73,10 +73,10 @@ export const SimpleGitYearTemplate: React.FC<SimpleGitYearTemplateProps> = ({
         style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px", fontSize: "14px" }}
       >
         <span style={{ color: "#f0f6fc", fontWeight: "normal" }}>
-          {totalContributions} contributions in {year}
+          {t('totalContributionsInYear', { count: totalContributions, year })}
         </span>
         <span style={{ color: "#8b949e", fontSize: "12px" }}>
-          Contribution settings ▾
+          {t('contribSettings')}
         </span>
       </div>
 
@@ -130,16 +130,16 @@ export const SimpleGitYearTemplate: React.FC<SimpleGitYearTemplateProps> = ({
           style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "12px", fontSize: "12px", color: "#8b949e" }}
         >
           <span style={{ color: "#8b949e" }}>
-            Learn how we count contributions
+            {t('learnCount')}
           </span>
           <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-            <span>Less</span>
+            <span>{t('less')}</span>
             <span className="day" data-level={0} style={{ width: "10px", height: "10px", display: "inline-block", borderRadius: "2px", pointerEvents: "none" }} />
             <span className="day" data-level={1} style={{ width: "10px", height: "10px", display: "inline-block", borderRadius: "2px", pointerEvents: "none" }} />
             <span className="day" data-level={2} style={{ width: "10px", height: "10px", display: "inline-block", borderRadius: "2px", pointerEvents: "none" }} />
             <span className="day" data-level={3} style={{ width: "10px", height: "10px", display: "inline-block", borderRadius: "2px", pointerEvents: "none" }} />
             <span className="day" data-level={4} style={{ width: "10px", height: "10px", display: "inline-block", borderRadius: "2px", pointerEvents: "none" }} />
-            <span>More</span>
+            <span>{t('more')}</span>
           </div>
         </div>
       </div>
@@ -161,8 +161,8 @@ export const SimpleGitYearTemplate: React.FC<SimpleGitYearTemplateProps> = ({
       >
         {!isCapturing && isHoveredInThisYear && hoveredDay ? (
           hoveredDay.count > 0 
-            ? `${hoveredDay.count} commits on ${formatDate(hoveredDay.date)}` 
-            : `No commits on ${formatDate(hoveredDay.date)}`
+            ? t('commitsOnDate', { count: hoveredDay.count, date: formatDate(hoveredDay.date) })
+            : t('noCommitsOnDate', { date: formatDate(hoveredDay.date) })
         ) : (
           "\u00A0"
         )}

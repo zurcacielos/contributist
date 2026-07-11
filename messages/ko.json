@@ -95,7 +95,18 @@
     "toolErase": "지우개 도구",
     "toolText": "사용자 정의 텍스트 추가",
     "toolAddMeme": "{name} 추가",
-    "tooltipLevel": "{style} 레벨 {level}"
+    "tooltipLevel": "{style} 레벨 {level}",
+    "commitsOnDate": "{date}에 {count}개 커밋",
+    "noCommitsOnDate": "{date}에 커밋 없음",
+    "freqLabel": "빈도 {percentage}%",
+    "totalContributionsInYear": "{year}년에 {count}회 기여",
+    "contribSettings": "기여도 설정 ▾",
+    "learnCount": "기여도 집계 기준 알아보기",
+    "less": "적음",
+    "more": "많음",
+    "activityInYear": "{year}년 활동 내역",
+    "viewAll": "전체 보기",
+    "gitLabLegend": "이슈, 병합 요청, 푸시 및 의견."
   },
   "Sidebar": {
     "uiMode": "화면 모드",

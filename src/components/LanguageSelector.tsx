@@ -1,54 +1,70 @@
-import React from 'react';
+"use client";
+
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
-import { Globe } from 'lucide-react';
+import { Globe, ChevronDown } from 'lucide-react';
 
 export function LanguageSelector() {
   const currentLocale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
-
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const nextLocale = e.target.value;
-    const searchParams = typeof window !== 'undefined' ? window.location.search : '';
-    router.replace(`${pathname}${searchParams}`, { locale: nextLocale });
-  };
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const languages = [
-    { code: 'en', label: 'English', flag: '🇺🇸' },
-    { code: 'es', label: 'Español', flag: '🇪🇸' },
-    { code: 'zh', label: '中文', flag: '🇨🇳' },
-    { code: 'ru', label: 'Русский', flag: '🇷🇺' },
-    { code: 'pt', label: 'Português', flag: '🇵🇹' },
-    { code: 'ja', label: '日本語', flag: '🇯🇵' },
-    { code: 'fr', label: 'Français', flag: '🇫🇷' },
-    { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
-    { code: 'ko', label: '한국어', flag: '🇰🇷' },
-    { code: 'hi', label: 'हिन्दी', flag: '🇮🇳' }
+    { code: 'en', label: 'English', flagCode: 'us' },
+    { code: 'es', label: 'Español', flagCode: 'ar' },
+    { code: 'zh', label: '中文', flagCode: 'cn' },
+    { code: 'ru', label: 'Русский', flagCode: 'ru' },
+    { code: 'pt', label: 'Português', flagCode: 'pt' },
+    { code: 'ja', label: '日本語', flagCode: 'jp' },
+    { code: 'fr', label: 'Français', flagCode: 'fr' },
+    { code: 'de', label: 'Deutsch', flagCode: 'de' },
+    { code: 'ko', label: '한국어', flagCode: 'kr' },
+    { code: 'hi', label: 'हिन्दी', flagCode: 'in' }
   ];
 
+  const currentLanguage = languages.find(lang => lang.code === currentLocale) || languages[0];
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleLanguageChange = (nextLocale: string) => {
+    const searchParams = typeof window !== 'undefined' ? window.location.search : '';
+    router.replace(`${pathname}${searchParams}`, { locale: nextLocale });
+    setIsOpen(false);
+  };
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', position: 'relative' }}>
-      <Globe size={16} style={{ color: 'var(--text-muted)' }} />
-      <select
-        value={currentLocale}
-        onChange={handleLanguageChange}
+    <div ref={dropdownRef} style={{ position: 'relative', display: 'inline-block' }}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
         style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
           background: 'rgba(255, 255, 255, 0.05)',
           border: '1px solid var(--border)',
-          borderRadius: '6px',
+          borderRadius: '14px',
           color: 'var(--text-main)',
           fontSize: '0.80rem',
           fontWeight: 'bold',
-          padding: '4px 24px 4px 8px',
+          padding: '6px 12px',
+          width: 'auto',
+          height: '42px',
+          whiteSpace: 'nowrap',
           cursor: 'pointer',
           outline: 'none',
-          appearance: 'none',
-          WebkitAppearance: 'none',
-          backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'right 6px center',
-          backgroundSize: '12px',
           transition: 'all 0.15s ease-in-out'
         }}
         onMouseEnter={(e) => {
@@ -56,16 +72,87 @@ export function LanguageSelector() {
           e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = 'var(--border)';
-          e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+          if (!isOpen) {
+            e.currentTarget.style.borderColor = 'var(--border)';
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+          }
         }}
       >
-        {languages.map((lang) => (
-          <option key={lang.code} value={lang.code} style={{ background: '#0a0a0a', color: 'white' }}>
-            {lang.flag} {lang.label}
-          </option>
-        ))}
-      </select>
+        <img
+          src={`https://flagcdn.com/w40/${currentLanguage.flagCode}.png`}
+          width="18"
+          height="13"
+          alt={currentLanguage.label}
+          style={{ borderRadius: '2px', objectFit: 'cover' }}
+        />
+        <span>{currentLanguage.label}</span>
+        <ChevronDown size={14} style={{ color: 'var(--text-muted)', transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+      </button>
+
+      {isOpen && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 'calc(100% + 6px)',
+            right: 0,
+            background: 'rgba(15, 10, 25, 0.96)',
+            backdropFilter: 'blur(12px)',
+            border: '1px solid rgba(168, 85, 247, 0.25)',
+            borderRadius: '8px',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
+            zIndex: 1000,
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '4px',
+            width: '160px',
+            maxHeight: '300px',
+            overflowY: 'auto'
+          }}
+        >
+          {languages.map((lang) => {
+            const isSelected = lang.code === currentLocale;
+            return (
+              <button
+                key={lang.code}
+                onClick={() => handleLanguageChange(lang.code)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '8px 10px',
+                  background: isSelected ? 'rgba(168, 85, 247, 0.2)' : 'transparent',
+                  border: 'none',
+                  borderRadius: '6px',
+                  color: isSelected ? '#fff' : 'var(--text-muted)',
+                  fontSize: '0.80rem',
+                  fontWeight: isSelected ? 'bold' : 'normal',
+                  textAlign: 'left',
+                  cursor: 'pointer',
+                  width: '100%',
+                  transition: 'all 0.15s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(168, 85, 247, 0.15)';
+                  e.currentTarget.style.color = '#fff';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = isSelected ? 'rgba(168, 85, 247, 0.2)' : 'transparent';
+                  e.currentTarget.style.color = isSelected ? '#fff' : 'var(--text-muted)';
+                }}
+              >
+                <img
+                  src={`https://flagcdn.com/w40/${lang.flagCode}.png`}
+                  width="18"
+                  height="13"
+                  alt={lang.label}
+                  style={{ borderRadius: '2px', objectFit: 'cover' }}
+                />
+                <span>{lang.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

@@ -339,7 +339,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                   id={`year-meta-controls-${year}`}
                   style={{ marginLeft: "10px", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "#c8cdef", textTransform: "none" }}
                 >
-                  Freq. {meta.freq}%
+                  {t('freqLabel', { percentage: meta.freq })}
                   {isActive && bgLayerForYear && !bgLayerForYear.cleared && (
                     <div style={{ display: "inline-flex", gap: "4px" }}>
                       <button
@@ -463,22 +463,11 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
             position: "relative",
             zIndex: 5
           }}>
-            {!isCapturing && isHoveredInThisYear && hoveredDay ? (() => {
-              let dateLabel = hoveredDay.date;
-              try {
-                const [yStr, mStr, dStr] = hoveredDay.date.split("-");
-                const dObj = new Date(Date.UTC(parseInt(yStr, 10), parseInt(mStr, 10) - 1, parseInt(dStr, 10)));
-                dateLabel = dObj.toLocaleDateString("en-US", {
-                  weekday: "short",
-                  month: "short",
-                  day: "numeric",
-                  timeZone: "UTC"
-                });
-              } catch {}
-              return hoveredDay.count > 0
-                ? `${hoveredDay.count} commits on ${dateLabel}`
-                : `No commits on ${dateLabel}`;
-            })() : (
+            {!isCapturing && isHoveredInThisYear && hoveredDay ? (
+              hoveredDay.count > 0 
+                ? t('commitsOnDate', { count: hoveredDay.count, date: formatDate(hoveredDay.date) })
+                : t('noCommitsOnDate', { date: formatDate(hoveredDay.date) })
+            ) : (
               "\u00A0"
             )}
           </div>

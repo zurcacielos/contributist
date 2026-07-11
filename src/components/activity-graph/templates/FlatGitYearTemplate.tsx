@@ -62,8 +62,8 @@ export const FlatGitYearTemplate: React.FC<FlatGitYearTemplateProps> = ({
           fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
         }}
       >
-        <span style={{ color: "#ffffff", fontWeight: "600" }}>Activity in {year}</span>
-        <span style={{ color: "#58a6ff", fontSize: "13px" }}>View all</span>
+        <span style={{ color: "#ffffff", fontWeight: "600" }}>{t('activityInYear', { year })}</span>
+        <span style={{ color: "#58a6ff", fontSize: "13px" }}>{t('viewAll')}</span>
       </div>
 
       {/* Flat Git dark mode card (Single card container) */}
@@ -165,7 +165,7 @@ export const FlatGitYearTemplate: React.FC<FlatGitYearTemplateProps> = ({
           </div>
           {/* GitLab Legend Text on Right */}
           <span>
-            Issues, merge requests, pushes, and comments.
+            {t('gitLabLegend')}
           </span>
         </div>
 
@@ -186,8 +186,8 @@ export const FlatGitYearTemplate: React.FC<FlatGitYearTemplateProps> = ({
         >
           {!isCapturing && isHoveredInThisYear && hoveredDay ? (
             hoveredDay.count > 0 
-              ? `${hoveredDay.count} commits on ${formatDate(hoveredDay.date)}` 
-              : `No commits on ${formatDate(hoveredDay.date)}`
+              ? t('commitsOnDate', { count: hoveredDay.count, date: formatDate(hoveredDay.date) })
+              : t('noCommitsOnDate', { date: formatDate(hoveredDay.date) })
           ) : (
             "\u00A0"
           )}

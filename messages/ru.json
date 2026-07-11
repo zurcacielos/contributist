@@ -95,7 +95,18 @@
     "toolErase": "Инструмент ластика",
     "toolText": "Добавить текст",
     "toolAddMeme": "Добавить {name}",
-    "tooltipLevel": "{style} Уровень {level}"
+    "tooltipLevel": "{style} Уровень {level}",
+    "commitsOnDate": "{count} коммитов {date}",
+    "noCommitsOnDate": "Нет коммитов {date}",
+    "freqLabel": "Част. {percentage}%",
+    "totalContributionsInYear": "{count} вкладов в {year}",
+    "contribSettings": "Настройки вкладов ▾",
+    "learnCount": "Как учитываются вклады",
+    "less": "Меньше",
+    "more": "Больше",
+    "activityInYear": "Активность в {year}",
+    "viewAll": "Показать все",
+    "gitLabLegend": "Задачи, запросы на слияние, пуши и комментарии."
   },
   "Sidebar": {
     "uiMode": "Режим интерфейса",

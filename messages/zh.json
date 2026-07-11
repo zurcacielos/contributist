@@ -95,7 +95,18 @@
     "toolErase": "擦除工具",
     "toolText": "添加自定义文本",
     "toolAddMeme": "添加 {name}",
-    "tooltipLevel": "{style} 等级 {level}"
+    "tooltipLevel": "{style} 等级 {level}",
+    "commitsOnDate": "{date} 有 {count} 次提交",
+    "noCommitsOnDate": "{date} 无提交",
+    "freqLabel": "频率 {percentage}%",
+    "totalContributionsInYear": "{year} 年内贡献了 {count} 次",
+    "contribSettings": "贡献设置 ▾",
+    "learnCount": "了解我们如何统计贡献度",
+    "less": "少",
+    "more": "多",
+    "activityInYear": "{year} 年的活动记录",
+    "viewAll": "查看全部",
+    "gitLabLegend": "包括 Issue、合并请求、推送和讨论。"
   },
   "Sidebar": {
     "uiMode": "界面模式",
