@@ -9,9 +9,21 @@ export class ApiContributionsStrategy implements ContributionsReaderStrategy {
       throw new Error(`ApiContributionsStrategy only supports github.com (Requested: ${host})`);
     }
 
+    // 1. Try our own local scraper strategy first
+    try {
+      console.log("[API Strategy] Trying local scraper strategy...");
+      const contributions = await this.localScraper.fetchContributions(username, host);
+      if (contributions && Object.keys(contributions).length > 0) {
+        return contributions;
+      }
+      console.warn("[API Strategy] Local scraper returned no contributions.");
+    } catch (e: any) {
+      console.warn(`[API Strategy] Failed with local scraper strategy: ${e.message}`);
+    }
+
     const contributions: Record<string, number> = {};
 
-    // 1. Try jogruber's API first
+    // 2. Fallback to grubersjoe's API
     try {
       const url = `https://github-contributions-api.jogruber.de/v4/${username}`;
       console.log(url); // Clean console.log of the URL being requested
@@ -43,7 +55,7 @@ export class ApiContributionsStrategy implements ContributionsReaderStrategy {
       console.warn(`[API Strategy] Failed to fetch from grubersjoe API: ${e.message}`);
     }
 
-    // 2. Fallback to Vercel API
+    // 3. Fallback to Vercel API
     try {
       const url = `https://github-contributions.vercel.app/api/v1/${username}`;
       console.log(url); // Clean console.log of the URL being requested
@@ -75,8 +87,6 @@ export class ApiContributionsStrategy implements ContributionsReaderStrategy {
       console.warn(`[API Strategy] Failed to fetch from Vercel API: ${e.message}`);
     }
 
-    // 3. Fallback to our local scraping strategy
-    console.log("[API Strategy] Both APIs failed. Falling back to local scraper strategy...");
-    return this.localScraper.fetchContributions(username, host);
+    throw new Error("All fetching strategies (Local Scraper, grubersjoe API, and Vercel API) failed.");
   }
 }

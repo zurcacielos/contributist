@@ -68,7 +68,8 @@ export class ScrapeContributionsStrategy implements ContributionsReaderStrategy 
       }
 
       if ((total === 0 && totalMatch) || noContributions) {
-        // Year has no contributions; skip parsing cells to keep it at 0
+        // Year has no contributions; add a dummy 0-contribution day so the year range is recognized
+        contributions[`${year}-01-01`] = 0;
         return;
       }
       
