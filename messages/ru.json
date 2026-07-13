@@ -127,7 +127,7 @@
   },
   "Sidebar": {
     "gitProfileTitle": "Профиль Git или URL",
-    "gitProfileTooltip": "Введите URL вашего профиля Git, GitHub, GitLab или Gitea, чтобы получить ваши контрибуции. Эта информация КЭШИРУЕТСЯ серверами и не обновляется мгновенно.",
+    "gitProfileTooltip": "Введите URL вашего профиля Git, GitHub, GitLab или Gitea, чтобы получить ваши контрибуции. Эта информация обычно КЭШИРУЕТСЯ серверами на 1 час и не обновляется мгновенно.",
     "uiMode": "Режим интерфейса",
     "vibes": "Vibes",
     "baseVibeTitle": "💖 Базовый Vibe",

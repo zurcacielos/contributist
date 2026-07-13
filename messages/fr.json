@@ -127,7 +127,7 @@
   },
   "Sidebar": {
     "gitProfileTitle": "Profil Git ou URL",
-    "gitProfileTooltip": "Entrez l'URL de votre profil Git, GitHub, GitLab ou Gitea pour obtenir vos contributions. Ces informations sont stockées dans le CACHE par les serveurs et ne sont pas mises à jour immédiatement.",
+    "gitProfileTooltip": "Entrez l'URL de votre profil Git, GitHub, GitLab ou Gitea pour obtenir vos contributions. Ces informations sont généralement stockées dans le CACHE pendant 1 heure par les serveurs et ne sont pas mises à jour immédiatement.",
     "uiMode": "Mode interface",
     "vibes": "Vibes",
     "baseVibeTitle": "💖 Base vibe",

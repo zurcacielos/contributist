@@ -173,18 +173,10 @@ export function generateCommits(config: GeneratorConfig, outMeta?: YearConfigMet
         else if (composite.level === 4) targetCommits = 10;
       } else {
         const bgActive = hasBackgroundLayer;
-        const gitProfileLayer = currentLayers.find(l => l.year === year && l.type === 'git-profile') as any;
-        const gitProfileActive = gitProfileLayer && gitProfileLayer.visible && !gitProfileLayer.cleared && gitProfileLayer.data && gitProfileLayer.data[dateStr] > 0;
 
         if (bgActive && algoCommits > 0) {
           targetCommits = algoCommits;
           useAlgoTimes = true;
-        } else if (gitProfileActive) {
-          const profileLevel = gitProfileLayer.data[dateStr];
-          if (profileLevel === 1) targetCommits = 1;
-          else if (profileLevel === 2) targetCommits = 3;
-          else if (profileLevel === 3) targetCommits = 6;
-          else if (profileLevel === 4) targetCommits = 10;
         }
       }
 
