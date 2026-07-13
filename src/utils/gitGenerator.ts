@@ -175,8 +175,21 @@ export function generateCommits(config: GeneratorConfig, outMeta?: YearConfigMet
         const bgActive = hasBackgroundLayer;
 
         if (bgActive && algoCommits > 0) {
-          targetCommits = algoCommits;
-          useAlgoTimes = true;
+          const gitProfileLayer = currentLayers.find(l => l.year === year && l.type === 'git-profile') as any;
+          const gitProfileActive = gitProfileLayer && gitProfileLayer.visible && !gitProfileLayer.cleared;
+          const profileVal = gitProfileActive && gitProfileLayer.data ? (gitProfileLayer.data[dateStr] || 0) : 0;
+
+          let pCommits = 0;
+          if (profileVal === 1) pCommits = 1;
+          else if (profileVal === 2) pCommits = 3;
+          else if (profileVal === 3) pCommits = 6;
+          else if (profileVal === 4) pCommits = 10;
+
+          const bgCommits = Math.max(0, algoCommits - pCommits);
+          if (bgCommits > 0) {
+            targetCommits = bgCommits;
+            useAlgoTimes = true;
+          }
         }
       }
 

@@ -184,19 +184,26 @@ export function useActivityGraph({ state, dispatch, onEditChange }: UseActivityG
           } else {
             const bgActive = bgLayer && bgLayer.visible && !bgLayer.cleared;
             const gitProfileLayer = currentLayers.find(l => l.year === year && l.type === 'git-profile') as any;
-            const gitProfileActive = gitProfileLayer && gitProfileLayer.visible && !gitProfileLayer.cleared && gitProfileLayer.data && gitProfileLayer.data[dateStr] > 0;
+            const gitProfileActive = gitProfileLayer && gitProfileLayer.visible && !gitProfileLayer.cleared;
+            const pLevel = gitProfileActive && gitProfileLayer.data ? (gitProfileLayer.data[dateStr] || 0) : 0;
+
+            let pCommits = 0;
+            if (pLevel === 1) pCommits = 1;
+            else if (pLevel === 2) pCommits = 3;
+            else if (pLevel === 3) pCommits = 6;
+            else if (pLevel === 4) pCommits = 10;
 
             if (bgActive && algoLevel > 0) {
-              finalLevel = algoLevel;
-              finalCount = algoCount;
-              layerId = bgLayer.id;
-            } else if (gitProfileActive) {
-              finalLevel = gitProfileLayer.data[dateStr];
+              const blendedLevel = Math.max(algoLevel, pLevel);
+              const blendedCount = Math.max(algoCount, pCommits);
+              
+              finalLevel = blendedLevel;
+              finalCount = blendedCount;
+              layerId = (algoLevel >= pLevel) ? bgLayer.id : gitProfileLayer.id;
+            } else if (pLevel > 0) {
+              finalLevel = pLevel;
+              finalCount = pCommits;
               layerId = gitProfileLayer.id;
-              if (finalLevel === 1) finalCount = 1;
-              else if (finalLevel === 2) finalCount = 3;
-              else if (finalLevel === 3) finalCount = 6;
-              else if (finalLevel === 4) finalCount = 10;
             } else if (bgActive) {
               finalLevel = 0;
               finalCount = 0;
