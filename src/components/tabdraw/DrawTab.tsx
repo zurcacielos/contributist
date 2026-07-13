@@ -199,23 +199,8 @@ export const DrawTab: React.FC<DrawTabProps> = ({
         {feelingMode === "vibe" ? (
           <BaseVibe config={config} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
         ) : (
-          <TechnicalBackground config={config} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
+          <TechnicalBackground config={config} activeYear={state.activeYear} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
         )}
-
-        {/* Draw Color Selector */}
-        <ColorSelector
-          selectedLevel={state.selectedLevel}
-          showPaintedInOrange={config.showPaintedInOrange}
-          onSelect={(level, isSynth) => {
-            dispatch({ type: "UPDATE_LAYER_COLOR", payload: { level } });
-            if (config.showPaintedInOrange !== isSynth) {
-              dispatch({
-                type: "SET_CONFIG",
-                payload: { ...config, showPaintedInOrange: isSynth }
-              });
-            }
-          }}
-        />
 
       </aside>
 
@@ -254,6 +239,22 @@ export const DrawTab: React.FC<DrawTabProps> = ({
             })
           }
         />
+
+        {/* Draw Color Selector */}
+        <ColorSelector
+          selectedLevel={state.selectedLevel}
+          showPaintedInOrange={config.showPaintedInOrange}
+          onSelect={(level, isSynth) => {
+            dispatch({ type: "UPDATE_LAYER_COLOR", payload: { level } });
+            if (config.showPaintedInOrange !== isSynth) {
+              dispatch({
+                type: "SET_CONFIG",
+                payload: { ...config, showPaintedInOrange: isSynth }
+              });
+            }
+          }}
+        />
+
         <Card title={t('uiMode')}>
           <FeelingToggler feelingMode={feelingMode} onChange={setFeelingMode} style={{ width: "100%" }} />
         </Card>

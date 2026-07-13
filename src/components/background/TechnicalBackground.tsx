@@ -5,14 +5,17 @@ import { Tooltip } from "react-tooltip";
 import { GeneratorConfig } from "@/types";
 import { Card } from "@/components/Card";
 import { useTranslations } from "next-intl";
+import { Trash2 } from "lucide-react";
 
 interface TechnicalBackgroundProps {
   config: GeneratorConfig;
+  activeYear?: number;
   onChange: (config: GeneratorConfig) => void;
 }
 
 export function TechnicalBackground({
   config,
+  activeYear,
   onChange,
 }: TechnicalBackgroundProps) {
   const t = useTranslations('Sidebar');
@@ -31,6 +34,64 @@ export function TechnicalBackground({
       ...config,
       [name]: finalValue,
     });
+  };
+
+  const handleApplySelected = () => {
+    if (!activeYear) return;
+    const nextLayers = (config.layers || []).map(l => {
+      if (l.type === 'background' && l.year === activeYear) {
+        return {
+          ...l,
+          cleared: false,
+          customFrequency: undefined
+        };
+      }
+      return l;
+    });
+    onChange({ ...config, layers: nextLayers });
+  };
+
+  const handleApplyAll = () => {
+    const nextLayers = (config.layers || []).map(l => {
+      if (l.type === 'background') {
+        return {
+          ...l,
+          cleared: false,
+          customFrequency: undefined
+        };
+      }
+      return l;
+    });
+    onChange({ ...config, layers: nextLayers });
+  };
+
+  const handleDeleteSelected = () => {
+    if (!activeYear) return;
+    const nextLayers = (config.layers || []).map(l => {
+      if (l.type === 'background' && l.year === activeYear) {
+        return {
+          ...l,
+          cleared: true,
+          customFrequency: undefined
+        };
+      }
+      return l;
+    });
+    onChange({ ...config, layers: nextLayers });
+  };
+
+  const handleDeleteAll = () => {
+    const nextLayers = (config.layers || []).map(l => {
+      if (l.type === 'background') {
+        return {
+          ...l,
+          cleared: true,
+          customFrequency: undefined
+        };
+      }
+      return l;
+    });
+    onChange({ ...config, layers: nextLayers });
   };
 
   const InfoIcon = ({ text }: { text: string }) => (
@@ -157,6 +218,90 @@ export function TechnicalBackground({
           value={config.vacationLengthDays}
           onChange={handleChange}
         />
+      </div>
+
+      <hr style={{ border: "none", borderTop: "1px solid rgba(255,255,255,0.08)", margin: "14px 0 10px 0" }} />
+
+      <div style={{ display: "flex", alignItems: "center", gap: "8px", justifyContent: "space-between", marginBottom: "8px" }}>
+        <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontWeight: "bold" }}>Apply to:</span>
+        <div style={{ display: "flex", gap: "6px" }}>
+          <button
+            type="button"
+            onClick={handleApplySelected}
+            style={{
+              padding: "4px 10px",
+              fontSize: "0.75rem",
+              borderRadius: "6px",
+              background: "rgba(88, 166, 255, 0.1)",
+              border: "1px solid rgba(88, 166, 255, 0.3)",
+              color: "#58a6ff",
+              cursor: "pointer",
+              fontWeight: "bold",
+              transition: "all 0.2s ease"
+            }}
+          >
+            Selected
+          </button>
+          <button
+            type="button"
+            onClick={handleApplyAll}
+            style={{
+              padding: "4px 10px",
+              fontSize: "0.75rem",
+              borderRadius: "6px",
+              background: "rgba(56, 189, 248, 0.1)",
+              border: "1px solid rgba(56, 189, 248, 0.3)",
+              color: "#38bdf8",
+              cursor: "pointer",
+              fontWeight: "bold",
+              transition: "all 0.2s ease"
+            }}
+          >
+            All
+          </button>
+        </div>
+      </div>
+
+      <div style={{ display: "flex", alignItems: "center", gap: "8px", justifyContent: "space-between" }}>
+        <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontWeight: "bold", display: "flex", alignItems: "center", gap: "4px" }}>
+          <Trash2 size={13} style={{ color: "#f85149" }} /> Clear:
+        </span>
+        <div style={{ display: "flex", gap: "6px" }}>
+          <button
+            type="button"
+            onClick={handleDeleteSelected}
+            style={{
+              padding: "4px 10px",
+              fontSize: "0.75rem",
+              borderRadius: "6px",
+              background: "rgba(248, 81, 73, 0.1)",
+              border: "1px solid rgba(248, 81, 73, 0.3)",
+              color: "#f85149",
+              cursor: "pointer",
+              fontWeight: "bold",
+              transition: "all 0.2s ease"
+            }}
+          >
+            Selected
+          </button>
+          <button
+            type="button"
+            onClick={handleDeleteAll}
+            style={{
+              padding: "4px 10px",
+              fontSize: "0.75rem",
+              borderRadius: "6px",
+              background: "rgba(248, 81, 73, 0.15)",
+              border: "1px solid rgba(248, 81, 73, 0.4)",
+              color: "#f85149",
+              cursor: "pointer",
+              fontWeight: "bold",
+              transition: "all 0.2s ease"
+            }}
+          >
+            All
+          </button>
+        </div>
       </div>
     </Card>
   );

@@ -31,7 +31,7 @@ export function BackgroundPanel({ config, onChange }: BackgroundPanelProps) {
           gap: "5px"
         }}
       >
-        <span>{showAdvanced ? "▼" : "▶"}</span> ADVANCED
+        <span>{showAdvanced ? "▼" : "▶"}</span> Background
       </button>
 
       {showAdvanced && (
