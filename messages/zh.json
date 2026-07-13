@@ -170,7 +170,11 @@
     "paintedLayerName": "手绘层",
     "tooltipLeftClickRemix": "左键点击以套用模板，右键点击以保存当前设计",
     "tooltipClickRemix": "点击以套用此设计模板",
-    "selectYearPrompt": "选择一个年份！"
+    "selectYearPrompt": "选择一个年份！",
+    "makeSelectedGreener": "使所选变绿",
+    "makeAllGreener": "使全部变绿",
+    "clearSelected": "清除所选",
+    "clearAll": "清除全部"
   },
   "Alerts": {
     "invalidJson": "无效的 JSON 文件",

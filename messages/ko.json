@@ -170,7 +170,11 @@
     "paintedLayerName": "그림",
     "tooltipLeftClickRemix": "클릭하여 템플릿 적용, 우클릭하여 현재 디자인을 여기에 저장",
     "tooltipClickRemix": "클릭하여 이 디자인 템플릿 적용",
-    "selectYearPrompt": "연도를 선택하세요!"
+    "selectYearPrompt": "연도를 선택하세요!",
+    "makeSelectedGreener": "선택한 연도 더 푸르게 만들기",
+    "makeAllGreener": "모든 연도 더 푸르게 만들기",
+    "clearSelected": "선택한 연도 지우기",
+    "clearAll": "모든 연도 지우기"
   },
   "Alerts": {
     "invalidJson": "유효하지 않은 JSON 파일",

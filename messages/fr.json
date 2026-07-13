@@ -170,7 +170,11 @@
     "paintedLayerName": "Dessin",
     "tooltipLeftClickRemix": "Clic gauche pour remixer, clic droit pour sauvegarder le design actuel",
     "tooltipClickRemix": "Cliquez pour remixer ce design",
-    "selectYearPrompt": "Sélectionnez une année !"
+    "selectYearPrompt": "Sélectionnez une année !",
+    "makeSelectedGreener": "Rendre sélectionné plus vert",
+    "makeAllGreener": "Rendre tout plus vert",
+    "clearSelected": "Effacer la sélection",
+    "clearAll": "Effacer tout"
   },
   "Alerts": {
     "invalidJson": "Fichier JSON invalide",

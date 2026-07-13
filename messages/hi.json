@@ -170,7 +170,11 @@
     "paintedLayerName": "चित्रित",
     "tooltipLeftClickRemix": "रीमिक्स करने के लिए बायाँ क्लिक करें, वर्तमान डिज़ाइन को सहेजने के लिए दायाँ क्लिक करें",
     "tooltipClickRemix": "इस डिज़ाइन को रीमिक्स करने के लिए क्लिक करें",
-    "selectYearPrompt": "एक वर्ष चुनें!"
+    "selectYearPrompt": "एक वर्ष चुनें!",
+    "makeSelectedGreener": "चयनित को और हरा बनाएं",
+    "makeAllGreener": "सभी को और हरा बनाएं",
+    "clearSelected": "चयनित साफ़ करें",
+    "clearAll": "सभी साफ़ करें"
   },
   "Alerts": {
     "invalidJson": "अमान्य JSON फ़ाइल",

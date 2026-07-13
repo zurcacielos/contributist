@@ -170,7 +170,11 @@
     "paintedLayerName": "Painted",
     "tooltipLeftClickRemix": "Left click to remix, Right click to save current into this",
     "tooltipClickRemix": "Click to remix this design",
-    "selectYearPrompt": "Select a year!"
+    "selectYearPrompt": "Select a year!",
+    "makeSelectedGreener": "Make Selected Greener",
+    "makeAllGreener": "Make All Greener",
+    "clearSelected": "Clear Selected",
+    "clearAll": "Clear All"
   },
   "Alerts": {
     "invalidJson": "Invalid JSON file",

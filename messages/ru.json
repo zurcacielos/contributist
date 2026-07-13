@@ -170,7 +170,11 @@
     "paintedLayerName": "Рисунок",
     "tooltipLeftClickRemix": "Левый клик для ремикса, Правый клик для сохранения текущего дизайна сюда",
     "tooltipClickRemix": "Кликните для ремикса этого дизайна",
-    "selectYearPrompt": "Выберите год!"
+    "selectYearPrompt": "Выберите год!",
+    "makeSelectedGreener": "Сделать выбранное зеленее",
+    "makeAllGreener": "Сделать все зеленее",
+    "clearSelected": "Очистить выбранное",
+    "clearAll": "Очистить все"
   },
   "Alerts": {
     "invalidJson": "Некорректный JSON файл",

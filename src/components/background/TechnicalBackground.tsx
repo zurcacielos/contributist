@@ -241,7 +241,7 @@ export function TechnicalBackground({
           marginBottom: "6px"
         }}
       >
-        Make Selected Greener
+        {t('makeSelectedGreener')}
       </button>
 
       {/* Make All Greener */}
@@ -263,50 +263,55 @@ export function TechnicalBackground({
           marginBottom: "12px"
         }}
       >
-        Make All Greener
+        {t('makeAllGreener')}
       </button>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "8px", justifyContent: "space-between" }}>
-        <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontWeight: "bold", display: "flex", alignItems: "center", gap: "4px" }}>
-          <Trash2 size={13} style={{ color: "#f85149" }} /> Clear:
+      {/* Clear Selected */}
+      <button
+        type="button"
+        onClick={handleDeleteSelected}
+        style={{
+          width: "100%",
+          padding: "6px 8px",
+          fontSize: "0.75rem",
+          borderRadius: "6px",
+          background: "rgba(248, 81, 73, 0.1)",
+          border: "1px solid rgba(248, 81, 73, 0.3)",
+          color: "#f85149",
+          cursor: "pointer",
+          fontWeight: "bold",
+          transition: "all 0.2s ease",
+          textAlign: "center",
+          marginBottom: "6px"
+        }}
+      >
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+          <Trash2 size={12} /> {t('clearSelected')}
         </span>
-        <div style={{ display: "flex", gap: "6px" }}>
-          <button
-            type="button"
-            onClick={handleDeleteSelected}
-            style={{
-              padding: "4px 10px",
-              fontSize: "0.75rem",
-              borderRadius: "6px",
-              background: "rgba(248, 81, 73, 0.1)",
-              border: "1px solid rgba(248, 81, 73, 0.3)",
-              color: "#f85149",
-              cursor: "pointer",
-              fontWeight: "bold",
-              transition: "all 0.2s ease"
-            }}
-          >
-            Selected
-          </button>
-          <button
-            type="button"
-            onClick={handleDeleteAll}
-            style={{
-              padding: "4px 10px",
-              fontSize: "0.75rem",
-              borderRadius: "6px",
-              background: "rgba(248, 81, 73, 0.15)",
-              border: "1px solid rgba(248, 81, 73, 0.4)",
-              color: "#f85149",
-              cursor: "pointer",
-              fontWeight: "bold",
-              transition: "all 0.2s ease"
-            }}
-          >
-            All
-          </button>
-        </div>
-      </div>
+      </button>
+
+      {/* Clear All */}
+      <button
+        type="button"
+        onClick={handleDeleteAll}
+        style={{
+          width: "100%",
+          padding: "6px 8px",
+          fontSize: "0.75rem",
+          borderRadius: "6px",
+          background: "rgba(248, 81, 73, 0.15)",
+          border: "1px solid rgba(248, 81, 73, 0.4)",
+          color: "#f85149",
+          cursor: "pointer",
+          fontWeight: "bold",
+          transition: "all 0.2s ease",
+          textAlign: "center"
+        }}
+      >
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+          <Trash2 size={12} /> {t('clearAll')}
+        </span>
+      </button>
     </Card>
   );
 }

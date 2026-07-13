@@ -170,7 +170,11 @@
     "paintedLayerName": "描画",
     "tooltipLeftClickRemix": "左クリックでリミックス、右クリックで現在のデザインをここに保存",
     "tooltipClickRemix": "クリックしてこのデザインをリミックス",
-    "selectYearPrompt": "年を選択してください！"
+    "selectYearPrompt": "年を選択してください！",
+    "makeSelectedGreener": "選択した部分をより緑にする",
+    "makeAllGreener": "すべてをより緑にする",
+    "clearSelected": "選択部分をクリア",
+    "clearAll": "すべてクリア"
   },
   "Alerts": {
     "invalidJson": "無効なJSONファイルです",
