@@ -126,6 +126,8 @@
     "gitLabLegend": "包括 Issue、合并请求、推送和讨论。"
   },
   "Sidebar": {
+    "gitProfileTitle": "Git 个人主页或 URL",
+    "gitProfileTooltip": "输入您的 Git、GitHub、GitLab 或 Gitea 个人主页 URL 以获取您的贡献。此信息由服务器缓存，不会立即更新。",
     "uiMode": "界面模式",
     "vibes": "氛围",
     "baseVibeTitle": "💖 基础氛围",

@@ -27,7 +27,10 @@ export type AppAction =
   | { type: "MOVE_LAYER"; payload: { layerId: string; x: number; y: number } }
   | { type: "PAINT_CELL"; payload: { dateStr: string } }
   | { type: "ERASE_CELL"; payload: { dateStr: string } }
-  | { type: "REORDER_LAYERS"; payload: { draggedId: string; dropId: string } };
+  | { type: "REORDER_LAYERS"; payload: { draggedId: string; dropId: string } }
+  | { type: "START_FETCH_PROFILE"; payload: { username: string; platform: string } }
+  | { type: "FETCH_PROFILE_SUCCESS"; payload: { contributions: Record<string, number>; platform: string; username: string } }
+  | { type: "SET_GIT_PROFILE_URL"; payload: string };
 
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
@@ -45,7 +48,13 @@ export function appReducer(state: AppState, action: AppAction): AppState {
 
       for (let y = minYear; y <= maxYear; y++) {
         if (!updatedLayers.some(l => l.type === 'background' && l.year === y)) {
-          updatedLayers.unshift({ id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y } as BackgroundLayer);
+          const gitProfileIdx = updatedLayers.findIndex(l => l.type === 'git-profile' && l.year === y);
+          const newBg = { id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y } as BackgroundLayer;
+          if (gitProfileIdx !== -1) {
+            updatedLayers.splice(gitProfileIdx + 1, 0, newBg);
+          } else {
+            updatedLayers.unshift(newBg);
+          }
         }
         if (!updatedLayers.some(l => l.type === 'raster' && l.year === y)) {
           updatedLayers.push({ id: `raster-${y}`, name: `Painted`, type: 'raster', visible: true, year: y, data: {} } as RasterLayer);
@@ -90,7 +99,13 @@ export function appReducer(state: AppState, action: AppAction): AppState {
 
       for (let y = minYear; y <= maxYear; y++) {
         if (!updatedLayers.some(l => l.type === 'background' && l.year === y)) {
-          updatedLayers.unshift({ id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y } as BackgroundLayer);
+          const gitProfileIdx = updatedLayers.findIndex(l => l.type === 'git-profile' && l.year === y);
+          const newBg = { id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y } as BackgroundLayer;
+          if (gitProfileIdx !== -1) {
+            updatedLayers.splice(gitProfileIdx + 1, 0, newBg);
+          } else {
+            updatedLayers.unshift(newBg);
+          }
         }
         if (!updatedLayers.some(l => l.type === 'raster' && l.year === y)) {
           updatedLayers.push({ id: `raster-${y}`, name: `Painted`, type: 'raster', visible: true, year: y, data: {} } as RasterLayer);
@@ -146,10 +161,15 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         return layer;
       });
 
-      // Ensure Background and Raster layers exist for every year in the range
       for (let y = minYear; y <= maxYear; y++) {
         if (!updatedLayers.some(l => l.type === 'background' && l.year === y)) {
-          updatedLayers.unshift({ id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y } as BackgroundLayer);
+          const gitProfileIdx = updatedLayers.findIndex(l => l.type === 'git-profile' && l.year === y);
+          const newBg = { id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y } as BackgroundLayer;
+          if (gitProfileIdx !== -1) {
+            updatedLayers.splice(gitProfileIdx + 1, 0, newBg);
+          } else {
+            updatedLayers.unshift(newBg);
+          }
         }
         if (!updatedLayers.some(l => l.type === 'raster' && l.year === y)) {
           updatedLayers.push({ id: `raster-${y}`, name: `Painted`, type: 'raster', visible: true, year: y, data: {} } as RasterLayer);
@@ -173,6 +193,15 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return { ...state, config: { ...config, layers: updatedLayers } };
     }
 
+    case "SET_GIT_PROFILE_URL":
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          gitProfileUrl: action.payload
+        }
+      };
+
     case "SET_ACTIVE_TOOL":
       return { ...state, activeTool: action.payload };
 
@@ -183,9 +212,19 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return { ...state, config: { ...state.config, activeLayerId: action.payload } };
 
     case "TOGGLE_LAYER_VISIBILITY": {
-      const newLayers = (state.config.layers || []).map(l =>
-        l.id === action.payload ? { ...l, visible: !l.visible } : l
-      );
+      const clickedLayer = (state.config.layers || []).find(l => l.id === action.payload);
+      if (!clickedLayer) return state;
+
+      const isSpecial = clickedLayer.type === 'background' || clickedLayer.type === 'raster' || clickedLayer.type === 'git-profile';
+      const targetValue = !clickedLayer.visible;
+
+      const newLayers = (state.config.layers || []).map(l => {
+        if (isSpecial) {
+          return l.type === clickedLayer.type ? { ...l, visible: targetValue } : l;
+        } else {
+          return l.id === action.payload ? { ...l, visible: targetValue } : l;
+        }
+      });
       return { ...state, config: { ...state.config, layers: newLayers } };
     }
 
@@ -361,6 +400,142 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       }
 
       return { ...state, config: { ...state.config, layers: newLayers, basedOnTemplate: undefined } };
+    }
+
+    case "START_FETCH_PROFILE": {
+      const { username, platform } = action.payload;
+      const startYear = parseYear(state.config.startDate);
+      const endYear = parseYear(state.config.endDate);
+      const minYear = Math.min(startYear, endYear);
+      const maxYear = Math.max(startYear, endYear);
+
+      let nextLayers = (state.config.layers || []).map(l => {
+        if (l.type === 'git-profile') {
+          return {
+            ...l,
+            data: {},
+            originalData: {},
+            cleared: false
+          } as any;
+        }
+        return l;
+      });
+      const profileLayerName = "Git Profile";
+
+      for (let y = minYear; y <= maxYear; y++) {
+        const existingIdx = nextLayers.findIndex(l => l.type === 'git-profile' && l.year === y);
+        if (existingIdx === -1) {
+          nextLayers.unshift({
+            id: `git-profile-${y}`,
+            name: profileLayerName,
+            type: "git-profile",
+            visible: true,
+            year: y,
+            data: {},
+            originalData: {},
+            cleared: false
+          } as any);
+        }
+      }
+
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          layers: nextLayers
+        }
+      };
+    }
+
+    case "FETCH_PROFILE_SUCCESS": {
+      const { contributions, platform, username } = action.payload;
+      const dates = Object.keys(contributions);
+      if (dates.length === 0) return state;
+
+      const years = dates.map(d => parseInt(d.split('-')[0], 10));
+      const fetchedMinYear = Math.min(...years);
+      const fetchedMaxYear = Math.max(...years);
+
+      const nextStartDate = `${fetchedMinYear}-01-01`;
+      const nextEndDate = `${fetchedMaxYear}-12-31`;
+
+      const finalMinYear = fetchedMinYear;
+      const finalMaxYear = fetchedMaxYear;
+
+      let nextLayers = [...(state.config.layers || [])];
+      const profileLayerName = "Git Profile";
+
+      // 1. Insert/update git-profile layers for all years in the range
+      for (let y = finalMinYear; y <= finalMaxYear; y++) {
+        const yearData: Record<string, number> = {};
+        for (const [dateStr, val] of Object.entries(contributions)) {
+          if (dateStr.startsWith(`${y}-`) && val > 0) {
+            yearData[dateStr] = val;
+          }
+        }
+
+        const existingIdx = nextLayers.findIndex(l => l.type === 'git-profile' && l.year === y);
+        if (existingIdx !== -1) {
+          nextLayers[existingIdx] = {
+            ...nextLayers[existingIdx],
+            name: profileLayerName,
+            data: yearData,
+            originalData: yearData,
+            cleared: false
+          } as any;
+        } else {
+          nextLayers.unshift({
+            id: `git-profile-${y}`,
+            name: profileLayerName,
+            type: "git-profile",
+            visible: true,
+            year: y,
+            data: yearData,
+            originalData: yearData,
+            cleared: false
+          } as any);
+        }
+      }
+
+      // 2. Ensure Background and Raster layers exist for all years in the range
+      for (let y = finalMinYear; y <= finalMaxYear; y++) {
+        if (!nextLayers.some(l => l.type === 'background' && l.year === y)) {
+          const gitProfileIdx = nextLayers.findIndex(l => l.type === 'git-profile' && l.year === y);
+          const newBg = {
+            id: `bg-${y}`,
+            name: "Background",
+            type: "background",
+            visible: true,
+            year: y,
+            baseFrequency: 0
+          } as any;
+          if (gitProfileIdx !== -1) {
+            nextLayers.splice(gitProfileIdx + 1, 0, newBg);
+          } else {
+            nextLayers.unshift(newBg);
+          }
+        }
+        if (!nextLayers.some(l => l.type === 'raster' && l.year === y)) {
+          nextLayers.push({
+            id: `raster-${y}`,
+            name: "Painted",
+            type: "raster",
+            visible: true,
+            year: y,
+            data: {}
+          });
+        }
+      }
+
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          startDate: nextStartDate,
+          endDate: nextEndDate,
+          layers: nextLayers
+        }
+      };
     }
 
     default:

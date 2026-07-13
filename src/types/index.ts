@@ -1,4 +1,4 @@
-export type LayerType = 'raster' | 'meme' | 'background';
+export type LayerType = 'raster' | 'meme' | 'background' | 'git-profile';
 
 export interface BaseLayer {
   id: string;
@@ -21,6 +21,12 @@ export interface BackgroundLayer extends BaseLayer {
   customFrequency?: number;
 }
 
+export interface GitProfileLayer extends BaseLayer {
+  type: 'git-profile';
+  data: Record<string, number>;
+  originalData?: Record<string, number>;
+}
+
 export interface MemeLayer extends BaseLayer {
   type: 'meme';
   templateName: string;
@@ -34,7 +40,7 @@ export interface MemeLayer extends BaseLayer {
   };
 }
 
-export type Layer = RasterLayer | MemeLayer | BackgroundLayer;
+export type Layer = RasterLayer | MemeLayer | BackgroundLayer | GitProfileLayer;
 
 export interface GeneratorConfig {
   repoUrl: string;
@@ -55,6 +61,7 @@ export interface GeneratorConfig {
   showPaintedInOrange: boolean;
   gitName?: string;
   gitEmail?: string;
+  gitProfileUrl?: string;
   basedOnTemplate?: string;
 }
 

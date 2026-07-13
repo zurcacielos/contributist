@@ -126,6 +126,8 @@
     "gitLabLegend": "Issues, Merge Requests, Pushes und Kommentare."
   },
   "Sidebar": {
+    "gitProfileTitle": "Git-Profil oder URL",
+    "gitProfileTooltip": "Geben Sie Ihre Git-, GitHub-, GitLab- oder Gitea-Profil-URL ein, um Ihre Beiträge abzurufen. Diese Informationen werden von den Servern im CACHE gespeichert und nicht sofort aktualisiert.",
     "uiMode": "UI-Modus",
     "vibes": "Vibe",
     "baseVibeTitle": "💖 Base vibe",

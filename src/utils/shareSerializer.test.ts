@@ -53,13 +53,21 @@ describe("shareSerializer", () => {
   });
 
   it("should strip personal Git credentials upon serialization and preserve current credentials upon deserialization", () => {
-    const encoded = serializeDesign(mockState);
+    const stateWithProfile: AppState = {
+      ...mockState,
+      config: {
+        ...mockState.config,
+        gitProfileUrl: "https://github.com/secretprofile"
+      }
+    };
+    const encoded = serializeDesign(stateWithProfile);
 
     // Verify raw encoded string doesn't contain secret credentials in plain text
     const decodedRaw = Buffer.from(encoded.replace(/-/g, "+").replace(/_/g, "/"), "base64").toString("utf8");
     expect(decodedRaw).not.toContain("secret-repo");
     expect(decodedRaw).not.toContain("Secret User");
     expect(decodedRaw).not.toContain("secret@user.com");
+    expect(decodedRaw).not.toContain("secretprofile");
 
     const currentLocalState: AppState = {
       ...mockState,
@@ -67,7 +75,8 @@ describe("shareSerializer", () => {
         ...mockState.config,
         repoUrl: "https://my-local-repo.git",
         gitName: "My Local Identity",
-        gitEmail: "local@identity.com"
+        gitEmail: "local@identity.com",
+        gitProfileUrl: "https://github.com/myprofile"
       }
     };
 
@@ -77,6 +86,7 @@ describe("shareSerializer", () => {
     expect(restored.config.repoUrl).toBe("https://my-local-repo.git");
     expect(restored.config.gitName).toBe("My Local Identity");
     expect(restored.config.gitEmail).toBe("local@identity.com");
+    expect(restored.config.gitProfileUrl).toBe("https://github.com/myprofile");
   });
 
   it("should safely return currentState when given invalid or corrupted input", () => {

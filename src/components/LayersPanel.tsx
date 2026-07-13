@@ -63,6 +63,11 @@ export function LayersPanel({
       dispatch({ type: 'SET_CONFIG', payload: { ...state.config, layers: newLayers } });
       return;
     }
+    if (layer?.type === 'git-profile') {
+      const newLayers = allLayers.map(l => l.type === 'git-profile' ? { ...l, cleared: true, data: {} } : l);
+      dispatch({ type: 'SET_CONFIG', payload: { ...state.config, layers: newLayers } });
+      return;
+    }
     if (layer?.type === 'raster') {
       const newLayers = allLayers.map(l => l.id === id ? { ...l, data: {} } : l);
       dispatch({ type: 'SET_CONFIG', payload: { ...state.config, layers: newLayers } });
@@ -202,24 +207,40 @@ export function LayersPanel({
                   {isLocked ? <Lock size={14} /> : <Unlock size={14} />}
                 </button>
 
-                {layer.type === 'background' ? (
+                 {layer.type === 'background' || layer.type === 'git-profile' ? (
                   <>
-                    {((layer as import("@/types").BackgroundLayer).cleared || (layer as import("@/types").BackgroundLayer).customFrequency !== undefined) && (
+                    {((layer.type === 'background' && ((layer as import("@/types").BackgroundLayer).cleared || (layer as import("@/types").BackgroundLayer).customFrequency !== undefined)) ||
+                      (layer.type === 'git-profile' && (layer as any).cleared)) && (
                       <button
-                        onClick={e => { e.stopPropagation(); const newLayers = allLayers.map(l => l.id === layer.id ? { ...l, cleared: false, customFrequency: undefined } : l); dispatch({ type: 'SET_CONFIG', payload: { ...state.config, layers: newLayers } }); }}
+                        onClick={e => {
+                          e.stopPropagation();
+                          const newLayers = allLayers.map(l => {
+                            if (layer.type === 'git-profile' && l.type === 'git-profile') {
+                              return { ...l, cleared: false, data: (l as any).originalData || {} };
+                            }
+                            if (l.id === layer.id) {
+                              if (l.type === 'background') {
+                                return { ...l, cleared: false, customFrequency: undefined };
+                              }
+                            }
+                            return l;
+                          });
+                          dispatch({ type: 'SET_CONFIG', payload: { ...state.config, layers: newLayers } });
+                        }}
                         style={{ background: "none", border: "none", cursor: "pointer", color: "#58a6ff", display: "flex", alignItems: "center", padding: 0 }}
-                        title={t('tooltipResetBg')}
+                        title={layer.type === 'git-profile' ? "Restore profile contributions" : t('tooltipResetBg')}
                         disabled={isLocked}
                       >
                         <RotateCcw size={15} />
                       </button>
                     )}
 
-                    {!(layer as import("@/types").BackgroundLayer).cleared && (
+                    {((layer.type === 'background' && !(layer as import("@/types").BackgroundLayer).cleared) ||
+                      (layer.type === 'git-profile' && !(layer as any).cleared)) && (
                       <button
                         onClick={e => handleDelete(layer.id, e)}
                         style={{ background: "none", border: "none", cursor: "pointer", color: "#f85149", display: "flex", alignItems: "center", padding: 0 }}
-                        title={t('tooltipClearBg')}
+                        title={layer.type === 'git-profile' ? "Clear profile contributions" : t('tooltipClearBg')}
                         disabled={isLocked}
                       >
                         <Trash2 size={15} />

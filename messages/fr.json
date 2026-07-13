@@ -126,6 +126,8 @@
     "gitLabLegend": "Tickets, demandes de fusion, pushs et commentaires."
   },
   "Sidebar": {
+    "gitProfileTitle": "Profil Git ou URL",
+    "gitProfileTooltip": "Entrez l'URL de votre profil Git, GitHub, GitLab ou Gitea pour obtenir vos contributions. Ces informations sont stockées dans le CACHE par les serveurs et ne sont pas mises à jour immédiatement.",
     "uiMode": "Mode interface",
     "vibes": "Vibes",
     "baseVibeTitle": "💖 Base vibe",

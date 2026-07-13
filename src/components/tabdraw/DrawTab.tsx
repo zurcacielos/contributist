@@ -1,7 +1,7 @@
 // src/components/tabdraw/DrawTab.tsx
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { BaseVibe } from "@/components/background/BaseVibe";
 import { TechnicalBackground } from "@/components/background/TechnicalBackground";
 
@@ -14,6 +14,8 @@ import { Card } from "@/components/Card";
 import { ColorSelector } from "@/components/ColorSelector";
 import { FeelingToggler } from "@/components/FeelingToggler";
 import { useTranslations } from "next-intl";
+import { Info, RefreshCw } from "lucide-react";
+import { parseProfileUrl } from "@/git-contributions/GithubContributionsReader/urlParser";
 
 interface DrawTabProps {
   config: GeneratorConfig;
@@ -41,9 +43,63 @@ export const DrawTab: React.FC<DrawTabProps> = ({
   onReset,
 }) => {
   const t = useTranslations('Sidebar');
+  const [profileInput, setProfileInput] = useState(config.gitProfileUrl || "");
+  const [isFetching, setIsFetching] = useState(false);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    setProfileInput(config.gitProfileUrl || "");
+  }, [config.gitProfileUrl]);
+
+  const handleFetchContributions = async () => {
+    if (!profileInput.trim()) return;
+    setIsFetching(true);
+    setFetchError(null);
+
+    const { platform, username } = parseProfileUrl(profileInput);
+
+    if (platform === "github") {
+      console.log(`https://github.com/users/${username}/contributions`);
+    }
+
+    // Immediately dispatch action to create the placeholder "Git Profile" layers in the state
+    dispatch({
+      type: "START_FETCH_PROFILE",
+      payload: { username, platform }
+    });
+
+    try {
+      const response = await fetch("/api/contributions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ profileUrl: profileInput.trim() }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to fetch contributions");
+      }
+      
+      const fetchedContributions = data.contributions as Record<string, number>;
+      const dates = Object.keys(fetchedContributions);
+      if (dates.length > 0) {
+        dispatch({
+          type: "FETCH_PROFILE_SUCCESS",
+          payload: {
+            contributions: fetchedContributions,
+            platform: data.platform || platform,
+            username: data.username || username
+          }
+        });
+      }
+    } catch (err: any) {
+      setFetchError(err.message || "Failed to load contributions");
+    } finally {
+      setIsFetching(false);
+    }
+  };
 
   return (
-    <section 
+    <section
       className="layout draw-layout"
       onClick={(e) => {
         const target = e.target as HTMLElement;
@@ -65,10 +121,81 @@ export const DrawTab: React.FC<DrawTabProps> = ({
           gap: "14px"
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          <span style={{ fontSize: "0.85rem", color: "#ffffff", fontWeight: "bold", textAlign: "center" }}>{t('uiMode')}</span>
-          <FeelingToggler feelingMode={feelingMode} onChange={setFeelingMode} style={{ width: "100%" }} />
-        </div>
+        <Card title={
+          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            <span>{t('gitProfileTitle')}</span>
+            <span
+              className="info-icon"
+              data-tooltip-id="info-tooltip"
+              data-tooltip-content={t('gitProfileTooltip')}
+              style={{ cursor: "pointer" }}
+            >
+              i
+            </span>
+          </div>
+        }>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <input
+              type="text"
+              placeholder="e.g. torvalds"
+              value={profileInput}
+              onChange={(e) => {
+                setProfileInput(e.target.value);
+                dispatch({ type: "SET_GIT_PROFILE_URL", payload: e.target.value });
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleFetchContributions();
+                }
+              }}
+              style={{
+                flex: 1,
+                padding: "8px 10px",
+                borderRadius: "6px",
+                border: "1px solid var(--border)",
+                backgroundColor: "rgba(255, 255, 255, 0.05)",
+                color: "var(--text-main)",
+                fontSize: "0.85rem",
+                outline: "none"
+              }}
+            />
+            <button
+              onClick={handleFetchContributions}
+              disabled={isFetching}
+              title="Fetch contributions"
+              style={{
+                padding: "8px",
+                borderRadius: "6px",
+                border: "1px solid var(--border)",
+                backgroundColor: "rgba(255, 255, 255, 0.05)",
+                color: "var(--text-main)",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "all 0.2s"
+              }}
+              onMouseEnter={(e) => {
+                if (!isFetching) e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
+              }}
+            >
+              <RefreshCw
+                size={16}
+                style={{
+                  animation: isFetching ? "spin 1s linear infinite" : "none"
+                }}
+              />
+            </button>
+          </div>
+          {fetchError && (
+            <div style={{ color: "#ff7b72", fontSize: "0.75rem", marginTop: "6px" }}>
+              {fetchError}
+            </div>
+          )}
+        </Card>
         {feelingMode === "vibe" ? (
           <BaseVibe config={config} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
         ) : (
@@ -89,7 +216,7 @@ export const DrawTab: React.FC<DrawTabProps> = ({
             }
           }}
         />
-        
+
       </aside>
 
       {/* Main Workspace */}
@@ -127,6 +254,9 @@ export const DrawTab: React.FC<DrawTabProps> = ({
             })
           }
         />
+        <Card title={t('uiMode')}>
+          <FeelingToggler feelingMode={feelingMode} onChange={setFeelingMode} style={{ width: "100%" }} />
+        </Card>
         <CommunityRemix config={config} dispatch={dispatch} activeYear={state.activeYear} />
       </aside>
     </section>

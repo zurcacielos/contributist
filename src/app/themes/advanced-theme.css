@@ -6,9 +6,9 @@ body.theme-advanced {
   --surface-hover: #151515;
   --border: #1a1a1a;
   --greenbash: #086244;
-  --greenbash-selected: #24a148;
-  --level-3: #1b8a3e;
-  --level-4: #24a148;
+  --greenbash-selected: #39d353;
+  --level-3: #26a641;
+  --level-4: #39d353;
   background-color: var(--background);
   background-image: none;
 }

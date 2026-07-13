@@ -126,6 +126,8 @@
     "gitLabLegend": "Задачи, запросы на слияние, пуши и комментарии."
   },
   "Sidebar": {
+    "gitProfileTitle": "Профиль Git или URL",
+    "gitProfileTooltip": "Введите URL вашего профиля Git, GitHub, GitLab или Gitea, чтобы получить ваши контрибуции. Эта информация КЭШИРУЕТСЯ серверами и не обновляется мгновенно.",
     "uiMode": "Режим интерфейса",
     "vibes": "Vibes",
     "baseVibeTitle": "💖 Базовый Vibe",

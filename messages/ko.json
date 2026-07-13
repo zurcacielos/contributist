@@ -126,6 +126,8 @@
     "gitLabLegend": "이슈, 병합 요청, 푸시 및 의견."
   },
   "Sidebar": {
+    "gitProfileTitle": "Git 프로필 또는 URL",
+    "gitProfileTooltip": "기여 내역을 가져오려면 Git, GitHub, GitLab 또는 Gitea 프로필 URL을 입력하세요. 이 정보는 서버에 의해 캐시되며 즉시 업데이트되지 않습니다.",
     "uiMode": "화면 모드",
     "vibes": "감성",
     "baseVibeTitle": "💖 기본 감성",

@@ -126,6 +126,8 @@
     "gitLabLegend": "課題、マージリクエスト、プッシュ、コメント。"
   },
   "Sidebar": {
+    "gitProfileTitle": "GitプロファイルまたはURL",
+    "gitProfileTooltip": "コントリビューションを取得するには、Git、GitHub、GitLab、またはGiteaのプロファイルURLを入力してください。この情報はサーバーによってキャッシュされ、すぐには更新されません。",
     "uiMode": "UIモード",
     "vibes": "雰囲気",
     "baseVibeTitle": "💖 基礎雰囲気",

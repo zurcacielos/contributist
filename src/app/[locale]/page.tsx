@@ -6,7 +6,7 @@ export default function Home() {
     repoUrl: process.env.GIT_REPOSITORY_URL || "",
     startDate: process.env.START_DATE || "2014",
     endDate: process.env.END_DATE || "present",
-    frequencies: process.env.FREQUENCIES_DEFAULT || "30,50,45,35,53",
+    frequencies: process.env.FREQUENCIES_DEFAULT || "0",
     maxCommitsPerDay: 5,
     noWeekends: true,
     vacationsPerYear: "2",

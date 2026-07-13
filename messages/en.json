@@ -126,6 +126,8 @@
     "gitLabLegend": "Issues, merge requests, pushes, and comments."
   },
   "Sidebar": {
+    "gitProfileTitle": "Git Profile or URL",
+    "gitProfileTooltip": "Enter your git, GitHub, GitLab, Gitea profile URL to get your contributions. This info is CACHED by servers and it doesn't update immediately.",
     "uiMode": "UI mode",
     "vibes": "Vibes",
     "baseVibeTitle": "💖 Base vibe",
