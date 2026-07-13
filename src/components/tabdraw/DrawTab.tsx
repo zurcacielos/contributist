@@ -253,6 +253,12 @@ export const DrawTab: React.FC<DrawTabProps> = ({
               });
             }
           }}
+          onTogglePaintedInOrange={() =>
+            dispatch({
+              type: "SET_CONFIG",
+              payload: { ...config, showPaintedInOrange: !config.showPaintedInOrange }
+            })
+          }
         />
 
         <Card title={t('uiMode')}>

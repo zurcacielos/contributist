@@ -266,19 +266,6 @@ export function LayersPanel({
           );
         })}
       </div>
-
-      <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', marginTop: '12px' }}>
-        <input
-          type="checkbox"
-          id="show-art-synth"
-          checked={showPaintedInOrange}
-          onChange={e => { e.stopPropagation(); const newVal = e.target.checked; dispatch({ type: 'SET_CONFIG', payload: { ...state.config, showPaintedInOrange: newVal } }); }}
-          style={{ marginRight: '4px' }}
-        />
-        <SynthFont variation="pink-purple-cyan">
-          {t('showSynthArt')}
-        </SynthFont>
-      </label>
     </Card>
   );
 }

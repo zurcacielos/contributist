@@ -89,6 +89,7 @@ export const FeelingToggler: React.FC<FeelingTogglerProps> = ({ feelingMode, onC
           justifyContent: "center", // center horizontally
           fontSize: "0.80rem",
           fontWeight: "bold",
+          fontFamily: !isVibe ? "Consolas, Monaco, monospace" : "inherit",
           color: !isVibe ? "#ffffff" : "var(--text-muted)",
           cursor: "pointer",
           borderRadius: "999px",
@@ -101,7 +102,7 @@ export const FeelingToggler: React.FC<FeelingTogglerProps> = ({ feelingMode, onC
           gap: "4px"
         }}
       >
-        <span>Background</span>
+        <span>#!/bin/bash</span>
       </button>
     </div>
   );

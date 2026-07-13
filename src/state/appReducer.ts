@@ -527,6 +527,18 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         }
       }
 
+      // 3. Clear all backgrounds from all layers
+      nextLayers = nextLayers.map(l => {
+        if (l.type === 'background') {
+          return {
+            ...l,
+            cleared: true,
+            customFrequency: undefined
+          };
+        }
+        return l;
+      });
+
       return {
         ...state,
         config: {

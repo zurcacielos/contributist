@@ -222,45 +222,49 @@ export function TechnicalBackground({
 
       <hr style={{ border: "none", borderTop: "1px solid rgba(255,255,255,0.08)", margin: "14px 0 10px 0" }} />
 
-      <div style={{ display: "flex", alignItems: "center", gap: "8px", justifyContent: "space-between", marginBottom: "8px" }}>
-        <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontWeight: "bold" }}>Apply to:</span>
-        <div style={{ display: "flex", gap: "6px" }}>
-          <button
-            type="button"
-            onClick={handleApplySelected}
-            style={{
-              padding: "4px 10px",
-              fontSize: "0.75rem",
-              borderRadius: "6px",
-              background: "rgba(88, 166, 255, 0.1)",
-              border: "1px solid rgba(88, 166, 255, 0.3)",
-              color: "#58a6ff",
-              cursor: "pointer",
-              fontWeight: "bold",
-              transition: "all 0.2s ease"
-            }}
-          >
-            Selected
-          </button>
-          <button
-            type="button"
-            onClick={handleApplyAll}
-            style={{
-              padding: "4px 10px",
-              fontSize: "0.75rem",
-              borderRadius: "6px",
-              background: "rgba(56, 189, 248, 0.1)",
-              border: "1px solid rgba(56, 189, 248, 0.3)",
-              color: "#38bdf8",
-              cursor: "pointer",
-              fontWeight: "bold",
-              transition: "all 0.2s ease"
-            }}
-          >
-            All
-          </button>
-        </div>
-      </div>
+      {/* Make Selected Greener */}
+      <button
+        type="button"
+        onClick={handleApplySelected}
+        style={{
+          width: "100%",
+          padding: "6px 8px",
+          fontSize: "0.75rem",
+          borderRadius: "6px",
+          background: "rgba(57, 211, 83, 0.1)",
+          border: "1px solid rgba(57, 211, 83, 0.3)",
+          color: "#39d353",
+          cursor: "pointer",
+          fontWeight: "bold",
+          transition: "all 0.2s ease",
+          textAlign: "center",
+          marginBottom: "6px"
+        }}
+      >
+        Make Selected Greener
+      </button>
+
+      {/* Make All Greener */}
+      <button
+        type="button"
+        onClick={handleApplyAll}
+        style={{
+          width: "100%",
+          padding: "6px 8px",
+          fontSize: "0.75rem",
+          borderRadius: "6px",
+          background: "rgba(56, 189, 248, 0.1)",
+          border: "1px solid rgba(56, 189, 248, 0.3)",
+          color: "#38bdf8",
+          cursor: "pointer",
+          fontWeight: "bold",
+          transition: "all 0.2s ease",
+          textAlign: "center",
+          marginBottom: "12px"
+        }}
+      >
+        Make All Greener
+      </button>
 
       <div style={{ display: "flex", alignItems: "center", gap: "8px", justifyContent: "space-between" }}>
         <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontWeight: "bold", display: "flex", alignItems: "center", gap: "4px" }}>
