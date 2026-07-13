@@ -29,13 +29,40 @@ export function HelpTab() {
           fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
         }}
       >
-        {/* Welcome / Header */}
-        <section style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <h2 style={{ fontSize: "28px", display: "flex", alignItems: "center", gap: "10px", margin: 0, textTransform: "none", letterSpacing: "normal" }}>
-            <HelpCircle size={28} style={{ color: "var(--primary, #2ea043)" }} /> {t('whyTitle')}
+        {/* Section: How it works */}
+        <section style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          <h2 style={{ fontSize: "24px", display: "flex", alignItems: "center", gap: "10px", margin: 0, textTransform: "none", letterSpacing: "normal" }}>
+            <BookOpen size={24} style={{ color: "var(--greenbash, #086244)" }} /> {t('howItWorks')}
           </h2>
           <ul style={{
-            fontSize: "16px",
+            fontSize: "15px",
+            color: "var(--text-muted)",
+            lineHeight: 1.6,
+            margin: 0,
+            paddingLeft: "24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px"
+          }}>
+            <li>
+              {t('step1Text')}
+            </li>
+            <li>
+              {t('step2Prefix')}<SynthFont>{t('step2Synth')}</SynthFont>
+            </li>
+            <li>
+              {t('step3Text')}
+            </li>
+          </ul>
+        </section>
+
+        {/* Welcome / Header (Why Contributist) */}
+        <section style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <h3 style={{ fontSize: "18px", display: "flex", alignItems: "center", gap: "8px", margin: 0, textTransform: "none", letterSpacing: "normal" }}>
+            <HelpCircle size={18} style={{ color: "var(--primary, #2ea043)" }} /> {t('whyTitle')}
+          </h3>
+          <ul style={{
+            fontSize: "14px",
             color: "var(--text-muted)",
             lineHeight: 1.6,
             margin: 0,
@@ -50,24 +77,6 @@ export function HelpTab() {
             <li><SynthFont>{t('manifesto4')}</SynthFont></li>
           </ul>
         </section>
-
-        {/* Main Sections Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "20px" }}>
-          {/* Section: How it works */}
-          <div className="card help-card" style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "14px" }}>
-            <h3 style={{ fontSize: "18px", display: "flex", alignItems: "center", gap: "8px", margin: 0, borderBottom: "1px solid var(--border)", paddingBottom: "10px", textTransform: "none", letterSpacing: "normal" }}>
-              <BookOpen size={18} style={{ color: "var(--greenbash, #086244)" }} /> {t('howItWorks')}
-            </h3>
-            <ul style={{ paddingLeft: "20px", margin: 0, display: "flex", flexDirection: "column", gap: "10px", color: "var(--text-muted)", lineHeight: 1.5 }}>
-              <li>
-                {t('step1Prefix')}<SynthFont>{t('step1Synth')}</SynthFont>
-              </li>
-              <li>
-                {t('step2Text')}
-              </li>
-            </ul>
-          </div>
-        </div>
 
         {/* Section: Technology Stack */}
         <section style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "12px" }}>
