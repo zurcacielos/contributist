@@ -115,7 +115,7 @@
     "tooltipLevel": "{style} स्तर {level}",
     "commitsOnDate": "{date} को {count} कमिट",
     "noCommitsOnDate": "{date} को कोई कमिट नहीं",
-    "freqLabel": "आवृत्ति {percentage}%",
+    "freqLabel": "हरा {percentage}%",
     "totalContributionsInYear": "{year} में {count} योगदान",
     "contribSettings": "योगदान सेटिंग्स ▾",
     "learnCount": "जानें कि हम योगदानों की गणना कैसे करते हैं",

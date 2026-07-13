@@ -115,7 +115,7 @@
     "tooltipLevel": "{style} 等级 {level}",
     "commitsOnDate": "{date} 有 {count} 次提交",
     "noCommitsOnDate": "{date} 无提交",
-    "freqLabel": "频率 {percentage}%",
+    "freqLabel": "绿色 {percentage}%",
     "totalContributionsInYear": "{year} 年内贡献了 {count} 次",
     "contribSettings": "贡献设置 ▾",
     "learnCount": "了解我们如何统计贡献度",

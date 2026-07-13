@@ -115,7 +115,7 @@
     "tooltipLevel": "{style} レベル {level}",
     "commitsOnDate": "{date}に{count}コミット",
     "noCommitsOnDate": "{date}にコミットなし",
-    "freqLabel": "頻度 {percentage}%",
+    "freqLabel": "緑 {percentage}%",
     "totalContributionsInYear": "{year}年に{count}回コントリビュート",
     "contribSettings": "コントリビューション設定 ▾",
     "learnCount": "カウント方法について",

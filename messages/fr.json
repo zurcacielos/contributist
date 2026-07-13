@@ -115,7 +115,7 @@
     "tooltipLevel": "{style} Niveau {level}",
     "commitsOnDate": "{count} commits le {date}",
     "noCommitsOnDate": "Aucun commit le {date}",
-    "freqLabel": "Fréq. {percentage}%",
+    "freqLabel": "Vert {percentage}%",
     "totalContributionsInYear": "{count} contributions en {year}",
     "contribSettings": "Paramètres de contribution ▾",
     "learnCount": "Comment nous comptons les contributions",

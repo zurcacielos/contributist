@@ -115,7 +115,7 @@
     "tooltipLevel": "{style} 레벨 {level}",
     "commitsOnDate": "{date}에 {count}개 커밋",
     "noCommitsOnDate": "{date}에 커밋 없음",
-    "freqLabel": "빈도 {percentage}%",
+    "freqLabel": "초록 {percentage}%",
     "totalContributionsInYear": "{year}년에 {count}회 기여",
     "contribSettings": "기여도 설정 ▾",
     "learnCount": "기여도 집계 기준 알아보기",

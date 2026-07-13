@@ -115,7 +115,7 @@
     "tooltipLevel": "{style} Уровень {level}",
     "commitsOnDate": "{count} коммитов {date}",
     "noCommitsOnDate": "Нет коммитов {date}",
-    "freqLabel": "Част. {percentage}%",
+    "freqLabel": "Зел. {percentage}%",
     "totalContributionsInYear": "{count} вкладов в {year}",
     "contribSettings": "Настройки вкладов ▾",
     "learnCount": "Как учитываются вклады",

@@ -115,7 +115,7 @@ describe('Dashboard Integration UI', () => {
     // 1. Select 2025 and verify its base frequency
     const year2025Label = screen.getByText('2025', { selector: 'h2' });
     fireEvent.click(year2025Label);
-    await screen.findByText(/Freq.* 50%/);
+    await screen.findByText(/Green.* 50%/);
 
     const year2025Container = year2025Label.closest('article') as HTMLElement;
     const initial2025Cells = Array.from(year2025Container.querySelectorAll('.day')).map(c => c.getAttribute('data-level'));
@@ -125,7 +125,7 @@ describe('Dashboard Integration UI', () => {
     fireEvent.click(plusButton);
     
     // Verify that the custom frequency for 2025 is now 55%
-    await screen.findByText(/Freq.* 55%/);
+    await screen.findByText(/Green.* 55%/);
     
     // Snapshot the new generated data for 2025
     const custom2025Cells = Array.from(year2025Container.querySelectorAll('.day')).map(c => c.getAttribute('data-level'));
@@ -138,7 +138,7 @@ describe('Dashboard Integration UI', () => {
     fireEvent.change(freqInput, { target: { value: '100', name: 'frequencies' } });
     
     // Verify that the custom frequency for 2025 is STILL 55%
-    await screen.findByText(/Freq.* 55%/);
+    await screen.findByText(/Green.* 55%/);
     
     // Verify that the generated data for 2025 did NOT change at all
     const final2025Cells = Array.from(year2025Container.querySelectorAll('.day')).map(c => c.getAttribute('data-level'));
