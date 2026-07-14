@@ -2,9 +2,12 @@ import React from 'react';
 import { FeelingMode } from '@/types';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { FilePlus, FolderOpen, Save } from 'lucide-react';
+import * as Menubar from '@radix-ui/react-menubar';
+import { FilePlus, FolderOpen, Save, Share2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { LanguageSelector } from './LanguageSelector';
+
+import { AppState, AppAction } from '@/state/appReducer';
 
 interface TitlebarProps {
   mainTab: "draw" | "share" | "export" | "help";
@@ -14,20 +17,168 @@ interface TitlebarProps {
   onSave: () => void;
   onLoad: () => void;
   onReset: () => void;
+  state: AppState;
+  dispatch: React.Dispatch<AppAction>;
 }
 
-export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, onSave, onLoad, onReset }: TitlebarProps) {
+export function Titlebar({ 
+  mainTab, 
+  onTabSwitch, 
+  feelingMode, 
+  setFeelingMode, 
+  onSave, 
+  onLoad, 
+  onReset,
+  state,
+  dispatch
+}: TitlebarProps) {
   const t = useTranslations('Titlebar');
+  const tSidebar = useTranslations('Sidebar');
+
+  const deriveVibeConfig = (chaosVal: number, realismVal: number, currentConfig: any): any => {
+    let newFrequencies = currentConfig.frequencies;
+    if (chaosVal < 20) newFrequencies = "40";
+    else if (chaosVal < 50) newFrequencies = "30,50";
+    else if (chaosVal < 80) newFrequencies = "20,60,30,80";
+    else newFrequencies = "10,90,5,100,0,50";
+
+    const newMaxCommits = Math.max(1, Math.floor(50 - (realismVal * 0.45)));
+
+    return {
+      ...currentConfig,
+      chaos: chaosVal,
+      realism: realismVal,
+      frequencies: newFrequencies,
+      maxCommitsPerDay: newMaxCommits,
+      noWeekends: true,
+      vacationsPerYear: "2"
+    };
+  };
+
+  const handleApplySelected = () => {
+    const config = state.config;
+    const activeYear = state.activeYear;
+    if (!activeYear) return;
+
+    let nextConfig = { ...config };
+    if (feelingMode === "vibe") {
+      const chaosVal = config.chaos ?? 50;
+      const realismVal = config.realism ?? 100;
+      nextConfig = deriveVibeConfig(chaosVal, realismVal, config);
+    }
+
+    const nextLayers = (nextConfig.layers || []).map(l => {
+      if (l.type === 'background' && l.year === activeYear) {
+        return {
+          ...l,
+          cleared: false,
+          customFrequency: undefined
+        };
+      }
+      return l;
+    });
+
+    dispatch({
+      type: "SET_CONFIG",
+      payload: { ...nextConfig, layers: nextLayers }
+    });
+  };
+
+  const handleApplyAll = () => {
+    const config = state.config;
+    
+    let nextConfig = { ...config };
+    if (feelingMode === "vibe") {
+      const chaosVal = config.chaos ?? 50;
+      const realismVal = config.realism ?? 100;
+      nextConfig = deriveVibeConfig(chaosVal, realismVal, config);
+    }
+
+    const nextLayers = (nextConfig.layers || []).map(l => {
+      if (l.type === 'background') {
+        return {
+          ...l,
+          cleared: false,
+          customFrequency: undefined
+        };
+      }
+      return l;
+    });
+
+    dispatch({
+      type: "SET_CONFIG",
+      payload: { ...nextConfig, layers: nextLayers }
+    });
+  };
+
+  const handleClearSelected = () => {
+    const config = state.config;
+    const activeYear = state.activeYear;
+    if (!activeYear) return;
+
+    const nextLayers = (config.layers || []).map(l => {
+      if (l.type === 'background' && l.year === activeYear) {
+        return {
+          ...l,
+          cleared: true,
+          customFrequency: undefined
+        };
+      }
+      return l;
+    });
+
+    dispatch({
+      type: "SET_CONFIG",
+      payload: {
+        ...config,
+        layers: nextLayers
+      }
+    });
+  };
+
+  const handleClearAll = () => {
+    const config = state.config;
+
+    const nextLayers = (config.layers || []).map(l => {
+      if (l.type === 'background') {
+        return {
+          ...l,
+          cleared: true,
+          customFrequency: undefined
+        };
+      }
+      return l;
+    });
+
+    dispatch({
+      type: "SET_CONFIG",
+      payload: {
+        ...config,
+        layers: nextLayers
+      }
+    });
+  };
+
+  const tCalendar = useTranslations('Calendar');
+  const bgLayer = state.activeYear
+    ? (state.config.layers || []).find(l => l.type === 'background' && l.year === state.activeYear) as any
+    : undefined;
+  const isBgActive = bgLayer ? !bgLayer.cleared : false;
+
+  const isApplySelectedDisabled = mainTab !== 'draw' || !state.activeYear || isBgActive;
+  const isApplyAllDisabled = mainTab !== 'draw';
+  const isClearSelectedDisabled = mainTab !== 'draw' || !state.activeYear || !isBgActive;
+  const isClearAllDisabled = mainTab !== 'draw';
 
   return (
-    <header className="titlebar" style={{ position: 'sticky', top: 0, zIndex: 30, borderBottom: '1px solid var(--border)' }}>
+    <header className="titlebar" style={{ position: 'relative', top: 0, zIndex: 30, borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: '50px', padding: '8px 26px' }}>
       <div
         className="brand"
         onClick={() => onTabSwitch('draw')}
-        style={{ display: 'flex', alignItems: 'center', gap: '14px', cursor: 'pointer' }}
+        style={{ display: 'flex', alignItems: 'center', gap: '14px', cursor: 'pointer', flexShrink: 0 }}
       >
         <img src="/images/contributist-web.png" alt="Contributist logo" className="logo-img" />
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           <h1 style={{ margin: 0, fontSize: "18px", display: "flex", alignItems: "center", gap: "4px" }}>
             Contributist <span>⚡</span>
           </h1>
@@ -37,27 +188,112 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
         </div>
       </div>
 
-      <nav className="flow" aria-label="creation flow">
-        <button
-          className={`flow-step ${mainTab === 'help' ? 'active' : ''}`}
-          onClick={() => onTabSwitch('help')}
-          style={{
-            background: "#ffffff",
-            borderColor: "#d4af37",
-            borderStyle: "solid",
-            borderWidth: "1px",
-            backgroundImage: "linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            fontWeight: "bold",
-            boxShadow: mainTab === 'help' ? "0 0 12px rgba(212, 175, 55, 0.6)" : "none",
-            transition: "all 0.2s ease"
-          }}
-        >
-          {t('help')}
-        </button>
-        <i style={{ opacity: 0.5, fontSize: "18px" }}>|</i>
+      <div 
+        style={{ 
+          position: "absolute", 
+          left: "calc(25% + 22px)", 
+          top: "50%",
+          transform: "translate(-50%, -50%)", 
+          zIndex: 10 
+        }}
+      >
+        <Menubar.Root className="menubar-root">
+          <Menubar.Menu>
+            <Menubar.Trigger className="menubar-trigger">
+              {t('file')}
+            </Menubar.Trigger>
+            <Menubar.Portal>
+              <Menubar.Content 
+                className="menubar-content"
+                align="start"
+                sideOffset={5}
+                alignOffset={-3}
+              >
+                <Menubar.Item className="menubar-item" onSelect={onReset}>
+                  <FilePlus size={15} style={{ marginRight: 8 }} />
+                  New
+                </Menubar.Item>
+                <Menubar.Item className="menubar-item" onSelect={onLoad}>
+                  <FolderOpen size={15} style={{ marginRight: 8 }} />
+                  Open
+                </Menubar.Item>
+                <Menubar.Item className="menubar-item" onSelect={onSave}>
+                  <Save size={15} style={{ marginRight: 8 }} />
+                  Save
+                </Menubar.Item>
+                <Menubar.Separator 
+                  style={{ height: 1, backgroundColor: "rgba(255, 255, 255, 0.12)", margin: "4px 0" }} 
+                />
+                <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('share')}>
+                  <Share2 size={15} style={{ marginRight: 8 }} />
+                  {t('sharePngUrl')}
+                </Menubar.Item>
+              </Menubar.Content>
+            </Menubar.Portal>
+          </Menubar.Menu>
+
+          <Menubar.Menu>
+            <Menubar.Trigger className="menubar-trigger">
+              {t('background')}
+            </Menubar.Trigger>
+            <Menubar.Portal>
+              <Menubar.Content 
+                className="menubar-content"
+                align="start"
+                sideOffset={5}
+                alignOffset={-3}
+              >
+                <Menubar.Item 
+                  className="menubar-item" 
+                  disabled={isApplySelectedDisabled}
+                  onSelect={handleApplySelected}
+                >
+                  {tSidebar('makeSelectedGreener')}
+                </Menubar.Item>
+                <Menubar.Item 
+                  className="menubar-item" 
+                  disabled={isApplyAllDisabled}
+                  onSelect={handleApplyAll}
+                >
+                  {tSidebar('makeAllGreener')}
+                </Menubar.Item>
+                <Menubar.Separator 
+                  style={{ height: 1, backgroundColor: "rgba(255, 255, 255, 0.12)", margin: "4px 0" }} 
+                />
+                <Menubar.Item 
+                  className="menubar-item" 
+                  disabled={isClearSelectedDisabled}
+                  onSelect={handleClearSelected}
+                >
+                  {tCalendar('clearSelectedRightClick')}
+                </Menubar.Item>
+                <Menubar.Item 
+                  className="menubar-item" 
+                  disabled={isClearAllDisabled}
+                  onSelect={handleClearAll}
+                >
+                  {tCalendar('clearAllRightClick')}
+                </Menubar.Item>
+              </Menubar.Content>
+            </Menubar.Portal>
+          </Menubar.Menu>
+        </Menubar.Root>
+      </div>
+
+      <nav 
+        className="flow" 
+        aria-label="creation flow"
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          display: "flex",
+          alignItems: "center",
+          gap: "16px",
+          pointerEvents: "auto"
+        }}
+      >
         <button
           className={`flow-step ${mainTab === 'draw' ? 'active' : ''}`}
           onClick={() => onTabSwitch('draw')}
@@ -73,16 +309,13 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
         >
           <b style={mainTab === 'export' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>2</b> {t('push')}
         </button>
-        <i>→</i>
-        <button
-          className={`flow-step ${mainTab === 'share' ? 'active' : ''}`}
-          onClick={() => onTabSwitch('share')}
-          style={mainTab === 'share' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
-        >
-          <b style={mainTab === 'share' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>3</b> {t('share')}
-        </button>
       </nav>
-      <div className="top-icons" aria-label="quick actions">
+
+      <div 
+        className="top-icons" 
+        aria-label="quick actions"
+        style={{ display: 'flex', alignItems: 'center', gap: '12px', zIndex: 10 }}
+      >
         <LanguageSelector />
         <a 
           href="https://github.com/zurcacielos/contributist"
@@ -108,31 +341,29 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
           </svg>
         </a>
         
-        <DropdownMenu.Root modal={false}>
-          <DropdownMenu.Trigger asChild>
-            <button className="avatar" style={{ cursor: "pointer" }}>👾</button>
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Portal>
-            <DropdownMenu.Content 
-              className="dropdown-menu-content"
-              align="end"
-              sideOffset={5}
-            >
-              <DropdownMenu.Item className="dropdown-menu-item" onSelect={onReset}>
-                <FilePlus size={15} style={{ marginRight: 8 }} />
-                New
-              </DropdownMenu.Item>
-              <DropdownMenu.Item className="dropdown-menu-item" onSelect={onLoad}>
-                <FolderOpen size={15} style={{ marginRight: 8 }} />
-                Open
-              </DropdownMenu.Item>
-              <DropdownMenu.Item className="dropdown-menu-item" onSelect={onSave}>
-                <Save size={15} style={{ marginRight: 8 }} />
-                Save
-              </DropdownMenu.Item>
-            </DropdownMenu.Content>
-          </DropdownMenu.Portal>
-        </DropdownMenu.Root>
+        <button
+          className={`flow-step ${mainTab === 'help' ? 'active' : ''}`}
+          onClick={() => onTabSwitch('help')}
+          style={{
+            width: "auto",
+            height: "auto",
+            borderRadius: "999px",
+            padding: "6px 28px",
+            background: "#ffffff",
+            borderColor: "#d4af37",
+            borderStyle: "solid",
+            borderWidth: "1px",
+            backgroundImage: "linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            fontWeight: "bold",
+            boxShadow: mainTab === 'help' ? "0 0 12px rgba(212, 175, 55, 0.6)" : "none",
+            transition: "all 0.2s ease"
+          }}
+        >
+          {t('help')}
+        </button>
       </div>
     </header>
   );

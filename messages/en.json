@@ -3,7 +3,10 @@
     "help": "Help",
     "design": "Design",
     "push": "Push to GIT",
-    "share": "Share (optional)"
+    "share": "Share (optional)",
+    "file": "File",
+    "background": "Background",
+    "sharePngUrl": "Share PNG / Url"
   },
   "Help": {
     "whyTitle": "Why Contributist?",

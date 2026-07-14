@@ -3,7 +3,10 @@
     "help": "Помощь",
     "design": "Дизайн",
     "push": "Отправить в GIT",
-    "share": "Поделиться (опция)"
+    "share": "Поделиться (опция)",
+    "file": "Файл",
+    "background": "Фон",
+    "sharePngUrl": "Поделиться PNG / Url"
   },
   "Help": {
     "whyTitle": "Почему Contributist?",

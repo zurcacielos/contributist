@@ -3,7 +3,10 @@
     "help": "帮助",
     "design": "设计",
     "push": "推送到 GIT",
-    "share": "分享 (可选)"
+    "share": "分享 (可选)",
+    "file": "文件",
+    "background": "背景",
+    "sharePngUrl": "分享 PNG / Url"
   },
   "Help": {
     "whyTitle": "为什么选择 Contributist？",

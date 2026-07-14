@@ -3,7 +3,10 @@
     "help": "ヘルプ",
     "design": "デザイン",
     "push": "GITにプッシュ",
-    "share": "共有（オプション）"
+    "share": "共有（オプション）",
+    "file": "ファイル",
+    "background": "背景",
+    "sharePngUrl": "PNG / Urlを共有"
   },
   "Help": {
     "whyTitle": "なぜContributist？",

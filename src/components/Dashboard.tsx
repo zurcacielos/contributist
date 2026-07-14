@@ -165,6 +165,8 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
         onSave={handleSaveConfig}
         onLoad={() => fileInputRef.current?.click()}
         onReset={handleReset}
+        state={state}
+        dispatch={dispatch}
       />
 
       {mainTab === "draw" && (

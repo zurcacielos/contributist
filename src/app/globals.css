@@ -1590,3 +1590,78 @@ em {
 .language-dropdown::-webkit-scrollbar-thumb:hover {
   background: rgba(168, 85, 247, 0.8);
 }
+
+/* Glassmorphic Radix Menubar Styles */
+.menubar-root {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  padding: 0;
+  border-radius: 6px;
+}
+
+.menubar-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 16px;
+  outline: none;
+  user-select: none;
+  font-weight: 500;
+  font-size: 14px;
+  color: #c9d1d9;
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  transition: background 0.15s, color 0.15s;
+  box-sizing: border-box;
+}
+
+.menubar-trigger[data-state="open"],
+.menubar-trigger:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.menubar-content {
+  min-width: 180px;
+  background: rgba(15, 10, 25, 0.85);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  z-index: 9999;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.menubar-item {
+  font-size: 13px;
+  line-height: 1;
+  color: #c8cdef;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 8px;
+  position: relative;
+  user-select: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.menubar-item[data-highlighted] {
+  background: rgba(168, 85, 247, 0.2);
+  color: #fff;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+.menubar-item[data-disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}

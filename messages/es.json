@@ -3,7 +3,10 @@
     "help": "Ayuda",
     "design": "Diseño",
     "push": "Subir a GIT",
-    "share": "Compartir (opcional)"
+    "share": "Compartir (opcional)",
+    "file": "Archivo",
+    "background": "Fondo",
+    "sharePngUrl": "Compartir PNG / Url"
   },
   "Help": {
     "whyTitle": "¿Por qué Contributist?",

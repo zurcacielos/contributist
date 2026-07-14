@@ -3,7 +3,10 @@
     "help": "도움말",
     "design": "디자인",
     "push": "GIT에 푸시",
-    "share": "공유 (선택)"
+    "share": "공유 (선택)",
+    "file": "파일",
+    "background": "배경",
+    "sharePngUrl": "PNG / Url 공유"
   },
   "Help": {
     "whyTitle": "왜 Contributist인가요?",

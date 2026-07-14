@@ -3,7 +3,10 @@
     "help": "Aide",
     "design": "Design",
     "push": "Pousser vers GIT",
-    "share": "Partager (optionnel)"
+    "share": "Partager (optionnel)",
+    "file": "Fichier",
+    "background": "Arrière-plan",
+    "sharePngUrl": "Partager PNG / Url"
   },
   "Help": {
     "whyTitle": "Pourquoi Contributist ?",
