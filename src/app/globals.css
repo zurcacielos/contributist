@@ -1627,9 +1627,7 @@ em {
 
 .menubar-content {
   min-width: 180px;
-  background: rgba(15, 10, 25, 0.85);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background: #0f0a19;
   border: 1px solid rgba(168, 85, 247, 0.25);
   border-radius: 8px;
   padding: 5px;
