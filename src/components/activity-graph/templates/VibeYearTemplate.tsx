@@ -451,6 +451,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
             handleCellMouseEnter={handleCellMouseEnter}
             setHoveredDay={setHoveredDay}
             preview={preview}
+            config={state.config}
           />
           <div style={{
             paddingLeft: "0px",

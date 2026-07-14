@@ -38,6 +38,9 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return action.payload;
     case "RESET_TO_INITIAL": {
       const nextConfig = initializeAndMigrateConfig(action.payload, {});
+      nextConfig.repoUrl = state.config.repoUrl;
+      nextConfig.gitName = state.config.gitName;
+      nextConfig.gitEmail = state.config.gitEmail;
       
       const startYear = parseYear(nextConfig.startDate);
       const endYear = parseYear(nextConfig.endDate);
@@ -49,7 +52,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       for (let y = minYear; y <= maxYear; y++) {
         if (!updatedLayers.some(l => l.type === 'background' && l.year === y)) {
           const gitProfileIdx = updatedLayers.findIndex(l => l.type === 'git-profile' && l.year === y);
-          const newBg = { id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y } as BackgroundLayer;
+          const newBg = { id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y, cleared: true } as BackgroundLayer;
           if (gitProfileIdx !== -1) {
             updatedLayers.splice(gitProfileIdx + 1, 0, newBg);
           } else {
@@ -100,7 +103,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       for (let y = minYear; y <= maxYear; y++) {
         if (!updatedLayers.some(l => l.type === 'background' && l.year === y)) {
           const gitProfileIdx = updatedLayers.findIndex(l => l.type === 'git-profile' && l.year === y);
-          const newBg = { id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y } as BackgroundLayer;
+          const newBg = { id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y, cleared: true } as BackgroundLayer;
           if (gitProfileIdx !== -1) {
             updatedLayers.splice(gitProfileIdx + 1, 0, newBg);
           } else {
@@ -164,7 +167,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       for (let y = minYear; y <= maxYear; y++) {
         if (!updatedLayers.some(l => l.type === 'background' && l.year === y)) {
           const gitProfileIdx = updatedLayers.findIndex(l => l.type === 'git-profile' && l.year === y);
-          const newBg = { id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y } as BackgroundLayer;
+          const newBg = { id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y, cleared: true } as BackgroundLayer;
           if (gitProfileIdx !== -1) {
             updatedLayers.splice(gitProfileIdx + 1, 0, newBg);
           } else {

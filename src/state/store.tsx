@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useRef } from "react";
 import { createStore, useStore } from "zustand";
-import { redux } from "zustand/middleware";
+import { devtools, redux } from "zustand/middleware";
 import { appReducer, AppState, AppAction } from "./appReducer";
 
 export type AppStoreState = AppState & {
@@ -10,7 +10,7 @@ export type AppStoreState = AppState & {
 // Create a function to instantiate a new store
 export const createAppStore = (initialState: AppState) => {
   return createStore<AppStoreState>(
-    redux(appReducer, initialState) as any
+    devtools(redux(appReducer, initialState) as any, { name: "ContributistStore" })
   );
 };
 

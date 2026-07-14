@@ -77,6 +77,7 @@ export const ContributionGrid: React.FC<ContributionGridProps> = ({
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (preview) return;
+    if (e.button !== 0) return; // Only draw/paint on left-clicks
     dispatch({ type: "SET_ACTIVE_YEAR", payload: year });
     const cellInfo = getCellFromCoords(e.clientX, e.clientY, e.target);
     if (cellInfo && cellInfo.day.level !== -1) {

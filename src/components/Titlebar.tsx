@@ -108,7 +108,7 @@ export function Titlebar({ mainTab, onTabSwitch, feelingMode, setFeelingMode, on
           </svg>
         </a>
         
-        <DropdownMenu.Root>
+        <DropdownMenu.Root modal={false}>
           <DropdownMenu.Trigger asChild>
             <button className="avatar" style={{ cursor: "pointer" }}>👾</button>
           </DropdownMenu.Trigger>

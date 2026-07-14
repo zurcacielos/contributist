@@ -119,6 +119,7 @@ export const SimpleGitYearTemplate: React.FC<SimpleGitYearTemplateProps> = ({
               handleCellMouseEnter={handleCellMouseEnter}
               setHoveredDay={setHoveredDay}
               preview={preview}
+              config={state.config}
             />
           </div>
         </div>

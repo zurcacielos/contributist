@@ -376,7 +376,7 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
 
               if (isDev) {
                 return (
-                  <ContextMenu.Root key={scene.id}>
+                  <ContextMenu.Root key={scene.id} modal={false}>
                     <ContextMenu.Trigger asChild>
                       {cardElement}
                     </ContextMenu.Trigger>

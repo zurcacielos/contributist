@@ -17,7 +17,8 @@ body.theme-advanced .active-year h2 {
   color: var(--greenbash-selected);
 }
 
-body.theme-advanced .layers h2 {
+body.theme-advanced .layers h2,
+body.theme-advanced .base-vibe h2 {
   color: var(--greenbash-selected);
 }
 
