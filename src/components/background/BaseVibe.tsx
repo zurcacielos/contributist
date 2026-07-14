@@ -5,6 +5,8 @@ import { GeneratorConfig } from "@/types";
 import { Card } from "@/components/Card";
 import { useTranslations } from "next-intl";
 
+import { applyBackgroundSelected, applyBackgroundAll } from "@/utils/backgroundActions";
+
 interface BaseVibeProps {
   config: GeneratorConfig;
   activeYear?: number;
@@ -55,33 +57,11 @@ export function BaseVibe({ config, activeYear, onChange }: BaseVibeProps) {
 
   const handleApplySelected = () => {
     if (!activeYear) return;
-    const nextLayers = (config.layers || []).map(l => {
-      if (l.type === 'background' && l.year === activeYear) {
-        return {
-          ...l,
-          cleared: false,
-          customFrequency: undefined
-        };
-      }
-      return l;
-    });
-    const derived = deriveVibeConfig(chaos, realism, config);
-    onChange({ ...derived, layers: nextLayers });
+    applyBackgroundSelected(config, activeYear, "vibe", undefined, onChange);
   };
 
   const handleApplyAll = () => {
-    const nextLayers = (config.layers || []).map(l => {
-      if (l.type === 'background') {
-        return {
-          ...l,
-          cleared: false,
-          customFrequency: undefined
-        };
-      }
-      return l;
-    });
-    const derived = deriveVibeConfig(chaos, realism, config);
-    onChange({ ...derived, layers: nextLayers });
+    applyBackgroundAll(config, "vibe", undefined, onChange);
   };
 
   const isConfigModified = () => {

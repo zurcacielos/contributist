@@ -6,6 +6,8 @@ import { GeneratorConfig } from "@/types";
 import { Card } from "@/components/Card";
 import { useTranslations } from "next-intl";
 
+import { applyBackgroundSelected, applyBackgroundAll } from "@/utils/backgroundActions";
+
 interface TechnicalBackgroundProps {
   config: GeneratorConfig;
   activeYear?: number;
@@ -37,31 +39,11 @@ export function TechnicalBackground({
 
   const handleApplySelected = () => {
     if (!activeYear) return;
-    const nextLayers = (config.layers || []).map(l => {
-      if (l.type === 'background' && l.year === activeYear) {
-        return {
-          ...l,
-          cleared: false,
-          customFrequency: undefined
-        };
-      }
-      return l;
-    });
-    onChange({ ...config, layers: nextLayers });
+    applyBackgroundSelected(config, activeYear, "advanced", undefined, onChange);
   };
 
   const handleApplyAll = () => {
-    const nextLayers = (config.layers || []).map(l => {
-      if (l.type === 'background') {
-        return {
-          ...l,
-          cleared: false,
-          customFrequency: undefined
-        };
-      }
-      return l;
-    });
-    onChange({ ...config, layers: nextLayers });
+    applyBackgroundAll(config, "advanced", undefined, onChange);
   };
 
 

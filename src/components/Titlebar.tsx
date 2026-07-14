@@ -9,6 +9,8 @@ import { LanguageSelector } from './LanguageSelector';
 
 import { AppState, AppAction } from '@/state/appReducer';
 
+import { applyBackgroundSelected, applyBackgroundAll } from '@/utils/backgroundActions';
+
 interface TitlebarProps {
   mainTab: "draw" | "share" | "export" | "help";
   onTabSwitch: (tab: "draw" | "share" | "export" | "help") => void;
@@ -35,80 +37,12 @@ export function Titlebar({
   const t = useTranslations('Titlebar');
   const tSidebar = useTranslations('Sidebar');
 
-  const deriveVibeConfig = (chaosVal: number, realismVal: number, currentConfig: any): any => {
-    let newFrequencies = currentConfig.frequencies;
-    if (chaosVal < 20) newFrequencies = "40";
-    else if (chaosVal < 50) newFrequencies = "30,50";
-    else if (chaosVal < 80) newFrequencies = "20,60,30,80";
-    else newFrequencies = "10,90,5,100,0,50";
-
-    const newMaxCommits = Math.max(1, Math.floor(50 - (realismVal * 0.45)));
-
-    return {
-      ...currentConfig,
-      chaos: chaosVal,
-      realism: realismVal,
-      frequencies: newFrequencies,
-      maxCommitsPerDay: newMaxCommits,
-      noWeekends: true,
-      vacationsPerYear: "2"
-    };
-  };
-
   const handleApplySelected = () => {
-    const config = state.config;
-    const activeYear = state.activeYear;
-    if (!activeYear) return;
-
-    let nextConfig = { ...config };
-    if (feelingMode === "vibe") {
-      const chaosVal = config.chaos ?? 50;
-      const realismVal = config.realism ?? 100;
-      nextConfig = deriveVibeConfig(chaosVal, realismVal, config);
-    }
-
-    const nextLayers = (nextConfig.layers || []).map(l => {
-      if (l.type === 'background' && l.year === activeYear) {
-        return {
-          ...l,
-          cleared: false,
-          customFrequency: undefined
-        };
-      }
-      return l;
-    });
-
-    dispatch({
-      type: "SET_CONFIG",
-      payload: { ...nextConfig, layers: nextLayers }
-    });
+    applyBackgroundSelected(state.config, state.activeYear, feelingMode, dispatch);
   };
 
   const handleApplyAll = () => {
-    const config = state.config;
-    
-    let nextConfig = { ...config };
-    if (feelingMode === "vibe") {
-      const chaosVal = config.chaos ?? 50;
-      const realismVal = config.realism ?? 100;
-      nextConfig = deriveVibeConfig(chaosVal, realismVal, config);
-    }
-
-    const nextLayers = (nextConfig.layers || []).map(l => {
-      if (l.type === 'background') {
-        return {
-          ...l,
-          cleared: false,
-          customFrequency: undefined
-        };
-      }
-      return l;
-    });
-
-    dispatch({
-      type: "SET_CONFIG",
-      payload: { ...nextConfig, layers: nextLayers }
-    });
+    applyBackgroundAll(state.config, feelingMode, dispatch);
   };
 
   const handleClearSelected = () => {

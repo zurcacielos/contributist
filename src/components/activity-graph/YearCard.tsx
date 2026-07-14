@@ -6,6 +6,7 @@ import { FlatGitYearTemplate } from "./templates/FlatGitYearTemplate";
 import { VibeYearTemplate } from "./templates/VibeYearTemplate";
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import { useTranslations } from "next-intl";
+import { applyBackgroundSelected, applyBackgroundAll } from "@/utils/backgroundActions";
 
 interface Day {
   date: string;
@@ -63,30 +64,7 @@ export const YearCard: React.FC<YearCardProps> = ({
   const isBgActive = bgLayer ? !bgLayer.cleared : false;
 
   const handleMakeGreener = () => {
-    let nextFrequencies = config.frequencies;
-    if (!nextFrequencies || nextFrequencies === "0" || nextFrequencies.split(",").every(v => parseFloat(v.trim()) === 0)) {
-      nextFrequencies = "30,50,45,35,53";
-    }
-
-    const nextLayers = (config.layers || []).map(l => {
-      if (l.type === 'background' && l.year === year) {
-        return {
-          ...l,
-          cleared: false,
-          customFrequency: undefined
-        };
-      }
-      return l;
-    });
-
-    dispatch({
-      type: "SET_CONFIG",
-      payload: {
-        ...config,
-        frequencies: nextFrequencies,
-        layers: nextLayers
-      }
-    });
+    applyBackgroundSelected(config, year, feelingMode || "vibe", dispatch);
   };
 
   const handleClearGreener = () => {
@@ -111,30 +89,7 @@ export const YearCard: React.FC<YearCardProps> = ({
   };
 
   const handleMakeAllGreener = () => {
-    let nextFrequencies = config.frequencies;
-    if (!nextFrequencies || nextFrequencies === "0" || nextFrequencies.split(",").every(v => parseFloat(v.trim()) === 0)) {
-      nextFrequencies = "30,50,45,35,53";
-    }
-
-    const nextLayers = (config.layers || []).map(l => {
-      if (l.type === 'background') {
-        return {
-          ...l,
-          cleared: false,
-          customFrequency: undefined
-        };
-      }
-      return l;
-    });
-
-    dispatch({
-      type: "SET_CONFIG",
-      payload: {
-        ...config,
-        frequencies: nextFrequencies,
-        layers: nextLayers
-      }
-    });
+    applyBackgroundAll(config, feelingMode || "vibe", dispatch);
   };
 
   const handleClearAllGreener = () => {
