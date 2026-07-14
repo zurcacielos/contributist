@@ -190,5 +190,10 @@
     "cancel": "取消",
     "discard": "放弃更改",
     "save": "保存"
+  },
+  "Metadata": {
+    "title": "Contributist | GitHub 贡献图生成与绘制工具",
+    "description": "Contributist 是一个交互式可视化工具，用于在您的 GitHub 贡献图上绘制自定义像素艺术。轻松生成和自定义您的 Git 提交历史网格。",
+    "keywords": "github 贡献图生成器, github 绿墙生成器, 绘制 github 提交, 绿墙生成工具"
   }
 }

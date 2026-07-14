@@ -190,5 +190,10 @@
     "cancel": "Cancelar",
     "discard": "Descartar",
     "save": "Salvar"
+  },
+  "Metadata": {
+    "title": "Contributist | Gerador e Pintor do Gráfico de Contribuições do GitHub",
+    "description": "Contributist é uma ferramenta visual interativa para pintar pixel art personalizado no seu gráfico de contribuição do GitHub. Gere e personalize seu histórico de commits do git facilmente.",
+    "keywords": "gerador de contribuicoes github, pintar grafico github, customizar commits git, contributist portugues"
   }
 }

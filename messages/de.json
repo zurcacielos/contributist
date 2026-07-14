@@ -190,5 +190,10 @@
     "cancel": "Abbrechen",
     "discard": "Verwerfen",
     "save": "Speichern"
+  },
+  "Metadata": {
+    "title": "Contributist | GitHub Beitragsdiagramm-Generator & Zeichner",
+    "description": "Contributist is ein interaktives visuelles Tool zum Zeichnen von benutzerdefiniertem Pixel-Art in Ihrem GitHub-Beitragsdiagramm. Generieren und passen Sie Ihr Git-Commit-Verlauf-Raster einfach an.",
+    "keywords": "github beitragsdiagramm generator, github commit zeichner, contributist deutsch, git beitrag erstellen"
   }
 }

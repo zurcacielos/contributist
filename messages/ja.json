@@ -190,5 +190,10 @@
     "cancel": "キャンセル",
     "discard": "破棄",
     "save": "保存"
+  },
+  "Metadata": {
+    "title": "Contributist | GitHub コントリビューショングラフ生成・描画ツール",
+    "description": "Contributistは、GitHubのコントリビューショングラフにカスタムピクセルアートを描画するためのインタラクティブなビジュアルツールです。Gitコミット履歴のグリッドを簡単に作成およびカスタマイズできます。",
+    "keywords": "github 芝生 生成器, github コントリビューション グラフ, コミット 描画 ツール, 芝生 アート"
   }
 }

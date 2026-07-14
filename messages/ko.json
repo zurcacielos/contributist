@@ -190,5 +190,10 @@
     "cancel": "취소",
     "discard": "저장하지 않음",
     "save": "저장"
+  },
+  "Metadata": {
+    "title": "Contributist | GitHub 잔디 그래프 생성기 및 그리기 도구",
+    "description": "Contributist는 GitHub 기여도 그래프에 맞춤형 픽셀 아트를 그릴 수 있는 대화형 시각 도구입니다. Git 커밋 이력 그리드를 쉽게 생성하고 커스텀해 보세요.",
+    "keywords": "깃허브 잔디 생성기, 깃허브 기여도 그래프, 깃허브 커밋 그리기, 잔디 심기 도구"
   }
 }

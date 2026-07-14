@@ -190,5 +190,10 @@
     "cancel": "Cancel",
     "discard": "Discard",
     "save": "Save"
+  },
+  "Metadata": {
+    "title": "Contributist | GitHub Contribution Graph Generator & Painter",
+    "description": "Contributist is an interactive visual tool to paint custom pixel art on your GitHub contribution graph. Generate and customize your git commit history grid easily.",
+    "keywords": "github contribution generator, github contribution graph, github contribution painter, contributist, git green grass generator, github profile customizer, commit painter"
   }
 }
