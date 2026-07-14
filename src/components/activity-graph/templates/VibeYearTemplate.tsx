@@ -165,7 +165,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
         {/* Center: Both toolbars centered */}
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', flex: isActive ? "0 0 auto" : "1 1 0%" }}>
           {!isActive && isHovered && (
-            <span style={{ color: "var(--text-muted, #8b949e)", fontSize: "13px", fontStyle: "italic", opacity: 0.7, whiteSpace: "nowrap" }}>
+            <span style={{ color: "var(--greenbash-selected, #39d353)", fontSize: "13px", fontStyle: "italic", whiteSpace: "nowrap" }}>
               {t('clickSelect')}
             </span>
           )}
