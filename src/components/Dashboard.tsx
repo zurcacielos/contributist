@@ -179,6 +179,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
           graphRef={graphRef}
           setIsEditing={setIsEditing}
           onReset={handleReset}
+          initialConfig={initialConfig}
         />
       )}
 

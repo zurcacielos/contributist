@@ -28,6 +28,7 @@ interface DrawTabProps {
   graphRef: React.RefObject<ActivityGraphRef | null>;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
   onReset: () => void;
+  initialConfig: GeneratorConfig;
 }
 
 export const DrawTab: React.FC<DrawTabProps> = ({
@@ -41,6 +42,7 @@ export const DrawTab: React.FC<DrawTabProps> = ({
   graphRef,
   setIsEditing,
   onReset,
+  initialConfig,
 }) => {
   const t = useTranslations('Sidebar');
   const [profileInput, setProfileInput] = useState(config.gitProfileUrl || "");
@@ -61,6 +63,12 @@ export const DrawTab: React.FC<DrawTabProps> = ({
     if (platform === "github") {
       console.log(`https://github.com/users/${username}/contributions`);
     }
+
+    // Reset workspace (clear all layers of all years) before importing
+    dispatch({
+      type: "RESET_TO_INITIAL",
+      payload: initialConfig
+    });
 
     // Immediately dispatch action to create the placeholder "Git Profile" layers in the state
     dispatch({
