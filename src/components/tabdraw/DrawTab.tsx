@@ -16,6 +16,7 @@ import { FeelingToggler } from "@/components/FeelingToggler";
 import { useTranslations } from "next-intl";
 import { Info, RefreshCw } from "lucide-react";
 import { parseProfileUrl } from "@/git-contributions/GithubContributionsReader/urlParser";
+import { SynthFont } from "@/components/SynthFont";
 
 interface DrawTabProps {
   config: GeneratorConfig;
@@ -131,7 +132,9 @@ export const DrawTab: React.FC<DrawTabProps> = ({
       >
         <Card title={
           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <span>{t('gitProfileTitle')}</span>
+            <SynthFont style={{ textTransform: "none" }}>
+              {t('gitProfileTitle')}
+            </SynthFont>
             <span
               className="info-icon"
               data-tooltip-id="info-tooltip"
