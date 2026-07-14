@@ -5,7 +5,6 @@ import { Tooltip } from "react-tooltip";
 import { GeneratorConfig } from "@/types";
 import { Card } from "@/components/Card";
 import { useTranslations } from "next-intl";
-import { Trash2 } from "lucide-react";
 
 interface TechnicalBackgroundProps {
   config: GeneratorConfig;
@@ -65,34 +64,7 @@ export function TechnicalBackground({
     onChange({ ...config, layers: nextLayers });
   };
 
-  const handleDeleteSelected = () => {
-    if (!activeYear) return;
-    const nextLayers = (config.layers || []).map(l => {
-      if (l.type === 'background' && l.year === activeYear) {
-        return {
-          ...l,
-          cleared: true,
-          customFrequency: undefined
-        };
-      }
-      return l;
-    });
-    onChange({ ...config, layers: nextLayers });
-  };
 
-  const handleDeleteAll = () => {
-    const nextLayers = (config.layers || []).map(l => {
-      if (l.type === 'background') {
-        return {
-          ...l,
-          cleared: true,
-          customFrequency: undefined
-        };
-      }
-      return l;
-    });
-    onChange({ ...config, layers: nextLayers });
-  };
 
   const InfoIcon = ({ text }: { text: string }) => (
     <span
@@ -259,58 +231,10 @@ export function TechnicalBackground({
           cursor: "pointer",
           fontWeight: "bold",
           transition: "all 0.2s ease",
-          textAlign: "center",
-          marginBottom: "12px"
-        }}
-      >
-        {t('makeAllGreener')}
-      </button>
-
-      {/* Clear Selected */}
-      <button
-        type="button"
-        onClick={handleDeleteSelected}
-        style={{
-          width: "100%",
-          padding: "6px 8px",
-          fontSize: "0.75rem",
-          borderRadius: "6px",
-          background: "rgba(248, 81, 73, 0.1)",
-          border: "1px solid rgba(248, 81, 73, 0.3)",
-          color: "#f85149",
-          cursor: "pointer",
-          fontWeight: "bold",
-          transition: "all 0.2s ease",
-          textAlign: "center",
-          marginBottom: "6px"
-        }}
-      >
-        <span style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
-          <Trash2 size={12} /> {t('clearSelected')}
-        </span>
-      </button>
-
-      {/* Clear All */}
-      <button
-        type="button"
-        onClick={handleDeleteAll}
-        style={{
-          width: "100%",
-          padding: "6px 8px",
-          fontSize: "0.75rem",
-          borderRadius: "6px",
-          background: "rgba(248, 81, 73, 0.15)",
-          border: "1px solid rgba(248, 81, 73, 0.4)",
-          color: "#f85149",
-          cursor: "pointer",
-          fontWeight: "bold",
-          transition: "all 0.2s ease",
           textAlign: "center"
         }}
       >
-        <span style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
-          <Trash2 size={12} /> {t('clearAll')}
-        </span>
+        {t('makeAllGreener')}
       </button>
     </Card>
   );
