@@ -110,7 +110,6 @@ export const FlatGitYearTemplate: React.FC<FlatGitYearTemplateProps> = ({
               setHoveredDay={setHoveredDay}
               preview={preview}
               isFlatGit={true} // Triggers GitLab "M", "W", "F" labels
-              config={state.config}
             />
           </div>
         </div>

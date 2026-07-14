@@ -10,7 +10,7 @@ export type AppStoreState = AppState & {
 // Create a function to instantiate a new store
 export const createAppStore = (initialState: AppState) => {
   return createStore<AppStoreState>(
-    devtools(redux(appReducer, initialState) as any, { name: "ContributistStore" })
+    devtools(redux(appReducer, initialState) as any, { name: "ContributistStore" }) as any
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { AppState, AppAction } from "@/state/appReducer";
-import { FeelingMode } from "@/types";
+import { FeelingMode, BackgroundLayer, RasterLayer } from "@/types";
 import { SimpleGitYearTemplate } from "./templates/SimpleGitYearTemplate";
 import { FlatGitYearTemplate } from "./templates/FlatGitYearTemplate";
 import { VibeYearTemplate } from "./templates/VibeYearTemplate";
@@ -59,7 +59,7 @@ export const YearCard: React.FC<YearCardProps> = ({
     : state.activeYear === year;
 
   const config = state.config;
-  const bgLayer = (config.layers || []).find(l => l.type === 'background' && l.year === year);
+  const bgLayer = (config.layers || []).find(l => l.type === 'background' && l.year === year) as BackgroundLayer | undefined;
   const isBgActive = bgLayer ? !bgLayer.cleared : false;
 
   const handleMakeGreener = () => {
@@ -198,7 +198,7 @@ export const YearCard: React.FC<YearCardProps> = ({
     });
   };
 
-  const rasterLayer = (config.layers || []).find(l => l.type === 'raster' && l.year === year);
+  const rasterLayer = (config.layers || []).find(l => l.type === 'raster' && l.year === year) as RasterLayer | undefined;
   const isRasterEmpty = rasterLayer ? Object.keys(rasterLayer.data || {}).length === 0 : true;
 
   const t = useTranslations('Calendar');
@@ -284,7 +284,7 @@ export const YearCard: React.FC<YearCardProps> = ({
         </div>
       </ContextMenu.Trigger>
       <ContextMenu.Portal>
-        <ContextMenu.Content className="context-menu-content" onOpenAutoFocus={(e) => e.preventDefault()}>
+        <ContextMenu.Content className="context-menu-content">
           {/* Green Background Section */}
           <ContextMenu.Label 
             style={{ 
