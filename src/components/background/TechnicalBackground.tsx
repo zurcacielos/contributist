@@ -79,6 +79,7 @@ export function TechnicalBackground({
       title={t('technicalTitle')}
       className="base-vibe"
       collapsible={true}
+      defaultExpanded={false}
       extraHeaderActions={<></>}
     >
       <div style={{ display: "flex", gap: "10px", margin: "10px 0", alignItems: "center" }}>

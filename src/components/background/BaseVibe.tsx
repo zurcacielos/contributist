@@ -7,10 +7,11 @@ import { useTranslations } from "next-intl";
 
 interface BaseVibeProps {
   config: GeneratorConfig;
+  activeYear?: number;
   onChange: (config: GeneratorConfig) => void;
 }
 
-export function BaseVibe({ config, onChange }: BaseVibeProps) {
+export function BaseVibe({ config, activeYear, onChange }: BaseVibeProps) {
   const t = useTranslations('Sidebar');
   const chaos = config.chaos ?? 50;
   const realism = config.realism ?? 100;
@@ -52,9 +53,35 @@ export function BaseVibe({ config, onChange }: BaseVibeProps) {
     onChange(derived);
   };
 
-  const handleApply = () => {
+  const handleApplySelected = () => {
+    if (!activeYear) return;
+    const nextLayers = (config.layers || []).map(l => {
+      if (l.type === 'background' && l.year === activeYear) {
+        return {
+          ...l,
+          cleared: false,
+          customFrequency: undefined
+        };
+      }
+      return l;
+    });
     const derived = deriveVibeConfig(chaos, realism, config);
-    onChange(derived);
+    onChange({ ...derived, layers: nextLayers });
+  };
+
+  const handleApplyAll = () => {
+    const nextLayers = (config.layers || []).map(l => {
+      if (l.type === 'background') {
+        return {
+          ...l,
+          cleared: false,
+          customFrequency: undefined
+        };
+      }
+      return l;
+    });
+    const derived = deriveVibeConfig(chaos, realism, config);
+    onChange({ ...derived, layers: nextLayers });
   };
 
   const isConfigModified = () => {
@@ -114,6 +141,7 @@ export function BaseVibe({ config, onChange }: BaseVibeProps) {
       title={t('baseVibeTitle')}
       className="base-vibe"
       collapsible={true}
+      defaultExpanded={false}
       extraHeaderActions={
         isConfigModified() && (
           <button
@@ -181,32 +209,49 @@ export function BaseVibe({ config, onChange }: BaseVibeProps) {
         <b>{realism}%</b>
       </div>
 
+      <hr style={{ border: "none", borderTop: "1px solid rgba(255,255,255,0.08)", margin: "14px 0 10px 0" }} />
+
+      {/* Add to Selected */}
       <button
         type="button"
-        onClick={handleApply}
+        onClick={handleApplySelected}
         style={{
           width: "100%",
-          backgroundColor: "rgba(168, 85, 247, 0.12)",
-          border: "1px solid rgba(168, 85, 247, 0.4)",
-          color: "#c084fc",
-          padding: "8px 12px",
-          borderRadius: "8px",
-          fontWeight: "bold",
-          fontSize: "0.85rem",
+          padding: "6px 8px",
+          fontSize: "0.75rem",
+          borderRadius: "6px",
+          background: "rgba(57, 211, 83, 0.1)",
+          border: "1px solid rgba(57, 211, 83, 0.3)",
+          color: "#39d353",
           cursor: "pointer",
-          marginTop: "12px",
-          transition: "all 0.2s ease"
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(168, 85, 247, 0.22)";
-          e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.6)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(168, 85, 247, 0.12)";
-          e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.4)";
+          fontWeight: "bold",
+          transition: "all 0.2s ease",
+          textAlign: "center",
+          marginBottom: "6px"
         }}
       >
-        {t('apply')}
+        {t('makeSelectedGreener')}
+      </button>
+
+      {/* Add to All */}
+      <button
+        type="button"
+        onClick={handleApplyAll}
+        style={{
+          width: "100%",
+          padding: "6px 8px",
+          fontSize: "0.75rem",
+          borderRadius: "6px",
+          background: "rgba(56, 189, 248, 0.1)",
+          border: "1px solid rgba(56, 189, 248, 0.3)",
+          color: "#38bdf8",
+          cursor: "pointer",
+          fontWeight: "bold",
+          transition: "all 0.2s ease",
+          textAlign: "center"
+        }}
+      >
+        {t('makeAllGreener')}
       </button>
     </Card>
   );

@@ -208,7 +208,7 @@ export const DrawTab: React.FC<DrawTabProps> = ({
           )}
         </Card>
         {feelingMode === "vibe" ? (
-          <BaseVibe config={config} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
+          <BaseVibe config={config} activeYear={state.activeYear} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
         ) : (
           <TechnicalBackground config={config} activeYear={state.activeYear} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
         )}
