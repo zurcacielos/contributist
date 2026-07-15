@@ -9,6 +9,7 @@ interface CardProps {
   className?: string;
   style?: React.CSSProperties;
   children: React.ReactNode;
+  textTransformTitle?: React.CSSProperties["textTransform"];
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -18,7 +19,8 @@ export const Card: React.FC<CardProps> = ({
   extraHeaderActions,
   className = "",
   style,
-  children
+  children,
+  textTransformTitle
 }) => {
   const t = useTranslations('Sidebar');
   const [expanded, setExpanded] = useState(defaultExpanded);
@@ -43,7 +45,7 @@ export const Card: React.FC<CardProps> = ({
           userSelect: "none"
         }}
       >
-        <h2>{title}</h2>
+        <h2 style={textTransformTitle ? { textTransform: textTransformTitle } : undefined}>{title}</h2>
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }} onClick={(e) => e.stopPropagation()}>
           {extraHeaderActions}
           {collapsible && (

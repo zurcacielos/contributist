@@ -63,6 +63,7 @@ export function TechnicalBackground({
       collapsible={true}
       defaultExpanded={false}
       extraHeaderActions={<></>}
+      textTransformTitle="none"
     >
       <div style={{ display: "flex", gap: "10px", margin: "10px 0", alignItems: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1 }}>
