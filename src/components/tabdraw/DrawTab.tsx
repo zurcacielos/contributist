@@ -9,13 +9,10 @@ import { LayersPanel } from "@/components/LayersPanel";
 import { GeneratorConfig } from "@/types";
 import { AppState, AppAction } from "@/state/appReducer";
 
-import { Card } from "@/components/Card";
-import { ColorSelector } from "@/components/ColorSelector";
-
-import { useTranslations } from "next-intl";
-import { Info, RefreshCw } from "lucide-react";
-import { parseProfileUrl } from "@/git-contributions/GithubContributionsReader/urlParser";
+import { GitProfileLoader } from "@/components/GitProfileLoader";
 import { GreenFont } from "@/components/GreenFont";
+import { ColorSelector } from "@/components/ColorSelector";
+import { useTranslations } from "next-intl";
 
 interface DrawTabProps {
   config: GeneratorConfig;
@@ -43,62 +40,6 @@ export const DrawTab: React.FC<DrawTabProps> = ({
   initialConfig,
 }) => {
   const t = useTranslations('Sidebar');
-  const [isFetching, setIsFetching] = useState(false);
-  const [fetchError, setFetchError] = useState<string | null>(null);
-
-  const handleFetchContributions = async () => {
-    const importUrl = (config.gitProfileOrURL_import || "").trim();
-    if (!importUrl) return;
-    setIsFetching(true);
-    setFetchError(null);
-
-    const { platform, username } = parseProfileUrl(importUrl);
-
-    if (platform === "github") {
-      console.log(`https://github.com/users/${username}/contributions`);
-    }
-
-    // Reset workspace (clear all layers of all years) before importing
-    dispatch({
-      type: "RESET_TO_INITIAL",
-      payload: initialConfig
-    });
-
-    // Immediately dispatch action to create the placeholder "Git Profile" layers in the state
-    dispatch({
-      type: "START_FETCH_PROFILE",
-      payload: { username, platform }
-    });
-
-    try {
-      const response = await fetch("/api/contributions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ profileUrl: importUrl }),
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to fetch contributions");
-      }
-      
-      const fetchedContributions = data.contributions as Record<string, number>;
-      const dates = Object.keys(fetchedContributions);
-      if (dates.length > 0) {
-        dispatch({
-          type: "FETCH_PROFILE_SUCCESS",
-          payload: {
-            contributions: fetchedContributions,
-            platform: data.platform || platform,
-            username: data.username || username
-          }
-        });
-      }
-    } catch (err: any) {
-      setFetchError(err.message || "Failed to load contributions");
-    } finally {
-      setIsFetching(false);
-    }
-  };
 
   const handleClearProfileLayers = () => {
     dispatch({
@@ -133,95 +74,14 @@ export const DrawTab: React.FC<DrawTabProps> = ({
           gap: "14px"
         }}
       >
-        <Card title={
-          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <GreenFont variation="green-bright" style={{ textTransform: "none" }}>
-              {t('gitProfileTitle')}
-            </GreenFont>
-            <span
-              className="info-icon"
-              data-tooltip-id="info-tooltip"
-              data-tooltip-content={t('gitProfileTooltip')}
-              style={{ cursor: "pointer" }}
-            >
-              i
-            </span>
-          </div>
-        }>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <input
-              type="text"
-              placeholder="e.g. torvalds"
-              value={config.gitProfileOrURL_import || ""}
-              onChange={(e) => {
-                dispatch({
-                  type: 'SET_CONFIG',
-                  payload: {
-                    ...config,
-                    gitProfileOrURL_import: e.target.value
-                  }
-                });
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleFetchContributions();
-                }
-              }}
-              style={{
-                flex: 1,
-                padding: "8px 10px",
-                borderRadius: "6px",
-                border: "1px solid var(--border)",
-                backgroundColor: "rgba(255, 255, 255, 0.05)",
-                color: "var(--text-main)",
-                fontSize: "0.85rem",
-                outline: "none"
-              }}
-            />
-            <button
-              onClick={handleFetchContributions}
-              disabled={isFetching}
-              title="Fetch contributions"
-              style={{
-                padding: "8px",
-                borderRadius: "6px",
-                border: "1px solid var(--border)",
-                backgroundColor: "rgba(255, 255, 255, 0.05)",
-                color: "var(--text-main)",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                transition: "all 0.2s"
-              }}
-              onMouseEnter={(e) => {
-                if (!isFetching) e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
-              }}
-            >
-              <RefreshCw
-                size={16}
-                style={{
-                  animation: isFetching ? "spin 1s linear infinite" : "none"
-                }}
-              />
-            </button>
-          </div>
-          {fetchError && (
-            <div style={{ color: "#ff7b72", fontSize: "0.75rem", marginTop: "6px" }}>
-              {fetchError}
-            </div>
-          )}
-        </Card>
+
         <TechnicalBackground config={config} activeYear={state.activeYear} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
 
       </aside>
 
       {/* Main Workspace */}
       <section className="workspace">
-
+        <GitProfileLoader config={config} dispatch={dispatch} initialConfig={initialConfig} />
         <ActivityGraph ref={graphRef} state={state} dispatch={dispatch} onEditChange={setIsEditing} />
       </section>
 
