@@ -1663,3 +1663,56 @@ em {
   cursor: not-allowed;
   pointer-events: none;
 }
+
+/* GitHub Fork & Remix Button styling */
+.github-fork-remix-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #d9d8ff !important;
+  padding: 0 16px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  background: rgba(255, 255, 255, .05);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none !important;
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.github-fork-remix-btn:hover {
+  background: rgba(255, 255, 255, .12);
+  border-color: rgba(255, 255, 255, .3);
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 12px rgba(155, 92, 255, 0.25);
+  text-decoration: none !important;
+}
+
+.github-fork-remix-btn:active {
+  transform: translateY(0);
+}
+
+.github-fork-remix-btn svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.github-fork-remix-btn:hover svg {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .github-text {
+    display: none;
+  }
+  .github-fork-remix-btn {
+    padding: 0;
+    width: 42px;
+  }
+}

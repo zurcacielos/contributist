@@ -53,6 +53,9 @@ export function HelpTab() {
             <li>
               {t('step3Text')}
             </li>
+            <li>
+              {t('step4Text')}
+            </li>
           </ul>
         </section>
 
@@ -71,9 +74,9 @@ export function HelpTab() {
             flexDirection: "column",
             gap: "8px"
           }}>
+            <li>{t('manifesto3')}</li>
             <li>{t('manifesto1')}</li>
             <li><SynthFont>{t('manifesto2')}</SynthFont></li>
-            <li>{t('manifesto3')}</li>
             <li><SynthFont>{t('manifesto4')}</SynthFont></li>
           </ul>
         </section>
