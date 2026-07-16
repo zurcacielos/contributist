@@ -27,8 +27,8 @@ interface VibeYearTemplateProps {
   hoveredDay: { date: string; count: number } | null;
   setHoveredDay: (val: { date: string; count: number } | null) => void;
   draggedLayerId: string | null;
-  handleCellMouseDown: (dateStr: string, wIdx: number, dIdx: number, layerId?: string) => void;
-  handleCellMouseEnter: (dateStr: string, wIdx: number, dIdx: number) => void;
+  handleCellMouseDown: (dateStr: string, wIdx: number, dIdx: number, layerId?: string, isCopy?: boolean) => void;
+  handleCellMouseEnter: (dateStr: string, wIdx: number, dIdx: number, targetYear?: number) => void;
   formatDate: (dateStr: string) => string;
 
   preview?: boolean;

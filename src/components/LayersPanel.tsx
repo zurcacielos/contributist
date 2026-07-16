@@ -31,6 +31,18 @@ export function LayersPanel({
 }: LayersPanelProps) {
   const t = useTranslations('Sidebar');
   const [draggedId, setDraggedId] = React.useState<string | null>(null);
+  const [contextMenu, setContextMenu] = React.useState<{ x: number; y: number; layerId: string } | null>(null);
+
+  const handleFlipLayer = (id: string) => {
+    const newLayers = allLayers.map(l => {
+      if (l.id === id && l.type === 'meme') {
+        const meme = l as MemeLayer;
+        return { ...meme, flipped: !meme.flipped };
+      }
+      return l;
+    });
+    dispatch({ type: 'SET_CONFIG', payload: { ...state.config, layers: newLayers } });
+  };
 
   const allLayers = state.config.layers || [];
   const layers = allLayers.filter(l => l.year === state.activeYear);
@@ -145,6 +157,11 @@ export function LayersPanel({
               }}
               onDragEnd={() => setDraggedId(null)}
               onClick={() => dispatch({ type: 'SET_ACTIVE_LAYER', payload: layer.id })}
+              onContextMenu={e => {
+                if (layer.type !== 'meme') return;
+                e.preventDefault();
+                setContextMenu({ x: e.clientX, y: e.clientY, layerId: layer.id });
+              }}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -268,6 +285,65 @@ export function LayersPanel({
           );
         })}
       </div>
+      {contextMenu && (
+        <>
+          <div
+            onClick={() => setContextMenu(null)}
+            onContextMenu={(e) => { e.preventDefault(); setContextMenu(null); }}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              zIndex: 9999,
+              background: "transparent"
+            }}
+          />
+          <div
+            style={{
+              position: "fixed",
+              top: contextMenu.y,
+              left: contextMenu.x,
+              zIndex: 10000,
+              background: "rgba(10, 10, 15, 0.95)",
+              border: "1px solid var(--border)",
+              borderRadius: "6px",
+              padding: "4px 0",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.5)",
+              fontFamily: "var(--font-mono, monospace)",
+              fontSize: "0.75rem"
+            }}
+          >
+            <button
+              onClick={() => {
+                handleFlipLayer(contextMenu.layerId);
+                setContextMenu(null);
+              }}
+              style={{
+                width: "100%",
+                textAlign: "left",
+                padding: "6px 12px",
+                background: "transparent",
+                border: "none",
+                color: "var(--text-main)",
+                cursor: "pointer",
+                transition: "background 0.2s"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.15)";
+                e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.color = "var(--text-main)";
+              }}
+            >
+              {t('flipHorizontally')}
+            </button>
+          </div>
+        </>
+      )}
     </Card>
   );
 }

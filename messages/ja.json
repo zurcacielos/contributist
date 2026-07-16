@@ -14,7 +14,7 @@
   },
   "Help": {
     "whyTitle": "なぜContributist？",
-    "manifesto1": "Contributistは、開発者のためのgit/GitHub/GitLab/Gitea/Bitbucket/SourceHutのコントリビューショングラフエディタです。",
+    "manifesto1": "GitHub、GitLab、Giteaのコントリビューションを同期し、相互にインポート/エクスポートし、その場でリミックスしてさらに楽しむことができます。",
     "manifesto2": "草グラフを取り戻そう！コントリビューションを再び偉大に！個人の自由を行使しよう！",
     "manifesto3": "Contributistを使用すると、企業デベロッパーなどが、パブリックリポジトリ以外で行われたコミット履歴も維持できます。",
     "manifesto4": "コントリビューショングラフは、デベロッパーだけでなく、社会全体にとってより有益なものへと進化すべきであると私は信じています。",
@@ -159,6 +159,7 @@
     "loading": "コミュニティシーンを読み込み中...",
     "loadingProfile": "読み込み中...",
     "load": "ロード",
+    "flipHorizontally": "左右反転",
     "noScenes": "public/templates/scenes/ 内にコミュニティシーンが見つかりません",
     "publish": "📤 公開（JSONをダウンロード）",
     "saveInto": "💾 現在のデザインをここに保存",

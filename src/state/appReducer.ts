@@ -24,7 +24,8 @@ export type AppAction =
   | { type: "ADD_TEXT_LAYER"; payload: { id: string; text: string; fontName: string; level: number } }
   | { type: "UPDATE_TEXT_LAYER_NAME"; payload: { layerId: string; name: string } }
   | { type: "UPDATE_LAYER_COLOR"; payload: { level: number } }
-  | { type: "MOVE_LAYER"; payload: { layerId: string; x: number; y: number } }
+  | { type: "MOVE_LAYER"; payload: { layerId: string; x: number; y: number; year?: number } }
+  | { type: "CLONE_LAYER"; payload: { originalLayerId: string; newLayerId: string } }
   | { type: "PAINT_CELL"; payload: { dateStr: string } }
   | { type: "ERASE_CELL"; payload: { dateStr: string } }
   | { type: "REORDER_LAYERS"; payload: { draggedId: string; dropId: string } }
@@ -336,15 +337,39 @@ export function appReducer(state: AppState, action: AppAction): AppState {
     }
 
     case "MOVE_LAYER": {
-      const { layerId, x, y } = action.payload;
+      const { layerId, x, y, year } = action.payload;
       const newLayers = (state.config.layers || []).map(l => {
         if (l.id === layerId && l.type === 'meme') {
           if (l.locked) return l;
-          return { ...l, x, y };
+          const updatedLayer = { ...l, x, y };
+          if (year !== undefined) {
+            updatedLayer.year = year;
+          }
+          return updatedLayer;
         }
         return l;
       });
       return { ...state, config: { ...state.config, layers: newLayers, basedOnTemplate: undefined } };
+    }
+
+    case "CLONE_LAYER": {
+      const { originalLayerId, newLayerId } = action.payload;
+      const original = (state.config.layers || []).find(l => l.id === originalLayerId);
+      if (!original) return state;
+      
+      const clone = JSON.parse(JSON.stringify(original));
+      clone.id = newLayerId;
+      clone.locked = false;
+      
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          layers: [...(state.config.layers || []), clone],
+          activeLayerId: newLayerId,
+          basedOnTemplate: undefined
+        }
+      };
     }
 
         case "PAINT_CELL": {

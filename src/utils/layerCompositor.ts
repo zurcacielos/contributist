@@ -39,7 +39,7 @@ export function compositeLayers(layers: Layer[] = [], baseYear: number, ignoreVi
         const row = template[r];
         if (typeof row !== "string") continue;
         for (let c = 0; c < row.length; c++) {
-          const char = row[c];
+          const char = meme.flipped ? row[row.length - 1 - c] : row[c];
           if (char !== ' ') {
             const rowIdx = r + meme.y;
             if (rowIdx < 0 || rowIdx > 6) continue;

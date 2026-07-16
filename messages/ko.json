@@ -14,7 +14,7 @@
   },
   "Help": {
     "whyTitle": "왜 Contributist인가요?",
-    "manifesto1": "Contributist는 개발자를 위한 git/GitHub/GitLab/Gitea/Bitbucket/SourceHut 기여도 그래프(잔디) 에디터입니다.",
+    "manifesto1": "GitHub, GitLab 및 Gitea 기여를 동기화하고, 서로 가져오고 내보내며, 즉석에서 리믹스하여 더욱 재미있게 즐겨보세요.",
     "manifesto2": "당신의 기여도 그래프를 되찾으세요! 기여도를 다시 위대하게! 개인의 자유를 행하세요!",
     "manifesto3": "Contributist를 통해 기업 개발자 등은 퍼블릭 저장소에 포함되지 않은 기여 내역도 손쉽게 기록으로 남길 수 있습니다.",
     "manifesto4": "두 세기 동안 정체되어 있던 기여도 그래프가 이제는 개발자뿐만 아니라 사회 전체에 더 유용한 방향으로 발전해야 한다고 믿습니다.",
@@ -159,6 +159,7 @@
     "loading": "커뮤니티 장면 불러오는 중...",
     "loadingProfile": "불러오는 중...",
     "load": "불러오기",
+    "flipHorizontally": "좌우 뒤집기",
     "noScenes": "public/templates/scenes/ 경로에서 커뮤니티 장면을 찾을 수 없습니다",
     "publish": "📤 게시 (JSON 다운로드)",
     "saveInto": "💾 현재 디자인을 여기에 저장",

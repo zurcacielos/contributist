@@ -14,7 +14,7 @@
   },
   "Help": {
     "whyTitle": "Pourquoi Contributist ?",
-    "manifesto1": "Contributist est un éditeur de graphes de contribution git/GitHub/GitLab/Gitea/Bitbucket/SourceHut pour les développeurs.",
+    "manifesto1": "Synchronisez vos contributions GitHub, GitLab et Gitea, en les important et exportant les unes des autres et en les remixant à la volée pour plus de plaisir.",
     "manifesto2": "Récupérez votre graphique de contributions ! Rendez les contributions formidables à nouveau ! Exercez votre liberté individuelle !",
     "manifesto3": "Contributist permet aux développeurs en entreprise et autres de garder une trace des contributions qui ne sont pas toujours versées dans des dépôts publics.",
     "manifesto4": "Je pense que les graphes de contribution doivent évoluer, après deux décennies sans changement, vers quelque chose de plus utile pour toute la société, pas seulement les devs.",
@@ -159,6 +159,7 @@
     "loading": "Chargement des scènes de la communauté...",
     "loadingProfile": "Chargement...",
     "load": "Charger",
+    "flipHorizontally": "Retourner horizontalement",
     "noScenes": "Aucune scène de la communauté trouvée dans public/templates/scenes/",
     "publish": "📤 Publier (Télécharger JSON)",
     "saveInto": "💾 Sauvegarder le design actuel ici",

@@ -33,6 +33,7 @@ export interface MemeLayer extends BaseLayer {
   templateData?: string[]; // Used for dynamically generated templates (like text)
   x: number; // week column (0-52)
   y: number; // day row (0-6)
+  flipped?: boolean;
   textConfig?: {
     text: string;
     fontName: string;

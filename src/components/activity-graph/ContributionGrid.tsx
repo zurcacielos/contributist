@@ -17,8 +17,8 @@ interface ContributionGridProps {
   draggedLayerId: string | null;
   showPaintedInOrange?: boolean;
   dispatch: React.Dispatch<any>;
-  handleCellMouseDown: (dateStr: string, wIdx: number, dIdx: number, layerId?: string) => void;
-  handleCellMouseEnter: (dateStr: string, wIdx: number, dIdx: number) => void;
+  handleCellMouseDown: (dateStr: string, wIdx: number, dIdx: number, layerId?: string, isCopy?: boolean) => void;
+  handleCellMouseEnter: (dateStr: string, wIdx: number, dIdx: number, targetYear?: number) => void;
   setHoveredDay: (val: { date: string; count: number } | null) => void;
   preview?: boolean;
   isFlatGit?: boolean;
@@ -81,7 +81,7 @@ export const ContributionGrid: React.FC<ContributionGridProps> = ({
     dispatch({ type: "SET_ACTIVE_YEAR", payload: year });
     const cellInfo = getCellFromCoords(e.clientX, e.clientY, e.target);
     if (cellInfo && cellInfo.day.level !== -1) {
-      handleCellMouseDown(cellInfo.day.date, cellInfo.col, cellInfo.row, cellInfo.day.layerId);
+      handleCellMouseDown(cellInfo.day.date, cellInfo.col, cellInfo.row, cellInfo.day.layerId, e.ctrlKey || e.altKey || e.metaKey);
       e.preventDefault();
     }
   };
@@ -95,7 +95,7 @@ export const ContributionGrid: React.FC<ContributionGridProps> = ({
       if (day.level !== -1) {
         if (lastHoveredIdxRef.current !== idx) {
           lastHoveredIdxRef.current = idx;
-          handleCellMouseEnter(day.date, col, row);
+          handleCellMouseEnter(day.date, col, row, year);
           setHoveredDay({ date: day.date, count: day.count });
         }
         return;

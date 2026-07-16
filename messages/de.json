@@ -14,7 +14,7 @@
   },
   "Help": {
     "whyTitle": "Warum Contributist?",
-    "manifesto1": "Contributist ist ein Editor für git/GitHub/GitLab/Gitea/Bitbucket/SourceHut Beitragsdiagramme für Entwickler.",
+    "manifesto1": "Synchronisieren Sie Ihre GitHub-, GitLab- und Gitea-Beiträge, importieren und exportieren Sie sie untereinander und mischen Sie sie im Handumdrehen für zusätzlichen Spaß.",
     "manifesto2": "Holen Sie sich Ihr Beitragsdiagramm zurück! Machen Sie Beiträge wieder großartig! Nutzen Sie Ihre individuelle Freiheit!",
     "manifesto3": "Mit Contributist können Entwickler in Unternehmen und andere den Überblick über Beiträge behalten, die nicht in öffentliche Repositories fließen.",
     "manifesto4": "Ich bin der Meinung, dass Beitragsdiagramme sich nach zwei Jahrzehnten Stillstand zu etwas Nützlicherem für die gesamte Gesellschaft entwickeln müssen, nicht nur für Entwickler.",
@@ -159,6 +159,7 @@
     "loading": "Community-Szenen werden geladen...",
     "loadingProfile": "Laden...",
     "load": "Laden",
+    "flipHorizontally": "Horizontal spiegeln",
     "noScenes": "Keine Community-Szenen in public/templates/scenes/ gefunden",
     "publish": "📤 Veröffentlichen (JSON herunterladen)",
     "saveInto": "💾 Aktuelles Design hier speichern",

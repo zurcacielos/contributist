@@ -14,7 +14,7 @@
   },
   "Help": {
     "whyTitle": "为什么选择 Contributist？",
-    "manifesto1": "Contributist 是一款面向开发者的 git/GitHub/GitLab/Gitea/Bitbucket/SourceHut 提交图编辑器。",
+    "manifesto1": "同步您的 GitHub、GitLab 和 Gitea 贡献，相互导入/导出，并即时混音以获得额外乐趣。",
     "manifesto2": "收回你的提交图！让提交图再次伟大！行使 your 个人自由！",
     "manifesto3": "Contributist 允许企业开发者和其他人追踪那些不总是提交到公共仓库 of 贡献。",
     "manifesto4": "我相信，在经历了二十年一成不变之后，提交图需要进化成对全社会（不仅仅是开发者）都更有用的东西。",
@@ -159,6 +159,7 @@
     "loading": "正在加载社区场景...",
     "loadingProfile": "加载中...",
     "load": "加载",
+    "flipHorizontally": "水平翻转",
     "noScenes": "在 public/templates/scenes/ 中未找到社区场景",
     "publish": "📤 发布 (下载 JSON)",
     "saveInto": "💾 将当前设计保存至此",

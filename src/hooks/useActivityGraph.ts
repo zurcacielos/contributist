@@ -69,7 +69,7 @@ export function useActivityGraph({ state, dispatch, onEditChange }: UseActivityG
     }
   };
 
-  const handleCellMouseDown = (dateStr: string, wIdx: number, dIdx: number, layerId?: string) => {
+  const handleCellMouseDown = (dateStr: string, wIdx: number, dIdx: number, layerId?: string, isCopy?: boolean) => {
     if (activeTool === "pen" || activeTool === "eraser") {
       setIsDragging(true);
       handlePaint(dateStr);
@@ -81,17 +81,27 @@ export function useActivityGraph({ state, dispatch, onEditChange }: UseActivityG
       const layer = currentLayers.find(l => l.id === layerId);
       if (layer && layer.locked) return;
 
-      dispatch({ type: 'SET_ACTIVE_LAYER', payload: layerId });
+      let targetLayerId = layerId;
+      if (layer && layer.type === 'meme' && isCopy) {
+        const newLayerId = `meme-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+        dispatch({
+          type: "CLONE_LAYER",
+          payload: { originalLayerId: layerId, newLayerId }
+        });
+        targetLayerId = newLayerId;
+      } else {
+        dispatch({ type: 'SET_ACTIVE_LAYER', payload: layerId });
+      }
 
       if (layer && layer.type === 'meme') {
         setIsDragging(true);
-        setDraggedLayerId(layerId);
+        setDraggedLayerId(targetLayerId);
         setDragStartPos({ wIdx, dIdx, startX: layer.x, startY: layer.y });
       }
     }
   };
 
-  const handleCellMouseEnter = (dateStr: string, wIdx: number, dIdx: number) => {
+  const handleCellMouseEnter = (dateStr: string, wIdx: number, dIdx: number, targetYear?: number) => {
     if (isDragging && (activeTool === "pen" || activeTool === "eraser")) {
       handlePaint(dateStr);
     } else if (isDragging && draggedLayerId && dragStartPos && activeTool === "move") {
@@ -104,7 +114,8 @@ export function useActivityGraph({ state, dispatch, onEditChange }: UseActivityG
         payload: {
           layerId: draggedLayerId,
           x: dragStartPos.startX + deltaX,
-          y: newY
+          y: newY,
+          year: targetYear
         }
       });
     }
