@@ -46,7 +46,6 @@ export const DrawTab: React.FC<DrawTabProps> = ({
     try {
       const shareUrl = await generateShareUrl(state, "draw");
       navigator.clipboard.writeText(shareUrl);
-      alert("Link copied to clipboard!");
     } catch (e) {
       console.error("Failed to generate share URL", e);
     }

@@ -47,7 +47,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
 
       const loadedKey = designParam ? `design-loaded-${designParam.slice(-20)}` : "";
       const profileParam = params.get("profile") || hashParams.get("profile");
-      const bgParam = params.get("bg") || hashParams.get("bg");
+      const bgonParam = params.get("bgon") || hashParams.get("bgon");
 
       if (designParam && !sessionStorage.getItem(loadedKey)) {
         try {
@@ -62,7 +62,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
         return;
       } else if (profileParam) {
         try {
-          const bgYears = bgParam ? expandRangesToYears(bgParam) : [];
+          const bgYears = bgonParam ? expandRangesToYears(bgonParam) : [];
           const initialLayers: Layer[] = bgYears.map(y => ({
             id: `bg-${y}`,
             name: `Background`,

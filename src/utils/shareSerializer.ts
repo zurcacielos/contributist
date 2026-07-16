@@ -307,7 +307,7 @@ export async function generateShareUrl(state: AppState, tab: string): Promise<st
     params.set("tab", tab);
     params.set("profile", profile);
     if (bgRange) {
-      params.set("bg", bgRange);
+      params.set("bgon", bgRange);
     }
     return `${window.location.origin}${window.location.pathname}?${params.toString()}`;
   } else {

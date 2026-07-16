@@ -54,7 +54,9 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       for (let y = minYear; y <= maxYear; y++) {
         if (!updatedLayers.some(l => l.type === 'background' && l.year === y)) {
           const gitProfileIdx = updatedLayers.findIndex(l => l.type === 'git-profile' && l.year === y);
-          const newBg = { id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y, cleared: true } as BackgroundLayer;
+          const incomingBg = (action.payload.layers || []).find(l => l.type === 'background' && l.year === y) as BackgroundLayer | undefined;
+          const cleared = incomingBg !== undefined ? incomingBg.cleared : true;
+          const newBg = { id: `bg-${y}`, name: `Background`, type: 'background', visible: true, year: y, cleared } as BackgroundLayer;
           if (gitProfileIdx !== -1) {
             updatedLayers.splice(gitProfileIdx + 1, 0, newBg);
           } else {
@@ -528,7 +530,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       nextLayers = nextLayers.map(l => {
         if (l.type === 'background') {
           const existingLayer = (state.config.layers || []).find(oldL => oldL.id === l.id);
-          const wasActive = existingLayer && existingLayer.type === 'background' && !existingLayer.cleared;
+          const wasActive = existingLayer && existingLayer.type === 'background' && existingLayer.cleared === false;
           return {
             ...l,
             cleared: wasActive ? false : true,

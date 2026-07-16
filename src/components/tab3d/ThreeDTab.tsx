@@ -101,22 +101,32 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
 
   // Automatically select only non-empty years on load (max 4, skipping empty ones)
   React.useEffect(() => {
-    if (generatedData.length > 0 && !hasInitializedSelected) {
+    if (generatedData.length > 0) {
       const nonReemptyYears = generatedData
         .filter((yData) => yData.days.some((d) => d.level > 0))
         .map((yData) => yData.year);
 
-      if (nonReemptyYears.length === 0) {
-        // Fallback: select the first available year (most recent) if all are empty
-        setSelectedYears(availableYears.length > 0 ? [availableYears[0]] : []);
-      } else {
-        // Sort descending (most recent first) and select maximum of 4 years
-        const sortedNonEmpty = [...nonReemptyYears].sort((a, b) => b - a);
-        setSelectedYears(sortedNonEmpty.slice(0, 4));
+      // We re-initialize selection if:
+      // 1. We haven't initialized yet OR
+      // 2. We previously selected empty years/fallback but now we have fetched data with actual commits
+      const isPreviouslyEmpty = selectedYears.length === 0 || !selectedYears.some(y => {
+        const yData = generatedData.find(d => d.year === y);
+        return yData ? yData.days.some(d => d.level > 0) : false;
+      });
+
+      if (!hasInitializedSelected || (isPreviouslyEmpty && nonReemptyYears.length > 0)) {
+        if (nonReemptyYears.length === 0) {
+          // Fallback: select up to 4 of the most recent available years
+          setSelectedYears(availableYears.slice(0, 4));
+        } else {
+          // Sort descending (most recent first) and select maximum of 4 years with commits
+          const sortedNonEmpty = [...nonReemptyYears].sort((a, b) => b - a);
+          setSelectedYears(sortedNonEmpty.slice(0, 4));
+        }
+        setHasInitializedSelected(true);
       }
-      setHasInitializedSelected(true);
     }
-  }, [generatedData, availableYears, hasInitializedSelected]);
+  }, [generatedData, availableYears, hasInitializedSelected, selectedYears]);
 
   // 4. Map active years grid to StlPillars
   const pillars = useMemo(() => {
@@ -215,7 +225,6 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
     try {
       const shareUrl = await generateShareUrl(state, "3d");
       navigator.clipboard.writeText(shareUrl);
-      alert(t('copiedAlert'));
     } catch (e) {
       console.error("Failed to generate share URL", e);
     }

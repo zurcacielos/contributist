@@ -42,7 +42,6 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
   const handleCopyLink = async () => {
     const shareUrl = await generateShareUrl(state, "share");
     navigator.clipboard.writeText(shareUrl);
-    alert(t('copiedAlert'));
   };
 
   const activeStyle = localStyle;

@@ -203,7 +203,7 @@ describe("shareSerializer", () => {
         }
       };
       const url = await generateShareUrl(pureState, "share");
-      expect(url).toContain("?tab=share&profile=torvalds&bg=2025");
+      expect(url).toContain("?tab=share&profile=torvalds&bgon=2025");
     });
   });
 });

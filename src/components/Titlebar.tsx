@@ -48,7 +48,6 @@ export function Titlebar({
       const targetTab = mainTab === '3d' ? '3d' : 'draw';
       const shareUrl = await generateShareUrl(state, targetTab);
       navigator.clipboard.writeText(shareUrl);
-      alert(t('copiedAlert'));
     } catch (e) {
       console.error("Failed to generate share URL", e);
     }
