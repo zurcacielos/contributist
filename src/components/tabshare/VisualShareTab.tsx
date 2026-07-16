@@ -201,10 +201,10 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                     transition: "all 0.2s ease"
                   }}
                 >
-                  <span style={{ fontSize: "12px", fontWeight: "bold", color: "var(--text-main)" }}>{t('synthwave')}</span>
+                  <span style={{ fontSize: "12px", fontWeight: "bold", color: "var(--text-main)" }}>Amber</span>
                   <div style={{ display: "flex", gap: "4px" }}>
-                    {["#161b22", "#2d0a4e", "#008e43", "#00d2ff", "#ff007f"].map((c, i) => (
-                      <div key={i} style={{ width: "12px", height: "12px", borderRadius: "3px", backgroundColor: c, border: i === 0 ? "1px solid #ff007f" : "none" }} />
+                    {["#161b22", "#5c0900", "#d53a00", "#ff7f00", "#ffcf26"].map((c, i) => (
+                      <div key={i} style={{ width: "12px", height: "12px", borderRadius: "3px", backgroundColor: c, border: i === 0 ? "1px solid rgba(255, 255, 255, 0.08)" : "none" }} />
                     ))}
                   </div>
                 </button>

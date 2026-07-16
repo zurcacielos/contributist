@@ -170,7 +170,7 @@
     "vacationsTip": "Amount of vacations per year, meaning patches of inactivity, to pick randomly (comma-separated).\nE.g.: 1,2,2 means there's double the chance to have 2 vacations on each year.",
     "daysVacation": "Days/Vacation",
     "daysVacationTip": "Length of each vacation in days to pick randomly (comma-separated).\nE.g.: 14,28,14 means higher chance of 14 days.",
-    "showSynthArt": "Show art in Synth",
+    "showSynthArt": "Show Art in Amber",
     "tooltipCollapse": "Collapse panel",
     "tooltipExpand": "Expand panel",
     "tooltipUnlock": "Unlock layer",

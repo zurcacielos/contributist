@@ -20,7 +20,7 @@ export const PaletteCard: React.FC<PaletteCardProps> = ({ config, onChange }) =>
     });
   };
 
-  const synthColors = ["#101b31", "#ffce42", "#ff8e31", "#ff4f91", "#d02cff"];
+  const synthColors = ["#161b22", "#5c0900", "#d53a00", "#ff7f00", "#ffcf26"];
   const greenColors = ["#161b22", "#103625", "#176d39", "#2ab24e", "#99df3f"];
   const activeColors = isSynth ? synthColors : greenColors;
 
@@ -43,7 +43,7 @@ export const PaletteCard: React.FC<PaletteCardProps> = ({ config, onChange }) =>
           }}
         >
           <option value="classic" style={{ backgroundColor: "#161b22", color: "#c9d1d9" }}>Classic Green</option>
-          <option value="synthwave" style={{ backgroundColor: "#161b22", color: "#c9d1d9" }}>Synthwave</option>
+          <option value="synthwave" style={{ backgroundColor: "#161b22", color: "#c9d1d9" }}>Amber</option>
         </select>
         <div style={{ display: "flex", gap: "6px", justifyContent: "center", marginTop: "4px" }}>
           {activeColors.map((color, idx) => (

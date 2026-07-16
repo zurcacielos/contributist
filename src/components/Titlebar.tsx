@@ -230,13 +230,13 @@ export function Titlebar({
                   alignOffset={-3}
                 >
                   <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('draw')}>
-                    {t('design')}
-                  </Menubar.Item>
-                  <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('export')}>
-                    {t('push')}
+                    2D
                   </Menubar.Item>
                   <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('3d')}>
-                    {t('threeD')}
+                    3D
+                  </Menubar.Item>
+                  <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('export')}>
+                    Get Git Script
                   </Menubar.Item>
                 </Menubar.Content>
               </Menubar.Portal>
@@ -273,21 +273,19 @@ export function Titlebar({
             className={`flow-step ${mainTab === 'draw' ? 'active' : ''}`}
             onClick={() => onTabSwitch('draw')}
           >
-            <b>1.</b> {t('design')}
+            2D
           </button>
-          <i>→</i>
-          <button
-            className={`flow-step ${mainTab === 'export' ? 'active' : ''}`}
-            onClick={() => onTabSwitch('export')}
-          >
-            <b>2.</b> {t('push')}
-          </button>
-          <i>→</i>
           <button
             className={`flow-step ${mainTab === '3d' ? 'active' : ''}`}
             onClick={() => onTabSwitch('3d')}
           >
-            <b>3.</b> {t('threeD')}
+            3D
+          </button>
+          <button
+            className={`flow-step ${mainTab === 'export' ? 'active' : ''}`}
+            onClick={() => onTabSwitch('export')}
+          >
+            Get Git Script
           </button>
         </nav>
       </div>

@@ -174,7 +174,7 @@ export function GitProfileLoader({
           fontFamily: "var(--font-mono, monospace)"
         }}
       >
-        Example: octocat • https://github.com/octocat • gitlab.com/username • gitea.instance/user
+        Example: zurcacielos • https://github.com/zurcacielos • gitlab.com/username • gitea.instance/user
       </div>
 
       {fetchError && (

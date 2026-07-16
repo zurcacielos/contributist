@@ -29,10 +29,10 @@ export function ColorSelector({
 
   const synthColors = [
     "var(--surface)",
-    "#2d0a4e", // Deep Violet
-    "#008e43", // Neon Green
-    "#00d2ff", // Celeste
-    "#ff007f"  // Fluo Pink
+    "#5c0900", // Burgundy
+    "#d53a00", // Red Orange
+    "#ff7f00", // Orange
+    "#ffcf26"  // Amber Yellow
   ];
 
   const renderPaletteRow = (colors: string[], isSynth: boolean) => {

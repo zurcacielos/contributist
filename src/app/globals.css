@@ -8,7 +8,7 @@
   --primary-hover: #3fb950;
   --text-main: #c9d1d9;
   --text-muted: #8b949e;
-  --border: #30363d;
+  --border: #154820;
 
   /* Standard Grid Colors */
   --level-0: #161b22;
@@ -237,23 +237,23 @@ a:hover {
 /* Synth Heatmap Overrides for Painted Layer */
 .day[data-level="0"][data-synth="true"] {
   background-color: var(--level-0);
-  box-shadow: inset 0 0 0 1.5px #1b502a;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 171, 0, 0.4);
 }
 
 .day[data-level="1"][data-synth="true"] {
-  background-color: #2d0a4e;
+  background-color: #5c0900;
 }
 
 .day[data-level="2"][data-synth="true"] {
-  background-color: #008e43;
+  background-color: #d53a00;
 }
 
 .day[data-level="3"][data-synth="true"] {
-  background-color: #00d2ff;
+  background-color: #ff7f00;
 }
 
 .day[data-level="4"][data-synth="true"] {
-  background-color: #ff007f;
+  background-color: #ffcf26;
 }
 
 
@@ -360,10 +360,10 @@ button {
   width: min(1720px, calc(100vw - 38px));
   height: 100%;
   margin: 0 auto;
-  border: 1px solid rgba(155, 92, 255, .34);
+  /* border: 1px solid rgba(155, 92, 255, .34);
   border-radius: 28px;
   background: linear-gradient(180deg, rgba(8, 12, 30, .94), rgba(6, 10, 24, .96));
-  box-shadow: 0 0 0 1px rgba(35, 214, 255, .08), 0 30px 90px rgba(0, 0, 0, .55), 0 0 90px rgba(155, 92, 255, .16);
+  box-shadow: 0 0 0 1px rgba(35, 214, 255, .08), 0 30px 90px rgba(0, 0, 0, .55), 0 0 90px rgba(155, 92, 255, .16); */
   overflow: hidden;
   display: flex;
   flex-direction: column;

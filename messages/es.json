@@ -174,7 +174,7 @@
     "vacationsTip": "Cantidad de vacaciones por año (períodos de inactividad) a elegir al azar (separadas por comas).\nEj.: 1,2,2 significa doble probabilidad de tener 2 vacaciones cada año.",
     "daysVacation": "Días/Vacación",
     "daysVacationTip": "Duración de cada vacación en días a elegir al azar (separadas por comas).\nEj.: 14,28,14 significa mayor probabilidad de 14 días.",
-    "showSynthArt": "Mostrar arte en Synth",
+    "showSynthArt": "Mostrar arte en Amber",
     "tooltipCollapse": "Colapsar panel",
     "tooltipExpand": "Expandir panel",
     "tooltipUnlock": "Desbloquear capa",

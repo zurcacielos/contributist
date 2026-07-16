@@ -524,13 +524,15 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         }
       }
 
-      // 3. Clear all backgrounds from all layers
+      // 3. Clear all backgrounds from all layers unless they were already active (cleared === false)
       nextLayers = nextLayers.map(l => {
         if (l.type === 'background') {
+          const existingLayer = (state.config.layers || []).find(oldL => oldL.id === l.id);
+          const wasActive = existingLayer && existingLayer.type === 'background' && !existingLayer.cleared;
           return {
             ...l,
-            cleared: true,
-            customFrequency: undefined
+            cleared: wasActive ? false : true,
+            customFrequency: wasActive ? existingLayer.customFrequency : undefined
           };
         }
         return l;

@@ -280,7 +280,7 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
               display: "grid",
               gridTemplateColumns: "repeat(2, 1fr)",
               gap: "8px 12px",
-              maxHeight: "120px",
+              maxHeight: "90px",
               overflowY: "auto",
               paddingRight: "4px",
               marginTop: "4px",
@@ -335,8 +335,8 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
             <option value="green" style={{ backgroundColor: "#161b22", color: "#c9d1d9" }}>
               Classic Green
             </option>
-            <option value="synth" style={{ backgroundColor: "#090314", color: "#ec4899" }}>
-              Synthwave
+            <option value="synth" style={{ backgroundColor: "#110b03", color: "#ffcf26" }}>
+              Amber
             </option>
             <option value="gray" style={{ backgroundColor: "#111111", color: "#dddddd" }}>
               Monochrome Gray
