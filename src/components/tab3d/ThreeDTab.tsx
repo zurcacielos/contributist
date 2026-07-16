@@ -211,9 +211,9 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
 
   const t = useTranslations('Titlebar');
 
-  const handleShareUrl = () => {
+  const handleShareUrl = async () => {
     try {
-      const shareUrl = generateShareUrl(state, "3d");
+      const shareUrl = await generateShareUrl(state, "3d");
       navigator.clipboard.writeText(shareUrl);
       alert(t('copiedAlert'));
     } catch (e) {

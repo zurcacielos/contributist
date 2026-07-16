@@ -131,13 +131,14 @@ export function TechnicalBackground({
           onClick={() => onChange({ ...config, noWeekends: !config.noWeekends })}
           style={{
             cursor: "pointer",
-            background: !config.noWeekends ? "rgba(16, 185, 129, 0.2)" : "rgba(255, 255, 255, 0.05)",
-            color: !config.noWeekends ? "#10b981" : "var(--text-muted)",
-            border: !config.noWeekends ? "1px solid rgba(16, 185, 129, 0.4)" : "1px solid rgba(255, 255, 255, 0.1)",
+            background: !config.noWeekends ? "rgba(57, 211, 83, 0.15)" : "rgba(0, 0, 0, 0.4)",
+            color: !config.noWeekends ? "var(--greenbash-selected, #39d353)" : "var(--text-muted)",
+            border: !config.noWeekends ? "1px solid var(--greenbash-selected, #39d353)" : "1px solid var(--border)",
             padding: "4px 12px",
             borderRadius: "6px",
             fontSize: "0.8rem",
             fontWeight: "bold",
+            fontFamily: "var(--font-mono, monospace)",
             transition: "all 0.2s ease"
           }}
         >
@@ -188,14 +189,25 @@ export function TechnicalBackground({
           padding: "6px 8px",
           fontSize: "0.75rem",
           borderRadius: "6px",
-          background: "rgba(57, 211, 83, 0.1)",
-          border: "1px solid rgba(57, 211, 83, 0.3)",
-          color: "#39d353",
+          background: "rgba(0, 0, 0, 0.4)",
+          border: "1px solid var(--border)",
+          color: "var(--greenbash-selected, #39d353)",
           cursor: "pointer",
           fontWeight: "bold",
+          fontFamily: "var(--font-mono, monospace)",
           transition: "all 0.2s ease",
           textAlign: "center",
           marginBottom: "6px"
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+          e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+          e.currentTarget.style.color = "#ffffff";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+          e.currentTarget.style.borderColor = "var(--border)";
+          e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
         }}
       >
         {t('makeSelectedGreener')}
@@ -210,13 +222,24 @@ export function TechnicalBackground({
           padding: "6px 8px",
           fontSize: "0.75rem",
           borderRadius: "6px",
-          background: "rgba(56, 189, 248, 0.1)",
-          border: "1px solid rgba(56, 189, 248, 0.3)",
-          color: "#38bdf8",
+          background: "rgba(0, 0, 0, 0.4)",
+          border: "1px solid var(--border)",
+          color: "var(--greenbash-selected, #39d353)",
           cursor: "pointer",
           fontWeight: "bold",
+          fontFamily: "var(--font-mono, monospace)",
           transition: "all 0.2s ease",
           textAlign: "center"
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+          e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+          e.currentTarget.style.color = "#ffffff";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+          e.currentTarget.style.borderColor = "var(--border)";
+          e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
         }}
       >
         {t('makeAllGreener')}

@@ -43,10 +43,10 @@ export function Titlebar({
     applyBackgroundAll(state.config, "advanced", dispatch);
   };
 
-  const handleShareUrl = () => {
+  const handleShareUrl = async () => {
     try {
       const targetTab = mainTab === '3d' ? '3d' : 'draw';
-      const shareUrl = generateShareUrl(state, targetTab);
+      const shareUrl = await generateShareUrl(state, targetTab);
       navigator.clipboard.writeText(shareUrl);
       alert(t('copiedAlert'));
     } catch (e) {

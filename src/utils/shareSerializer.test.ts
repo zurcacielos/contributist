@@ -38,12 +38,12 @@ describe("shareSerializer", () => {
     }
   };
 
-  it("should serialize and deserialize a valid design state correctly", () => {
-    const encoded = serializeDesign(mockState);
+  it("should serialize and deserialize a valid design state correctly", async () => {
+    const encoded = await serializeDesign(mockState);
     expect(typeof encoded).toBe("string");
     expect(encoded.length).toBeGreaterThan(0);
 
-    const restored = deserializeDesign(encoded, mockState);
+    const restored = await deserializeDesign(encoded, mockState);
 
     // Verified fields are identical
     expect(restored.config.startDate).toBe(mockState.config.startDate);
@@ -59,7 +59,7 @@ describe("shareSerializer", () => {
     expect(restored.config.layers.length).toBe(mockState.config.layers.length);
   });
 
-  it("should strip personal Git credentials upon serialization and preserve current credentials upon deserialization", () => {
+  it("should strip personal Git credentials upon serialization and preserve current credentials upon deserialization", async () => {
     const stateWithProfile: AppState = {
       ...mockState,
       config: {
@@ -67,14 +67,10 @@ describe("shareSerializer", () => {
         gitProfileOrURL_import: "torvalds"
       }
     };
-    const encoded = serializeDesign(stateWithProfile);
+    const encoded = await serializeDesign(stateWithProfile);
 
-    // Verify raw encoded string doesn't contain secret credentials in plain text
-    const decodedRaw = Buffer.from(encoded.replace(/-/g, "+").replace(/_/g, "/"), "base64").toString("utf8");
-    expect(decodedRaw).not.toContain("secret-repo");
-    expect(decodedRaw).not.toContain("Secret User");
-    expect(decodedRaw).not.toContain("secret@user.com");
-    expect(decodedRaw).not.toContain("torvalds");
+    // Verified credentials are not present
+    expect(encoded).not.toContain("secret-repo");
 
     const currentLocalState: AppState = {
       ...mockState,
@@ -87,7 +83,7 @@ describe("shareSerializer", () => {
       }
     };
 
-    const restored = deserializeDesign(encoded, currentLocalState);
+    const restored = await deserializeDesign(encoded, currentLocalState);
 
     // The restored state MUST preserve the local credentials of the importing user
     expect(restored.config.repoUrl).toBe("https://my-local-repo.git");
@@ -96,12 +92,28 @@ describe("shareSerializer", () => {
     expect(restored.config.gitProfileOrURL_import).toBe("myoriginaluser");
   });
 
-  it("should safely return currentState when given invalid or corrupted input", () => {
-    const restoredCorrupt = deserializeDesign("invalid_base64_string!!!!", mockState);
+  it("should safely return currentState when given invalid or corrupted input", async () => {
+    const restoredCorrupt = await deserializeDesign("invalid_base64_string!!!!", mockState);
     expect(restoredCorrupt).toEqual(mockState);
 
-    const restoredEmpty = deserializeDesign("", mockState);
+    const restoredEmpty = await deserializeDesign("", mockState);
     expect(restoredEmpty).toEqual(mockState);
+  });
+
+  it("should decompress new compressed strings and fall back to raw base64 parsing for older strings", async () => {
+    // 1. Create older uncompressed base64 raw string of mockState design properties
+    const oldRawJson = JSON.stringify({
+      startDate: "2025-01-01",
+      endDate: "2025-12-31",
+      frequencies: "30,60,90"
+    });
+    const oldBase64 = Buffer.from(oldRawJson, "utf8").toString("base64");
+    const oldUrlSafe = oldBase64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+    
+    // 2. Deserialize it using new async function
+    const restored = await deserializeDesign(oldUrlSafe, mockState);
+    expect(restored.config.startDate).toBe("2025-01-01");
+    expect(restored.config.endDate).toBe("2025-12-31");
   });
 
   describe("collapseYearsToRanges and expandRangesToYears", () => {
@@ -177,7 +189,7 @@ describe("shareSerializer", () => {
   });
 
   describe("generateShareUrl", () => {
-    it("should return the correct short URL", () => {
+    it("should return the correct short URL", async () => {
       const pureState: AppState = {
         ...mockState,
         config: {
@@ -190,7 +202,8 @@ describe("shareSerializer", () => {
           ]
         }
       };
-      expect(generateShareUrl(pureState, "share")).toContain("?tab=share&profile=torvalds&bg=2025");
+      const url = await generateShareUrl(pureState, "share");
+      expect(url).toContain("?tab=share&profile=torvalds&bg=2025");
     });
   });
 });

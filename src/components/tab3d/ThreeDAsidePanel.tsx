@@ -96,29 +96,31 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
         onClick={onShareUrl}
         style={{
           padding: "10px 14px",
-          borderRadius: "6px",
-          border: "1px solid #007acc",
-          backgroundColor: "#007acc",
-          color: "#ffffff",
+          borderRadius: "8px",
+          border: "1px solid var(--border)",
+          backgroundColor: "rgba(0, 0, 0, 0.4)",
+          color: "var(--greenbash-selected, #39d353)",
           cursor: "pointer",
           fontSize: "0.85rem",
           fontWeight: "600",
+          fontFamily: "var(--font-mono, monospace)",
           width: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           gap: "8px",
-          transition: "background 0.2s, border-color 0.2s",
-          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+          transition: "all 0.2s ease",
           outline: "none",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "#0062a3";
-          e.currentTarget.style.borderColor = "#0062a3";
+          e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+          e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+          e.currentTarget.style.color = "#ffffff";
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "#007acc";
-          e.currentTarget.style.borderColor = "#007acc";
+          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+          e.currentTarget.style.borderColor = "var(--border)";
+          e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
         }}
       >
         <span>🔗 Share this 3D URL</span>
@@ -410,24 +412,28 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
             onClick={onResetGeometry}
             style={{
               padding: "5px 10px",
-              borderRadius: "4px",
+              borderRadius: "8px",
               border: "1px solid var(--border)",
-              backgroundColor: "transparent",
-              color: "var(--text-muted)",
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+              color: "var(--greenbash-selected, #39d353)",
               cursor: "pointer",
               fontSize: "0.75rem",
+              fontFamily: "var(--font-mono, monospace)",
               marginTop: "4px",
               width: "100%",
               textAlign: "center",
-              transition: "all 0.2s",
+              transition: "all 0.2s ease",
+              outline: "none",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
-              e.currentTarget.style.color = "var(--text-main)";
+              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.color = "#ffffff";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "transparent";
-              e.currentTarget.style.color = "var(--text-muted)";
+              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
             }}
           >
             {t("reset")}
@@ -448,14 +454,29 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           <button
             onClick={onExportStl}
-            className="btn btn-primary"
             style={{
               padding: "8px 12px",
-              borderRadius: "6px",
+              borderRadius: "8px",
+              border: "1px solid var(--border)",
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+              color: "var(--greenbash-selected, #39d353)",
               cursor: "pointer",
               fontSize: "0.85rem",
+              fontFamily: "var(--font-mono, monospace)",
               fontWeight: "bold",
               width: "100%",
+              transition: "all 0.2s ease",
+              outline: "none",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.color = "#ffffff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
             }}
           >
             {t("downloadStl")}
@@ -465,17 +486,28 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
             onClick={onExportObj}
             style={{
               padding: "8px 12px",
-              borderRadius: "6px",
+              borderRadius: "8px",
               border: "1px solid var(--border)",
-              backgroundColor: "rgba(255, 255, 255, 0.05)",
-              color: "var(--text-main)",
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+              color: "var(--greenbash-selected, #39d353)",
               cursor: "pointer",
               fontSize: "0.85rem",
+              fontFamily: "var(--font-mono, monospace)",
+              fontWeight: "bold",
               width: "100%",
-              transition: "background 0.2s",
+              transition: "all 0.2s ease",
+              outline: "none",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)")}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.color = "#ffffff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+            }}
           >
             {t("downloadObj")}
           </button>
@@ -484,17 +516,28 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
             onClick={onCapturePng}
             style={{
               padding: "8px 12px",
-              borderRadius: "6px",
+              borderRadius: "8px",
               border: "1px solid var(--border)",
-              backgroundColor: "rgba(255, 255, 255, 0.05)",
-              color: "var(--text-main)",
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+              color: "var(--greenbash-selected, #39d353)",
               cursor: "pointer",
               fontSize: "0.85rem",
+              fontFamily: "var(--font-mono, monospace)",
+              fontWeight: "bold",
               width: "100%",
-              transition: "background 0.2s",
+              transition: "all 0.2s ease",
+              outline: "none",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)")}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.color = "#ffffff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+            }}
           >
             {t("savePng")}
           </button>

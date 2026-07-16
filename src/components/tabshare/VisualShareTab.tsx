@@ -39,8 +39,8 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
     await exportAsPNG(previewRef.current, setIsCapturing);
   };
 
-  const handleCopyLink = () => {
-    const shareUrl = generateShareUrl(state, "share");
+  const handleCopyLink = async () => {
+    const shareUrl = await generateShareUrl(state, "share");
     navigator.clipboard.writeText(shareUrl);
     alert(t('copiedAlert'));
   };

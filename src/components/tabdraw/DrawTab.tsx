@@ -13,6 +13,7 @@ import { GitProfileLoader } from "@/components/GitProfileLoader";
 import { GreenFont } from "@/components/GreenFont";
 import { ColorSelector } from "@/components/ColorSelector";
 import { useTranslations } from "next-intl";
+import { generateShareUrl } from "@/utils/shareSerializer";
 
 interface DrawTabProps {
   config: GeneratorConfig;
@@ -40,6 +41,16 @@ export const DrawTab: React.FC<DrawTabProps> = ({
   initialConfig,
 }) => {
   const t = useTranslations('Sidebar');
+
+  const handleShareUrl = async () => {
+    try {
+      const shareUrl = await generateShareUrl(state, "draw");
+      navigator.clipboard.writeText(shareUrl);
+      alert("Link copied to clipboard!");
+    } catch (e) {
+      console.error("Failed to generate share URL", e);
+    }
+  };
 
   const handleClearProfileLayers = () => {
     dispatch({
@@ -74,6 +85,39 @@ export const DrawTab: React.FC<DrawTabProps> = ({
           gap: "14px"
         }}
       >
+        <button
+          onClick={handleShareUrl}
+          style={{
+            padding: "10px 14px",
+            borderRadius: "8px",
+            border: "1px solid var(--border)",
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            color: "var(--greenbash-selected, #39d353)",
+            cursor: "pointer",
+            fontSize: "0.85rem",
+            fontWeight: "600",
+            fontFamily: "var(--font-mono, monospace)",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "8px",
+            transition: "all 0.2s ease",
+            outline: "none",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+            e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+            e.currentTarget.style.color = "#ffffff";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+            e.currentTarget.style.borderColor = "var(--border)";
+            e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+          }}
+        >
+          <span>🔗 Share this 2D URL</span>
+        </button>
 
         <TechnicalBackground config={config} activeYear={state.activeYear} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
 

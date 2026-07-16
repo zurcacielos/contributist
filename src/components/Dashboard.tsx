@@ -34,115 +34,117 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
   const isInitialized = useRef(false);
 
   useEffect(() => {
-    // Check if there is an exported design or tab in the URL query string or hash fragment
-    const params = new URLSearchParams(window.location.search);
-    const hashParams = new URLSearchParams(window.location.hash.substring(1));
-    const designParam = hashParams.get("design") || params.get("design");
-    const tabParam = params.get("tab") || hashParams.get("tab");
+    const init = async () => {
+      // Check if there is an exported design or tab in the URL query string or hash fragment
+      const params = new URLSearchParams(window.location.search);
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
+      const designParam = hashParams.get("design") || params.get("design");
+      const tabParam = params.get("tab") || hashParams.get("tab");
 
-    if (tabParam && ["draw", "share", "export", "help", "3d"].includes(tabParam)) {
-      setMainTab(tabParam as any);
-    }
-
-    const loadedKey = designParam ? `design-loaded-${designParam.slice(-20)}` : "";
-    const profileParam = params.get("profile") || hashParams.get("profile");
-    const bgParam = params.get("bg") || hashParams.get("bg");
-
-    if (designParam && !sessionStorage.getItem(loadedKey)) {
-      try {
-        const restored = deserializeDesign(designParam, state);
-        dispatch({ type: "RESTORE_STATE", payload: restored });
-        sessionStorage.setItem(loadedKey, "true");
-      } catch (e) {
-        console.error("Failed to load design from URL", e);
-      } finally {
-        isInitialized.current = true;
+      if (tabParam && ["draw", "share", "export", "help", "3d"].includes(tabParam)) {
+        setMainTab(tabParam as any);
       }
-      return;
-    } else if (profileParam) {
-      try {
-        const bgYears = bgParam ? expandRangesToYears(bgParam) : [];
-        const initialLayers: Layer[] = bgYears.map(y => ({
-          id: `bg-${y}`,
-          name: `Background`,
-          type: "background" as const,
-          visible: true,
-          year: y,
-          cleared: false
-        }));
 
-        const startYear = parseInt(initialConfig.startDate, 10) || (new Date().getFullYear() - 1);
-        const endYear = parseInt(initialConfig.endDate, 10) || new Date().getFullYear();
-        const minYear = Math.min(startYear, endYear);
-        const maxYear = Math.max(startYear, endYear);
+      const loadedKey = designParam ? `design-loaded-${designParam.slice(-20)}` : "";
+      const profileParam = params.get("profile") || hashParams.get("profile");
+      const bgParam = params.get("bg") || hashParams.get("bg");
 
-        for (let y = minYear; y <= maxYear; y++) {
-          initialLayers.push({
-            id: `raster-${y}`,
-            name: `Painted`,
-            type: "raster" as const,
+      if (designParam && !sessionStorage.getItem(loadedKey)) {
+        try {
+          const restored = await deserializeDesign(designParam, state);
+          dispatch({ type: "RESTORE_STATE", payload: restored });
+          sessionStorage.setItem(loadedKey, "true");
+        } catch (e) {
+          console.error("Failed to load design from URL", e);
+        } finally {
+          isInitialized.current = true;
+        }
+        return;
+      } else if (profileParam) {
+        try {
+          const bgYears = bgParam ? expandRangesToYears(bgParam) : [];
+          const initialLayers: Layer[] = bgYears.map(y => ({
+            id: `bg-${y}`,
+            name: `Background`,
+            type: "background" as const,
             visible: true,
             year: y,
-            data: {}
+            cleared: false
+          }));
+
+          const startYear = parseInt(initialConfig.startDate, 10) || (new Date().getFullYear() - 1);
+          const endYear = parseInt(initialConfig.endDate, 10) || new Date().getFullYear();
+          const minYear = Math.min(startYear, endYear);
+          const maxYear = Math.max(startYear, endYear);
+
+          for (let y = minYear; y <= maxYear; y++) {
+            initialLayers.push({
+              id: `raster-${y}`,
+              name: `Painted`,
+              type: "raster" as const,
+              visible: true,
+              year: y,
+              data: {}
+            });
+          }
+
+          const customConfig = {
+            ...initialConfig,
+            gitProfileOrURL_import: profileParam,
+            layers: initialLayers
+          };
+
+          dispatch({ type: "RESET_TO_INITIAL", payload: customConfig });
+
+          const { platform, username } = parseProfileUrl(profileParam);
+
+          dispatch({
+            type: "START_FETCH_PROFILE",
+            payload: { username, platform }
           });
-        }
 
-        const customConfig = {
-          ...initialConfig,
-          gitProfileOrURL_import: profileParam,
-          layers: initialLayers
-        };
-
-        dispatch({ type: "RESET_TO_INITIAL", payload: customConfig });
-
-        const { platform, username } = parseProfileUrl(profileParam);
-
-        dispatch({
-          type: "START_FETCH_PROFILE",
-          payload: { username, platform }
-        });
-
-        fetch("/api/contributions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ profileUrl: profileParam }),
-        })
-          .then(async (res) => {
-            const data = await res.json();
-            if (!res.ok) {
-              throw new Error(data.error || "Failed to fetch contributions");
-            }
-            const fetchedContributions = data.contributions as Record<string, number>;
-            if (fetchedContributions && Object.keys(fetchedContributions).length > 0) {
-              dispatch({
-                type: "FETCH_PROFILE_SUCCESS",
-                payload: {
-                  contributions: fetchedContributions,
-                  platform: data.platform || platform,
-                  username: data.username || username
-                }
-              });
-            }
+          fetch("/api/contributions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ profileUrl: profileParam }),
           })
-          .catch((err) => {
-            console.error("Failed to auto-fetch contributions on startup", err);
-          });
-      } catch (e) {
-        console.error("Failed to load profile from URL", e);
-      } finally {
-        isInitialized.current = true;
+            .then(async (res) => {
+              const data = await res.json();
+              if (!res.ok) {
+                throw new Error(data.error || "Failed to fetch contributions");
+              }
+              const fetchedContributions = data.contributions as Record<string, number>;
+              if (fetchedContributions && Object.keys(fetchedContributions).length > 0) {
+                dispatch({
+                  type: "FETCH_PROFILE_SUCCESS",
+                  payload: {
+                    contributions: fetchedContributions,
+                    platform: data.platform || platform,
+                    username: data.username || username
+                  }
+                });
+              }
+            })
+            .catch((err) => {
+              console.error("Failed to auto-fetch contributions on startup", err);
+            });
+        } catch (e) {
+          console.error("Failed to load profile from URL", e);
+        } finally {
+          isInitialized.current = true;
+        }
+        return;
       }
-      return;
-    }
 
-    const savedState = loadStateFromStorage();
-    if (savedState) {
-      dispatch({ type: "RESTORE_STATE", payload: savedState });
-    }
+      const savedState = loadStateFromStorage();
+      if (savedState) {
+        dispatch({ type: "RESTORE_STATE", payload: savedState });
+      }
 
+      isInitialized.current = true;
+    };
 
-
-    isInitialized.current = true;
+    init();
   }, []);
 
   // Sync tab state to URL query parameter without page reload

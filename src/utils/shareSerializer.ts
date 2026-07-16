@@ -50,6 +50,43 @@ function fromBase64(str: string): string {
   }
 }
 
+async function compressString(str: string): Promise<string> {
+  const byteArray = new TextEncoder().encode(str);
+  const stream = new Response(byteArray as any).body;
+  if (!stream) throw new Error("Failed to create stream");
+  const compressedStream = stream.pipeThrough(new CompressionStream("deflate"));
+  const buffer = await new Response(compressedStream).arrayBuffer();
+  
+  const bytes = new Uint8Array(buffer);
+  if (typeof window === "undefined") {
+    return Buffer.from(bytes).toString("base64");
+  }
+  let binary = "";
+  for (let i = 0; i < bytes.byteLength; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary);
+}
+
+async function decompressString(base64: string): Promise<string> {
+  let bytes: Uint8Array;
+  if (typeof window === "undefined") {
+    bytes = new Uint8Array(Buffer.from(base64, "base64"));
+  } else {
+    const binary = window.atob(base64);
+    bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+  }
+  
+  const stream = new Response(bytes as any).body;
+  if (!stream) throw new Error("Failed to create stream");
+  const decompressedStream = stream.pipeThrough(new DecompressionStream("deflate"));
+  const buffer = await new Response(decompressedStream).arrayBuffer();
+  return new TextDecoder().decode(buffer);
+}
+
 /**
  * Encodes Base64 to a URL-safe format.
  */
@@ -100,10 +137,10 @@ export function filterStateForSharing(state: AppState): SharedDesignState {
  * Serializes only the design-related properties of AppState into a URL-safe Base64 string.
  * Strips all personal Git credentials (repoUrl, gitName, gitEmail).
  */
-export function serializeDesign(state: AppState): string {
+export async function serializeDesign(state: AppState): Promise<string> {
   const design = filterStateForSharing(state);
   const json = JSON.stringify(design);
-  const base64 = toBase64(json);
+  const base64 = await compressString(json);
   return toUrlSafeBase64(base64);
 }
 
@@ -111,12 +148,18 @@ export function serializeDesign(state: AppState): string {
  * Safely parses and validates an encoded design string, merging it into the current AppState.
  * Guarantees that current Git identities (repoUrl, gitName, gitEmail) are preserved and never overwritten.
  */
-export function deserializeDesign(encoded: string, currentState: AppState): AppState {
+export async function deserializeDesign(encoded: string, currentState: AppState): Promise<AppState> {
   if (!encoded) return currentState;
 
   try {
     const base64 = fromUrlSafeBase64(encoded);
-    const json = fromBase64(base64);
+    let json = "";
+    try {
+      json = await decompressString(base64);
+    } catch (decompError) {
+      // Fallback: If decompression fails (e.g., old uncompressed links), fall back to raw Base64 decoding
+      json = fromBase64(base64);
+    }
     if (!json) return currentState;
 
     const parsed = JSON.parse(json);
@@ -251,7 +294,7 @@ export function expandRangesToYears(rangeStr: string): number[] {
 /**
  * Generates the clean/short URL for pure designs or Base64 design hash for custom ones.
  */
-export function generateShareUrl(state: AppState, tab: string): string {
+export async function generateShareUrl(state: AppState, tab: string): Promise<string> {
   if (typeof window === "undefined") return "";
 
   if (isPureGitProfileDesign(state)) {
@@ -268,7 +311,7 @@ export function generateShareUrl(state: AppState, tab: string): string {
     }
     return `${window.location.origin}${window.location.pathname}?${params.toString()}`;
   } else {
-    const serialized = serializeDesign(state);
+    const serialized = await serializeDesign(state);
     return `${window.location.origin}${window.location.pathname}?tab=${tab}#design=${serialized}`;
   }
 }
