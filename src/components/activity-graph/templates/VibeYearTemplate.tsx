@@ -340,17 +340,18 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                   style={{ marginLeft: "10px", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "#c8cdef", textTransform: "none" }}
                 >
                   {t('freqLabel', { percentage: meta.freq })}
-                  {isActive && bgLayerForYear && !bgLayerForYear.cleared && (
+                  {isActive && bgLayerForYear && (
                     <div style={{ display: "inline-flex", gap: "4px" }}>
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           const f = bgLayerForYear.customFrequency ?? bgLayerForYear.baseFrequency ?? 0;
+                          const nextFreq = bgLayerForYear.cleared ? f : Math.max(0, f - 5);
                           dispatch({
                             type: 'SET_CONFIG',
                             payload: {
                               ...state.config,
-                              layers: (state.config.layers || []).map(l => l.id === bgLayerForYear.id ? { ...l, customFrequency: Math.max(0, f - 5), cleared: false } : l)
+                              layers: (state.config.layers || []).map(l => l.id === bgLayerForYear.id ? { ...l, customFrequency: nextFreq, cleared: false } : l)
                             }
                           });
                         }}
@@ -386,11 +387,12 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                         onClick={(e) => {
                           e.stopPropagation();
                           const f = bgLayerForYear.customFrequency ?? bgLayerForYear.baseFrequency ?? 0;
+                          const nextFreq = bgLayerForYear.cleared ? f : Math.max(0, f + 5);
                           dispatch({
                             type: 'SET_CONFIG',
                             payload: {
                               ...state.config,
-                              layers: (state.config.layers || []).map(l => l.id === bgLayerForYear.id ? { ...l, customFrequency: Math.max(0, f + 5), cleared: false } : l)
+                              layers: (state.config.layers || []).map(l => l.id === bgLayerForYear.id ? { ...l, customFrequency: nextFreq, cleared: false } : l)
                             }
                           });
                         }}
