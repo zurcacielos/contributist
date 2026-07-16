@@ -217,7 +217,17 @@
     "exportTitle": "Export Model",
     "downloadStl": "Download STL (3D Print)",
     "downloadObj": "Download OBJ",
-    "savePng": "Save Screenshot (PNG)"
+    "savePng": "Save Screenshot (PNG)",
+    "legendsTitle": "Legends",
+    "showUsername": "Show Username",
+    "usernameInput": "Username",
+    "positionLabel": "Position",
+    "posRecentLeft": "Recent - left",
+    "posRecentRight": "Recent - right",
+    "posLastLeft": "Last - left",
+    "posLastRight": "Last - right",
+    "posFrontSideLeft": "Front side - left",
+    "posFrontSideRight": "Front side - right"
   },
   "Metadata": {
     "title": "Contributist | GitHub Contribution Graph Generator & Painter",

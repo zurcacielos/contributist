@@ -1,6 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
+import { STLExporter } from "three/examples/jsm/exporters/STLExporter.js";
+import { OBJExporter } from "three/examples/jsm/exporters/OBJExporter.js";
 import { StlPillar } from "@/utils/stlExporter";
 import { zoomCameraToFit } from "./utils/cameraHelper";
 
@@ -13,6 +17,11 @@ interface ThreeDCanvasProps {
   palette: "green" | "synth" | "gray";
   onCaptureReady: (captureFn: () => string) => void;
   onZoomToFitReady?: (zoomFn: () => void) => void;
+  onExportStlReady?: (exportFn: () => string) => void;
+  onExportObjReady?: (exportFn: () => string) => void;
+  showUsername?: boolean;
+  username?: string;
+  usernamePosition?: 'recent-left' | 'recent-right' | 'last-left' | 'last-right' | 'front-side-left' | 'front-side-right';
 }
 
 const PALETTES = {
@@ -39,6 +48,11 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
   palette,
   onCaptureReady,
   onZoomToFitReady,
+  onExportStlReady,
+  onExportObjReady,
+  showUsername = false,
+  username = "",
+  usernamePosition = "last-left",
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -47,6 +61,17 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
   const groupRef = useRef<THREE.Group | null>(null);
   const controlsRef = useRef<OrbitControls | null>(null);
   const prevNumYearsRef = useRef<number>(0);
+
+  // Font loading state
+  const [loadedFont, setLoadedFont] = useState<any>(null);
+
+  // Load typeface font on mount
+  useEffect(() => {
+    const loader = new FontLoader();
+    loader.load("/fonts/helvetiker_regular.typeface.json", (font) => {
+      setLoadedFont(font);
+    });
+  }, []);
 
   // Initialize Three.js Scene
   useEffect(() => {
@@ -155,6 +180,22 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
       });
     }
 
+    // 10. Register STL/OBJ Exporter callbacks
+    if (onExportStlReady) {
+      onExportStlReady(() => {
+        if (!groupRef.current) return "";
+        const exporter = new STLExporter();
+        return exporter.parse(groupRef.current, { binary: false });
+      });
+    }
+    if (onExportObjReady) {
+      onExportObjReady(() => {
+        if (!groupRef.current) return "";
+        const exporter = new OBJExporter();
+        return exporter.parse(groupRef.current);
+      });
+    }
+
     // Cleanup
     return () => {
       cancelAnimationFrame(animationFrameId);
@@ -214,8 +255,12 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
       if (obj instanceof THREE.Mesh) {
         obj.geometry.dispose();
         if (Array.isArray(obj.material)) {
-          obj.material.forEach((m) => m.dispose());
+          obj.material.forEach((m) => {
+            if ((m as any).map) (m as any).map.dispose();
+            m.dispose();
+          });
         } else {
+          if ((obj.material as any).map) (obj.material as any).map.dispose();
           obj.material.dispose();
         }
       }
@@ -229,20 +274,117 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
     const totalWeeks = 53;
     const totalRows = numYears * 7 + (numYears - 1) * yearGap;
     const baseWidth = totalWeeks * spacing;
-    const baseDepth = totalRows * spacing;
+    let baseDepth = totalRows * spacing;
     const baseX = ((totalWeeks - 1) * spacing) / 2;
-    const baseZ = ((totalRows - 1) * spacing) / 2;
+    let baseZ = ((totalRows - 1) * spacing) / 2;
 
-    const baseGeo = new THREE.BoxGeometry(baseWidth, baseThickness, baseDepth);
+    const extensionDepth = 4 * spacing;
+    const hasExtension = showUsername && username && !usernamePosition.startsWith("front-side");
+
+    if (hasExtension) {
+      if (usernamePosition.startsWith("recent")) {
+        baseDepth += extensionDepth;
+        baseZ -= extensionDepth / 2;
+      } else if (usernamePosition.startsWith("last")) {
+        baseDepth += extensionDepth;
+        baseZ += extensionDepth / 2;
+      }
+    }
+
+    // Override base plate thickness to at least 4.0 if username is placed on the side
+    let currentBaseThickness = baseThickness;
+    if (showUsername && username && usernamePosition.startsWith("front-side")) {
+      currentBaseThickness = Math.max(baseThickness, 4.0);
+    }
+
+    const baseGeo = new THREE.BoxGeometry(baseWidth, currentBaseThickness, baseDepth);
     const baseMat = new THREE.MeshStandardMaterial({
       color: currentPalette.base,
       roughness: 0.2,
       metalness: 0.1,
     });
     const baseMesh = new THREE.Mesh(baseGeo, baseMat);
-    baseMesh.position.set(baseX, -baseThickness / 2, baseZ);
+    baseMesh.position.set(baseX, -currentBaseThickness / 2, baseZ);
     baseMesh.receiveShadow = true;
     group.add(baseMesh);
+
+    // Render Username Legend if checked and font is loaded
+    if (showUsername && username && loadedFont) {
+      const displayText = username.startsWith("@") ? username : "@" + username;
+
+      // Determine text dimensions: height should be exactly 80% of base thickness or extension depth
+      let textHeight = 1.5;
+      if (usernamePosition.startsWith("front-side")) {
+        textHeight = 0.8 * currentBaseThickness;
+      } else {
+        textHeight = 0.8 * extensionDepth;
+      }
+
+      // Generate 3D Extruded Text Geometry
+      const textSize = textHeight * 0.65;
+      const textGeo = new TextGeometry(displayText, {
+        font: loadedFont,
+        size: textSize,
+        depth: 0.8, // Thickness of extrusion for physical 3D printing (doubled)
+        curveSegments: 4,
+        bevelEnabled: false,
+      });
+
+      // Compute bounding box to align
+      textGeo.computeBoundingBox();
+      const bbox = textGeo.boundingBox;
+      const textWidth = bbox ? (bbox.max.x - bbox.min.x) : 0;
+
+      // Center the geometry vertices around (0,0,0) locally
+      textGeo.center();
+
+      const textMat = new THREE.MeshStandardMaterial({
+        color: currentPalette.levels[4],
+        roughness: 0.2,
+        metalness: 0.1,
+      });
+      const textMesh = new THREE.Mesh(textGeo, textMat);
+      textMesh.castShadow = true;
+      textMesh.receiveShadow = true;
+
+      // Determine position and rotation based on usernamePosition
+      let tx = baseX;
+      let ty = 0.02;
+      let tz = 0;
+
+      if (usernamePosition.startsWith("front-side")) {
+        // Place on the back face ("last" face) of the base plate
+        if (usernamePosition === "front-side-left") {
+          tx = -spacing / 2 + 1.0 * spacing + textWidth / 2; // Aligned left (centered mesh)
+        } else {
+          tx = baseWidth - spacing / 2 - 1.0 * spacing - textWidth / 2; // Aligned right (centered mesh)
+        }
+        ty = -currentBaseThickness / 2; // Center vertically on the face (geometry is centered around (0,0,0))
+        tz = baseZ + baseDepth / 2 + 0.4; // Flush against the back face (0.4 = half depth extrusion)
+        // No rotation needed; plane faces positive Z outwards by default
+      } else {
+        // Flat on top of base plate
+        textMesh.rotation.x = -Math.PI / 2;
+        ty = 0.4; // Flush on top of the plate (0.4 = half depth extrusion)
+
+        let z_center = 0;
+        if (usernamePosition.startsWith("recent")) {
+          z_center = -extensionDepth / 2 - spacing / 2;
+        } else {
+          z_center = totalRows * spacing - spacing / 2 + extensionDepth / 2;
+        }
+        tz = z_center; // Center of the extension (geometry is centered around (0,0,0) locally)
+
+        if (usernamePosition.endsWith("left")) {
+          tx = -spacing / 2 + 1.0 * spacing + textWidth / 2; // Aligned left (centered mesh)
+        } else {
+          tx = baseWidth - spacing / 2 - 1.5 * spacing - textWidth / 2; // Aligned right (centered mesh)
+        }
+      }
+
+      textMesh.position.set(tx, ty, tz);
+      group.add(textMesh);
+    }
 
     // 2. Rebuild Pillars
     pillars.forEach((p) => {
@@ -274,7 +416,7 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
         zoomCameraToFit(camera, controls, group, false);
       }
     }
-  }, [pillars, numYears, heightMultiplier, baseThickness, spacing, palette]);
+  }, [pillars, numYears, heightMultiplier, baseThickness, spacing, palette, showUsername, username, usernamePosition, loadedFont]);
 
   // Debug helper injection
   useEffect(() => {

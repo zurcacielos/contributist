@@ -20,6 +20,12 @@ interface ThreeDAsidePanelProps {
   onCapturePng: () => void;
   onZoomToFit: () => void;
   onResetGeometry: () => void;
+  showUsername: boolean;
+  onShowUsernameChange: (val: boolean) => void;
+  username: string;
+  onUsernameChange: (val: string) => void;
+  usernamePosition: 'recent-left' | 'recent-right' | 'last-left' | 'last-right' | 'front-side-left' | 'front-side-right';
+  onUsernamePositionChange: (val: 'recent-left' | 'recent-right' | 'last-left' | 'last-right' | 'front-side-left' | 'front-side-right') => void;
 }
 
 export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
@@ -39,6 +45,12 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
   onCapturePng,
   onZoomToFit,
   onResetGeometry,
+  showUsername,
+  onShowUsernameChange,
+  username,
+  onUsernameChange,
+  usernamePosition,
+  onUsernamePositionChange,
 }) => {
   const t = useTranslations("ThreeD");
 
@@ -77,6 +89,101 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
         paddingRight: "6px",
       }}
     >
+      {/* Legends Customization Card */}
+      <Card
+        title={
+          <SynthFont variation="pink-cyan" style={{ textTransform: "none" }}>
+            {t("legendsTitle")}
+          </SynthFont>
+        }
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          {/* Username Checkbox */}
+          <label
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              fontSize: "0.85rem",
+              color: "var(--text-main)",
+              cursor: "pointer",
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={showUsername}
+              onChange={(e) => onShowUsernameChange(e.target.checked)}
+              style={{ cursor: "pointer" }}
+            />
+            {t("showUsername")}
+          </label>
+
+          {/* Conditional Input and Select */}
+          {showUsername && (
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "4px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
+                  {t("usernameInput")}
+                </span>
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) => onUsernameChange(e.target.value)}
+                  style={{
+                    padding: "6px 10px",
+                    borderRadius: "6px",
+                    border: "1px solid var(--border)",
+                    backgroundColor: "rgba(255, 255, 255, 0.05)",
+                    color: "var(--text-main)",
+                    fontSize: "0.8rem",
+                    outline: "none",
+                  }}
+                />
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
+                  {t("positionLabel")}
+                </span>
+                <select
+                  value={usernamePosition}
+                  onChange={(e) => onUsernamePositionChange(e.target.value as any)}
+                  style={{
+                    padding: "6px 10px",
+                    borderRadius: "6px",
+                    border: "1px solid var(--border)",
+                    backgroundColor: "rgba(255, 255, 255, 0.05)",
+                    color: "var(--text-main)",
+                    fontSize: "0.8rem",
+                    outline: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  <option value="recent-left" style={{ backgroundColor: "#111", color: "#fff" }}>
+                    {t("posRecentLeft")}
+                  </option>
+                  <option value="recent-right" style={{ backgroundColor: "#111", color: "#fff" }}>
+                    {t("posRecentRight")}
+                  </option>
+                  <option value="last-left" style={{ backgroundColor: "#111", color: "#fff" }}>
+                    {t("posLastLeft")}
+                  </option>
+                  <option value="last-right" style={{ backgroundColor: "#111", color: "#fff" }}>
+                    {t("posLastRight")}
+                  </option>
+                  <option value="front-side-left" style={{ backgroundColor: "#111", color: "#fff" }}>
+                    {t("posFrontSideLeft")}
+                  </option>
+                  <option value="front-side-right" style={{ backgroundColor: "#111", color: "#fff" }}>
+                    {t("posFrontSideRight")}
+                  </option>
+                </select>
+              </div>
+            </div>
+          )}
+        </div>
+      </Card>
+
       {/* Zoom to Fit Button */}
       <button
         onClick={onZoomToFit}
@@ -310,6 +417,8 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
           </button>
         </div>
       </Card>
+
+
 
       {/* Export Actions Card */}
       <Card

@@ -31,10 +31,35 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
   const [spacing, setSpacing] = useState<number>(1.2);
   const [palette, setPalette] = useState<"green" | "synth" | "gray">("green");
 
+  // Username display settings
+  const [showUsername, setShowUsername] = useState<boolean>(true);
+  const [username, setUsername] = useState<string>("");
+  const [usernamePosition, setUsernamePosition] = useState<'recent-left' | 'recent-right' | 'last-left' | 'last-right' | 'front-side-left' | 'front-side-right'>('last-left');
+
+  const defaultUsername = useMemo(() => {
+    let imported = (state.config.gitProfileOrURL_import || "").trim();
+    if (imported.includes("/")) {
+      const parts = imported.split("/").filter(Boolean);
+      imported = parts[parts.length - 1] || "";
+    }
+    return imported || (state.config.gitName || "").trim() || "contributist";
+  }, [state.config.gitProfileOrURL_import, state.config.gitName]);
+
+  // Synchronize defaultUsername to local username state
+  React.useEffect(() => {
+    if (!username && defaultUsername) {
+      setUsername(defaultUsername);
+    }
+  }, [defaultUsername, username]);
+
   // Hook for capture function ref
   const captureFnRef = React.useRef<(() => string) | null>(null);
   // Hook for zoom function ref
   const zoomFnRef = React.useRef<(() => void) | null>(null);
+  // Hook for export STL function ref
+  const exportStlFnRef = React.useRef<(() => string) | null>(null);
+  // Hook for export OBJ function ref
+  const exportObjFnRef = React.useRef<(() => string) | null>(null);
 
   // 3. Compute active graph composite data
   const { generatedData } = useActivityGraph({
@@ -91,13 +116,19 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
 
   // 5. Exporters
   const handleExportStl = () => {
-    const stl = generateSTL(
-      pillars,
-      selectedYears.length,
-      heightMultiplier,
-      baseThickness,
-      spacing
-    );
+    let stl = "";
+    if (exportStlFnRef.current) {
+      stl = exportStlFnRef.current();
+    }
+    if (!stl) {
+      stl = generateSTL(
+        pillars,
+        selectedYears.length,
+        heightMultiplier,
+        baseThickness,
+        spacing
+      );
+    }
     const blob = new Blob([stl], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -108,13 +139,19 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
   };
 
   const handleExportObj = () => {
-    const obj = generateOBJ(
-      pillars,
-      selectedYears.length,
-      heightMultiplier,
-      baseThickness,
-      spacing
-    );
+    let obj = "";
+    if (exportObjFnRef.current) {
+      obj = exportObjFnRef.current();
+    }
+    if (!obj) {
+      obj = generateOBJ(
+        pillars,
+        selectedYears.length,
+        heightMultiplier,
+        baseThickness,
+        spacing
+      );
+    }
     const blob = new Blob([obj], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -173,6 +210,12 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
         onCapturePng={handleCapturePng}
         onZoomToFit={() => zoomFnRef.current?.()}
         onResetGeometry={handleResetGeometry}
+        showUsername={showUsername}
+        onShowUsernameChange={setShowUsername}
+        username={username}
+        onUsernameChange={setUsername}
+        usernamePosition={usernamePosition}
+        onUsernamePositionChange={setUsernamePosition}
       />
 
       {/* Main Canvas Viewport */}
@@ -184,11 +227,20 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
           baseThickness={baseThickness}
           spacing={spacing}
           palette={palette}
+          showUsername={showUsername}
+          username={username}
+          usernamePosition={usernamePosition}
           onCaptureReady={(fn) => {
             captureFnRef.current = fn;
           }}
           onZoomToFitReady={(fn) => {
             zoomFnRef.current = fn;
+          }}
+          onExportStlReady={(fn) => {
+            exportStlFnRef.current = fn;
+          }}
+          onExportObjReady={(fn) => {
+            exportObjFnRef.current = fn;
           }}
         />
       </div>

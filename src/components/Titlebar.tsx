@@ -206,13 +206,7 @@ export function Titlebar({
               </Menubar.Portal>
             </Menubar.Menu>
             <Menubar.Menu>
-              <Menubar.Trigger 
-                className="menubar-trigger"
-                style={{
-                  background: ['draw', 'export', '3d'].includes(mainTab) ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
-                  color: ['draw', 'export', '3d'].includes(mainTab) ? '#fff' : '#c9d1d9',
-                }}
-              >
+              <Menubar.Trigger className="menubar-trigger">
                 {t('view')}
               </Menubar.Trigger>
               <Menubar.Portal>
@@ -265,17 +259,22 @@ export function Titlebar({
           <button
             className={`flow-step ${mainTab === 'draw' ? 'active' : ''}`}
             onClick={() => onTabSwitch('draw')}
-            style={mainTab === 'draw' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
           >
-            <b style={mainTab === 'draw' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>1</b> {t('design')}
+            <b>1.</b> {t('design')}
           </button>
           <i>→</i>
           <button
             className={`flow-step ${mainTab === 'export' ? 'active' : ''}`}
             onClick={() => onTabSwitch('export')}
-            style={mainTab === 'export' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
           >
-            <b style={mainTab === 'export' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>2</b> {t('push')}
+            <b>2.</b> {t('push')}
+          </button>
+          <i>→</i>
+          <button
+            className={`flow-step ${mainTab === '3d' ? 'active' : ''}`}
+            onClick={() => onTabSwitch('3d')}
+          >
+            <b>3.</b> {t('threeD')}
           </button>
         </nav>
       </div>

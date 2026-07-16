@@ -221,7 +221,17 @@
     "exportTitle": "Exportar Modelo",
     "downloadStl": "Descargar STL (Imp. 3D)",
     "downloadObj": "Descargar OBJ",
-    "savePng": "Guardar Captura (PNG)"
+    "savePng": "Guardar Captura (PNG)",
+    "legendsTitle": "Leyendas",
+    "showUsername": "Mostrar Nombre de Usuario",
+    "usernameInput": "Nombre de Usuario",
+    "positionLabel": "Posición",
+    "posRecentLeft": "Reciente - Izquierda",
+    "posRecentRight": "Reciente - Derecha",
+    "posLastLeft": "Último - Izquierda",
+    "posLastRight": "Último - Derecha",
+    "posFrontSideLeft": "Lado frontal - izquierda",
+    "posFrontSideRight": "Lado frontal - derecha"
   },
   "Metadata": {
     "title": "Contributist | Generador y Pintor del Gráfico de Contribuciones de GitHub",
