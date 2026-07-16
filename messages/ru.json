@@ -6,7 +6,11 @@
     "share": "Поделиться (опция)",
     "file": "Файл",
     "background": "Фон",
-    "sharePngUrl": "Поделиться PNG / Url"
+    "sharePng": "Поделиться PNG",
+    "shareUrl": "Поделиться URL",
+    "threeD": "3D-вид",
+    "view": "Вид",
+    "copiedAlert": "Ссылка скопирована в буфер обмена!"
   },
   "Help": {
     "whyTitle": "Почему Contributist?",

@@ -6,7 +6,11 @@
     "share": "分享 (可选)",
     "file": "文件",
     "background": "背景",
-    "sharePngUrl": "分享 PNG / Url"
+    "sharePng": "分享 PNG",
+    "shareUrl": "分享 URL",
+    "threeD": "3D 视图",
+    "view": "视图",
+    "copiedAlert": "链接已复制到剪贴板！"
   },
   "Help": {
     "whyTitle": "为什么选择 Contributist？",

@@ -6,7 +6,11 @@
     "share": "共有（オプション）",
     "file": "ファイル",
     "background": "背景",
-    "sharePngUrl": "PNG / Urlを共有"
+    "sharePng": "PNGを共有",
+    "shareUrl": "URLを共有",
+    "threeD": "3D表示",
+    "view": "表示",
+    "copiedAlert": "リンクがクリップボードにコピーされました！"
   },
   "Help": {
     "whyTitle": "なぜContributist？",

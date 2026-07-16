@@ -6,7 +6,11 @@
     "share": "Partager (optionnel)",
     "file": "Fichier",
     "background": "Arrière-plan",
-    "sharePngUrl": "Partager PNG / Url"
+    "sharePng": "Partager PNG",
+    "shareUrl": "Partager l'URL",
+    "threeD": "Vue 3D",
+    "view": "Affichage",
+    "copiedAlert": "Lien copié dans le presse-papiers !"
   },
   "Help": {
     "whyTitle": "Pourquoi Contributist ?",

@@ -6,7 +6,11 @@
     "share": "공유 (선택)",
     "file": "파일",
     "background": "배경",
-    "sharePngUrl": "PNG / Url 공유"
+    "sharePng": "PNG 공유",
+    "shareUrl": "URL 공유",
+    "threeD": "3D 보기",
+    "view": "보기",
+    "copiedAlert": "링크가 클립보드에 복사되었습니다!"
   },
   "Help": {
     "whyTitle": "왜 Contributist인가요?",
