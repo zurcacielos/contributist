@@ -157,6 +157,8 @@
     "yearLayers": "Capas del {year}",
     "community": "Comunidad 🌌",
     "loading": "Cargando escenas de la comunidad...",
+    "loadingProfile": "Cargando...",
+    "load": "Cargar",
     "noScenes": "No se encontraron escenas de la comunidad en public/templates/scenes/",
     "publish": "📤 Publicar (Descargar JSON)",
     "saveInto": "💾 Guardar diseño actual aquí",

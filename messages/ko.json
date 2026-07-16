@@ -157,6 +157,8 @@
     "yearLayers": "{year}년 레이어",
     "community": "커뮤니ที 🌌",
     "loading": "커뮤니티 장면 불러오는 중...",
+    "loadingProfile": "불러오는 중...",
+    "load": "불러오기",
     "noScenes": "public/templates/scenes/ 경로에서 커뮤니티 장면을 찾을 수 없습니다",
     "publish": "📤 게시 (JSON 다운로드)",
     "saveInto": "💾 현재 디자인을 여기에 저장",

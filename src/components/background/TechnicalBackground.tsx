@@ -65,6 +65,74 @@ export function TechnicalBackground({
       defaultExpanded={false}
       extraHeaderActions={<></>}
       textTransformTitle="none"
+      alwaysVisibleContent={
+        <div style={{ marginTop: "10px" }}>
+          {/* Make All Greener */}
+          <button
+            type="button"
+            onClick={handleApplyAll}
+            style={{
+              width: "100%",
+              padding: "6px 8px",
+              fontSize: "0.75rem",
+              borderRadius: "6px",
+              background: "rgba(0, 0, 0, 0.4)",
+              border: "1px solid var(--border)",
+              color: "var(--greenbash-selected, #39d353)",
+              cursor: "pointer",
+              fontWeight: "bold",
+              fontFamily: "var(--font-mono, monospace)",
+              transition: "all 0.2s ease",
+              textAlign: "center",
+              marginBottom: "6px"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.color = "#ffffff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+            }}
+          >
+            {t('makeAllGreener')}
+          </button>
+
+          {/* Make Selected Greener */}
+          <button
+            type="button"
+            onClick={handleApplySelected}
+            style={{
+              width: "100%",
+              padding: "6px 8px",
+              fontSize: "0.75rem",
+              borderRadius: "6px",
+              background: "rgba(0, 0, 0, 0.4)",
+              border: "1px solid var(--border)",
+              color: "var(--greenbash-selected, #39d353)",
+              cursor: "pointer",
+              fontWeight: "bold",
+              fontFamily: "var(--font-mono, monospace)",
+              transition: "all 0.2s ease",
+              textAlign: "center"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.color = "#ffffff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+            }}
+          >
+            {t('makeSelectedGreener')}
+          </button>
+        </div>
+      }
     >
       <div style={{ display: "flex", gap: "10px", margin: "10px 0", alignItems: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1 }}>
@@ -177,73 +245,6 @@ export function TechnicalBackground({
           onChange={handleChange}
         />
       </div>
-
-      <hr style={{ border: "none", borderTop: "1px solid rgba(255,255,255,0.08)", margin: "14px 0 10px 0" }} />
-
-      {/* Make Selected Greener */}
-      <button
-        type="button"
-        onClick={handleApplySelected}
-        style={{
-          width: "100%",
-          padding: "6px 8px",
-          fontSize: "0.75rem",
-          borderRadius: "6px",
-          background: "rgba(0, 0, 0, 0.4)",
-          border: "1px solid var(--border)",
-          color: "var(--greenbash-selected, #39d353)",
-          cursor: "pointer",
-          fontWeight: "bold",
-          fontFamily: "var(--font-mono, monospace)",
-          transition: "all 0.2s ease",
-          textAlign: "center",
-          marginBottom: "6px"
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-          e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-          e.currentTarget.style.color = "#ffffff";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-          e.currentTarget.style.borderColor = "var(--border)";
-          e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
-        }}
-      >
-        {t('makeSelectedGreener')}
-      </button>
-
-      {/* Make All Greener */}
-      <button
-        type="button"
-        onClick={handleApplyAll}
-        style={{
-          width: "100%",
-          padding: "6px 8px",
-          fontSize: "0.75rem",
-          borderRadius: "6px",
-          background: "rgba(0, 0, 0, 0.4)",
-          border: "1px solid var(--border)",
-          color: "var(--greenbash-selected, #39d353)",
-          cursor: "pointer",
-          fontWeight: "bold",
-          fontFamily: "var(--font-mono, monospace)",
-          transition: "all 0.2s ease",
-          textAlign: "center"
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-          e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-          e.currentTarget.style.color = "#ffffff";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-          e.currentTarget.style.borderColor = "var(--border)";
-          e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
-        }}
-      >
-        {t('makeAllGreener')}
-      </button>
     </Card>
   );
 }

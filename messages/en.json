@@ -157,6 +157,8 @@
     "yearLayers": "{year} layers",
     "community": "Community 🌌",
     "loading": "Loading community scenes...",
+    "loadingProfile": "Loading...",
+    "load": "Load",
     "noScenes": "No community scenes found in public/templates/scenes/",
     "publish": "📤 Publish (Download JSON)",
     "saveInto": "💾 Save current into this",

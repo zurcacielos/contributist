@@ -5,19 +5,19 @@
  */
 export function getDistinctiveColors(count: number, isSynth: boolean): string[] {
   if (isSynth) {
-    // Synthwave distinctive colors: neon pink, neon cyan, purple, gold/yellow, orange, violet, light pink
-    const synthPalette = [
-      "#ff007f", // Neon Pink
-      "#00d2ff", // Neon Cyan
-      "#d02cff", // Purple/Violet
-      "#ffce42", // Gold/Yellow
-      "#ff8e31", // Orange
-      "#ff4f91", // Soft Pink
-      "#a855f7", // Deep Purple/Indigo
+    // Amber distinctive colors: amber, orange, dark orange, gold, yellow, light amber
+    const amberPalette = [
+      "#ffcf26", // Level 4 Amber
+      "#ff7f00", // Level 3 Orange
+      "#d53a00", // Level 2 Red-Orange
+      "#ffa000", // Amber 700
+      "#ffb300", // Amber 600
+      "#ffc107", // Amber 500
+      "#ffd54f", // Amber 300
     ];
     const colors: string[] = [];
     for (let i = 0; i < count; i++) {
-      colors.push(synthPalette[i % synthPalette.length]);
+      colors.push(amberPalette[i % amberPalette.length]);
     }
     return colors;
   } else {

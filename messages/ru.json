@@ -157,6 +157,8 @@
     "yearLayers": "Слои за {year}",
     "community": "Сообщество 🌌",
     "loading": "Загрузка сцен сообщества...",
+    "loadingProfile": "Загрузка...",
+    "load": "Загрузить",
     "noScenes": "Сцены сообщества не найдены в public/templates/scenes/",
     "publish": "📤 Опубликовать (Скачать JSON)",
     "saveInto": "💾 Сохранить текущий дизайн сюда",

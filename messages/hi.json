@@ -157,6 +157,8 @@
     "yearLayers": "{year} की परतें",
     "community": "समुदाय 🌌",
     "loading": "समुदाय के डिज़ाइनों को लोड किया जा रहा है...",
+    "loadingProfile": "लोड हो रहा है...",
+    "load": "लोड करें",
     "noScenes": "public/templates/scenes/ में कोई समुदाय डिज़ाइन नहीं मिला",
     "publish": "📤 प्रकाशित करें (JSON डाउनलोड करें)",
     "saveInto": "💾 वर्तमान डिज़ाइन को यहाँ सहेजें",

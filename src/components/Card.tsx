@@ -10,6 +10,7 @@ interface CardProps {
   style?: React.CSSProperties;
   children: React.ReactNode;
   textTransformTitle?: React.CSSProperties["textTransform"];
+  alwaysVisibleContent?: React.ReactNode;
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -20,7 +21,8 @@ export const Card: React.FC<CardProps> = ({
   className = "",
   style,
   children,
-  textTransformTitle
+  textTransformTitle,
+  alwaysVisibleContent
 }) => {
   const t = useTranslations('Sidebar');
   const [expanded, setExpanded] = useState(defaultExpanded);
@@ -81,6 +83,11 @@ export const Card: React.FC<CardProps> = ({
       {(!collapsible || expanded) && (
         <div>
           {children}
+        </div>
+      )}
+      {alwaysVisibleContent && (
+        <div>
+          {alwaysVisibleContent}
         </div>
       )}
     </section>

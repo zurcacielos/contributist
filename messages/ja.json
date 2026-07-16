@@ -157,6 +157,8 @@
     "yearLayers": "{year}年のレイヤー",
     "community": "コミュニティ 🌌",
     "loading": "コミュニティシーンを読み込み中...",
+    "loadingProfile": "読み込み中...",
+    "load": "ロード",
     "noScenes": "public/templates/scenes/ 内にコミュニティシーンが見つかりません",
     "publish": "📤 公開（JSONをダウンロード）",
     "saveInto": "💾 現在のデザインをここに保存",

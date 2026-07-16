@@ -157,6 +157,8 @@
     "yearLayers": "{year} 年图层",
     "community": "社区画廊 🌌",
     "loading": "正在加载社区场景...",
+    "loadingProfile": "加载中...",
+    "load": "加载",
     "noScenes": "在 public/templates/scenes/ 中未找到社区场景",
     "publish": "📤 发布 (下载 JSON)",
     "saveInto": "💾 将当前设计保存至此",

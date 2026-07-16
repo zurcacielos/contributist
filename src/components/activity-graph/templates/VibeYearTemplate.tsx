@@ -265,61 +265,64 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
             </div>
           )}
 
-          {isActive && !preview && !isCapturing && (
-            <div
-              className="no-print"
-              data-html2canvas-ignore="true"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                background: "rgba(20, 10, 30, 0.5)",
-                backdropFilter: "blur(12px) saturate(180%)",
-                WebkitBackdropFilter: "blur(12px) saturate(180%)",
-                border: "1px solid rgba(168, 85, 247, 0.25)",
-                borderRadius: "12px",
-                padding: "4px 8px",
-                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.15)"
-              }}
-            >
-              {Object.keys(memeTemplates).map((name, index) => (
-                <button
-                  key={name}
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    applyMemeTemplate(name);
-                  }}
-                  style={{
-                    padding: "4px",
-                    borderRadius: "6px",
-                    cursor: "pointer",
-                    transition: "all 0.15s ease-in-out",
-                    backgroundColor: "rgba(255, 255, 255, 0.02)",
-                    border: "1px solid rgba(255, 255, 255, 0.04)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "scale(1.2)";
-                    e.currentTarget.style.backgroundColor = "rgba(168, 85, 247, 0.25)";
-                    e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.6)";
-                    e.currentTarget.style.boxShadow = "0 0 8px rgba(168, 85, 247, 0.5)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "scale(1)";
-                    e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.02)";
-                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.04)";
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
-                  title={t('toolAddMeme', { name })}
-                >
-                  <MemeSprite templateName={name} pixelSize={2} pixelColor={memeColors[index]} />
-                </button>
-              ))}
-            </div>
-          )}
+          {isActive && !preview && !isCapturing && (() => {
+            const themeRgb = showPaintedInOrange ? "255, 127, 0" : "57, 211, 83";
+            return (
+              <div
+                className="no-print"
+                data-html2canvas-ignore="true"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  background: "rgba(0, 0, 0, 0.6)",
+                  backdropFilter: "blur(12px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(180%)",
+                  border: `1px solid rgba(${themeRgb}, 0.25)`,
+                  borderRadius: "12px",
+                  padding: "4px 8px",
+                  boxShadow: `0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 10px rgba(${themeRgb}, 0.05)`
+                }}
+              >
+                {Object.keys(memeTemplates).map((name, index) => (
+                  <button
+                    key={name}
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      applyMemeTemplate(name);
+                    }}
+                    style={{
+                      padding: "4px",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      transition: "all 0.15s ease-in-out",
+                      backgroundColor: "rgba(255, 255, 255, 0.02)",
+                      border: "1px solid rgba(255, 255, 255, 0.04)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "scale(1.2)";
+                      e.currentTarget.style.backgroundColor = `rgba(${themeRgb}, 0.2)`;
+                      e.currentTarget.style.borderColor = `rgba(${themeRgb}, 0.6)`;
+                      e.currentTarget.style.boxShadow = `0 0 8px rgba(${themeRgb}, 0.4)`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "scale(1)";
+                      e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.02)";
+                      e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.04)";
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
+                    title={t('toolAddMeme', { name })}
+                  >
+                    <MemeSprite templateName={name} pixelSize={2} pixelColor={memeColors[index]} />
+                  </button>
+                ))}
+              </div>
+            );
+          })()}
         </div>
 
         {/* Right: Stats and Freq Controls */}

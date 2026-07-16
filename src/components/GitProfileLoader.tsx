@@ -3,6 +3,7 @@ import { RefreshCw } from "lucide-react";
 import { GeneratorConfig } from "@/types";
 import { AppAction } from "@/state/appReducer";
 import { parseProfileUrl } from "@/git-contributions/GithubContributionsReader/urlParser";
+import { useTranslations } from "next-intl";
 
 interface GitProfileLoaderProps {
   config: GeneratorConfig;
@@ -15,6 +16,7 @@ export function GitProfileLoader({
   dispatch,
   initialConfig
 }: GitProfileLoaderProps) {
+  const t = useTranslations('Sidebar');
   const [isFetching, setIsFetching] = useState(false);
   const [fetchError, setFetchError] = useState<string | null>(null);
 
@@ -73,9 +75,9 @@ export function GitProfileLoader({
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "100%",
+        width: "60%",
         maxWidth: "900px",
-        margin: "0 auto 20px auto"
+        margin: "0 auto 0px auto"
       }}
     >
       <div style={{ display: "flex", width: "100%", gap: "10px", alignItems: "center" }}>
@@ -139,7 +141,7 @@ export function GitProfileLoader({
             padding: "10px 24px",
             borderRadius: "8px",
             border: "none",
-            background: "linear-gradient(135deg, #3870ff, #2040c0)",
+            background: isFetching ? "rgba(56, 112, 255, 0.4)" : "linear-gradient(135deg, #3870ff, #2040c0)",
             color: "white",
             fontWeight: "bold",
             fontSize: "0.9rem",
@@ -147,20 +149,21 @@ export function GitProfileLoader({
             display: "flex",
             alignItems: "center",
             gap: "8px",
-            boxShadow: "0 4px 12px rgba(56, 112, 255, 0.2)",
+            boxShadow: isFetching ? "none" : "0 4px 12px rgba(56, 112, 255, 0.2)",
+            opacity: isFetching ? 0.8 : 1,
             transition: "all 0.2s"
           }}
           onMouseEnter={(e) => {
             if (!isFetching) e.currentTarget.style.opacity = "0.9";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.opacity = "1";
+            if (!isFetching) e.currentTarget.style.opacity = "1";
           }}
         >
           {isFetching ? (
             <RefreshCw size={16} className="spin" style={{ animation: "spin 1s linear infinite" }} />
           ) : null}
-          Load
+          {isFetching ? t('loadingProfile') : t('load')}
         </button>
       </div>
 
@@ -174,7 +177,7 @@ export function GitProfileLoader({
           fontFamily: "var(--font-mono, monospace)"
         }}
       >
-        Example: zurcacielos • https://github.com/zurcacielos • gitlab.com/username • gitea.instance/user
+        E.g.: zurcacielos • https://github.com/zurcacielos / gitlab.com/username
       </div>
 
       {fetchError && (

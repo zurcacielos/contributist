@@ -64,9 +64,45 @@ export const DrawTab: React.FC<DrawTabProps> = ({
     });
   };
 
+  const handleBeforeSad = () => {
+    const updatedLayers = (config.layers || []).map(layer => {
+      if (layer.type === 'git-profile') {
+        return layer;
+      }
+      return { ...layer, visible: false };
+    });
+    dispatch({
+      type: "SET_CONFIG",
+      payload: {
+        ...config,
+        layers: updatedLayers
+      }
+    });
+  };
+
+  const handleAfterHappy = () => {
+    const updatedLayers = (config.layers || []).map(layer => {
+      return { ...layer, visible: true };
+    });
+    dispatch({
+      type: "SET_CONFIG",
+      payload: {
+        ...config,
+        layers: updatedLayers
+      }
+    });
+  };
+
   return (
     <section
       className="layout draw-layout"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "264px minmax(0, 1fr) 240px",
+        gridTemplateRows: "auto 1fr",
+        gap: "14px 18px",
+        padding: "18px 12px 24px",
+      }}
       onClick={(e) => {
         const target = e.target as HTMLElement;
         if (target.classList.contains("draw-layout") || target.classList.contains("workspace")) {
@@ -74,23 +110,20 @@ export const DrawTab: React.FC<DrawTabProps> = ({
         }
       }}
     >
-      {/* Left Sidebar */}
-      <aside
-        className="sidebar-left panel"
+      {/* Row 1, Column 1: Share 2D URL Button */}
+      <div
         style={{
-          position: "sticky",
-          top: "0px",
-          zIndex: 10,
-          alignSelf: "start",
+          gridColumn: "1",
+          gridRow: "1",
           display: "flex",
-          flexDirection: "column",
-          gap: "14px"
+          alignItems: "flex-start",
         }}
       >
         <button
           onClick={handleShareUrl}
           style={{
             padding: "10px 14px",
+            height: "40px",
             borderRadius: "8px",
             border: "1px solid var(--border)",
             backgroundColor: "rgba(0, 0, 0, 0.4)",
@@ -120,21 +153,127 @@ export const DrawTab: React.FC<DrawTabProps> = ({
         >
           <span>🔗 Share this 2D URL</span>
         </button>
+      </div>
 
+      {/* Row 2, Column 1: Left Sidebar (Background Settings Panel) */}
+      <aside
+        className="sidebar-left panel"
+        style={{
+          gridColumn: "1",
+          gridRow: "2",
+          position: "sticky",
+          top: "0px",
+          zIndex: 10,
+          alignSelf: "start",
+          display: "flex",
+          flexDirection: "column",
+          gap: "14px",
+          padding: "0px",
+          border: "none",
+          background: "transparent",
+          boxShadow: "none"
+        }}
+      >
         <TechnicalBackground config={config} activeYear={state.activeYear} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
-
       </aside>
 
-      {/* Main Workspace */}
-      <section className="workspace">
+      {/* Row 1, Column 2: Profile Loader in the middle column */}
+      <div style={{ gridColumn: "2", gridRow: "1" }}>
         <GitProfileLoader config={config} dispatch={dispatch} initialConfig={initialConfig} />
-        <ActivityGraph ref={graphRef} state={state} dispatch={dispatch} onEditChange={setIsEditing} />
-      </section>
+      </div>
 
-      {/* Right Sidebar */}
+      {/* Row 1, Column 3: Before/Sad and After/Happy Buttons */}
+      <div
+        style={{
+          gridColumn: "3",
+          gridRow: "1",
+          display: "flex",
+          gap: "8px",
+          width: "100%",
+          alignItems: "flex-start"
+        }}
+      >
+        <button
+          onClick={handleBeforeSad}
+          style={{
+            flex: 1,
+            padding: "10px 8px",
+            height: "40px",
+            borderRadius: "8px",
+            border: "1px solid var(--border)",
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            color: "var(--text-muted)",
+            cursor: "pointer",
+            fontSize: "0.75rem",
+            fontWeight: "600",
+            fontFamily: "var(--font-mono, monospace)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "4px",
+            transition: "all 0.2s ease",
+            outline: "none",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "rgba(244, 63, 94, 0.12)";
+            e.currentTarget.style.borderColor = "#f43f5e";
+            e.currentTarget.style.color = "#ffffff";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+            e.currentTarget.style.borderColor = "var(--border)";
+            e.currentTarget.style.color = "var(--text-muted)";
+          }}
+        >
+          <span>😢 Before/Sad</span>
+        </button>
+        <button
+          onClick={handleAfterHappy}
+          style={{
+            flex: 1,
+            padding: "10px 8px",
+            height: "40px",
+            borderRadius: "8px",
+            border: "1px solid var(--border)",
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            color: "var(--greenbash-selected, #39d353)",
+            cursor: "pointer",
+            fontSize: "0.75rem",
+            fontWeight: "600",
+            fontFamily: "var(--font-mono, monospace)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "4px",
+            transition: "all 0.2s ease",
+            outline: "none",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+            e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+            e.currentTarget.style.color = "#ffffff";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+            e.currentTarget.style.borderColor = "var(--border)";
+            e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+          }}
+        >
+          <span>😊 After/Happy</span>
+        </button>
+      </div>
+
+      {/* Row 2, Column 2: Main Activity Graph */}
+      <div style={{ gridColumn: "2", gridRow: "2" }}>
+        <ActivityGraph ref={graphRef} state={state} dispatch={dispatch} onEditChange={setIsEditing} />
+      </div>
+
+      {/* Columns 3: Right Sidebar starting on Row 2 */}
       <aside
         className="sidebar-right panel"
         style={{
+          gridColumn: "3",
+          gridRow: "2",
           position: "sticky",
           top: "0px",
           zIndex: 10,

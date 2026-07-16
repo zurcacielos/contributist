@@ -157,6 +157,8 @@
     "yearLayers": "Calques de {year}",
     "community": "Communauté 🌌",
     "loading": "Chargement des scènes de la communauté...",
+    "loadingProfile": "Chargement...",
+    "load": "Charger",
     "noScenes": "Aucune scène de la communauté trouvée dans public/templates/scenes/",
     "publish": "📤 Publier (Télécharger JSON)",
     "saveInto": "💾 Sauvegarder le design actuel ici",

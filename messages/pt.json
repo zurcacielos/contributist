@@ -157,6 +157,8 @@
     "yearLayers": "Camadas de {year}",
     "community": "Comunidade 🌌",
     "loading": "Carregando cenas da comunidade...",
+    "loadingProfile": "Carregando...",
+    "load": "Carregar",
     "noScenes": "Nenhuma cena da comunidade encontrada em public/templates/scenes/",
     "publish": "📤 Publicar (Baixar JSON)",
     "saveInto": "💾 Salvar design atual neste",

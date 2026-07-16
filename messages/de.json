@@ -157,6 +157,8 @@
     "yearLayers": "Ebenen von {year}",
     "community": "Community 🌌",
     "loading": "Community-Szenen werden geladen...",
+    "loadingProfile": "Laden...",
+    "load": "Laden",
     "noScenes": "Keine Community-Szenen in public/templates/scenes/ gefunden",
     "publish": "📤 Veröffentlichen (JSON herunterladen)",
     "saveInto": "💾 Aktuelles Design hier speichern",
