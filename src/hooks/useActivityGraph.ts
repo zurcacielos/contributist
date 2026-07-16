@@ -184,13 +184,26 @@ export function useActivityGraph({ state, dispatch, onEditChange }: UseActivityG
           const composite = currentPaintedLayer[dateStr];
 
           if (composite !== undefined) {
-            finalLevel = composite.level;
-            layerId = composite.layerId;
-            if (composite.level === 1) finalCount = 1;
-            else if (composite.level === 2) finalCount = 3;
-            else if (composite.level === 3) finalCount = 6;
-            else if (composite.level === 4) finalCount = 10;
-            else finalCount = 0;
+            const gitProfileLayer = currentLayers.find(l => l.year === year && l.type === 'git-profile') as any;
+            const gitProfileActive = gitProfileLayer && gitProfileLayer.visible && !gitProfileLayer.cleared;
+            const pLevel = gitProfileActive && gitProfileLayer.data ? (gitProfileLayer.data[dateStr] || 0) : 0;
+
+            if (composite.level === 0 && pLevel > 0) {
+              finalLevel = pLevel;
+              if (pLevel === 1) finalCount = 1;
+              else if (pLevel === 2) finalCount = 3;
+              else if (pLevel === 3) finalCount = 6;
+              else if (pLevel === 4) finalCount = 10;
+              layerId = gitProfileLayer.id;
+            } else {
+              finalLevel = composite.level;
+              layerId = composite.layerId;
+              if (composite.level === 1) finalCount = 1;
+              else if (composite.level === 2) finalCount = 3;
+              else if (composite.level === 3) finalCount = 6;
+              else if (composite.level === 4) finalCount = 10;
+              else finalCount = 0;
+            }
             isPainted = true;
           } else {
             const bgActive = bgLayer && bgLayer.visible && !bgLayer.cleared;

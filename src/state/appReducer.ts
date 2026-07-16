@@ -401,8 +401,16 @@ export function appReducer(state: AppState, action: AppAction): AppState {
           if (!activeLayer) return state; // Raster layer must exist
           if (activeLayer.locked) return state;
           if (!activeLayer.data) activeLayer.data = {};
-          // Set level to 0 to represent erased cell, overriding background for this cell.
-          activeLayer.data[dateStr] = 0;
+
+          const currentVal = activeLayer.data[dateStr];
+          if (currentVal !== undefined && currentVal > 0) {
+            // Delete custom pen paint cell
+            delete activeLayer.data[dateStr];
+          } else {
+            // Set level to 0 to represent permanent erased cell, overriding background for this cell.
+            activeLayer.data[dateStr] = 0;
+          }
+
           // Ensure raster layer is active after erase
           return {
             ...state,
