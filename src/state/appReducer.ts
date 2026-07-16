@@ -40,7 +40,9 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       nextConfig.repoUrl = state.config.repoUrl;
       nextConfig.gitName = state.config.gitName;
       nextConfig.gitEmail = state.config.gitEmail;
-      nextConfig.gitProfileOrURL_import = state.config.gitProfileOrURL_import;
+      nextConfig.gitProfileOrURL_import = action.payload.gitProfileOrURL_import !== undefined
+        ? action.payload.gitProfileOrURL_import
+        : state.config.gitProfileOrURL_import;
       
       const startYear = parseYear(nextConfig.startDate);
       const endYear = parseYear(nextConfig.endDate);

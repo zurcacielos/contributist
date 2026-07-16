@@ -7,7 +7,7 @@ import { ActivityGraph } from "@/components/ActivityGraph";
 import { Card } from "@/components/Card";
 import { Eye, Flame, Trophy, Zap, Share2 } from "lucide-react";
 import { exportAsPNG } from "@/utils/canvasExport";
-import { serializeDesign } from "@/utils/shareSerializer";
+import { serializeDesign, collapseYearsToRanges, isPureGitProfileDesign, generateShareUrl } from "@/utils/shareSerializer";
 import { useTranslations } from "next-intl";
 
 interface VisualShareTabProps {
@@ -40,8 +40,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
   };
 
   const handleCopyLink = () => {
-    const serialized = serializeDesign(state);
-    const shareUrl = `${window.location.origin}${window.location.pathname}?tab=share#design=${serialized}`;
+    const shareUrl = generateShareUrl(state, "share");
     navigator.clipboard.writeText(shareUrl);
     alert(t('copiedAlert'));
   };

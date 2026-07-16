@@ -6,7 +6,7 @@ import { ThreeDCanvas } from "./ThreeDCanvas";
 import { generateSTL, generateOBJ, StlPillar } from "@/utils/stlExporter";
 import { parseYear } from "@/types";
 import { useTranslations } from "next-intl";
-import { serializeDesign } from "@/utils/shareSerializer";
+import { generateShareUrl } from "@/utils/shareSerializer";
 
 interface ThreeDTabProps {
   state: AppState;
@@ -213,8 +213,7 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
 
   const handleShareUrl = () => {
     try {
-      const serialized = serializeDesign(state);
-      const shareUrl = `${window.location.origin}${window.location.pathname}?tab=3d#design=${serialized}`;
+      const shareUrl = generateShareUrl(state, "3d");
       navigator.clipboard.writeText(shareUrl);
       alert(t('copiedAlert'));
     } catch (e) {

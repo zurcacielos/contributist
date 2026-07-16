@@ -160,3 +160,117 @@ export function deserializeDesign(encoded: string, currentState: AppState): AppS
     return currentState;
   }
 }
+
+/**
+ * Checks if the state contains only an imported Git profile, with no custom drawings or text/meme layers.
+ */
+export function isPureGitProfileDesign(state: AppState): boolean {
+  const layers = state.config.layers || [];
+
+  const hasDrawingsOrMemes = layers.some((layer) => {
+    if (layer.type === "raster") {
+      const raster = layer as any;
+      const hasData = raster.data && Object.keys(raster.data).length > 0;
+      return hasData;
+    }
+    if (layer.type === "meme") {
+      return true;
+    }
+    return false;
+  });
+
+  if (hasDrawingsOrMemes) {
+    return false;
+  }
+
+  const hasGitProfile = layers.some((layer) => layer.type === "git-profile");
+  return hasGitProfile;
+}
+
+/**
+ * Collapses an array of years into a descending range list string.
+ * Example: [2026, 2025, 2024, 2022, 2020, 2019, 2018] -> "2026-2024,2022,2020-2018"
+ */
+export function collapseYearsToRanges(years: number[]): string {
+  if (years.length === 0) return "";
+  const sorted = Array.from(new Set(years)).sort((a, b) => b - a);
+
+  const ranges: string[] = [];
+  let start = sorted[0];
+  let prev = sorted[0];
+
+  for (let i = 1; i <= sorted.length; i++) {
+    const current = sorted[i];
+    if (current === prev - 1) {
+      prev = current;
+    } else {
+      if (start === prev) {
+        ranges.push(`${start}`);
+      } else {
+        ranges.push(`${start}-${prev}`);
+      }
+      if (current !== undefined) {
+        start = current;
+        prev = current;
+      }
+    }
+  }
+  return ranges.join(",");
+}
+
+/**
+ * Expands a range list string into an array of years.
+ * Example: "2026-2024,2022,2020-2018" -> [2026, 2025, 2024, 2022, 2020, 2019, 2018]
+ */
+export function expandRangesToYears(rangeStr: string): number[] {
+  if (!rangeStr) return [];
+  const years: number[] = [];
+  const parts = rangeStr.split(",");
+  for (const part of parts) {
+    if (part.includes("-")) {
+      const [startStr, endStr] = part.split("-");
+      const start = parseInt(startStr, 10);
+      const end = parseInt(endStr, 10);
+      if (!isNaN(start) && !isNaN(end)) {
+        const min = Math.min(start, end);
+        const max = Math.max(start, end);
+        for (let y = min; y <= max; y++) {
+          years.push(y);
+        }
+      }
+    } else {
+      const y = parseInt(part, 10);
+      if (!isNaN(y)) {
+        years.push(y);
+      }
+    }
+  }
+  return years.sort((a, b) => b - a);
+}
+
+/**
+ * Generates the clean/short URL for pure designs or Base64 design hash for custom ones.
+ */
+export function generateShareUrl(state: AppState, tab: string): string {
+  if (typeof window === "undefined") return "";
+
+  if (isPureGitProfileDesign(state)) {
+    const profile = (state.config.gitProfileOrURL_import || "").trim();
+    const bgLayers = (state.config.layers || []).filter((l) => l.type === "background" && !l.cleared);
+    const bgYears = bgLayers.map((l) => l.year).filter((y) => y !== undefined) as number[];
+    const bgRange = collapseYearsToRanges(bgYears);
+
+    const params = new URLSearchParams();
+    params.set("tab", tab);
+    params.set("profile", profile);
+    if (bgRange) {
+      params.set("bg", bgRange);
+    }
+    return `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+  } else {
+    const serialized = serializeDesign(state);
+    return `${window.location.origin}${window.location.pathname}?tab=${tab}#design=${serialized}`;
+  }
+}
+
+

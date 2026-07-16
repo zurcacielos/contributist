@@ -2,14 +2,15 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Tooltip } from "react-tooltip";
-import { GeneratorConfig } from "@/types";
+import { GeneratorConfig, Layer } from "@/types";
 import { Titlebar } from "@/components/Titlebar";
 import { ExportTab } from "@/components/tabexport/ExportTab";
 import { DrawTab } from "@/components/tabdraw/DrawTab";
 import { VisualShareTab } from "@/components/tabshare/VisualShareTab";
 import { HelpTab } from "@/components/tabhelp/HelpTab";
 import { ThreeDTab } from "@/components/tab3d/ThreeDTab";
-import { deserializeDesign } from "@/utils/shareSerializer";
+import { deserializeDesign, expandRangesToYears } from "@/utils/shareSerializer";
+import { parseProfileUrl } from "@/git-contributions/GithubContributionsReader/urlParser";
 import { ActivityGraphRef } from "@/components/ActivityGraph";
 import { saveConfig, loadConfig } from "@/utils/configHelper";
 import { StoreProvider, useAppStore, useAppDispatch } from "@/state/store";
@@ -44,6 +45,8 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
     }
 
     const loadedKey = designParam ? `design-loaded-${designParam.slice(-20)}` : "";
+    const profileParam = params.get("profile") || hashParams.get("profile");
+    const bgParam = params.get("bg") || hashParams.get("bg");
 
     if (designParam && !sessionStorage.getItem(loadedKey)) {
       try {
@@ -52,6 +55,80 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
         sessionStorage.setItem(loadedKey, "true");
       } catch (e) {
         console.error("Failed to load design from URL", e);
+      } finally {
+        isInitialized.current = true;
+      }
+      return;
+    } else if (profileParam) {
+      try {
+        const bgYears = bgParam ? expandRangesToYears(bgParam) : [];
+        const initialLayers: Layer[] = bgYears.map(y => ({
+          id: `bg-${y}`,
+          name: `Background`,
+          type: "background" as const,
+          visible: true,
+          year: y,
+          cleared: false
+        }));
+
+        const startYear = parseInt(initialConfig.startDate, 10) || (new Date().getFullYear() - 1);
+        const endYear = parseInt(initialConfig.endDate, 10) || new Date().getFullYear();
+        const minYear = Math.min(startYear, endYear);
+        const maxYear = Math.max(startYear, endYear);
+
+        for (let y = minYear; y <= maxYear; y++) {
+          initialLayers.push({
+            id: `raster-${y}`,
+            name: `Painted`,
+            type: "raster" as const,
+            visible: true,
+            year: y,
+            data: {}
+          });
+        }
+
+        const customConfig = {
+          ...initialConfig,
+          gitProfileOrURL_import: profileParam,
+          layers: initialLayers
+        };
+
+        dispatch({ type: "RESET_TO_INITIAL", payload: customConfig });
+
+        const { platform, username } = parseProfileUrl(profileParam);
+
+        dispatch({
+          type: "START_FETCH_PROFILE",
+          payload: { username, platform }
+        });
+
+        fetch("/api/contributions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ profileUrl: profileParam }),
+        })
+          .then(async (res) => {
+            const data = await res.json();
+            if (!res.ok) {
+              throw new Error(data.error || "Failed to fetch contributions");
+            }
+            const fetchedContributions = data.contributions as Record<string, number>;
+            if (fetchedContributions && Object.keys(fetchedContributions).length > 0) {
+              dispatch({
+                type: "FETCH_PROFILE_SUCCESS",
+                payload: {
+                  contributions: fetchedContributions,
+                  platform: data.platform || platform,
+                  username: data.username || username
+                }
+              });
+            }
+          })
+          .catch((err) => {
+            console.error("Failed to auto-fetch contributions on startup", err);
+          });
+      } catch (e) {
+        console.error("Failed to load profile from URL", e);
       } finally {
         isInitialized.current = true;
       }

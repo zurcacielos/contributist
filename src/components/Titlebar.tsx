@@ -10,7 +10,7 @@ import { LanguageSelector } from './LanguageSelector';
 import { AppState, AppAction } from '@/state/appReducer';
 
 import { applyBackgroundSelected, applyBackgroundAll } from '@/utils/backgroundActions';
-import { serializeDesign } from '@/utils/shareSerializer';
+import { generateShareUrl } from '@/utils/shareSerializer';
 
 interface TitlebarProps {
   mainTab: "draw" | "share" | "export" | "help" | "3d";
@@ -45,9 +45,8 @@ export function Titlebar({
 
   const handleShareUrl = () => {
     try {
-      const serialized = serializeDesign(state);
       const targetTab = mainTab === '3d' ? '3d' : 'draw';
-      const shareUrl = `${window.location.origin}${window.location.pathname}?tab=${targetTab}#design=${serialized}`;
+      const shareUrl = generateShareUrl(state, targetTab);
       navigator.clipboard.writeText(shareUrl);
       alert(t('copiedAlert'));
     } catch (e) {

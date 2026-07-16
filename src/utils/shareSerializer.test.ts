@@ -1,5 +1,12 @@
 import { describe, it, expect } from "vitest";
-import { serializeDesign, deserializeDesign } from "./shareSerializer";
+import {
+  serializeDesign,
+  deserializeDesign,
+  collapseYearsToRanges,
+  expandRangesToYears,
+  isPureGitProfileDesign,
+  generateShareUrl
+} from "./shareSerializer";
 import { AppState } from "@/state/appReducer";
 
 describe("shareSerializer", () => {
@@ -96,4 +103,96 @@ describe("shareSerializer", () => {
     const restoredEmpty = deserializeDesign("", mockState);
     expect(restoredEmpty).toEqual(mockState);
   });
+
+  describe("collapseYearsToRanges and expandRangesToYears", () => {
+    it("should collapse consecutive and non-consecutive years in descending order", () => {
+      const years = [2026, 2025, 2024, 2022, 2020, 2019, 2018];
+      const collapsed = collapseYearsToRanges(years);
+      expect(collapsed).toBe("2026-2024,2022,2020-2018");
+    });
+
+    it("should collapse single years correctly", () => {
+      expect(collapseYearsToRanges([2025])).toBe("2025");
+      expect(collapseYearsToRanges([])).toBe("");
+    });
+
+    it("should expand collapsed ranges back to a full years array", () => {
+      const range = "2026-2024,2022,2020-2018";
+      const expanded = expandRangesToYears(range);
+      expect(expanded).toEqual([2026, 2025, 2024, 2022, 2020, 2019, 2018]);
+    });
+
+    it("should expand single year and empty ranges", () => {
+      expect(expandRangesToYears("2025")).toEqual([2025]);
+      expect(expandRangesToYears("")).toEqual([]);
+    });
+  });
+
+  describe("isPureGitProfileDesign", () => {
+    it("should detect a pure design with only a git-profile layer", () => {
+      const pureState: AppState = {
+        ...mockState,
+        config: {
+          ...mockState.config,
+          layers: [
+            { id: "bg-2025", name: "Background", type: "background", visible: true, year: 2025 },
+            { id: "git-2025", name: "Git Profile", type: "git-profile", visible: true, year: 2025, data: {} },
+            { id: "raster-2025", name: "Painted", type: "raster", visible: true, year: 2025, data: {} }
+          ]
+        }
+      };
+      expect(isPureGitProfileDesign(pureState)).toBe(true);
+    });
+
+    it("should return false if there are drawings in the raster layer", () => {
+      const dirtyState: AppState = {
+        ...mockState,
+        config: {
+          ...mockState.config,
+          layers: [
+            { id: "bg-2025", name: "Background", type: "background", visible: true, year: 2025 },
+            { id: "git-2025", name: "Git Profile", type: "git-profile", visible: true, year: 2025, data: {} },
+            { id: "raster-2025", name: "Painted", type: "raster", visible: true, year: 2025, data: { "2025-01-05": 3 } }
+          ]
+        }
+      };
+      expect(isPureGitProfileDesign(dirtyState)).toBe(false);
+    });
+
+    it("should return false if there are custom meme layers", () => {
+      const memeState: AppState = {
+        ...mockState,
+        config: {
+          ...mockState.config,
+          layers: [
+            { id: "bg-2025", name: "Background", type: "background", visible: true, year: 2025 },
+            { id: "git-2025", name: "Git Profile", type: "git-profile", visible: true, year: 2025, data: {} },
+            { id: "raster-2025", name: "Painted", type: "raster", visible: true, year: 2025, data: {} },
+            { id: "meme-123", name: "Meme", type: "meme", visible: true, year: 2025, textConfig: { text: "Hello", fontName: "Classic", x: 0, y: 0, level: 3 } }
+          ]
+        }
+      };
+      expect(isPureGitProfileDesign(memeState)).toBe(false);
+    });
+  });
+
+  describe("generateShareUrl", () => {
+    it("should return the correct short URL", () => {
+      const pureState: AppState = {
+        ...mockState,
+        config: {
+          ...mockState.config,
+          gitProfileOrURL_import: "torvalds",
+          layers: [
+            { id: "bg-2025", name: "Background", type: "background", visible: true, year: 2025, cleared: false },
+            { id: "git-2025", name: "Git Profile", type: "git-profile", visible: true, year: 2025, data: {} },
+            { id: "raster-2025", name: "Painted", type: "raster", visible: true, year: 2025, data: {} }
+          ]
+        }
+      };
+      expect(generateShareUrl(pureState, "share")).toContain("?tab=share&profile=torvalds&bg=2025");
+    });
+  });
 });
+
+
