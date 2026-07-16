@@ -14,6 +14,7 @@ import { GreenFont } from "@/components/GreenFont";
 import { ColorSelector } from "@/components/ColorSelector";
 import { useTranslations } from "next-intl";
 import { generateShareUrl } from "@/utils/shareSerializer";
+import { useToast } from "@/components/Toast";
 
 interface DrawTabProps {
   config: GeneratorConfig;
@@ -41,11 +42,13 @@ export const DrawTab: React.FC<DrawTabProps> = ({
   initialConfig,
 }) => {
   const t = useTranslations('Sidebar');
+  const { showToast } = useToast();
 
   const handleShareUrl = async () => {
     try {
       const shareUrl = await generateShareUrl(state, "draw");
       navigator.clipboard.writeText(shareUrl);
+      showToast("Link copied to clipboard!");
     } catch (e) {
       console.error("Failed to generate share URL", e);
     }

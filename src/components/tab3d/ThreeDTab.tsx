@@ -7,6 +7,7 @@ import { generateSTL, generateOBJ, StlPillar } from "@/utils/stlExporter";
 import { parseYear } from "@/types";
 import { useTranslations } from "next-intl";
 import { generateShareUrl } from "@/utils/shareSerializer";
+import { useToast } from "@/components/Toast";
 
 interface ThreeDTabProps {
   state: AppState;
@@ -220,11 +221,13 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
   };
 
   const t = useTranslations('Titlebar');
+  const { showToast } = useToast();
 
   const handleShareUrl = async () => {
     try {
       const shareUrl = await generateShareUrl(state, "3d");
       navigator.clipboard.writeText(shareUrl);
+      showToast(t('copiedAlert'));
     } catch (e) {
       console.error("Failed to generate share URL", e);
     }

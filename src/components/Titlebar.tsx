@@ -11,6 +11,7 @@ import { AppState, AppAction } from '@/state/appReducer';
 
 import { applyBackgroundSelected, applyBackgroundAll } from '@/utils/backgroundActions';
 import { generateShareUrl } from '@/utils/shareSerializer';
+import { useToast } from '@/components/Toast';
 
 interface TitlebarProps {
   mainTab: "draw" | "share" | "export" | "help" | "3d";
@@ -33,6 +34,7 @@ export function Titlebar({
   dispatch
 }: TitlebarProps) {
   const t = useTranslations('Titlebar');
+  const { showToast } = useToast();
   const tSidebar = useTranslations('Sidebar');
 
   const handleApplySelected = () => {
@@ -48,6 +50,7 @@ export function Titlebar({
       const targetTab = mainTab === '3d' ? '3d' : 'draw';
       const shareUrl = await generateShareUrl(state, targetTab);
       navigator.clipboard.writeText(shareUrl);
+      showToast(t('copiedAlert'));
     } catch (e) {
       console.error("Failed to generate share URL", e);
     }

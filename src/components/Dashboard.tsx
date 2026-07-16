@@ -16,6 +16,7 @@ import { saveConfig, loadConfig } from "@/utils/configHelper";
 import { StoreProvider, useAppStore, useAppDispatch } from "@/state/store";
 import { saveStateToStorage, loadStateFromStorage } from "@/utils/storage";
 import { useTranslations } from "next-intl";
+import { ToastProvider } from "@/components/Toast";
 
 function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig }) {
   const tAlerts = useTranslations('Alerts');
@@ -308,7 +309,9 @@ export function Dashboard({ initialConfig }: { initialConfig: GeneratorConfig })
 
   return (
     <StoreProvider initialState={defaultInitialState}>
-      <DashboardContent initialConfig={initialConfig} />
+      <ToastProvider>
+        <DashboardContent initialConfig={initialConfig} />
+      </ToastProvider>
     </StoreProvider>
   );
 }
