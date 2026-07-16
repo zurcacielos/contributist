@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTranslations } from "next-intl";
-import { SynthFont } from "@/components/SynthFont";
+import { GreenFont } from "@/components/GreenFont";
 
 interface ColorSelectorProps {
   selectedLevel: number;
@@ -122,9 +122,9 @@ export function ColorSelector({
             onChange={onTogglePaintedInOrange}
             style={{ marginRight: '4px' }}
           />
-          <SynthFont variation="pink-purple-cyan">
+          <GreenFont variation="green-bright">
             {tSidebar('showSynthArt')}
-          </SynthFont>
+          </GreenFont>
         </label>
       </div>
 

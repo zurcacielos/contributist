@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "../Card";
-import { SynthFont } from "../SynthFont";
+import { GreenFont } from "../GreenFont";
 import { useTranslations } from "next-intl";
 
 interface ThreeDAsidePanelProps {
@@ -230,9 +230,9 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
       {/* Year Selection Card */}
       <Card
         title={
-          <SynthFont variation="pink-cyan" style={{ textTransform: "none" }}>
+          <GreenFont variation="green-bright" style={{ textTransform: "none" }}>
             {t("yearsTitle")}
-          </SynthFont>
+          </GreenFont>
         }
       >
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -348,9 +348,9 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
       {/* Geometry Customization Card */}
       <Card
         title={
-          <SynthFont variation="pink-cyan" style={{ textTransform: "none" }}>
+          <GreenFont variation="green-bright" style={{ textTransform: "none" }}>
             {t("geometryTitle")}
-          </SynthFont>
+          </GreenFont>
         }
       >
         <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -440,9 +440,9 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
       {/* Export Actions Card */}
       <Card
         title={
-          <SynthFont variation="pink-cyan" style={{ textTransform: "none" }}>
+          <GreenFont variation="green-bright" style={{ textTransform: "none" }}>
             {t("exportTitle")}
-          </SynthFont>
+          </GreenFont>
         }
       >
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>

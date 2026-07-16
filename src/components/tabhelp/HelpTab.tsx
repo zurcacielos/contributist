@@ -1,6 +1,6 @@
 import React from "react";
 import { HelpCircle, Info, BookOpen, Layers, ShieldCheck, Terminal, Sliders, Link, MousePointer, ExternalLink } from "lucide-react";
-import { SynthFont } from "@/components/SynthFont";
+import { GreenFont } from "@/components/GreenFont";
 import { useTranslations } from "next-intl";
 
 export function HelpTab() {
@@ -48,7 +48,7 @@ export function HelpTab() {
               {t('step1Text')}
             </li>
             <li>
-              {t('step2Prefix')}<SynthFont>{t('step2Synth')}</SynthFont>
+              {t('step2Prefix')}<GreenFont variation="green-bright">{t('step2Synth')}</GreenFont>
             </li>
             <li>
               {t('step3Text')}
@@ -76,8 +76,8 @@ export function HelpTab() {
           }}>
             <li>{t('manifesto3')}</li>
             <li>{t('manifesto1')}</li>
-            <li><SynthFont>{t('manifesto2')}</SynthFont></li>
-            <li><SynthFont>{t('manifesto4')}</SynthFont></li>
+            <li><GreenFont variation="green-bright">{t('manifesto2')}</GreenFont></li>
+            <li><GreenFont variation="green-bright">{t('manifesto4')}</GreenFont></li>
           </ul>
         </section>
 

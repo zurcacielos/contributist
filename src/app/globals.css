@@ -1,4 +1,3 @@
-@import "./themes/vibe-theme.css";
 @import "./themes/advanced-theme.css";
 
 :root {
@@ -70,11 +69,11 @@ a:hover {
 
 /* Glassmorphism Card */
 .card {
-  background: var(--surface);
+  /* background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border-radius: 12px; */
+  padding: 8px;
+  /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); */
 }
 
 /* Form Styles */
@@ -538,7 +537,7 @@ button {
   overflow-y: auto;
   min-height: 0;
   scrollbar-width: thin;
-  scrollbar-color: var(--purple) rgba(5, 8, 22, 0.5);
+  scrollbar-color: var(--primary, #2ea043) rgba(5, 8, 22, 0.5);
 }
 
 /* Chrome, Safari, Edge scrollbar custom styling */
@@ -553,31 +552,28 @@ button {
 }
 
 .layout::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--purple), var(--pink));
+  background: linear-gradient(180deg, var(--greenbash, #086244), var(--primary, #2ea043));
   border-radius: 8px;
   border: 2px solid rgba(5, 8, 22, 0.8);
 }
 
 .layout::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--pink), var(--cyan));
+  background: linear-gradient(180deg, var(--primary, #2ea043), var(--level-4, #39d353));
 }
 
 .panel,
 .card,
 .year-card {
-  border: 1px solid var(--line);
+  /* border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: linear-gradient(180deg, rgba(16, 23, 52, .88), rgba(8, 13, 31, .86));
-  box-shadow: inset 0 1px rgba(255, 255, 255, .05), 0 18px 50px rgba(0, 0, 0, .22);
+  background: linear-gradient(180deg, rgba(16, 23, 52, .88), rgba(8, 13, 31, .86)); */
+  /* box-shadow: inset 0 1px rgba(255, 255, 255, .05), 0 18px 50px rgba(0, 0, 0, .22); */
 }
 
 .panel {
   padding: 12px;
 }
 
-.card {
-  padding: 16px;
-}
 
 h2,
 h3 {
@@ -1021,46 +1017,8 @@ em {
   align-items: center;
 }
 
-.vibe-overlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 3;
-  opacity: 0.78;
-  transition: opacity 0.25s ease, z-index 0.25s ease;
-}
-
-.runner {
-  position: absolute;
-  right: 48px;
-  bottom: 24px;
-  z-index: 4;
-  font-size: 46px;
-  filter: drop-shadow(0 0 16px rgba(255, 57, 207, .9));
-  pointer-events: none;
-  transition: opacity 0.25s ease, z-index 0.25s ease;
-}
-
-.year-card:hover .vibe-overlay,
-.graph-wrap:hover .vibe-overlay {
-  z-index: 1 !important;
-  opacity: 0.5 !important;
-}
-
-.year-card:hover .runner,
-.graph-wrap:hover .runner {
-  z-index: 1 !important;
-  opacity: 0.5 !important;
-}
-
-.small-year {
-  opacity: .9;
-}
-
 .small-year .year-meta h2 {
-  color: #a859ff;
+  color: var(--text-muted);
 }
 
 .caption-box {
@@ -1585,7 +1543,7 @@ em {
 /* Custom Language Selector Dropdown Scrollbar */
 .language-dropdown {
   scrollbar-width: thin;
-  scrollbar-color: rgba(168, 85, 247, 0.5) rgba(15, 10, 25, 0.5);
+  scrollbar-color: rgba(46, 160, 67, 0.5) rgba(15, 10, 25, 0.5);
 }
 
 .language-dropdown::-webkit-scrollbar {
@@ -1598,13 +1556,13 @@ em {
 }
 
 .language-dropdown::-webkit-scrollbar-thumb {
-  background: rgba(168, 85, 247, 0.5);
+  background: rgba(46, 160, 67, 0.5);
   border-radius: 8px;
-  border: 1px solid rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(46, 160, 67, 0.2);
 }
 
 .language-dropdown::-webkit-scrollbar-thumb:hover {
-  background: rgba(168, 85, 247, 0.8);
+  background: rgba(46, 160, 67, 0.8);
 }
 
 /* Glassmorphic Radix Menubar Styles */
@@ -1727,6 +1685,7 @@ em {
   .github-text {
     display: none;
   }
+
   .github-fork-remix-btn {
     padding: 0;
     width: 42px;

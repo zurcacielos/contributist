@@ -1,6 +1,6 @@
 import React from "react";
 import { AppState, AppAction } from "@/state/appReducer";
-import { FeelingMode } from "@/types";
+
 import { ContributionGrid } from "../ContributionGrid";
 import { memeTemplates } from "@/utils/memeTemplates";
 import { MemeSprite } from "@/components/MemeSprite";
@@ -30,7 +30,7 @@ interface VibeYearTemplateProps {
   handleCellMouseDown: (dateStr: string, wIdx: number, dIdx: number, layerId?: string) => void;
   handleCellMouseEnter: (dateStr: string, wIdx: number, dIdx: number) => void;
   formatDate: (dateStr: string) => string;
-  feelingMode?: FeelingMode;
+
   preview?: boolean;
   showPaintedInOrangeOverride?: boolean;
   activeYearOverride?: number;
@@ -50,7 +50,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
   handleCellMouseDown,
   handleCellMouseEnter,
   formatDate,
-  feelingMode,
+
   preview,
   showPaintedInOrangeOverride,
   isActive
@@ -151,7 +151,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
       onMouseLeave={() => setIsHovered(false)}
       style={{
         cursor: preview ? "default" : "pointer",
-        border: feelingMode === "advanced" ? "none" : undefined
+        border: "none"
       }}
     >
       <div className="year-meta" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
@@ -438,8 +438,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
           <span>{t('jan')}</span><span>{t('feb')}</span><span>{t('mar')}</span><span>{t('apr')}</span><span>{t('may')}</span><span>{t('jun')}</span><span>{t('jul')}</span><span>{t('aug')}</span><span>{t('sep')}</span><span>{t('oct')}</span><span>{t('nov')}</span><span>{t('dec')}</span>
         </div>
         <div
-          className={`graph-wrap ${isActive && feelingMode !== "advanced" ? '' : 'short'}`}
-          style={isActive && feelingMode !== "advanced" ? { minHeight: "170px" } : {}}
+          className="graph-wrap short"
         >
           <ContributionGrid
             days={days}
@@ -473,35 +472,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
               "\u00A0"
             )}
           </div>
-          {isActive && feelingMode !== "advanced" && (
-            <>
-              <img
-                src="/images/mountains-violet-web.png"
-                className="vibe-overlay"
-                alt="Neon Synthwave Grid and Mountains"
-                aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  inset: "auto 0 0 0",
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "fill",
-                  pointerEvents: "none",
-                  zIndex: 3
-                }}
-              />
-              <img
-                src="/images/nyam-fox-web.png"
-                className="runner"
-                alt="Nyam Fox Runner"
-                aria-hidden="true"
-                style={{
-                  height: "35%",
-                  width: "auto"
-                }}
-              />
-            </>
-          )}
+
 
 
         </div>

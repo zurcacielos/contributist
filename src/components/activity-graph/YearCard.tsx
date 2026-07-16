@@ -1,6 +1,6 @@
 import React from "react";
 import { AppState, AppAction } from "@/state/appReducer";
-import { FeelingMode, BackgroundLayer, RasterLayer } from "@/types";
+import { BackgroundLayer, RasterLayer } from "@/types";
 import { SimpleGitYearTemplate } from "./templates/SimpleGitYearTemplate";
 import { FlatGitYearTemplate } from "./templates/FlatGitYearTemplate";
 import { VibeYearTemplate } from "./templates/VibeYearTemplate";
@@ -29,7 +29,7 @@ interface YearCardProps {
   handleCellMouseDown: (dateStr: string, wIdx: number, dIdx: number, layerId?: string) => void;
   handleCellMouseEnter: (dateStr: string, wIdx: number, dIdx: number) => void;
   formatDate: (dateStr: string) => string;
-  feelingMode?: FeelingMode;
+
   preview?: boolean;
   showPaintedInOrangeOverride?: boolean;
   activeYearOverride?: number;
@@ -49,7 +49,6 @@ export const YearCard: React.FC<YearCardProps> = ({
   handleCellMouseDown,
   handleCellMouseEnter,
   formatDate,
-  feelingMode,
   preview,
   showPaintedInOrangeOverride,
   activeYearOverride,
@@ -64,7 +63,7 @@ export const YearCard: React.FC<YearCardProps> = ({
   const isBgActive = bgLayer ? !bgLayer.cleared : false;
 
   const handleMakeGreener = () => {
-    applyBackgroundSelected(config, year, feelingMode || "vibe", dispatch);
+    applyBackgroundSelected(config, year, "advanced", dispatch);
   };
 
   const handleClearGreener = () => {
@@ -89,7 +88,7 @@ export const YearCard: React.FC<YearCardProps> = ({
   };
 
   const handleMakeAllGreener = () => {
-    applyBackgroundAll(config, feelingMode || "vibe", dispatch);
+    applyBackgroundAll(config, "advanced", dispatch);
   };
 
   const handleClearAllGreener = () => {
@@ -219,7 +218,6 @@ export const YearCard: React.FC<YearCardProps> = ({
         handleCellMouseDown={handleCellMouseDown}
         handleCellMouseEnter={handleCellMouseEnter}
         formatDate={formatDate}
-        feelingMode={feelingMode}
         preview={preview}
         showPaintedInOrangeOverride={showPaintedInOrangeOverride}
         isActive={isActive}

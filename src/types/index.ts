@@ -86,5 +86,4 @@ export function parseList(str: string, defaultValue: number[]): number[] {
   return parsed.length > 0 ? parsed : defaultValue;
 }
 
-export type FeelingMode = 'vibe' | 'advanced';
 

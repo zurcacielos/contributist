@@ -39,7 +39,7 @@ describe('Dashboard Integration UI', () => {
     render(<Dashboard initialConfig={mockConfig} />);
     
     // Wait for the async useEffect to run SET_CONFIG and populate layers
-    await screen.findByText(/Advanced|Base vibe/i);
+    await screen.findByTitle('Draw tool');
 
     // 2. Select the year 2025
     const year2025Label = screen.getByText('2025');
@@ -110,7 +110,7 @@ describe('Dashboard Integration UI', () => {
     
     render(<Dashboard initialConfig={mockConfig} />);
     
-    await screen.findByText(/Advanced|Base vibe/i);
+    await screen.findByTitle('Draw tool');
 
     // 1. Select 2025 and verify its base frequency
     const year2025Label = screen.getByText('2025', { selector: 'h2' });
@@ -131,9 +131,7 @@ describe('Dashboard Integration UI', () => {
     const custom2025Cells = Array.from(year2025Container.querySelectorAll('.day')).map(c => c.getAttribute('data-level'));
     expect(custom2025Cells).not.toEqual(initial2025Cells); // Should have changed because freq increased
  
-    // 3. Click ADVANCED (Toggle Advanced Mode) to show TechnicalBackground and Modify the global frequency input to '100'
-    const advancedBtn = await screen.findByRole('button', { name: /Toggle Advanced Mode/i });
-    fireEvent.click(advancedBtn);
+
     const freqInput = await waitFor(() => document.querySelector('input[name="frequencies"]') as HTMLInputElement);
     fireEvent.change(freqInput, { target: { value: '100', name: 'frequencies' } });
     
@@ -189,7 +187,7 @@ describe('Dashboard Integration UI', () => {
     };
     render(<Dashboard initialConfig={mockConfig} />);
     
-    await screen.findByText(/Advanced|Base vibe/i);
+    await screen.findByTitle('Erase tool');
 
     // Select Eraser
     const eraserButton = await screen.findByTitle('Erase tool');

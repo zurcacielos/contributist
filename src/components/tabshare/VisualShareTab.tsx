@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { AppState, AppAction } from "@/state/appReducer";
-import { GeneratorConfig, FeelingMode } from "@/types";
+import { GeneratorConfig } from "@/types";
 import { ActivityGraph } from "@/components/ActivityGraph";
 import { Card } from "@/components/Card";
 import { Eye, Flame, Trophy, Zap, Share2 } from "lucide-react";
@@ -15,8 +15,6 @@ interface VisualShareTabProps {
   dispatch: React.Dispatch<AppAction>;
   aspectRatio: "square" | "story" | "landscape";
   setAspectRatio: (val: "square" | "story" | "landscape") => void;
-  feelingMode: FeelingMode;
-  setFeelingMode: (mode: FeelingMode) => void;
   config: GeneratorConfig;
 }
 
@@ -25,15 +23,13 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
   dispatch,
   aspectRatio,
   setAspectRatio,
-  feelingMode,
-  setFeelingMode,
   config,
 }) => {
   const t = useTranslations('Share');
   const [isCapturing, setIsCapturing] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
 
-  const [localStyle, setLocalStyle] = useState<"vibe" | "simplegit" | "flatgit">(feelingMode === "vibe" ? "vibe" : "simplegit");
+  const [localStyle, setLocalStyle] = useState<"simplegit" | "flatgit">("simplegit");
   const [localShowPaintedInOrange, setLocalShowPaintedInOrange] = useState<boolean>(config.showPaintedInOrange);
 
   const handleDownload = async () => {
@@ -52,7 +48,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
 
   const activeStyle = localStyle;
 
-  const handleStyleChange = (style: "vibe" | "simplegit" | "flatgit") => {
+  const handleStyleChange = (style: "simplegit" | "flatgit") => {
     setLocalStyle(style);
   };
 
@@ -115,23 +111,6 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                 {t('renderStyle')}
               </span>
               <div className="render-style-buttons" id="render-style-buttons" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                <button
-                  onClick={() => handleStyleChange("vibe")}
-                  style={{
-                    width: "100%",
-                    backgroundColor: activeStyle === "vibe" ? "rgba(168, 85, 247, 0.15)" : "transparent",
-                    border: activeStyle === "vibe" ? "1px solid #a855f7" : "1px solid var(--border)",
-                    color: activeStyle === "vibe" ? "#a855f7" : "var(--text-muted)",
-                    padding: "8px 10px",
-                    borderRadius: "8px",
-                    fontWeight: "bold",
-                    cursor: "pointer",
-                    fontSize: "12px",
-                    textAlign: "center"
-                  }}
-                >
-                  {t('fullVibe')}
-                </button>
                 <div style={{ display: "flex", gap: "8px", width: "100%" }}>
                   <button
                     onClick={() => handleStyleChange("simplegit")}
@@ -284,7 +263,6 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
               state={state}
               dispatch={dispatch}
               onEditChange={() => { }}
-              feelingMode={localStyle === "vibe" ? "vibe" : "advanced"}
               preview={true}
               showPaintedInOrangeOverride={localShowPaintedInOrange}
               template={localStyle}
@@ -306,9 +284,6 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
               <div className="preview-story-badges" id="preview-story-badges" style={{ display: "flex", gap: "12px" }}>
                 <div className="preview-badge-days" id="preview-badge-days" style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "10px", color: "#ff8e31", fontWeight: "bold" }}>
                   <Flame size={12} /> 37 DAYS
-                </div>
-                <div className="preview-badge-vibes" id="preview-badge-vibes" style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "10px", color: "#a855f7", fontWeight: "bold" }}>
-                  <Trophy size={12} /> +6 VIBES
                 </div>
               </div>
               <span style={{ fontSize: "10px", color: "var(--text-muted)" }}>commitcanvas.com</span>

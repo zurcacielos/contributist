@@ -3,7 +3,7 @@ import React from "react";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import { AppState, AppAction } from "@/state/appReducer";
-import { FeelingMode } from "@/types";
+
 import { useActivityGraph } from "@/hooks/useActivityGraph";
 import { YearCard } from "./activity-graph/YearCard";
 
@@ -18,13 +18,13 @@ export interface ActivityGraphProps {
   state: AppState;
   dispatch: React.Dispatch<AppAction>;
   onEditChange: (isEditing: boolean) => void;
-  feelingMode?: FeelingMode;
+
   preview?: boolean;
   showPaintedInOrangeOverride?: boolean;
   template?: "vibe" | "simplegit" | "flatgit";
 }
 
-export const ActivityGraph = React.forwardRef<ActivityGraphRef, ActivityGraphProps>(({ state, dispatch, onEditChange, feelingMode, preview, showPaintedInOrangeOverride, template }, ref) => {
+export const ActivityGraph = React.forwardRef<ActivityGraphRef, ActivityGraphProps>(({ state, dispatch, onEditChange, preview, showPaintedInOrangeOverride, template }, ref) => {
   const {
     mounted,
     isCapturing,
@@ -96,7 +96,6 @@ export const ActivityGraph = React.forwardRef<ActivityGraphRef, ActivityGraphPro
             handleCellMouseDown={handleCellMouseDown}
             handleCellMouseEnter={handleCellMouseEnter}
             formatDate={formatDate}
-            feelingMode={feelingMode}
             preview={preview}
             showPaintedInOrangeOverride={showPaintedInOrangeOverride}
             activeYearOverride={preview ? highestYear : undefined}
@@ -115,31 +114,29 @@ export const ActivityGraph = React.forwardRef<ActivityGraphRef, ActivityGraphPro
               padding: "8px 16px",
               fontSize: "0.85rem",
               fontWeight: "600",
-              color: "#a855f7",
-              background: "rgba(168, 85, 247, 0.08)",
-              border: "1px solid rgba(168, 85, 247, 0.3)",
-              borderRadius: "20px",
+              color: "var(--greenbash-selected, #39d353)",
+              background: "rgba(57, 211, 83, 0.08)",
+              border: "1px solid rgba(57, 211, 83, 0.3)",
+              borderRadius: "6px",
               cursor: "pointer",
               transition: "all 0.2s ease-in-out",
               display: "flex",
               alignItems: "center",
               gap: "6px",
-              boxShadow: "0 4px 12px rgba(168, 85, 247, 0.1)"
+              fontFamily: "Consolas, Monaco, monospace"
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(168, 85, 247, 0.15)";
-              e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.6)";
+              e.currentTarget.style.background = "rgba(57, 211, 83, 0.15)";
+              e.currentTarget.style.borderColor = "rgba(57, 211, 83, 0.6)";
               e.currentTarget.style.transform = "translateY(-1px)";
-              e.currentTarget.style.boxShadow = "0 6px 16px rgba(168, 85, 247, 0.2)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(168, 85, 247, 0.08)";
-              e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.3)";
+              e.currentTarget.style.background = "rgba(57, 211, 83, 0.08)";
+              e.currentTarget.style.borderColor = "rgba(57, 211, 83, 0.3)";
               e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 4px 12px rgba(168, 85, 247, 0.1)";
             }}
           >
-            ➕ Add New Year
+            + Add New Year
           </button>
         </div>
       )}

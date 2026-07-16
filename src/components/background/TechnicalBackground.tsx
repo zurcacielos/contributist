@@ -4,6 +4,7 @@ import React from "react";
 import { Tooltip } from "react-tooltip";
 import { GeneratorConfig } from "@/types";
 import { Card } from "@/components/Card";
+import { GreenFont } from "@/components/GreenFont";
 import { useTranslations } from "next-intl";
 
 import { applyBackgroundSelected, applyBackgroundAll } from "@/utils/backgroundActions";
@@ -58,7 +59,7 @@ export function TechnicalBackground({
 
   return (
     <Card
-      title={t('technicalTitle')}
+      title={<GreenFont>{t('technicalTitle')}</GreenFont>}
       className="base-vibe"
       collapsible={true}
       defaultExpanded={false}

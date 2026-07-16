@@ -2,28 +2,26 @@
 "use client";
 
 import React, { useState } from "react";
-import { BaseVibe } from "@/components/background/BaseVibe";
 import { TechnicalBackground } from "@/components/background/TechnicalBackground";
 
 import { ActivityGraph, ActivityGraphRef } from "@/components/ActivityGraph";
 import { LayersPanel } from "@/components/LayersPanel";
-import { GeneratorConfig, FeelingMode } from "@/types";
+import { GeneratorConfig } from "@/types";
 import { AppState, AppAction } from "@/state/appReducer";
-import { CommunityRemix } from "@/components/CommunityRemix";
+
 import { Card } from "@/components/Card";
 import { ColorSelector } from "@/components/ColorSelector";
-import { FeelingToggler } from "@/components/FeelingToggler";
+
 import { useTranslations } from "next-intl";
 import { Info, RefreshCw } from "lucide-react";
 import { parseProfileUrl } from "@/git-contributions/GithubContributionsReader/urlParser";
-import { SynthFont } from "@/components/SynthFont";
+import { GreenFont } from "@/components/GreenFont";
 
 interface DrawTabProps {
   config: GeneratorConfig;
   state: AppState;
   dispatch: React.Dispatch<AppAction>;
-  feelingMode: FeelingMode;
-  setFeelingMode: (mode: FeelingMode) => void;
+
   handleSaveConfig: () => void;
   fileInputRef: React.RefObject<HTMLInputElement | null>;
   graphRef: React.RefObject<ActivityGraphRef | null>;
@@ -36,8 +34,7 @@ export const DrawTab: React.FC<DrawTabProps> = ({
   config,
   state,
   dispatch,
-  feelingMode,
-  setFeelingMode,
+
   handleSaveConfig,
   fileInputRef,
   graphRef,
@@ -138,9 +135,9 @@ export const DrawTab: React.FC<DrawTabProps> = ({
       >
         <Card title={
           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <SynthFont variation="pink-cyan" style={{ textTransform: "none" }}>
+            <GreenFont variation="green-bright" style={{ textTransform: "none" }}>
               {t('gitProfileTitle')}
-            </SynthFont>
+            </GreenFont>
             <span
               className="info-icon"
               data-tooltip-id="info-tooltip"
@@ -218,18 +215,14 @@ export const DrawTab: React.FC<DrawTabProps> = ({
             </div>
           )}
         </Card>
-        {feelingMode === "vibe" ? (
-          <BaseVibe config={config} activeYear={state.activeYear} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
-        ) : (
-          <TechnicalBackground config={config} activeYear={state.activeYear} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
-        )}
+        <TechnicalBackground config={config} activeYear={state.activeYear} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
 
       </aside>
 
       {/* Main Workspace */}
       <section className="workspace">
 
-        <ActivityGraph ref={graphRef} state={state} dispatch={dispatch} onEditChange={setIsEditing} feelingMode={feelingMode} />
+        <ActivityGraph ref={graphRef} state={state} dispatch={dispatch} onEditChange={setIsEditing} />
       </section>
 
       {/* Right Sidebar */}
@@ -283,10 +276,8 @@ export const DrawTab: React.FC<DrawTabProps> = ({
           }
         />
 
-        <Card title={t('uiMode')}>
-          <FeelingToggler feelingMode={feelingMode} onChange={setFeelingMode} style={{ width: "100%" }} />
-        </Card>
-        <CommunityRemix config={config} dispatch={dispatch} activeYear={state.activeYear} />
+
+
       </aside>
     </section>
   );

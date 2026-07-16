@@ -3,7 +3,7 @@ import { Eye, EyeOff, Trash2, RotateCcw, Lock, Unlock } from 'lucide-react';
 import { Layer, MemeLayer } from '@/types';
 import { AppState, AppAction } from '@/state/appReducer';
 import { Card } from '@/components/Card';
-import { SynthFont } from '@/components/SynthFont';
+import { GreenFont } from '@/components/GreenFont';
 import { useTranslations } from 'next-intl';
 
 interface LayersPanelProps {
@@ -98,10 +98,11 @@ export function LayersPanel({
   if (!state.activeYear) {
     return (
       <Card
-        title={t('layers')}
+        title={<GreenFont>{t('layers')}</GreenFont>}
         className="layers"
         style={{ overflowY: "auto", maxHeight: "80vh" }}
         collapsible={false}
+        textTransformTitle="none"
       >
         <p>{t('selectYearPrompt')}</p>
       </Card>
@@ -110,10 +111,11 @@ export function LayersPanel({
 
   return (
     <Card
-      title={t('yearLayers', { year: state.activeYear })}
+      title={<GreenFont>{t('yearLayers', { year: state.activeYear })}</GreenFont>}
       className="layers"
       style={{ overflowY: "auto", maxHeight: "80vh" }}
       collapsible={false}
+      textTransformTitle="none"
       extraHeaderActions={
         <button
           onClick={handleToggleAll}

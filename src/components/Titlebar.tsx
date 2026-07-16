@@ -1,5 +1,5 @@
 import React from 'react';
-import { FeelingMode } from '@/types';
+
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import * as Menubar from '@radix-ui/react-menubar';
@@ -15,8 +15,7 @@ import { serializeDesign } from '@/utils/shareSerializer';
 interface TitlebarProps {
   mainTab: "draw" | "share" | "export" | "help" | "3d";
   onTabSwitch: (tab: "draw" | "share" | "export" | "help" | "3d") => void;
-  feelingMode: FeelingMode;
-  setFeelingMode: (mode: FeelingMode) => void;
+
   onSave: () => void;
   onLoad: () => void;
   onReset: () => void;
@@ -27,8 +26,6 @@ interface TitlebarProps {
 export function Titlebar({ 
   mainTab, 
   onTabSwitch, 
-  feelingMode, 
-  setFeelingMode, 
   onSave, 
   onLoad, 
   onReset,
@@ -39,11 +36,11 @@ export function Titlebar({
   const tSidebar = useTranslations('Sidebar');
 
   const handleApplySelected = () => {
-    applyBackgroundSelected(state.config, state.activeYear, feelingMode, dispatch);
+    applyBackgroundSelected(state.config, state.activeYear, "advanced", dispatch);
   };
 
   const handleApplyAll = () => {
-    applyBackgroundAll(state.config, feelingMode, dispatch);
+    applyBackgroundAll(state.config, "advanced", dispatch);
   };
 
   const handleShareUrl = () => {

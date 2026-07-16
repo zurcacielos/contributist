@@ -7,7 +7,7 @@ import { AppAction } from "@/state/appReducer";
 import { isValidExportConfig, isValidEmail, isValidRepoUrl } from "@/utils/validators";
 import { downloadFile } from "@/utils/downloadFile";
 import { getFileTimestamp } from "@/utils/dateHelper";
-import { SynthFont } from "@/components/SynthFont";
+import { GreenFont } from "@/components/GreenFont";
 import { useTranslations } from "next-intl";
 
 interface ExportTabProps {
@@ -190,9 +190,9 @@ export const ExportTab: React.FC<ExportTabProps> = ({
               {t('dummyWarning')}
             </p>
             <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "0", lineHeight: "1.4", display: "inline-flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
-              <SynthFont variation="pink-cyan">
+              <GreenFont variation="green-bright">
                 {t('existWarning')}
-              </SynthFont>
+              </GreenFont>
               <span
                 className="info-icon"
                 style={{ pointerEvents: "auto" }}

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Tooltip } from "react-tooltip";
-import { GeneratorConfig, FeelingMode } from "@/types";
+import { GeneratorConfig } from "@/types";
 import { Titlebar } from "@/components/Titlebar";
 import { ExportTab } from "@/components/tabexport/ExportTab";
 import { DrawTab } from "@/components/tabdraw/DrawTab";
@@ -21,7 +21,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
   const tModal = useTranslations('Modal');
   const state = useAppStore((s) => s);
   const dispatch = useAppDispatch();
-  const [feelingMode, setFeelingMode] = useState<FeelingMode>("advanced");
+
 
   const config = state.config;
 
@@ -49,7 +49,6 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
       try {
         const restored = deserializeDesign(designParam, state);
         dispatch({ type: "RESTORE_STATE", payload: restored });
-        setFeelingMode(restored.config.showPaintedInOrange ? "vibe" : "advanced");
         sessionStorage.setItem(loadedKey, "true");
       } catch (e) {
         console.error("Failed to load design from URL", e);
@@ -64,10 +63,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
       dispatch({ type: "RESTORE_STATE", payload: savedState });
     }
 
-    const savedFeeling = localStorage.getItem("contributist-feeling-mode");
-    if (savedFeeling === "vibe" || savedFeeling === "advanced") {
-      setFeelingMode(savedFeeling as FeelingMode);
-    }
+
 
     isInitialized.current = true;
   }, []);
@@ -95,10 +91,7 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
     return () => clearTimeout(timer);
   }, [state]);
 
-  useEffect(() => {
-    document.body.classList.remove("theme-vibe", "theme-advanced");
-    document.body.classList.add(`theme-${feelingMode}`);
-  }, [feelingMode]);
+
 
   const graphRef = useRef<ActivityGraphRef>(null);
 
@@ -139,29 +132,12 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
     );
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
-
-  const handleFeelingModeChange = (mode: FeelingMode) => {
-    setFeelingMode(mode);
-    localStorage.setItem("contributist-feeling-mode", mode);
-    const isSynth = mode === "vibe";
-    if (state.config.showPaintedInOrange !== isSynth) {
-      dispatch({
-        type: 'SET_CONFIG',
-        payload: {
-          ...state.config,
-          showPaintedInOrange: isSynth
-        }
-      });
-    }
-  };
-
   const handleReset = () => {
     if (confirm(tAlerts('confirmReset'))) {
       localStorage.removeItem("contributist-state");
       localStorage.removeItem("contributist-feeling-mode");
       sessionStorage.clear();
       dispatch({ type: "RESET_TO_INITIAL", payload: initialConfig });
-      setFeelingMode("advanced");
     }
   };
 
@@ -173,8 +149,6 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
       <Titlebar
         mainTab={mainTab}
         onTabSwitch={handleTabSwitch}
-        feelingMode={feelingMode}
-        setFeelingMode={handleFeelingModeChange}
         onSave={handleSaveConfig}
         onLoad={() => fileInputRef.current?.click()}
         onReset={handleReset}
@@ -187,8 +161,6 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
           config={config}
           state={state}
           dispatch={dispatch}
-          feelingMode={feelingMode}
-          setFeelingMode={handleFeelingModeChange}
           handleSaveConfig={handleSaveConfig}
           fileInputRef={fileInputRef}
           graphRef={graphRef}
@@ -203,8 +175,6 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
           config={config}
           state={state}
           dispatch={dispatch}
-          feelingMode={feelingMode}
-          setFeelingMode={setFeelingMode}
           aspectRatio={shareAspectRatio}
           setAspectRatio={setShareAspectRatio}
         />
