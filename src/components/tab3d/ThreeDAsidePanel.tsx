@@ -18,6 +18,8 @@ interface ThreeDAsidePanelProps {
   onExportStl: () => void;
   onExportObj: () => void;
   onCapturePng: () => void;
+  onZoomToFit: () => void;
+  onResetGeometry: () => void;
 }
 
 export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
@@ -35,6 +37,8 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
   onExportStl,
   onExportObj,
   onCapturePng,
+  onZoomToFit,
+  onResetGeometry,
 }) => {
   const t = useTranslations("ThreeD");
 
@@ -45,12 +49,16 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
         onSelectedYearsChange(selectedYears.filter((y) => y !== year));
       }
     } else {
-      onSelectedYearsChange([...selectedYears, year].sort());
+      onSelectedYearsChange([...selectedYears, year].sort((a, b) => b - a));
     }
   };
 
   const handleSelectAll = () => {
     onSelectedYearsChange([...availableYears]);
+  };
+
+  const handleDeselectAll = () => {
+    onSelectedYearsChange([]);
   };
 
   return (
@@ -69,6 +77,26 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
         paddingRight: "6px",
       }}
     >
+      {/* Zoom to Fit Button */}
+      <button
+        onClick={onZoomToFit}
+        className="btn btn-primary"
+        style={{
+          padding: "10px 14px",
+          borderRadius: "6px",
+          cursor: "pointer",
+          fontSize: "0.9rem",
+          fontWeight: "bold",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "8px",
+        }}
+      >
+        🔍 {t("zoomToFit")}
+      </button>
+
       {/* Year Selection Card */}
       <Card
         title={
@@ -78,26 +106,56 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
         }
       >
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <button
-            onClick={handleSelectAll}
-            style={{
-              padding: "6px 12px",
-              borderRadius: "6px",
-              border: "1px solid var(--border)",
-              backgroundColor: "rgba(255, 255, 255, 0.05)",
-              color: "var(--text-main)",
-              cursor: "pointer",
-              fontSize: "0.8rem",
-              alignSelf: "flex-start",
-              transition: "background 0.2s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)")}
-          >
-            {t("selectAll")}
-          </button>
+          <div style={{ display: "flex", gap: "8px" }}>
+            <button
+              onClick={handleSelectAll}
+              style={{
+                flex: 1,
+                padding: "6px 10px",
+                borderRadius: "6px",
+                border: "1px solid var(--border)",
+                backgroundColor: "rgba(255, 255, 255, 0.05)",
+                color: "var(--text-main)",
+                cursor: "pointer",
+                fontSize: "0.75rem",
+                transition: "background 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)")}
+            >
+              {t("selectAll")}
+            </button>
+            <button
+              onClick={handleDeselectAll}
+              style={{
+                flex: 1,
+                padding: "6px 10px",
+                borderRadius: "6px",
+                border: "1px solid var(--border)",
+                backgroundColor: "rgba(255, 255, 255, 0.05)",
+                color: "var(--text-main)",
+                cursor: "pointer",
+                fontSize: "0.75rem",
+                transition: "background 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)")}
+            >
+              {t("deselectAll")}
+            </button>
+          </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginTop: "4px" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gap: "8px 12px",
+              maxHeight: "120px",
+              overflowY: "auto",
+              paddingRight: "4px",
+              marginTop: "4px",
+            }}
+          >
             {availableYears.map((y) => {
               const isChecked = selectedYears.includes(y);
               return (
@@ -222,6 +280,34 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
               style={{ width: "100%", cursor: "pointer" }}
             />
           </div>
+
+          {/* Reset Geometry Button */}
+          <button
+            onClick={onResetGeometry}
+            style={{
+              padding: "5px 10px",
+              borderRadius: "4px",
+              border: "1px solid var(--border)",
+              backgroundColor: "transparent",
+              color: "var(--text-muted)",
+              cursor: "pointer",
+              fontSize: "0.75rem",
+              marginTop: "4px",
+              width: "100%",
+              textAlign: "center",
+              transition: "all 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
+              e.currentTarget.style.color = "var(--text-main)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.color = "var(--text-muted)";
+            }}
+          >
+            {t("reset")}
+          </button>
         </div>
       </Card>
 

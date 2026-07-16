@@ -205,19 +205,35 @@ export function Titlebar({
                 </Menubar.Content>
               </Menubar.Portal>
             </Menubar.Menu>
-            <button
-              className="menubar-trigger"
-              onClick={() => onTabSwitch('3d')}
-              style={{
-                background: mainTab === '3d' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
-                color: mainTab === '3d' ? '#fff' : '#c9d1d9',
-                border: 0,
-                cursor: 'pointer',
-                marginRight: '4px',
-              }}
-            >
-              {t('threeD') || "3D View"}
-            </button>
+            <Menubar.Menu>
+              <Menubar.Trigger 
+                className="menubar-trigger"
+                style={{
+                  background: ['draw', 'export', '3d'].includes(mainTab) ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
+                  color: ['draw', 'export', '3d'].includes(mainTab) ? '#fff' : '#c9d1d9',
+                }}
+              >
+                {t('view')}
+              </Menubar.Trigger>
+              <Menubar.Portal>
+                <Menubar.Content 
+                  className="menubar-content"
+                  align="start"
+                  sideOffset={5}
+                  alignOffset={-3}
+                >
+                  <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('draw')}>
+                    {t('design')}
+                  </Menubar.Item>
+                  <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('export')}>
+                    {t('push')}
+                  </Menubar.Item>
+                  <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('3d')}>
+                    {t('threeD')}
+                  </Menubar.Item>
+                </Menubar.Content>
+              </Menubar.Portal>
+            </Menubar.Menu>
             <button
               className="menubar-trigger"
               onClick={() => onTabSwitch('help')}

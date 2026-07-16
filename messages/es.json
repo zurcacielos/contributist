@@ -7,7 +7,8 @@
     "file": "Archivo",
     "background": "Fondo",
     "sharePngUrl": "Compartir PNG / Url",
-    "threeD": "Vista 3D"
+    "threeD": "Vista 3D",
+    "view": "Ver"
   },
   "Help": {
     "whyTitle": "¿Por qué Contributist?",
@@ -209,8 +210,11 @@
   "ThreeD": {
     "yearsTitle": "Selección de Años",
     "selectAll": "Seleccionar Todos",
+    "deselectAll": "Deseleccionar Todos",
+    "zoomToFit": "Ajustar Zoom",
     "paletteTitle": "Tema de Color",
     "geometryTitle": "Ajustes de Geometría",
+    "reset": "Restablecer",
     "height": "Escala de altura",
     "baseThickness": "Espesor de base",
     "spacing": "Espaciado",

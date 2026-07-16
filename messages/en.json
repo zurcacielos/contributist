@@ -7,7 +7,8 @@
     "file": "File",
     "background": "Background",
     "sharePngUrl": "Share PNG / Url",
-    "threeD": "3D View"
+    "threeD": "3D View",
+    "view": "View"
   },
   "Help": {
     "whyTitle": "Why Contributist?",
@@ -205,8 +206,11 @@
   "ThreeD": {
     "yearsTitle": "Years Selection",
     "selectAll": "Select All",
+    "deselectAll": "Deselect All",
+    "zoomToFit": "Zoom to Fit",
     "paletteTitle": "Color Theme",
     "geometryTitle": "Geometry Settings",
+    "reset": "Reset",
     "height": "Height scaling",
     "baseThickness": "Base thickness",
     "spacing": "Spacing",

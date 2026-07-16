@@ -20,7 +20,7 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
     const endYear = parseYear(config.endDate);
     const minYear = Math.min(startYear, endYear);
     const maxYear = Math.max(startYear, endYear);
-    return Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i);
+    return Array.from({ length: maxYear - minYear + 1 }, (_, i) => maxYear - i);
   }, [config.startDate, config.endDate]);
 
   // 2. Local settings state
@@ -33,6 +33,8 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
 
   // Hook for capture function ref
   const captureFnRef = React.useRef<(() => string) | null>(null);
+  // Hook for zoom function ref
+  const zoomFnRef = React.useRef<(() => void) | null>(null);
 
   // 3. Compute active graph composite data
   const { generatedData } = useActivityGraph({
@@ -41,7 +43,7 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
     onEditChange: () => {},
   });
 
-  // Automatically select only non-empty years on load
+  // Automatically select only non-empty years on load (max 4, skipping empty ones)
   React.useEffect(() => {
     if (generatedData.length > 0 && !hasInitializedSelected) {
       const nonReemptyYears = generatedData
@@ -49,10 +51,12 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
         .map((yData) => yData.year);
 
       if (nonReemptyYears.length === 0) {
-        // Fallback: select the first available year if all are empty
+        // Fallback: select the first available year (most recent) if all are empty
         setSelectedYears(availableYears.length > 0 ? [availableYears[0]] : []);
       } else {
-        setSelectedYears(nonReemptyYears);
+        // Sort descending (most recent first) and select maximum of 4 years
+        const sortedNonEmpty = [...nonReemptyYears].sort((a, b) => b - a);
+        setSelectedYears(sortedNonEmpty.slice(0, 4));
       }
       setHasInitializedSelected(true);
     }
@@ -61,7 +65,7 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
   // 4. Map active years grid to StlPillars
   const pillars = useMemo(() => {
     const list: StlPillar[] = [];
-    const sortedSelected = [...selectedYears].sort((a, b) => a - b);
+    const sortedSelected = [...selectedYears].sort((a, b) => b - a);
 
     sortedSelected.forEach((year, yearIdx) => {
       const yearData = generatedData.find((d) => d.year === year);
@@ -131,6 +135,12 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
     }
   };
 
+  const handleResetGeometry = () => {
+    setHeightMultiplier(2.0);
+    setBaseThickness(2.0);
+    setSpacing(1.2);
+  };
+
   return (
     <section
       className="layout draw-layout"
@@ -161,6 +171,8 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
         onExportStl={handleExportStl}
         onExportObj={handleExportObj}
         onCapturePng={handleCapturePng}
+        onZoomToFit={() => zoomFnRef.current?.()}
+        onResetGeometry={handleResetGeometry}
       />
 
       {/* Main Canvas Viewport */}
@@ -174,6 +186,9 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
           palette={palette}
           onCaptureReady={(fn) => {
             captureFnRef.current = fn;
+          }}
+          onZoomToFitReady={(fn) => {
+            zoomFnRef.current = fn;
           }}
         />
       </div>

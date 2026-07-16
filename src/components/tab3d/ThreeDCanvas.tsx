@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { StlPillar } from "@/utils/stlExporter";
+import { zoomCameraToFit } from "./utils/cameraHelper";
 
 interface ThreeDCanvasProps {
   pillars: StlPillar[];
@@ -11,6 +12,7 @@ interface ThreeDCanvasProps {
   spacing: number;
   palette: "green" | "synth" | "gray";
   onCaptureReady: (captureFn: () => string) => void;
+  onZoomToFitReady?: (zoomFn: () => void) => void;
 }
 
 const PALETTES = {
@@ -36,6 +38,7 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
   spacing,
   palette,
   onCaptureReady,
+  onZoomToFitReady,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -139,6 +142,18 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
       rendererRef.current.render(sceneRef.current, cameraRef.current);
       return rendererRef.current.domElement.toDataURL("image/png");
     });
+
+    // 9. Register Zoom to fit callback
+    if (onZoomToFitReady) {
+      onZoomToFitReady(() => {
+        const camera = cameraRef.current;
+        const controls = controlsRef.current;
+        const group = groupRef.current;
+        if (camera && controls && group) {
+          zoomCameraToFit(camera, controls, group, true);
+        }
+      });
+    }
 
     // Cleanup
     return () => {
@@ -256,20 +271,7 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
       prevNumYearsRef.current = numYears;
 
       if (numYearsChanged) {
-        const box = new THREE.Box3().setFromObject(group);
-        const center = box.getCenter(new THREE.Vector3());
-        const size = box.getSize(new THREE.Vector3());
-        
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fovRad = (camera.fov * Math.PI) / 180;
-        const cameraDistance = maxDim / (2 * Math.tan(fovRad / 2));
-        
-        // Look from a nice isometric angle
-        const dir = new THREE.Vector3(1.2, 1.0, 1.5).normalize();
-        camera.position.copy(center).add(dir.multiplyScalar(cameraDistance * 1.35));
-        
-        controls.target.copy(center);
-        controls.update();
+        zoomCameraToFit(camera, controls, group, false);
       }
     }
   }, [pillars, numYears, heightMultiplier, baseThickness, spacing, palette]);
@@ -386,7 +388,7 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
       console.log("Controls:", JSON.stringify(compactInfo.controls, null, 2));
       console.log("Scene & Group (Compact):", JSON.stringify({ scene: compactInfo.scene, group: compactInfo.group }, null, 2));
       
-      if (group && group.children.length > 0) {
+      if (info.group && info.group.children) {
         console.log("%cGroup Children Table (First 100):", "color: #26a641; font-weight: bold;");
         console.table(info.group.children.slice(0, 100));
         if (info.group.children.length > 100) {
