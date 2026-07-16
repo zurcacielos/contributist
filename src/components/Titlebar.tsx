@@ -12,8 +12,8 @@ import { AppState, AppAction } from '@/state/appReducer';
 import { applyBackgroundSelected, applyBackgroundAll } from '@/utils/backgroundActions';
 
 interface TitlebarProps {
-  mainTab: "draw" | "share" | "export" | "help";
-  onTabSwitch: (tab: "draw" | "share" | "export" | "help") => void;
+  mainTab: "draw" | "share" | "export" | "help" | "3d";
+  onTabSwitch: (tab: "draw" | "share" | "export" | "help" | "3d") => void;
   feelingMode: FeelingMode;
   setFeelingMode: (mode: FeelingMode) => void;
   onSave: () => void;
@@ -105,157 +105,164 @@ export function Titlebar({
   const isClearAllDisabled = mainTab !== 'draw';
 
   return (
-    <header className="titlebar" style={{ position: 'relative', top: 0, zIndex: 30, borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: '50px', padding: '8px 26px' }}>
-      <div
-        className="brand"
-        onClick={() => onTabSwitch('draw')}
-        style={{ display: 'flex', alignItems: 'center', gap: '14px', cursor: 'pointer', flexShrink: 0 }}
-      >
-        <img src="/images/contributist-web.png" alt="Contributist logo" className="logo-img" />
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h1 style={{ margin: 0, fontSize: "18px", display: "flex", alignItems: "center", gap: "4px" }}>
-            Contributist <span>⚡</span>
-          </h1>
-          <p style={{ margin: "2px 0 0", fontSize: "12px", color: "var(--text-muted)", textTransform: "capitalize" }}>
-            Contribution Retribution.
-          </p>
+    <header className="titlebar" style={{ position: 'relative', top: 0, zIndex: 30, borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', minHeight: '50px', padding: '8px 26px', boxSizing: 'border-box' }}>
+      {/* Left side: Brand + Menu */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '32px', flexShrink: 0 }}>
+        <div
+          className="brand"
+          onClick={() => onTabSwitch('draw')}
+          style={{ display: 'flex', alignItems: 'center', gap: '14px', cursor: 'pointer' }}
+        >
+          <img src="/images/contributist-web.png" alt="Contributist logo" className="logo-img" />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <h1 style={{ margin: 0, fontSize: "18px", display: "flex", alignItems: "center", gap: "4px" }}>
+              Contributist <span>⚡</span>
+            </h1>
+            <p style={{ margin: "2px 0 0", fontSize: "12px", color: "var(--text-muted)", textTransform: "capitalize" }}>
+              Contribution Retribution.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <Menubar.Root className="menubar-root">
+            <Menubar.Menu>
+              <Menubar.Trigger className="menubar-trigger">
+                {t('file')}
+              </Menubar.Trigger>
+              <Menubar.Portal>
+                <Menubar.Content 
+                  className="menubar-content"
+                  align="start"
+                  sideOffset={5}
+                  alignOffset={-3}
+                >
+                  <Menubar.Item className="menubar-item" onSelect={onReset}>
+                    <FilePlus size={15} style={{ marginRight: 8 }} />
+                    New
+                  </Menubar.Item>
+                  <Menubar.Item className="menubar-item" onSelect={onLoad}>
+                    <FolderOpen size={15} style={{ marginRight: 8 }} />
+                    Open
+                  </Menubar.Item>
+                  <Menubar.Item className="menubar-item" onSelect={onSave}>
+                    <Save size={15} style={{ marginRight: 8 }} />
+                    Save
+                  </Menubar.Item>
+                  <Menubar.Separator 
+                    style={{ height: 1, backgroundColor: "rgba(255, 255, 255, 0.12)", margin: "4px 0" }} 
+                  />
+                  <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('share')}>
+                    <Share2 size={15} style={{ marginRight: 8 }} />
+                    {t('sharePngUrl')}
+                  </Menubar.Item>
+                </Menubar.Content>
+              </Menubar.Portal>
+            </Menubar.Menu>
+
+            <Menubar.Menu>
+              <Menubar.Trigger className="menubar-trigger">
+                {t('background')}
+              </Menubar.Trigger>
+              <Menubar.Portal>
+                <Menubar.Content 
+                  className="menubar-content"
+                  align="start"
+                  sideOffset={5}
+                  alignOffset={-3}
+                >
+                  <Menubar.Item 
+                    className="menubar-item" 
+                    disabled={isApplySelectedDisabled}
+                    onSelect={handleApplySelected}
+                  >
+                    {tSidebar('makeSelectedGreener')}
+                  </Menubar.Item>
+                  <Menubar.Item 
+                    className="menubar-item" 
+                    disabled={isApplyAllDisabled}
+                    onSelect={handleApplyAll}
+                  >
+                    {tSidebar('makeAllGreener')}
+                  </Menubar.Item>
+                  <Menubar.Separator 
+                    style={{ height: 1, backgroundColor: "rgba(255, 255, 255, 0.12)", margin: "4px 0" }} 
+                  />
+                  <Menubar.Item 
+                    className="menubar-item" 
+                    disabled={isClearSelectedDisabled}
+                    onSelect={handleClearSelected}
+                  >
+                    {tCalendar('clearSelectedRightClick')}
+                  </Menubar.Item>
+                  <Menubar.Item 
+                    className="menubar-item" 
+                    disabled={isClearAllDisabled}
+                    onSelect={handleClearAll}
+                  >
+                    {tCalendar('clearAllRightClick')}
+                  </Menubar.Item>
+                </Menubar.Content>
+              </Menubar.Portal>
+            </Menubar.Menu>
+            <button
+              className="menubar-trigger"
+              onClick={() => onTabSwitch('3d')}
+              style={{
+                background: mainTab === '3d' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
+                color: mainTab === '3d' ? '#fff' : '#c9d1d9',
+                border: 0,
+                cursor: 'pointer',
+                marginRight: '4px',
+              }}
+            >
+              {t('threeD') || "3D View"}
+            </button>
+            <button
+              className="menubar-trigger"
+              onClick={() => onTabSwitch('help')}
+              style={{
+                background: mainTab === 'help' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
+                color: mainTab === 'help' ? '#fff' : '#c9d1d9',
+                border: 0,
+                cursor: 'pointer',
+              }}
+            >
+              {t('help')}
+            </button>
+          </Menubar.Root>
         </div>
       </div>
 
-      <div 
-        style={{ 
-          position: "absolute", 
-          left: "calc(25% + 22px)", 
-          top: "50%",
-          transform: "translate(-50%, -50%)", 
-          zIndex: 10 
-        }}
-      >
-        <Menubar.Root className="menubar-root">
-          <Menubar.Menu>
-            <Menubar.Trigger className="menubar-trigger">
-              {t('file')}
-            </Menubar.Trigger>
-            <Menubar.Portal>
-              <Menubar.Content 
-                className="menubar-content"
-                align="start"
-                sideOffset={5}
-                alignOffset={-3}
-              >
-                <Menubar.Item className="menubar-item" onSelect={onReset}>
-                  <FilePlus size={15} style={{ marginRight: 8 }} />
-                  New
-                </Menubar.Item>
-                <Menubar.Item className="menubar-item" onSelect={onLoad}>
-                  <FolderOpen size={15} style={{ marginRight: 8 }} />
-                  Open
-                </Menubar.Item>
-                <Menubar.Item className="menubar-item" onSelect={onSave}>
-                  <Save size={15} style={{ marginRight: 8 }} />
-                  Save
-                </Menubar.Item>
-                <Menubar.Separator 
-                  style={{ height: 1, backgroundColor: "rgba(255, 255, 255, 0.12)", margin: "4px 0" }} 
-                />
-                <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('share')}>
-                  <Share2 size={15} style={{ marginRight: 8 }} />
-                  {t('sharePngUrl')}
-                </Menubar.Item>
-              </Menubar.Content>
-            </Menubar.Portal>
-          </Menubar.Menu>
-
-          <Menubar.Menu>
-            <Menubar.Trigger className="menubar-trigger">
-              {t('background')}
-            </Menubar.Trigger>
-            <Menubar.Portal>
-              <Menubar.Content 
-                className="menubar-content"
-                align="start"
-                sideOffset={5}
-                alignOffset={-3}
-              >
-                <Menubar.Item 
-                  className="menubar-item" 
-                  disabled={isApplySelectedDisabled}
-                  onSelect={handleApplySelected}
-                >
-                  {tSidebar('makeSelectedGreener')}
-                </Menubar.Item>
-                <Menubar.Item 
-                  className="menubar-item" 
-                  disabled={isApplyAllDisabled}
-                  onSelect={handleApplyAll}
-                >
-                  {tSidebar('makeAllGreener')}
-                </Menubar.Item>
-                <Menubar.Separator 
-                  style={{ height: 1, backgroundColor: "rgba(255, 255, 255, 0.12)", margin: "4px 0" }} 
-                />
-                <Menubar.Item 
-                  className="menubar-item" 
-                  disabled={isClearSelectedDisabled}
-                  onSelect={handleClearSelected}
-                >
-                  {tCalendar('clearSelectedRightClick')}
-                </Menubar.Item>
-                <Menubar.Item 
-                  className="menubar-item" 
-                  disabled={isClearAllDisabled}
-                  onSelect={handleClearAll}
-                >
-                  {tCalendar('clearAllRightClick')}
-                </Menubar.Item>
-              </Menubar.Content>
-            </Menubar.Portal>
-          </Menubar.Menu>
+      {/* Center side: Flow Buttons centered in remaining space */}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexGrow: 1, padding: '0 20px' }}>
+        <nav 
+          className="flow" 
+          aria-label="creation flow"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "16px",
+            pointerEvents: "auto"
+          }}
+        >
           <button
-            className="menubar-trigger"
-            onClick={() => onTabSwitch('help')}
-            style={{
-              background: mainTab === 'help' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
-              color: mainTab === 'help' ? '#fff' : '#c9d1d9',
-              border: 0,
-              cursor: 'pointer',
-            }}
+            className={`flow-step ${mainTab === 'draw' ? 'active' : ''}`}
+            onClick={() => onTabSwitch('draw')}
+            style={mainTab === 'draw' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
           >
-            {t('help')}
+            <b style={mainTab === 'draw' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>1</b> {t('design')}
           </button>
-        </Menubar.Root>
+          <i>→</i>
+          <button
+            className={`flow-step ${mainTab === 'export' ? 'active' : ''}`}
+            onClick={() => onTabSwitch('export')}
+            style={mainTab === 'export' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
+          >
+            <b style={mainTab === 'export' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>2</b> {t('push')}
+          </button>
+        </nav>
       </div>
-
-      <nav 
-        className="flow" 
-        aria-label="creation flow"
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          display: "flex",
-          alignItems: "center",
-          gap: "16px",
-          pointerEvents: "auto"
-        }}
-      >
-        <button
-          className={`flow-step ${mainTab === 'draw' ? 'active' : ''}`}
-          onClick={() => onTabSwitch('draw')}
-          style={mainTab === 'draw' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
-        >
-          <b style={mainTab === 'draw' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>1</b> {t('design')}
-        </button>
-        <i>→</i>
-        <button
-          className={`flow-step ${mainTab === 'export' ? 'active' : ''}`}
-          onClick={() => onTabSwitch('export')}
-          style={mainTab === 'export' && feelingMode === 'advanced' ? { boxShadow: 'none', borderColor: '#086244' } : undefined}
-        >
-          <b style={mainTab === 'export' && feelingMode === 'advanced' ? { background: '#086244', color: '#fff' } : undefined}>2</b> {t('push')}
-        </button>
-      </nav>
 
       <div 
         className="top-icons" 

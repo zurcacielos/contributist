@@ -6,7 +6,8 @@
     "share": "Compartir (opcional)",
     "file": "Archivo",
     "background": "Fondo",
-    "sharePngUrl": "Compartir PNG / Url"
+    "sharePngUrl": "Compartir PNG / Url",
+    "threeD": "Vista 3D"
   },
   "Help": {
     "whyTitle": "¿Por qué Contributist?",
@@ -204,6 +205,19 @@
     "cancel": "Cancelar",
     "discard": "Descartar",
     "save": "Guardar"
+  },
+  "ThreeD": {
+    "yearsTitle": "Selección de Años",
+    "selectAll": "Seleccionar Todos",
+    "paletteTitle": "Tema de Color",
+    "geometryTitle": "Ajustes de Geometría",
+    "height": "Escala de altura",
+    "baseThickness": "Espesor de base",
+    "spacing": "Espaciado",
+    "exportTitle": "Exportar Modelo",
+    "downloadStl": "Descargar STL (Imp. 3D)",
+    "downloadObj": "Descargar OBJ",
+    "savePng": "Guardar Captura (PNG)"
   },
   "Metadata": {
     "title": "Contributist | Generador y Pintor del Gráfico de Contribuciones de GitHub",

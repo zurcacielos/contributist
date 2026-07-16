@@ -1,0 +1,293 @@
+import React from "react";
+import { Card } from "../Card";
+import { SynthFont } from "../SynthFont";
+import { useTranslations } from "next-intl";
+
+interface ThreeDAsidePanelProps {
+  availableYears: number[];
+  selectedYears: number[];
+  onSelectedYearsChange: (years: number[]) => void;
+  heightMultiplier: number;
+  onHeightMultiplierChange: (val: number) => void;
+  baseThickness: number;
+  onBaseThicknessChange: (val: number) => void;
+  spacing: number;
+  onSpacingChange: (val: number) => void;
+  palette: "green" | "synth" | "gray";
+  onPaletteChange: (val: "green" | "synth" | "gray") => void;
+  onExportStl: () => void;
+  onExportObj: () => void;
+  onCapturePng: () => void;
+}
+
+export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
+  availableYears,
+  selectedYears,
+  onSelectedYearsChange,
+  heightMultiplier,
+  onHeightMultiplierChange,
+  baseThickness,
+  onBaseThicknessChange,
+  spacing,
+  onSpacingChange,
+  palette,
+  onPaletteChange,
+  onExportStl,
+  onExportObj,
+  onCapturePng,
+}) => {
+  const t = useTranslations("ThreeD");
+
+  const handleYearToggle = (year: number) => {
+    if (selectedYears.includes(year)) {
+      // Keep at least one year selected
+      if (selectedYears.length > 1) {
+        onSelectedYearsChange(selectedYears.filter((y) => y !== year));
+      }
+    } else {
+      onSelectedYearsChange([...selectedYears, year].sort());
+    }
+  };
+
+  const handleSelectAll = () => {
+    onSelectedYearsChange([...availableYears]);
+  };
+
+  return (
+    <aside
+      className="sidebar-left panel"
+      style={{
+        position: "sticky",
+        top: "0px",
+        zIndex: 10,
+        alignSelf: "start",
+        display: "flex",
+        flexDirection: "column",
+        gap: "14px",
+        maxHeight: "100%",
+        overflowY: "auto",
+        paddingRight: "6px",
+      }}
+    >
+      {/* Year Selection Card */}
+      <Card
+        title={
+          <SynthFont variation="pink-cyan" style={{ textTransform: "none" }}>
+            {t("yearsTitle")}
+          </SynthFont>
+        }
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <button
+            onClick={handleSelectAll}
+            style={{
+              padding: "6px 12px",
+              borderRadius: "6px",
+              border: "1px solid var(--border)",
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              color: "var(--text-main)",
+              cursor: "pointer",
+              fontSize: "0.8rem",
+              alignSelf: "flex-start",
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)")}
+          >
+            {t("selectAll")}
+          </button>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginTop: "4px" }}>
+            {availableYears.map((y) => {
+              const isChecked = selectedYears.includes(y);
+              return (
+                <label
+                  key={y}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    fontSize: "0.85rem",
+                    color: "var(--text-main)",
+                    cursor: "pointer",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={() => handleYearToggle(y)}
+                    style={{ cursor: "pointer" }}
+                  />
+                  {y}
+                </label>
+              );
+            })}
+          </div>
+        </div>
+      </Card>
+
+      {/* Color Palette Card */}
+      <Card
+        title={
+          <SynthFont variation="pink-cyan" style={{ textTransform: "none" }}>
+            {t("paletteTitle")}
+          </SynthFont>
+        }
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <select
+            value={palette}
+            onChange={(e) => onPaletteChange(e.target.value as any)}
+            style={{
+              width: "100%",
+              padding: "8px 10px",
+              borderRadius: "6px",
+              border: "1px solid var(--border)",
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              color: "var(--text-main)",
+              fontSize: "0.85rem",
+              outline: "none",
+              cursor: "pointer",
+            }}
+          >
+            <option value="green" style={{ backgroundColor: "#161b22", color: "#c9d1d9" }}>
+              Classic Green
+            </option>
+            <option value="synth" style={{ backgroundColor: "#090314", color: "#ec4899" }}>
+              Synthwave
+            </option>
+            <option value="gray" style={{ backgroundColor: "#111111", color: "#dddddd" }}>
+              Monochrome Gray
+            </option>
+          </select>
+        </div>
+      </Card>
+
+      {/* Geometry Customization Card */}
+      <Card
+        title={
+          <SynthFont variation="pink-cyan" style={{ textTransform: "none" }}>
+            {t("geometryTitle")}
+          </SynthFont>
+        }
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          {/* Height Multiplier Slider */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "var(--text-muted)" }}>
+              <span>{t("height")}</span>
+              <span>{heightMultiplier.toFixed(1)}x</span>
+            </div>
+            <input
+              type="range"
+              min="0.5"
+              max="5.0"
+              step="0.1"
+              value={heightMultiplier}
+              onChange={(e) => onHeightMultiplierChange(parseFloat(e.target.value))}
+              style={{ width: "100%", cursor: "pointer" }}
+            />
+          </div>
+
+          {/* Base Plate Thickness Slider */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "var(--text-muted)" }}>
+              <span>{t("baseThickness")}</span>
+              <span>{baseThickness.toFixed(1)}</span>
+            </div>
+            <input
+              type="range"
+              min="0.5"
+              max="4.0"
+              step="0.1"
+              value={baseThickness}
+              onChange={(e) => onBaseThicknessChange(parseFloat(e.target.value))}
+              style={{ width: "100%", cursor: "pointer" }}
+            />
+          </div>
+
+          {/* Column Spacing Slider */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "var(--text-muted)" }}>
+              <span>{t("spacing")}</span>
+              <span>{spacing.toFixed(1)}</span>
+            </div>
+            <input
+              type="range"
+              min="0.8"
+              max="2.0"
+              step="0.1"
+              value={spacing}
+              onChange={(e) => onSpacingChange(parseFloat(e.target.value))}
+              style={{ width: "100%", cursor: "pointer" }}
+            />
+          </div>
+        </div>
+      </Card>
+
+      {/* Export Actions Card */}
+      <Card
+        title={
+          <SynthFont variation="pink-cyan" style={{ textTransform: "none" }}>
+            {t("exportTitle")}
+          </SynthFont>
+        }
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <button
+            onClick={onExportStl}
+            className="btn btn-primary"
+            style={{
+              padding: "8px 12px",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontSize: "0.85rem",
+              fontWeight: "bold",
+              width: "100%",
+            }}
+          >
+            {t("downloadStl")}
+          </button>
+
+          <button
+            onClick={onExportObj}
+            style={{
+              padding: "8px 12px",
+              borderRadius: "6px",
+              border: "1px solid var(--border)",
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              color: "var(--text-main)",
+              cursor: "pointer",
+              fontSize: "0.85rem",
+              width: "100%",
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)")}
+          >
+            {t("downloadObj")}
+          </button>
+
+          <button
+            onClick={onCapturePng}
+            style={{
+              padding: "8px 12px",
+              borderRadius: "6px",
+              border: "1px solid var(--border)",
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              color: "var(--text-main)",
+              cursor: "pointer",
+              fontSize: "0.85rem",
+              width: "100%",
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)")}
+          >
+            {t("savePng")}
+          </button>
+        </div>
+      </Card>
+    </aside>
+  );
+};

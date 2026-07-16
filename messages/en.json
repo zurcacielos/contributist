@@ -6,7 +6,8 @@
     "share": "Share (optional)",
     "file": "File",
     "background": "Background",
-    "sharePngUrl": "Share PNG / Url"
+    "sharePngUrl": "Share PNG / Url",
+    "threeD": "3D View"
   },
   "Help": {
     "whyTitle": "Why Contributist?",
@@ -200,6 +201,19 @@
     "cancel": "Cancel",
     "discard": "Discard",
     "save": "Save"
+  },
+  "ThreeD": {
+    "yearsTitle": "Years Selection",
+    "selectAll": "Select All",
+    "paletteTitle": "Color Theme",
+    "geometryTitle": "Geometry Settings",
+    "height": "Height scaling",
+    "baseThickness": "Base thickness",
+    "spacing": "Spacing",
+    "exportTitle": "Export Model",
+    "downloadStl": "Download STL (3D Print)",
+    "downloadObj": "Download OBJ",
+    "savePng": "Save Screenshot (PNG)"
   },
   "Metadata": {
     "title": "Contributist | GitHub Contribution Graph Generator & Painter",
