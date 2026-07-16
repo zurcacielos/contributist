@@ -12,6 +12,7 @@ import { deserializeDesign } from "@/utils/shareSerializer";
 import { ActivityGraphRef } from "@/components/ActivityGraph";
 import { saveConfig, loadConfig } from "@/utils/configHelper";
 import { StoreProvider, useAppStore, useAppDispatch } from "@/state/store";
+import { saveStateToStorage, loadStateFromStorage } from "@/utils/storage";
 import { useTranslations } from "next-intl";
 
 function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig }) {
@@ -28,7 +29,6 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
   const [isEditing, setIsEditing] = useState(false);
   const [shareAspectRatio, setShareAspectRatio] = useState<"square" | "story" | "landscape">("landscape");
 
-  const STORAGE_VERSION = 1;
   const isInitialized = useRef(false);
 
   useEffect(() => {
@@ -51,18 +51,9 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
       return;
     }
 
-    const saved = localStorage.getItem("contributist-state");
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (parsed.version === STORAGE_VERSION && parsed.data) {
-          dispatch({ type: "RESTORE_STATE", payload: parsed.data });
-        } else {
-          console.warn("Local storage version mismatch or invalid format. Discarding saved state.");
-        }
-      } catch (e) {
-        console.error("Failed to parse saved state", e);
-      }
+    const savedState = loadStateFromStorage();
+    if (savedState) {
+      dispatch({ type: "RESTORE_STATE", payload: savedState });
     }
 
     const savedFeeling = localStorage.getItem("contributist-feeling-mode");
@@ -75,11 +66,14 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
 
   useEffect(() => {
     if (!isInitialized.current) return;
-    const dataToSave = {
-      version: STORAGE_VERSION,
-      data: state
-    };
-    localStorage.setItem("contributist-state", JSON.stringify(dataToSave));
+
+    // DEBOUNCE: Do not write to localStorage on every single keystroke.
+    // Instead, wait for a short period of inactivity (1000ms) before saving.
+    const timer = setTimeout(() => {
+      saveStateToStorage(state);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, [state]);
 
   useEffect(() => {
@@ -157,11 +151,11 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
 
       <input type="file" accept=".json" style={{ display: "none" }} ref={fileInputRef} onChange={handleLoadConfig} />
 
-      <Titlebar 
-        mainTab={mainTab} 
-        onTabSwitch={handleTabSwitch} 
-        feelingMode={feelingMode} 
-        setFeelingMode={handleFeelingModeChange} 
+      <Titlebar
+        mainTab={mainTab}
+        onTabSwitch={handleTabSwitch}
+        feelingMode={feelingMode}
+        setFeelingMode={handleFeelingModeChange}
         onSave={handleSaveConfig}
         onLoad={() => fileInputRef.current?.click()}
         onReset={handleReset}

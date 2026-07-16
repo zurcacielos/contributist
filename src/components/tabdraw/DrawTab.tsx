@@ -46,20 +46,16 @@ export const DrawTab: React.FC<DrawTabProps> = ({
   initialConfig,
 }) => {
   const t = useTranslations('Sidebar');
-  const [profileInput, setProfileInput] = useState(config.gitProfileUrl || "");
   const [isFetching, setIsFetching] = useState(false);
   const [fetchError, setFetchError] = useState<string | null>(null);
 
-  React.useEffect(() => {
-    setProfileInput(config.gitProfileUrl || "");
-  }, [config.gitProfileUrl]);
-
   const handleFetchContributions = async () => {
-    if (!profileInput.trim()) return;
+    const importUrl = (config.gitProfileOrURL_import || "").trim();
+    if (!importUrl) return;
     setIsFetching(true);
     setFetchError(null);
 
-    const { platform, username } = parseProfileUrl(profileInput);
+    const { platform, username } = parseProfileUrl(importUrl);
 
     if (platform === "github") {
       console.log(`https://github.com/users/${username}/contributions`);
@@ -81,7 +77,7 @@ export const DrawTab: React.FC<DrawTabProps> = ({
       const response = await fetch("/api/contributions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ profileUrl: profileInput.trim() }),
+        body: JSON.stringify({ profileUrl: importUrl }),
       });
       const data = await response.json();
       if (!response.ok) {
@@ -105,6 +101,16 @@ export const DrawTab: React.FC<DrawTabProps> = ({
     } finally {
       setIsFetching(false);
     }
+  };
+
+  const handleClearProfileLayers = () => {
+    dispatch({
+      type: "SET_CONFIG",
+      payload: {
+        ...config,
+        layers: (config.layers || []).filter(l => l.type !== 'git-profile')
+      }
+    });
   };
 
   return (
@@ -132,7 +138,7 @@ export const DrawTab: React.FC<DrawTabProps> = ({
       >
         <Card title={
           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <SynthFont style={{ textTransform: "none" }}>
+            <SynthFont variation="pink-cyan" style={{ textTransform: "none" }}>
               {t('gitProfileTitle')}
             </SynthFont>
             <span
@@ -149,10 +155,15 @@ export const DrawTab: React.FC<DrawTabProps> = ({
             <input
               type="text"
               placeholder="e.g. torvalds"
-              value={profileInput}
+              value={config.gitProfileOrURL_import || ""}
               onChange={(e) => {
-                setProfileInput(e.target.value);
-                dispatch({ type: "SET_GIT_PROFILE_URL", payload: e.target.value });
+                dispatch({
+                  type: 'SET_CONFIG',
+                  payload: {
+                    ...config,
+                    gitProfileOrURL_import: e.target.value
+                  }
+                });
               }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {

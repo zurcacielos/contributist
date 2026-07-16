@@ -29,8 +29,7 @@ export type AppAction =
   | { type: "ERASE_CELL"; payload: { dateStr: string } }
   | { type: "REORDER_LAYERS"; payload: { draggedId: string; dropId: string } }
   | { type: "START_FETCH_PROFILE"; payload: { username: string; platform: string } }
-  | { type: "FETCH_PROFILE_SUCCESS"; payload: { contributions: Record<string, number>; platform: string; username: string } }
-  | { type: "SET_GIT_PROFILE_URL"; payload: string };
+  | { type: "FETCH_PROFILE_SUCCESS"; payload: { contributions: Record<string, number>; platform: string; username: string } };
 
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
@@ -41,6 +40,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       nextConfig.repoUrl = state.config.repoUrl;
       nextConfig.gitName = state.config.gitName;
       nextConfig.gitEmail = state.config.gitEmail;
+      nextConfig.gitProfileOrURL_import = state.config.gitProfileOrURL_import;
       
       const startYear = parseYear(nextConfig.startDate);
       const endYear = parseYear(nextConfig.endDate);
@@ -196,14 +196,6 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return { ...state, config: { ...config, layers: updatedLayers } };
     }
 
-    case "SET_GIT_PROFILE_URL":
-      return {
-        ...state,
-        config: {
-          ...state.config,
-          gitProfileUrl: action.payload
-        }
-      };
 
     case "SET_ACTIVE_TOOL":
       return { ...state, activeTool: action.payload };

@@ -69,11 +69,10 @@ function fromUrlSafeBase64(urlSafe: string): string {
 }
 
 /**
- * Serializes only the design-related properties of AppState into a URL-safe Base64 string.
- * Strips all personal Git credentials (repoUrl, gitName, gitEmail).
+ * Filters out personal details from AppState, leaving only design-related configuration.
  */
-export function serializeDesign(state: AppState): string {
-  const design: SharedDesignState = {
+export function filterStateForSharing(state: AppState): SharedDesignState {
+  return {
     startDate: state.config.startDate,
     endDate: state.config.endDate,
     frequencies: state.config.frequencies,
@@ -89,7 +88,14 @@ export function serializeDesign(state: AppState): string {
     showPaintedInOrange: state.config.showPaintedInOrange,
     selectedLevel: state.selectedLevel
   };
+}
 
+/**
+ * Serializes only the design-related properties of AppState into a URL-safe Base64 string.
+ * Strips all personal Git credentials (repoUrl, gitName, gitEmail).
+ */
+export function serializeDesign(state: AppState): string {
+  const design = filterStateForSharing(state);
   const json = JSON.stringify(design);
   const base64 = toBase64(json);
   return toUrlSafeBase64(base64);
@@ -131,7 +137,8 @@ export function deserializeDesign(encoded: string, currentState: AppState): AppS
       // EXCLUSION GUARANTEE: Never overwrite credentials
       repoUrl: currentState.config.repoUrl,
       gitName: currentState.config.gitName,
-      gitEmail: currentState.config.gitEmail
+      gitEmail: currentState.config.gitEmail,
+      gitProfileOrURL_import: currentState.config.gitProfileOrURL_import
     };
 
     return {

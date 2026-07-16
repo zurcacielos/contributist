@@ -57,7 +57,7 @@ describe("shareSerializer", () => {
       ...mockState,
       config: {
         ...mockState.config,
-        gitProfileUrl: "https://github.com/secretprofile"
+        gitProfileOrURL_import: "torvalds"
       }
     };
     const encoded = serializeDesign(stateWithProfile);
@@ -67,7 +67,7 @@ describe("shareSerializer", () => {
     expect(decodedRaw).not.toContain("secret-repo");
     expect(decodedRaw).not.toContain("Secret User");
     expect(decodedRaw).not.toContain("secret@user.com");
-    expect(decodedRaw).not.toContain("secretprofile");
+    expect(decodedRaw).not.toContain("torvalds");
 
     const currentLocalState: AppState = {
       ...mockState,
@@ -76,7 +76,7 @@ describe("shareSerializer", () => {
         repoUrl: "https://my-local-repo.git",
         gitName: "My Local Identity",
         gitEmail: "local@identity.com",
-        gitProfileUrl: "https://github.com/myprofile"
+        gitProfileOrURL_import: "myoriginaluser"
       }
     };
 
@@ -86,7 +86,7 @@ describe("shareSerializer", () => {
     expect(restored.config.repoUrl).toBe("https://my-local-repo.git");
     expect(restored.config.gitName).toBe("My Local Identity");
     expect(restored.config.gitEmail).toBe("local@identity.com");
-    expect(restored.config.gitProfileUrl).toBe("https://github.com/myprofile");
+    expect(restored.config.gitProfileOrURL_import).toBe("myoriginaluser");
   });
 
   it("should safely return currentState when given invalid or corrupted input", () => {

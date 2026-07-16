@@ -61,7 +61,7 @@ export interface GeneratorConfig {
   showPaintedInOrange: boolean;
   gitName?: string;
   gitEmail?: string;
-  gitProfileUrl?: string;
+  gitProfileOrURL_import?: string;
   basedOnTemplate?: string;
 }
 
