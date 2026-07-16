@@ -33,9 +33,16 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
   const isInitialized = useRef(false);
 
   useEffect(() => {
-    // Check if there is an exported design in the URL query string
+    // Check if there is an exported design or tab in the URL query string or hash fragment
     const params = new URLSearchParams(window.location.search);
-    const designParam = params.get("design");
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    const designParam = hashParams.get("design") || params.get("design");
+    const tabParam = params.get("tab") || hashParams.get("tab");
+
+    if (tabParam && ["draw", "share", "export", "help", "3d"].includes(tabParam)) {
+      setMainTab(tabParam as any);
+    }
+
     const loadedKey = designParam ? `design-loaded-${designParam.slice(-20)}` : "";
 
     if (designParam && !sessionStorage.getItem(loadedKey)) {
@@ -64,6 +71,17 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
 
     isInitialized.current = true;
   }, []);
+
+  // Sync tab state to URL query parameter without page reload
+  useEffect(() => {
+    if (!isInitialized.current) return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("tab") !== mainTab) {
+      params.set("tab", mainTab);
+      const nextUrl = `${window.location.pathname}?${params.toString()}${window.location.hash}`;
+      window.history.replaceState({ ...window.history.state, as: nextUrl, url: nextUrl }, "", nextUrl);
+    }
+  }, [mainTab]);
 
   useEffect(() => {
     if (!isInitialized.current) return;

@@ -3,13 +3,14 @@ import { FeelingMode } from '@/types';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import * as Menubar from '@radix-ui/react-menubar';
-import { FilePlus, FolderOpen, Save, Share2 } from 'lucide-react';
+import { FilePlus, FolderOpen, Save, Share2, Link } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { LanguageSelector } from './LanguageSelector';
 
 import { AppState, AppAction } from '@/state/appReducer';
 
 import { applyBackgroundSelected, applyBackgroundAll } from '@/utils/backgroundActions';
+import { serializeDesign } from '@/utils/shareSerializer';
 
 interface TitlebarProps {
   mainTab: "draw" | "share" | "export" | "help" | "3d";
@@ -43,6 +44,18 @@ export function Titlebar({
 
   const handleApplyAll = () => {
     applyBackgroundAll(state.config, feelingMode, dispatch);
+  };
+
+  const handleShareUrl = () => {
+    try {
+      const serialized = serializeDesign(state);
+      const targetTab = mainTab === '3d' ? '3d' : 'draw';
+      const shareUrl = `${window.location.origin}${window.location.pathname}?tab=${targetTab}#design=${serialized}`;
+      navigator.clipboard.writeText(shareUrl);
+      alert(t('copiedAlert'));
+    } catch (e) {
+      console.error("Failed to generate share URL", e);
+    }
   };
 
   const handleClearSelected = () => {
@@ -154,7 +167,11 @@ export function Titlebar({
                   />
                   <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('share')}>
                     <Share2 size={15} style={{ marginRight: 8 }} />
-                    {t('sharePngUrl')}
+                    {t('sharePng')}
+                  </Menubar.Item>
+                  <Menubar.Item className="menubar-item" onSelect={handleShareUrl}>
+                    <Link size={15} style={{ marginRight: 8 }} />
+                    {t('shareUrl')}
                   </Menubar.Item>
                 </Menubar.Content>
               </Menubar.Portal>

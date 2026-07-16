@@ -6,9 +6,11 @@
     "share": "Share (optional)",
     "file": "File",
     "background": "Background",
-    "sharePngUrl": "Share PNG / Url",
+    "sharePng": "Share PNG",
+    "shareUrl": "Share URL",
     "threeD": "3D View",
-    "view": "View"
+    "view": "View",
+    "copiedAlert": "Link copied to clipboard!"
   },
   "Help": {
     "whyTitle": "Why Contributist?",

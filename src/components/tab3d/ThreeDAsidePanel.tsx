@@ -26,6 +26,7 @@ interface ThreeDAsidePanelProps {
   onUsernameChange: (val: string) => void;
   usernamePosition: 'recent-left' | 'recent-right' | 'last-left' | 'last-right' | 'front-side-left' | 'front-side-right';
   onUsernamePositionChange: (val: 'recent-left' | 'recent-right' | 'last-left' | 'last-right' | 'front-side-left' | 'front-side-right') => void;
+  onShareUrl: () => void;
 }
 
 export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
@@ -51,6 +52,7 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
   onUsernameChange,
   usernamePosition,
   onUsernamePositionChange,
+  onShareUrl,
 }) => {
   const t = useTranslations("ThreeD");
 
@@ -89,14 +91,41 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
         paddingRight: "6px",
       }}
     >
-      {/* Legends Customization Card */}
-      <Card
-        title={
-          <SynthFont variation="pink-cyan" style={{ textTransform: "none" }}>
-            {t("legendsTitle")}
-          </SynthFont>
-        }
+      {/* Share 3D URL Button */}
+      <button
+        onClick={onShareUrl}
+        style={{
+          padding: "10px 14px",
+          borderRadius: "6px",
+          border: "1px solid #007acc",
+          backgroundColor: "#007acc",
+          color: "#ffffff",
+          cursor: "pointer",
+          fontSize: "0.85rem",
+          fontWeight: "600",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "8px",
+          transition: "background 0.2s, border-color 0.2s",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+          outline: "none",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = "#0062a3";
+          e.currentTarget.style.borderColor = "#0062a3";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = "#007acc";
+          e.currentTarget.style.borderColor = "#007acc";
+        }}
       >
+        <span>🔗 Share this 3D URL</span>
+      </button>
+
+      {/* Legends Customization Card */}
+      <Card title="">
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {/* Username Checkbox */}
           <label
@@ -122,9 +151,6 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
           {showUsername && (
             <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "4px" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-                <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                  {t("usernameInput")}
-                </span>
                 <input
                   type="text"
                   value={username}
@@ -142,9 +168,6 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
               </div>
 
               <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-                <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                  {t("positionLabel")}
-                </span>
                 <select
                   value={usernamePosition}
                   onChange={(e) => onUsernamePositionChange(e.target.value as any)}
@@ -292,13 +315,7 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
       </Card>
 
       {/* Color Palette Card */}
-      <Card
-        title={
-          <SynthFont variation="pink-cyan" style={{ textTransform: "none" }}>
-            {t("paletteTitle")}
-          </SynthFont>
-        }
-      >
+      <Card title="">
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           <select
             value={palette}

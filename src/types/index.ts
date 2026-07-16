@@ -63,6 +63,9 @@ export interface GeneratorConfig {
   gitEmail?: string;
   gitProfileOrURL_import?: string;
   basedOnTemplate?: string;
+  threeDShowUsername?: boolean;
+  threeDUsername?: string;
+  threeDUsernamePosition?: string;
 }
 
 

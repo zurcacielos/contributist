@@ -16,6 +16,9 @@ export interface SharedDesignState {
   showPaintedLayer: boolean;
   showPaintedInOrange: boolean;
   selectedLevel?: number;
+  threeDShowUsername?: boolean;
+  threeDUsername?: string;
+  threeDUsernamePosition?: string;
 }
 
 /**
@@ -86,7 +89,10 @@ export function filterStateForSharing(state: AppState): SharedDesignState {
     showAlgoLayer: state.config.showAlgoLayer,
     showPaintedLayer: state.config.showPaintedLayer,
     showPaintedInOrange: state.config.showPaintedInOrange,
-    selectedLevel: state.selectedLevel
+    selectedLevel: state.selectedLevel,
+    threeDShowUsername: state.config.threeDShowUsername,
+    threeDUsername: state.config.threeDUsername,
+    threeDUsernamePosition: state.config.threeDUsernamePosition
   };
 }
 
@@ -133,6 +139,9 @@ export function deserializeDesign(encoded: string, currentState: AppState): AppS
       showAlgoLayer: typeof parsed.showAlgoLayer === "boolean" ? parsed.showAlgoLayer : currentState.config.showAlgoLayer,
       showPaintedLayer: typeof parsed.showPaintedLayer === "boolean" ? parsed.showPaintedLayer : currentState.config.showPaintedLayer,
       showPaintedInOrange: typeof parsed.showPaintedInOrange === "boolean" ? parsed.showPaintedInOrange : currentState.config.showPaintedInOrange,
+      threeDShowUsername: typeof parsed.threeDShowUsername === "boolean" ? parsed.threeDShowUsername : currentState.config.threeDShowUsername,
+      threeDUsername: typeof parsed.threeDUsername === "string" ? parsed.threeDUsername : currentState.config.threeDUsername,
+      threeDUsernamePosition: typeof parsed.threeDUsernamePosition === "string" ? parsed.threeDUsernamePosition : currentState.config.threeDUsernamePosition,
       
       // EXCLUSION GUARANTEE: Never overwrite credentials
       repoUrl: currentState.config.repoUrl,

@@ -45,7 +45,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
 
   const handleCopyLink = () => {
     const serialized = serializeDesign(state);
-    const shareUrl = `${window.location.origin}${window.location.pathname}?design=${serialized}`;
+    const shareUrl = `${window.location.origin}${window.location.pathname}?tab=share#design=${serialized}`;
     navigator.clipboard.writeText(shareUrl);
     alert(t('copiedAlert'));
   };

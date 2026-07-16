@@ -5,6 +5,8 @@ import { ThreeDAsidePanel } from "./ThreeDAsidePanel";
 import { ThreeDCanvas } from "./ThreeDCanvas";
 import { generateSTL, generateOBJ, StlPillar } from "@/utils/stlExporter";
 import { parseYear } from "@/types";
+import { useTranslations } from "next-intl";
+import { serializeDesign } from "@/utils/shareSerializer";
 
 interface ThreeDTabProps {
   state: AppState;
@@ -31,10 +33,16 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
   const [spacing, setSpacing] = useState<number>(1.2);
   const [palette, setPalette] = useState<"green" | "synth" | "gray">("green");
 
-  // Username display settings
-  const [showUsername, setShowUsername] = useState<boolean>(true);
-  const [username, setUsername] = useState<string>("");
-  const [usernamePosition, setUsernamePosition] = useState<'recent-left' | 'recent-right' | 'last-left' | 'last-right' | 'front-side-left' | 'front-side-right'>('last-left');
+  // Username display settings initialized from state.config if present
+  const [showUsername, setShowUsername] = useState<boolean>(
+    state.config.threeDShowUsername !== undefined ? state.config.threeDShowUsername : true
+  );
+  const [username, setUsername] = useState<string>(
+    state.config.threeDUsername !== undefined ? state.config.threeDUsername : ""
+  );
+  const [usernamePosition, setUsernamePosition] = useState<'recent-left' | 'recent-right' | 'last-left' | 'last-right' | 'front-side-left' | 'front-side-right'>(
+    (state.config.threeDUsernamePosition as any) || 'last-left'
+  );
 
   const defaultUsername = useMemo(() => {
     let imported = (state.config.gitProfileOrURL_import || "").trim();
@@ -45,12 +53,35 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
     return imported || (state.config.gitName || "").trim() || "contributist";
   }, [state.config.gitProfileOrURL_import, state.config.gitName]);
 
-  // Synchronize defaultUsername to local username state
+  // Synchronize defaultUsername to local username state on initial load if not defined in config
   React.useEffect(() => {
-    if (!username && defaultUsername) {
+    if (state.config.threeDUsername === undefined && defaultUsername && !username) {
       setUsername(defaultUsername);
     }
-  }, [defaultUsername, username]);
+  }, [defaultUsername, state.config.threeDUsername]);
+
+  // Dispatch local legends changes to the global state.config with a debounce to enable sharing
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      if (
+        state.config.threeDShowUsername !== showUsername ||
+        state.config.threeDUsername !== username ||
+        state.config.threeDUsernamePosition !== usernamePosition
+      ) {
+        dispatch({
+          type: "SET_CONFIG",
+          payload: {
+            ...state.config,
+            threeDShowUsername: showUsername,
+            threeDUsername: username,
+            threeDUsernamePosition: usernamePosition,
+          },
+        });
+      }
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [showUsername, username, usernamePosition, dispatch, state.config]);
 
   // Hook for capture function ref
   const captureFnRef = React.useRef<(() => string) | null>(null);
@@ -178,6 +209,19 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
     setSpacing(1.2);
   };
 
+  const t = useTranslations('Titlebar');
+
+  const handleShareUrl = () => {
+    try {
+      const serialized = serializeDesign(state);
+      const shareUrl = `${window.location.origin}${window.location.pathname}?tab=3d#design=${serialized}`;
+      navigator.clipboard.writeText(shareUrl);
+      alert(t('copiedAlert'));
+    } catch (e) {
+      console.error("Failed to generate share URL", e);
+    }
+  };
+
   return (
     <section
       className="layout draw-layout"
@@ -216,6 +260,7 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
         onUsernameChange={setUsername}
         usernamePosition={usernamePosition}
         onUsernamePositionChange={setUsernamePosition}
+        onShareUrl={handleShareUrl}
       />
 
       {/* Main Canvas Viewport */}
