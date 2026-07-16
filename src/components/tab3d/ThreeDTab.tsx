@@ -137,6 +137,7 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
       style={{
         display: "grid",
         gridTemplateColumns: "280px 1fr",
+        gridTemplateRows: "100%",
         gap: "20px",
         padding: "20px",
         height: "calc(100vh - 60px)",
