@@ -124,7 +124,7 @@ export function Titlebar({
           onClick={() => onTabSwitch('draw')}
           style={{ display: 'flex', alignItems: 'center', gap: '14px', cursor: 'pointer' }}
         >
-          <img src="/images/contributist-web.png" alt="Contributist logo" className="logo-img" />
+          <img src="/images/contributist-web.png" alt="Contributist logo" className="logo-img" style={{ width: "28px", height: "28px", objectFit: "contain" }} />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <h1 style={{ margin: 0, fontSize: "18px", display: "flex", alignItems: "center", gap: "4px" }}>
               Contributist <span>⚡</span>
