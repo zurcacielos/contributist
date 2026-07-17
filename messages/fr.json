@@ -10,7 +10,8 @@
     "shareUrl": "Partager l'URL",
     "threeD": "Vue 3D",
     "view": "Affichage",
-    "copiedAlert": "Lien copié dans le presse-papiers !"
+    "copiedAlert": "Lien copié dans le presse-papiers !",
+    "getGitScript": "Obtenir le script Git"
   },
   "Help": {
     "whyTitle": "Pourquoi Contributist ?",
@@ -160,6 +161,9 @@
     "loadingProfile": "Chargement...",
     "load": "Charger",
     "flipHorizontally": "Retourner horizontalement",
+    "share2DUrl": "Partager cette URL 2D",
+    "beforeSad": "Avant/Triste",
+    "afterHappy": "Après/Heureux",
     "noScenes": "Aucune scène de la communauté trouvée dans public/templates/scenes/",
     "publish": "📤 Publier (Télécharger JSON)",
     "saveInto": "💾 Sauvegarder le design actuel ici",
@@ -232,7 +236,8 @@
     "posLastLeft": "Dernier - gauche",
     "posLastRight": "Dernier - droite",
     "posFrontSideLeft": "Face avant - gauche",
-    "posFrontSideRight": "Face avant - droite"
+    "posFrontSideRight": "Face avant - droite",
+    "share3DUrl": "Partager cette URL 3D"
   },
   "Metadata": {
     "title": "Contributist | Générateur et Peintre de Graphique de Contribution GitHub",

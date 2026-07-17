@@ -123,7 +123,7 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
           e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
         }}
       >
-        <span>🔗 Share this 3D URL</span>
+        <span>🔗 {t('share3DUrl')}</span>
       </button>
 
       {/* Legends Customization Card */}

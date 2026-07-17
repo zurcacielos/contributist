@@ -10,7 +10,8 @@
     "shareUrl": "URLを共有",
     "threeD": "3D表示",
     "view": "表示",
-    "copiedAlert": "リンクがクリップボードにコピーされました！"
+    "copiedAlert": "リンクがクリップボードにコピーされました！",
+    "getGitScript": "Gitスクリプトを取得"
   },
   "Help": {
     "whyTitle": "なぜContributist？",
@@ -160,6 +161,9 @@
     "loadingProfile": "読み込み中...",
     "load": "ロード",
     "flipHorizontally": "左右反転",
+    "share2DUrl": "この2D URLを共有",
+    "beforeSad": "Before/悲しい",
+    "afterHappy": "After/嬉しい",
     "noScenes": "public/templates/scenes/ 内にコミュニティシーンが見つかりません",
     "publish": "📤 公開（JSONをダウンロード）",
     "saveInto": "💾 現在のデザインをここに保存",
@@ -232,7 +236,8 @@
     "posLastLeft": "最後 - 左",
     "posLastRight": "最後 - 右",
     "posFrontSideLeft": "手前 - 左",
-    "posFrontSideRight": "手前 - 右"
+    "posFrontSideRight": "手前 - 右",
+    "share3DUrl": "この3D URLを共有"
   },
   "Metadata": {
     "title": "Contributist | GitHub コントリビューショングラフ生成・描画ツール",

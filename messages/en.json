@@ -10,7 +10,8 @@
     "shareUrl": "Share URL",
     "threeD": "3D View",
     "view": "View",
-    "copiedAlert": "Link copied to clipboard!"
+    "copiedAlert": "Link copied to clipboard!",
+    "getGitScript": "Get Git Script"
   },
   "Help": {
     "whyTitle": "Why Contributist?",
@@ -160,6 +161,9 @@
     "loadingProfile": "Loading...",
     "load": "Load",
     "flipHorizontally": "↔ Flip Horizontally",
+    "share2DUrl": "Share this 2D URL",
+    "beforeSad": "Before/Sad",
+    "afterHappy": "After/Happy",
     "noScenes": "No community scenes found in public/templates/scenes/",
     "publish": "📤 Publish (Download JSON)",
     "saveInto": "💾 Save current into this",
@@ -232,7 +236,8 @@
     "posLastLeft": "Last - left",
     "posLastRight": "Last - right",
     "posFrontSideLeft": "Front side - left",
-    "posFrontSideRight": "Front side - right"
+    "posFrontSideRight": "Front side - right",
+    "share3DUrl": "Share this 3D URL"
   },
   "Metadata": {
     "title": "Contributist | GitHub Contribution Graph Generator & Painter",

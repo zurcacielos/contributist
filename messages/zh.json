@@ -10,7 +10,8 @@
     "shareUrl": "分享 URL",
     "threeD": "3D 视图",
     "view": "视图",
-    "copiedAlert": "链接已复制到剪贴板！"
+    "copiedAlert": "链接已复制到剪贴板！",
+    "getGitScript": "获取 Git 脚本"
   },
   "Help": {
     "whyTitle": "为什么选择 Contributist？",
@@ -160,6 +161,9 @@
     "loadingProfile": "加载中...",
     "load": "加载",
     "flipHorizontally": "水平翻转",
+    "share2DUrl": "分享这个 2D URL",
+    "beforeSad": "之前/悲伤",
+    "afterHappy": "之后/快乐",
     "noScenes": "在 public/templates/scenes/ 中未找到社区场景",
     "publish": "📤 发布 (下载 JSON)",
     "saveInto": "💾 将当前设计保存至此",
@@ -232,7 +236,8 @@
     "posLastLeft": "最后 - 左侧",
     "posLastRight": "最后 - 右侧",
     "posFrontSideLeft": "正面 - 左侧",
-    "posFrontSideRight": "正面 - 右侧"
+    "posFrontSideRight": "正面 - 右侧",
+    "share3DUrl": "分享这个 3D URL"
   },
   "Metadata": {
     "title": "Contributist | GitHub 贡献图生成与绘制工具",

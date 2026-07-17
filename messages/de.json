@@ -10,7 +10,8 @@
     "shareUrl": "URL teilen",
     "threeD": "3D-Ansicht",
     "view": "Ansicht",
-    "copiedAlert": "Link in die Zwischenablage kopiert!"
+    "copiedAlert": "Link in die Zwischenablage kopiert!",
+    "getGitScript": "Git-Skript abrufen"
   },
   "Help": {
     "whyTitle": "Warum Contributist?",
@@ -160,6 +161,9 @@
     "loadingProfile": "Laden...",
     "load": "Laden",
     "flipHorizontally": "Horizontal spiegeln",
+    "share2DUrl": "Teilen Sie diese 2D-URL",
+    "beforeSad": "Vorher/Traurig",
+    "afterHappy": "Nachher/Glücklich",
     "noScenes": "Keine Community-Szenen in public/templates/scenes/ gefunden",
     "publish": "📤 Veröffentlichen (JSON herunterladen)",
     "saveInto": "💾 Aktuelles Design hier speichern",
@@ -232,7 +236,8 @@
     "posLastLeft": "Letztes - links",
     "posLastRight": "Letztes - rechts",
     "posFrontSideLeft": "Vorderseite - links",
-    "posFrontSideRight": "Vorderseite - rechts"
+    "posFrontSideRight": "Vorderseite - rechts",
+    "share3DUrl": "Teilen Sie diese 3D-URL"
   },
   "Metadata": {
     "title": "Contributist | GitHub Beitragsdiagramm-Generator & Zeichner",

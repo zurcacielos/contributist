@@ -151,7 +151,7 @@ export const DrawTab: React.FC<DrawTabProps> = ({
             e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
           }}
         >
-          <span>🔗 Share this 2D URL</span>
+          <span>🔗 {t('share2DUrl')}</span>
         </button>
       </div>
 
@@ -174,13 +174,9 @@ export const DrawTab: React.FC<DrawTabProps> = ({
           boxShadow: "none"
         }}
       >
+        <GitProfileLoader config={config} dispatch={dispatch} initialConfig={initialConfig} />
         <TechnicalBackground config={config} activeYear={state.activeYear} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
       </aside>
-
-      {/* Row 1, Column 2: Profile Loader in the middle column */}
-      <div style={{ gridColumn: "2", gridRow: "1" }}>
-        <GitProfileLoader config={config} dispatch={dispatch} initialConfig={initialConfig} />
-      </div>
 
       {/* Row 1, Column 3: Before/Sad and After/Happy Buttons */}
       <div
@@ -190,7 +186,6 @@ export const DrawTab: React.FC<DrawTabProps> = ({
           display: "flex",
           gap: "8px",
           width: "100%",
-          alignItems: "flex-start"
         }}
       >
         <button
@@ -225,7 +220,7 @@ export const DrawTab: React.FC<DrawTabProps> = ({
             e.currentTarget.style.color = "var(--text-muted)";
           }}
         >
-          <span>😢 Before/Sad</span>
+          <span>😢 {t('beforeSad')}</span>
         </button>
         <button
           onClick={handleAfterHappy}
@@ -259,7 +254,7 @@ export const DrawTab: React.FC<DrawTabProps> = ({
             e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
           }}
         >
-          <span>😊 After/Happy</span>
+          <span>😊 {t('afterHappy')}</span>
         </button>
       </div>
 

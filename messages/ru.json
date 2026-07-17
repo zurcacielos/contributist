@@ -10,7 +10,8 @@
     "shareUrl": "Поделиться URL",
     "threeD": "3D-вид",
     "view": "Вид",
-    "copiedAlert": "Ссылка скопирована в буфер обмена!"
+    "copiedAlert": "Ссылка скопирована в буфер обмена!",
+    "getGitScript": "Получить Git-скрипт"
   },
   "Help": {
     "whyTitle": "Почему Contributist?",
@@ -160,6 +161,9 @@
     "loadingProfile": "Загрузка...",
     "load": "Загрузить",
     "flipHorizontally": "Отразить по горизонтали",
+    "share2DUrl": "Поделиться этой 2D URL-ссылкой",
+    "beforeSad": "До/Грустно",
+    "afterHappy": "После/Весело",
     "noScenes": "Сцены сообщества не найдены в public/templates/scenes/",
     "publish": "📤 Опубликовать (Скачать JSON)",
     "saveInto": "💾 Сохранить текущий дизайн сюда",
@@ -232,7 +236,8 @@
     "posLastLeft": "Последние - слева",
     "posLastRight": "Последние - справа",
     "posFrontSideLeft": "Передняя сторона - слева",
-    "posFrontSideRight": "Передняя сторона - справа"
+    "posFrontSideRight": "Передняя сторона - справа",
+    "share3DUrl": "Поделиться этой 3D URL-ссылкой"
   },
   "Metadata": {
     "title": "Contributist | Генератор и редактор графика вкладов GitHub",

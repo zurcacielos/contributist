@@ -238,7 +238,7 @@ export function Titlebar({
                     3D
                   </Menubar.Item>
                   <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('export')}>
-                    Get Git Script
+                    {t('getGitScript')}
                   </Menubar.Item>
                 </Menubar.Content>
               </Menubar.Portal>
@@ -287,7 +287,7 @@ export function Titlebar({
             className={`flow-step ${mainTab === 'export' ? 'active' : ''}`}
             onClick={() => onTabSwitch('export')}
           >
-            Get Git Script
+            {t('getGitScript')}
           </button>
         </nav>
       </div>

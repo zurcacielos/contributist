@@ -10,7 +10,8 @@
     "shareUrl": "यूआरएल साझा करें",
     "threeD": "3D दृश्य",
     "view": "देखें",
-    "copiedAlert": "लिंक क्लिपबोर्ड पर कॉपी किया गया!"
+    "copiedAlert": "लिंक क्लिपबोर्ड पर कॉपी किया गया!",
+    "getGitScript": "गिट स्क्रिप्ट प्राप्त करें"
   },
   "Help": {
     "whyTitle": "कंट्रीब्यूटिस्ट क्यों?",
@@ -160,6 +161,9 @@
     "loadingProfile": "लोड हो रहा है...",
     "load": "लोड करें",
     "flipHorizontally": "क्षैतिज रूप से पलटें",
+    "share2DUrl": "इस 2D URL को साझा करें",
+    "beforeSad": "पहले/उदास",
+    "afterHappy": "बाद में/खुश",
     "noScenes": "public/templates/scenes/ में कोई समुदाय डिज़ाइन नहीं मिला",
     "publish": "📤 प्रकाशित करें (JSON डाउनलोड करें)",
     "saveInto": "💾 वर्तमान डिज़ाइन को यहाँ सहेजें",
@@ -232,7 +236,8 @@
     "posLastLeft": "अंतिम - बाएँ",
     "posLastRight": "अंतिम - दाएँ",
     "posFrontSideLeft": "सामने की ओर - बाएँ",
-    "posFrontSideRight": "सामने की ओर - दाएँ"
+    "posFrontSideRight": "सामने की ओर - दाएँ",
+    "share3DUrl": "इस 3D URL को साझा करें"
   },
   "Metadata": {
     "title": "Contributist | GitHub योगदान ग्राफ़ जनरेटर और पेंटर",

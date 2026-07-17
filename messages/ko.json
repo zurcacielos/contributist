@@ -10,7 +10,8 @@
     "shareUrl": "URL 공유",
     "threeD": "3D 보기",
     "view": "보기",
-    "copiedAlert": "링크가 클립보드에 복사되었습니다!"
+    "copiedAlert": "링크가 클립보드에 복사되었습니다!",
+    "getGitScript": "Git 스크립트 받기"
   },
   "Help": {
     "whyTitle": "왜 Contributist인가요?",
@@ -160,6 +161,9 @@
     "loadingProfile": "불러오는 중...",
     "load": "불러오기",
     "flipHorizontally": "좌우 뒤집기",
+    "share2DUrl": "이 2D URL 공유",
+    "beforeSad": "이전/슬픔",
+    "afterHappy": "이후/기쁨",
     "noScenes": "public/templates/scenes/ 경로에서 커뮤니티 장면을 찾을 수 없습니다",
     "publish": "📤 게시 (JSON 다운로드)",
     "saveInto": "💾 현재 디자인을 여기에 저장",
@@ -232,7 +236,8 @@
     "posLastLeft": "마지막 - 왼쪽",
     "posLastRight": "마지막 - 오른쪽",
     "posFrontSideLeft": "앞면 - 왼쪽",
-    "posFrontSideRight": "앞면 - 오른쪽"
+    "posFrontSideRight": "앞면 - 오른쪽",
+    "share3DUrl": "이 3D URL 공유"
   },
   "Metadata": {
     "title": "Contributist | GitHub 잔디 그래프 생성기 및 그리기 도구",
