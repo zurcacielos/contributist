@@ -93,6 +93,19 @@ export const DrawTab: React.FC<DrawTabProps> = ({
     });
   };
 
+  const [isSadPressed, setIsSadPressed] = useState(false);
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
+
+  const handlePressSad = () => {
+    setIsSadPressed(true);
+    handleBeforeSad();
+  };
+
+  const handleReleaseHappy = () => {
+    setIsSadPressed(false);
+    handleAfterHappy();
+  };
+
   return (
     <section
       className="layout draw-layout"
@@ -182,84 +195,61 @@ export const DrawTab: React.FC<DrawTabProps> = ({
         <GitProfileLoader config={config} dispatch={dispatch} initialConfig={initialConfig} />
       </div>
 
-      {/* Row 1, Column 3: Before/Sad and After/Happy Buttons */}
+      {/* Row 1, Column 3: Before/Sad | After/Happy Terminal Button */}
       <div
+        onMouseDown={handlePressSad}
+        onMouseUp={handleReleaseHappy}
+        onMouseLeave={() => {
+          handleReleaseHappy();
+          setIsButtonHovered(false);
+        }}
+        onMouseEnter={() => setIsButtonHovered(true)}
+        onTouchStart={(e) => { e.preventDefault(); handlePressSad(); }}
+        onTouchEnd={handleReleaseHappy}
+        onTouchCancel={handleReleaseHappy}
         style={{
           gridColumn: "3",
           gridRow: "1",
+          width: "fit-content",
+          justifySelf: "center",
           display: "flex",
-          gap: "8px",
-          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "40px",
+          border: "1px solid",
+          borderColor: isButtonHovered 
+            ? (state.config.showPaintedInOrange ? "#ffcf26" : "var(--greenbash-selected, #39d353)")
+            : "var(--border)",
+          borderRadius: "8px",
+          backgroundColor: isButtonHovered ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.4)",
+          fontFamily: "var(--font-mono, monospace)",
+          fontWeight: "600",
+          userSelect: "none",
+          cursor: "pointer",
+          padding: "0 16px"
         }}
       >
-        <button
-          onClick={handleBeforeSad}
+        <span
           style={{
-            flex: 1,
-            padding: "10px 8px",
-            height: "40px",
-            borderRadius: "8px",
-            border: "1px solid var(--border)",
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
-            color: "var(--text-muted)",
-            cursor: "pointer",
-            fontSize: "0.75rem",
-            fontWeight: "600",
-            fontFamily: "var(--font-mono, monospace)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "4px",
-            transition: "all 0.2s ease",
-            outline: "none",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(244, 63, 94, 0.12)";
-            e.currentTarget.style.borderColor = "#f43f5e";
-            e.currentTarget.style.color = "#ffffff";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-            e.currentTarget.style.borderColor = "var(--border)";
-            e.currentTarget.style.color = "var(--text-muted)";
+            color: isSadPressed ? "var(--text-main, #ffffff)" : "var(--text-muted)",
+            fontSize: isSadPressed ? "0.8rem" : "0.72rem",
+            padding: "0 8px"
           }}
         >
-          <span>😢 {t('beforeSad')}</span>
-        </button>
-        <button
-          onClick={handleAfterHappy}
+          {t('beforeSad')}
+        </span>
+        <span style={{ color: "var(--border)", padding: "0 4px" }}>|</span>
+        <span
           style={{
-            flex: 1,
-            padding: "10px 8px",
-            height: "40px",
-            borderRadius: "8px",
-            border: "1px solid var(--border)",
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
-            color: "var(--greenbash-selected, #39d353)",
-            cursor: "pointer",
-            fontSize: "0.75rem",
-            fontWeight: "600",
-            fontFamily: "var(--font-mono, monospace)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "4px",
-            transition: "all 0.2s ease",
-            outline: "none",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-            e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-            e.currentTarget.style.color = "#ffffff";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-            e.currentTarget.style.borderColor = "var(--border)";
-            e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+            color: !isSadPressed 
+              ? (state.config.showPaintedInOrange ? "#ffcf26" : "var(--greenbash-selected, #39d353)") 
+              : "var(--text-muted)",
+            fontSize: !isSadPressed ? "0.8rem" : "0.72rem",
+            padding: "0 8px"
           }}
         >
-          <span>😊 {t('afterHappy')}</span>
-        </button>
+          {t('afterHappy')}
+        </span>
       </div>
 
       {/* Row 2, Column 2: Main Activity Graph */}
