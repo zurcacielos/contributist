@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface CardProps {
   title: React.ReactNode;
@@ -74,7 +75,7 @@ export const Card: React.FC<CardProps> = ({
                   lineHeight: "28px"
                 }}
               >
-                {expanded ? "−" : "+"}
+                {expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </button>
             )}
           </div>

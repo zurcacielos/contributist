@@ -35,16 +35,17 @@ export const applyBackgroundSelected = (
   // Ensure frequencies is not empty or zero
   nextConfig.frequencies = ensureFrequencies(nextConfig.frequencies);
 
-  // Mark background layer for the active year as not cleared
+  // Mark background layer for the active year as not cleared, and set all layers visible to true (Happy Mode)
   const nextLayers = (nextConfig.layers || []).map((l) => {
     if (l.type === "background" && l.year === activeYear) {
       return {
         ...l,
+        visible: true,
         cleared: false,
         customFrequency: undefined,
       };
     }
-    return l;
+    return { ...l, visible: true };
   });
 
   const finalPayload = { ...nextConfig, layers: nextLayers };
@@ -70,16 +71,17 @@ export const applyBackgroundAll = (
   // Ensure frequencies is not empty or zero
   nextConfig.frequencies = ensureFrequencies(nextConfig.frequencies);
 
-  // Mark all background layers as not cleared
+  // Mark all background layers as not cleared, and set all layers visible to true (Happy Mode)
   const nextLayers = (nextConfig.layers || []).map((l) => {
     if (l.type === "background") {
       return {
         ...l,
+        visible: true,
         cleared: false,
         customFrequency: undefined,
       };
     }
-    return l;
+    return { ...l, visible: true };
   });
 
   const finalPayload = { ...nextConfig, layers: nextLayers };

@@ -174,9 +174,13 @@ export const DrawTab: React.FC<DrawTabProps> = ({
           boxShadow: "none"
         }}
       >
-        <GitProfileLoader config={config} dispatch={dispatch} initialConfig={initialConfig} />
         <TechnicalBackground config={config} activeYear={state.activeYear} onChange={(c) => dispatch({ type: "SET_CONFIG", payload: c })} />
       </aside>
+
+      {/* Row 1, Column 2: Profile Loader in the middle column */}
+      <div style={{ gridColumn: "2", gridRow: "1" }}>
+        <GitProfileLoader config={config} dispatch={dispatch} initialConfig={initialConfig} />
+      </div>
 
       {/* Row 1, Column 3: Before/Sad and After/Happy Buttons */}
       <div
