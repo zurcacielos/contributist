@@ -221,6 +221,7 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
   };
 
   const t = useTranslations('Titlebar');
+  const t3d = useTranslations('ThreeD');
   const { showToast } = useToast();
 
   const handleShareUrl = async () => {
@@ -260,9 +261,6 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
         onSpacingChange={setSpacing}
         palette={palette}
         onPaletteChange={setPalette}
-        onExportStl={handleExportStl}
-        onExportObj={handleExportObj}
-        onCapturePng={handleCapturePng}
         onZoomToFit={() => zoomFnRef.current?.()}
         onResetGeometry={handleResetGeometry}
         showUsername={showUsername}
@@ -274,31 +272,128 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
         onShareUrl={handleShareUrl}
       />
 
-      {/* Main Canvas Viewport */}
-      <div style={{ position: "relative", width: "100%", height: "100%" }}>
-        <ThreeDCanvas
-          pillars={pillars}
-          numYears={selectedYears.length}
-          heightMultiplier={heightMultiplier}
-          baseThickness={baseThickness}
-          spacing={spacing}
-          palette={palette}
-          showUsername={showUsername}
-          username={username}
-          usernamePosition={usernamePosition}
-          onCaptureReady={(fn) => {
-            captureFnRef.current = fn;
+      {/* Main Canvas Viewport & Export Options */}
+      <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100%", gap: "16px" }}>
+        <div style={{ flex: 1, position: "relative", width: "100%", minHeight: 0 }}>
+          <ThreeDCanvas
+            pillars={pillars}
+            numYears={selectedYears.length}
+            heightMultiplier={heightMultiplier}
+            baseThickness={baseThickness}
+            spacing={spacing}
+            palette={palette}
+            showUsername={showUsername}
+            username={username}
+            usernamePosition={usernamePosition}
+            onCaptureReady={(fn) => {
+              captureFnRef.current = fn;
+            }}
+            onZoomToFitReady={(fn) => {
+              zoomFnRef.current = fn;
+            }}
+            onExportStlReady={(fn) => {
+              exportStlFnRef.current = fn;
+            }}
+            onExportObjReady={(fn) => {
+              exportObjFnRef.current = fn;
+            }}
+          />
+        </div>
+
+        {/* Export Actions Panel at bottom */}
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+            alignItems: "center"
           }}
-          onZoomToFitReady={(fn) => {
-            zoomFnRef.current = fn;
-          }}
-          onExportStlReady={(fn) => {
-            exportStlFnRef.current = fn;
-          }}
-          onExportObjReady={(fn) => {
-            exportObjFnRef.current = fn;
-          }}
-        />
+        >
+
+
+          <button
+            onClick={handleExportStl}
+            style={{
+              padding: "8px 16px",
+              borderRadius: "8px",
+              border: "1px solid var(--border)",
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+              color: "var(--greenbash-selected, #39d353)",
+              cursor: "pointer",
+              fontSize: "0.85rem",
+              fontFamily: "var(--font-mono, monospace)",
+              fontWeight: "bold",
+              outline: "none",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.color = "#ffffff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+            }}
+          >
+            {t3d("downloadStl")}
+          </button>
+
+          <button
+            onClick={handleExportObj}
+            style={{
+              padding: "8px 16px",
+              borderRadius: "8px",
+              border: "1px solid var(--border)",
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+              color: "var(--greenbash-selected, #39d353)",
+              cursor: "pointer",
+              fontSize: "0.85rem",
+              fontFamily: "var(--font-mono, monospace)",
+              fontWeight: "bold",
+              outline: "none",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.color = "#ffffff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+            }}
+          >
+            {t3d("downloadObj")}
+          </button>
+
+          <button
+            onClick={handleCapturePng}
+            style={{
+              padding: "8px 16px",
+              borderRadius: "8px",
+              border: "1px solid var(--border)",
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+              color: "var(--greenbash-selected, #39d353)",
+              cursor: "pointer",
+              fontSize: "0.85rem",
+              fontFamily: "var(--font-mono, monospace)",
+              fontWeight: "bold",
+              outline: "none",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
+              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.color = "#ffffff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+            }}
+          >
+            {t3d("savePng")}
+          </button>
+        </div>
       </div>
     </section>
   );

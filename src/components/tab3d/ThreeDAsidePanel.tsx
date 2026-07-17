@@ -15,9 +15,6 @@ interface ThreeDAsidePanelProps {
   onSpacingChange: (val: number) => void;
   palette: "green" | "synth" | "gray";
   onPaletteChange: (val: "green" | "synth" | "gray") => void;
-  onExportStl: () => void;
-  onExportObj: () => void;
-  onCapturePng: () => void;
   onZoomToFit: () => void;
   onResetGeometry: () => void;
   showUsername: boolean;
@@ -41,9 +38,6 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
   onSpacingChange,
   palette,
   onPaletteChange,
-  onExportStl,
-  onExportObj,
-  onCapturePng,
   onZoomToFit,
   onResetGeometry,
   showUsername,
@@ -452,109 +446,6 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
             }}
           >
             {t("reset")}
-          </button>
-        </div>
-      </Card>
-
-
-
-      {/* Export Actions Card */}
-      <Card
-        title={
-          <GreenFont variation="green-bright" style={{ textTransform: "none" }}>
-            {t("exportTitle")}
-          </GreenFont>
-        }
-      >
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <button
-            onClick={onExportStl}
-            style={{
-              padding: "8px 12px",
-              borderRadius: "8px",
-              border: "1px solid var(--border)",
-              backgroundColor: "rgba(0, 0, 0, 0.4)",
-              color: "var(--greenbash-selected, #39d353)",
-              cursor: "pointer",
-              fontSize: "0.85rem",
-              fontFamily: "var(--font-mono, monospace)",
-              fontWeight: "bold",
-              width: "100%",
-              transition: "all 0.2s ease",
-              outline: "none",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-              e.currentTarget.style.color = "#ffffff";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
-            }}
-          >
-            {t("downloadStl")}
-          </button>
-
-          <button
-            onClick={onExportObj}
-            style={{
-              padding: "8px 12px",
-              borderRadius: "8px",
-              border: "1px solid var(--border)",
-              backgroundColor: "rgba(0, 0, 0, 0.4)",
-              color: "var(--greenbash-selected, #39d353)",
-              cursor: "pointer",
-              fontSize: "0.85rem",
-              fontFamily: "var(--font-mono, monospace)",
-              fontWeight: "bold",
-              width: "100%",
-              transition: "all 0.2s ease",
-              outline: "none",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-              e.currentTarget.style.color = "#ffffff";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
-            }}
-          >
-            {t("downloadObj")}
-          </button>
-
-          <button
-            onClick={onCapturePng}
-            style={{
-              padding: "8px 12px",
-              borderRadius: "8px",
-              border: "1px solid var(--border)",
-              backgroundColor: "rgba(0, 0, 0, 0.4)",
-              color: "var(--greenbash-selected, #39d353)",
-              cursor: "pointer",
-              fontSize: "0.85rem",
-              fontFamily: "var(--font-mono, monospace)",
-              fontWeight: "bold",
-              width: "100%",
-              transition: "all 0.2s ease",
-              outline: "none",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-              e.currentTarget.style.color = "#ffffff";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
-            }}
-          >
-            {t("savePng")}
           </button>
         </div>
       </Card>
