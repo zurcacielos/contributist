@@ -18,6 +18,7 @@ export function GitProfileLoader({
 }: GitProfileLoaderProps) {
   const t = useTranslations('Sidebar');
   const [isFetching, setIsFetching] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [fetchError, setFetchError] = useState<string | null>(null);
 
   const handleFetchContributions = async () => {
@@ -116,7 +117,9 @@ export function GitProfileLoader({
             }}
             style={{
               width: "100%",
-              padding: "10px 14px 10px 40px",
+              height: "40px",
+              padding: "0 14px 0 40px",
+              boxSizing: "border-box",
               borderRadius: "8px",
               border: "1px solid var(--border)",
               backgroundColor: "rgba(0, 0, 0, 0.25)",
@@ -137,27 +140,27 @@ export function GitProfileLoader({
         <button
           onClick={handleFetchContributions}
           disabled={isFetching}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           style={{
-            padding: "10px 24px",
+            height: "40px",
+            padding: "0 24px",
+            boxSizing: "border-box",
             borderRadius: "8px",
-            border: "none",
-            background: isFetching ? "rgba(56, 112, 255, 0.4)" : "linear-gradient(135deg, #3870ff, #2040c0)",
-            color: "white",
-            fontWeight: "bold",
-            fontSize: "0.9rem",
+            border: "1px solid #007acc",
+            background: (!isFetching && isHovered) ? "rgba(0, 122, 204, 0.12)" : "transparent",
+            color: isFetching 
+              ? "var(--text-muted)" 
+              : ((!isFetching && isHovered) ? "#ffffff" : "#007acc"),
+            fontWeight: "600",
+            fontSize: "0.85rem",
+            fontFamily: "var(--font-mono, monospace)",
             cursor: isFetching ? "not-allowed" : "pointer",
             display: "flex",
             alignItems: "center",
+            justifyContent: "center",
             gap: "8px",
-            boxShadow: isFetching ? "none" : "0 4px 12px rgba(56, 112, 255, 0.2)",
-            opacity: isFetching ? 0.8 : 1,
-            transition: "all 0.2s"
-          }}
-          onMouseEnter={(e) => {
-            if (!isFetching) e.currentTarget.style.opacity = "0.9";
-          }}
-          onMouseLeave={(e) => {
-            if (!isFetching) e.currentTarget.style.opacity = "1";
+            outline: "none"
           }}
         >
           {isFetching ? (
