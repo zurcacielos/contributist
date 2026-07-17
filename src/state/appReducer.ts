@@ -2,6 +2,16 @@ import { BackgroundLayer, GeneratorConfig, Layer, MemeLayer, RasterLayer, parseY
 import { generateTextTemplate } from "../utils/textEngine";
 import { initializeAndMigrateConfig } from "../utils/configHelper";
 
+export function getToolForLayer(
+  layer: Layer | undefined,
+  currentTool: "move" | "pen" | "eraser" | "text" | null
+): "move" | "pen" | "eraser" | "text" | null {
+  if (layer && layer.type !== 'raster') {
+    return "move";
+  }
+  return currentTool;
+}
+
 export interface AppState {
   config: GeneratorConfig;
   activeTool: "move" | "pen" | "eraser" | "text" | null;
@@ -208,8 +218,16 @@ export function appReducer(state: AppState, action: AppAction): AppState {
     case "SET_SELECTED_LEVEL":
       return { ...state, selectedLevel: action.payload };
 
-    case "SET_ACTIVE_LAYER":
-      return { ...state, config: { ...state.config, activeLayerId: action.payload } };
+    case "SET_ACTIVE_LAYER": {
+      const layerId = action.payload;
+      const layer = (state.config.layers || []).find(l => l.id === layerId);
+      const newTool = getToolForLayer(layer, state.activeTool);
+      return {
+        ...state,
+        activeTool: newTool,
+        config: { ...state.config, activeLayerId: layerId }
+      };
+    }
 
     case "TOGGLE_LAYER_VISIBILITY": {
       const clickedLayer = (state.config.layers || []).find(l => l.id === action.payload);
