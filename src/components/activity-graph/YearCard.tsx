@@ -158,9 +158,9 @@ export const YearCard: React.FC<YearCardProps> = ({
   const t = useTranslations('Calendar');
   const sectionLabel = t.has('greenBackgroundSection') ? t('greenBackgroundSection') : 'Green Background';
   const addSelectedLabel = t.has('addSelectedRightClick') ? t('addSelectedRightClick') : 'Add to Selected';
-  const addAllLabel = t.has('addAllRightClick') ? t('addAllRightClick') : 'Add to All';
+  const addAllLabel = t.has('addAllRightClick') ? t('addAllRightClick') : 'Add to All Years';
   const clearSelectedLabel = t.has('clearSelectedRightClick') ? t('clearSelectedRightClick') : 'Clear Selected';
-  const clearAllLabel = t.has('clearAllRightClick') ? t('clearAllRightClick') : 'Clear All';
+  const clearAllLabel = t.has('clearAllRightClick') ? t('clearAllRightClick') : 'Clear All Years';
   const rasterSectionLabel = t.has('rasterLayerSection') ? t('rasterLayerSection') : 'Painted Layer (pen)';
 
   let cardContent: React.ReactNode;

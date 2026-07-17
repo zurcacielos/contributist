@@ -136,9 +136,9 @@
     "gitLabLegend": "Issues, merge requests, pushes, and comments.",
     "greenBackgroundSection": "Green Background",
     "addSelectedRightClick": "Add to Selected",
-    "addAllRightClick": "Add to All",
+    "addAllRightClick": "Add to All Years",
     "clearSelectedRightClick": "Clear Selected",
-    "clearAllRightClick": "Clear All",
+    "clearAllRightClick": "Clear All Years",
     "rasterLayerSection": "Painted Layer (pen)"
   },
   "Sidebar": {
@@ -194,9 +194,9 @@
     "tooltipClickRemix": "Click to remix this design",
     "selectYearPrompt": "Select a year!",
     "makeSelectedGreener": "Add to Selected",
-    "makeAllGreener": "Add to All",
+    "makeAllGreener": "Add to All Years",
     "clearSelected": "Clear Selected",
-    "clearAll": "Clear All"
+    "clearAll": "Clear All Years"
   },
   "Alerts": {
     "invalidJson": "Invalid JSON file",
