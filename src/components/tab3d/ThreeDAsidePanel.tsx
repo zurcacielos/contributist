@@ -126,6 +126,40 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
         <span>🔗 {t('share3DUrl')}</span>
       </button>
 
+      {/* Zoom to Fit Button */}
+      <button
+        onClick={onZoomToFit}
+        style={{
+          padding: "10px 14px",
+          borderRadius: "8px",
+          border: "1px solid var(--border)",
+          backgroundColor: "rgba(0, 0, 0, 0.4)",
+          color: "var(--text-muted)",
+          cursor: "pointer",
+          fontSize: "0.85rem",
+          fontWeight: "600",
+          fontFamily: "var(--font-mono, monospace)",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "8px",
+          outline: "none"
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
+          e.currentTarget.style.color = "#ffffff";
+          e.currentTarget.style.borderColor = "var(--text-muted)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+          e.currentTarget.style.color = "var(--text-muted)";
+          e.currentTarget.style.borderColor = "var(--border)";
+        }}
+      >
+        <span>{t("zoomToFit")}</span>
+      </button>
+
       {/* Legends Customization Card */}
       <Card title="">
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -209,25 +243,6 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
         </div>
       </Card>
 
-      {/* Zoom to Fit Button */}
-      <button
-        onClick={onZoomToFit}
-        className="btn btn-primary"
-        style={{
-          padding: "10px 14px",
-          borderRadius: "6px",
-          cursor: "pointer",
-          fontSize: "0.9rem",
-          fontWeight: "bold",
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "8px",
-        }}
-      >
-        🔍 {t("zoomToFit")}
-      </button>
 
       {/* Year Selection Card */}
       <Card
