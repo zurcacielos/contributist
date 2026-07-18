@@ -27,4 +27,3 @@ GIT_REPOSITORY_URL=git@github.com:your-username/your-target-repo.git
 NEXT_PUBLIC_LOCAL_GIT_GENERATION_ENABLED=true
 ```
 
-
