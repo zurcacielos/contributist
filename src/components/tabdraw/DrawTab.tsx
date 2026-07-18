@@ -218,7 +218,7 @@ export const DrawTab: React.FC<DrawTabProps> = ({
           height: "40px",
           border: "1px solid",
           borderColor: isButtonHovered 
-            ? (state.config.showPaintedInOrange ? "#ffcf26" : "var(--greenbash-selected, #39d353)")
+            ? "var(--greenbash-selected, #39d353)"
             : "var(--border)",
           borderRadius: "8px",
           backgroundColor: isButtonHovered ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.4)",
@@ -242,7 +242,7 @@ export const DrawTab: React.FC<DrawTabProps> = ({
         <span
           style={{
             color: !isSadPressed 
-              ? (state.config.showPaintedInOrange ? "#ffcf26" : "var(--greenbash-selected, #39d353)") 
+              ? "var(--greenbash-selected, #39d353)" 
               : "var(--text-muted)",
             fontSize: !isSadPressed ? "0.8rem" : "0.72rem",
             padding: "0 8px"
