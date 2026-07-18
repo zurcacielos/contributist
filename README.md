@@ -25,53 +25,103 @@
 
 
 ### Main Dashboard
-![Dashboard Preview](screenshots/main-dashboard.png)
+<p align="center">
+  <img
+    src="screenshots/main-dashboard.png"
+    alt="Contributist 2D editor"
+    width="90%"
+  >
+</p>
 
 *Customize your contribution grid using the drawing board, colors, and layers.*
 
-### Two UI flavors: Vives or Bash
-![Vibe mode preview](screenshots/vibe-bash.png)
+### 3D - Trophy Mode
+<p align="center">
+  <img
+    src="screenshots/3d.png"
+    alt="Contributist 2D editor"
+    width="90%"
+  >
+</p>
 
-Pick on top, the flavor you like most. Bash is more dev/hacker/linux ui style, and it has a few more options for you to play with and customize the algorithm of your background.
+*Download the 3D assets of your 3D scene from the 3D tab for use in Blender and other 3D software, or to Print your contributions chart in 3D, at a local 3D printing shop.*
 
-Vibe has a more colorful approach, and controls like reality and chaos, to make it more fun.
+### Import Github/GitLab/Gitea Contributions
+<p align="center">
+  <img
+    src="screenshots/import-profile.png"
+    alt="Contributist 2D editor"
+    width="70%"
+  >
+</p>
 
-
-### Community Remixes & Presets
-![Presets Preview](screenshots/community.png)
-
-*Choose from community templates or create your own remixes. Save them, share them. Stay tuned for more community interaction features!*
+*Import your contributions from Github/GitLab/Gitea to your contributist, and start painting your contributions.*
 
 ### Layer editing - raster - background - sprites
-![Layers Preview](screenshots/layers.png)
+<p align="center">
+  <img
+    src="screenshots/layers.png"
+    alt="Contributist 2D editor"
+    width="1000"
+  >
+</p>
 
 *Layer editing features allow you to add custom shapes, sprites, and background images to your contribution graph. Change order, hide during editing, add text, and more to come!*
 
 ### Memes and Text toolbar for quick fun
-![Memes and Text toolbar Preview](screenshots/meme-text-bar.png)
+<p align="center">
+  <img
+    src="screenshots/meme-text-bar.png"
+    alt="Contributist 2D editor"
+    width="70%"
+  >
+</p>
 
 *The memes and text toolbar, appears in the Selected Year, and allows you to add memes and text to your contribution graph.*
 
 ### Send to git dev mode and cloud mode
-![Send to git Preview](screenshots/send-to-git.png)
+<p align="center">
+  <img
+    src="screenshots/send-to-git.png"
+    alt="Contributist 2D editor"
+    width="70%"
+  >
+</p>
 
 *The send to git feature, has two modes. Local mode, when you do a npn run dev in your local machine, which allows you to generate and send your contributions directly to your git repository without running any local scripts. Cloud mode, when the application is deployed online, it allows you to download the Bash script or Powershell scripts to run the commits yourself on your own machine.*
 
 ### PNG export mode green, blue, vibe
-![PNG export Preview](screenshots/export-green.png)
-![PNG export Preview](screenshots/export-blue.png)
+<p align="center">
+  <img
+    src="screenshots/export-green.png"
+    alt="Contributist 2D editor"
+    width="70%"
+  >
+</p>
 
 *The png export mode allows you to download a png image of your contribution graph, with different color palettes. This is useful for sharing your artwork on social media or other platforms.*
 
 ### URL Export
-![Share Your Design URL](screenshots/share-design-url.png)
+<p align="center">
+  <img
+    src="screenshots/share-design-url.png"
+    alt="Contributist 2D editor"
+    width="400"
+  >
+</p>
 
 *The url export mode allows you to generate a url that can be used to share your artwork with others. Just share the url in the Share screen, and the entire configuration will be encoded for you in that url, so the other person sees your art immediately.*
 
-### Profile Menu - New, Open, Save
-![Profile menu](screenshots/profile-menu.png)
+### File Menu - New, Open, Save
+<p align="center">
+  <img
+    src="screenshots/profile-menu.png"
+    alt="Contributist 2D editor"
+    width="400"
+  >
+</p>
 
-*In the profile menu, the new option allows you to create a new artwork. The open option allows you to open an existing artwork. The save option allows you to save your artwork to your computer. Including the github user and repo name that you may have entered in the Send to git section.*
+*In the File menu, the New option allows you to create a new artwork. The Open option allows you to open an existing artwork. The Save option allows you to save your artwork to your computer. Including the github user and repo name that you may have entered in the Send to git section.*
 
 ---
 
@@ -84,11 +134,6 @@ Vibe has a more colorful approach, and controls like reality and chaos, to make 
 - **Layer Engine:** Manage multiple layers including custom raster layers, memes, and background configurations. Tweak opacity, visibility, and locking settings.
 - **Local Git Generation:** Option to run local script endpoints to commit and push your drawings directly to your GitHub history.
 - **Community presets:** Load and remix existing scenes (like a running cat, pixel hearts, and more).
-
----
-
-### Customize community remixes
-At the moment the community remixes are stored on public/templates/scenes/ as json files. You can save any composition and download it when you are working in local machine dev mode, in the panel community. Then you should copy that json into the public/templates/scenes and the app will dynamically load it. Click profile, upper right, new, to have a new canvas, then click a community remix template and it will load. You can modify it, then right click the remix button of your choise and click "save to this". This is a temporary solution before I connect the database.
 
 ---
 
