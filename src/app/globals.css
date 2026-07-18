@@ -834,7 +834,7 @@ em {
 
 .year-card {
   padding: 18px 22px 0px;
-  margin-bottom: 14px;
+  /* margin-bottom: 14px; */
   position: relative;
   overflow: hidden;
 }
