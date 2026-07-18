@@ -62,4 +62,3 @@ original = original.replace(/\.days \{ position:absolute; left:0; top: 18px; dis
 
 fs.writeFileSync('src/app/globals.css', original);
 console.log('Successfully recreated globals.css');
-

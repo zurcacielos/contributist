@@ -51,4 +51,3 @@ next-env.d.ts
 
 # Ignore scene backups
 /public/templates/scenes/backup/
-
