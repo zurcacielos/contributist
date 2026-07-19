@@ -3,7 +3,7 @@ import {notFound} from 'next/navigation';
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages, getTranslations} from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/react';
-import { ThemeProvider } from '@/context/ThemeContext';
+import { ThemeProvider } from '@/components/theme-provider';
 import '../globals.css';
 
 export async function generateMetadata({
@@ -53,20 +53,6 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var saved = localStorage.getItem('theme') || 'dark';
-                  document.documentElement.setAttribute('data-theme', saved);
-                } catch (e) {}
-              })();
-            `
-          }}
-        />
-      </head>
       <body>
         <ThemeProvider>
           <NextIntlClientProvider messages={messages}>

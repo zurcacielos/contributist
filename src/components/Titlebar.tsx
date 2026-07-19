@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useTheme } from '@/context/ThemeContext';
+import { useTheme } from 'next-themes';
 
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
@@ -39,7 +39,9 @@ export function Titlebar({
   const tSidebar = useTranslations('Sidebar');
 
   const [mounted, setMounted] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
+  const theme = resolvedTheme;
+  const toggleTheme = () => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
 
   useEffect(() => {
     setMounted(true);

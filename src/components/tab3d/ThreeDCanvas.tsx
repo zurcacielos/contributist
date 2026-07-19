@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useTheme } from "@/context/ThemeContext";
+import { useTheme } from "next-themes";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
@@ -55,7 +55,8 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
   username = "",
   usernamePosition = "last-left",
 }) => {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
+  const theme = resolvedTheme;
   const containerRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
