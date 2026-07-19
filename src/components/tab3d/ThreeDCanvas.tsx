@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
@@ -54,6 +55,7 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
   username = "",
   usernamePosition = "last-left",
 }) => {
+  const { theme } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
@@ -85,20 +87,7 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
-    const updateThemeBackground = () => {
-      const isLight = document.documentElement.getAttribute("data-theme") === "light";
-      scene.background = new THREE.Color(isLight ? 0xffffff : 0x000000);
-    };
-    updateThemeBackground();
-
-    const themeObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === "data-theme") {
-          updateThemeBackground();
-        }
-      });
-    });
-    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    scene.background = new THREE.Color(theme === "light" ? 0xffffff : 0x000000);
 
     const width = container.clientWidth || 800;
     const height = container.clientHeight || 600;
@@ -212,7 +201,6 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
 
     // Cleanup
     return () => {
-      themeObserver.disconnect();
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
       controls.dispose();
@@ -222,6 +210,13 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
       }
     };
   }, []);
+
+  // Update scene background when theme changes
+  useEffect(() => {
+    if (sceneRef.current) {
+      sceneRef.current.background = new THREE.Color(theme === "light" ? 0xffffff : 0x000000);
+    }
+  }, [theme]);
 
   // Update Geometry (Base and Pillars) when props change
   useEffect(() => {

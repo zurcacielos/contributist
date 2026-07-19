@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '@/context/ThemeContext';
 
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
@@ -38,20 +39,11 @@ export function Titlebar({
   const tSidebar = useTranslations('Sidebar');
 
   const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    const savedTheme = (localStorage.getItem("theme") || "dark") as "dark" | "light";
-    setTheme(savedTheme);
     setMounted(true);
   }, []);
-
-  const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
-    localStorage.setItem("theme", nextTheme);
-    document.documentElement.setAttribute("data-theme", nextTheme);
-  };
 
   const handleApplySelected = () => {
     applyBackgroundSelected(state.config, state.activeYear, "advanced", dispatch);

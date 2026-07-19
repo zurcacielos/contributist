@@ -3,6 +3,7 @@ import {notFound} from 'next/navigation';
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages, getTranslations} from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/react';
+import { ThemeProvider } from '@/context/ThemeContext';
 import '../globals.css';
 
 export async function generateMetadata({
@@ -67,10 +68,12 @@ export default async function LocaleLayout({
         />
       </head>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-        <Analytics />
+        <ThemeProvider>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );
