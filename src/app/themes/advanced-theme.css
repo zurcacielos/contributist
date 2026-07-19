@@ -89,14 +89,11 @@
   --presets-h2: var(--green);
   --presets-border: rgba(57, 211, 83, 0.25);
   --presets-selected-border: var(--green);
-  --presets-selected-glow: var(--glow-green);
   --tool-span: #e8e7ff;
   --tool-active-bg: rgba(54, 245, 139, .14);
   --caption-label: var(--green);
   --caption-border: rgba(57, 211, 83, 0.3);
-  --caption-glow: var(--glow-green);
   --avatar-border: var(--green);
-  --avatar-glow: var(--glow-green);
   --export-h3: #b9bff0;
   --achievements-h2: #83ffb4;
   --achievements-b: #51ffc0;
@@ -114,7 +111,6 @@
   --level-synth-4: #ffcf26;
   --layer-selected-bg: rgba(88, 166, 255, 0.12);
   --layer-selected-border: var(--green);
-  --layer-selected-glow: var(--glow-green);
   --layer-border: rgba(255, 255, 255, 0.12);
   --modal-bg: rgba(10, 10, 15, 0.95);
   --modal-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
@@ -133,6 +129,11 @@
   --swatch-border: rgba(255, 255, 255, 0.12);
   --preset-hover-bg: rgba(255, 255, 255, 0.05);
   --preset-hover-border: rgba(255, 255, 255, 0.1);
+  --toggle-track-bg: rgba(0, 0, 0, 0.45);
+  --toggle-track-border: rgba(255, 255, 255, 0.15);
+  --toggle-track-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+  --toggle-knob-green: #39d353;
+  --toggle-knob-synth: #ff9f36;
 }
 
 /* ==========================================================================
@@ -243,14 +244,11 @@
   --presets-h2: var(--primary);
   --presets-border: var(--border);
   --presets-selected-border: var(--primary);
-  --presets-selected-glow: none;
   --tool-span: var(--text-main);
   --tool-active-bg: rgba(31, 136, 61, 0.1);
   --caption-label: var(--primary);
   --caption-border: var(--border);
-  --caption-glow: none;
   --avatar-border: var(--primary);
-  --avatar-glow: none;
   --export-h3: var(--text-main);
   --achievements-h2: #1a7f37;
   --achievements-b: #115e26;
@@ -268,7 +266,6 @@
   --level-synth-4: #ff3d00;
   --layer-selected-bg: rgba(9, 105, 218, 0.12);
   --layer-selected-border: var(--link-text);
-  --layer-selected-glow: none;
   --layer-border: var(--border);
   --modal-bg: #ffffff;
   --modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -287,6 +284,11 @@
   --swatch-border: rgba(0, 0, 0, 0.12);
   --preset-hover-bg: #f6f8fa;
   --preset-hover-border: #d0d7de;
+  --toggle-track-bg: #eaeef2;
+  --toggle-track-border: #d0d7de;
+  --toggle-track-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+  --toggle-knob-green: #2ea043;
+  --toggle-knob-synth: #ff6e40;
 }
 
 /* ==========================================================================

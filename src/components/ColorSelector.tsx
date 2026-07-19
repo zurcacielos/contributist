@@ -52,14 +52,6 @@ export function ColorSelector({
         {colors.map((color, level) => {
           const isSelected = isRowActive && selectedLevel === level;
 
-          // Glow effect
-          let glowColor = color;
-          if (color === "var(--surface)") {
-            glowColor = "var(--input-focus-shadow)";
-          } else if (isSynth && level === 0) {
-            glowColor = "rgba(255, 0, 127, 0.4)";
-          }
-
           // Custom Level 0 borders
           const extraStyles: React.CSSProperties = {};
           if (isSynth && level === 0) {
@@ -79,7 +71,6 @@ export function ColorSelector({
                 borderRadius: "5px",
                 backgroundColor: color,
                 cursor: "pointer",
-                boxShadow: isSelected ? `0 0 8px ${glowColor}` : "none",
                 transition: "transform 0.1s, border-color 0.1s",
                 padding: 0,
                 flexShrink: 0,
@@ -137,11 +128,11 @@ export function ColorSelector({
               width: "16px",
               height: "44px",
               borderRadius: "999px",
-              background: "rgba(0, 0, 0, 0.45)",
-              border: "1px solid rgba(255, 255, 255, 0.15)",
+              background: "var(--toggle-track-bg)",
+              border: "1px solid var(--toggle-track-border)",
               position: "relative",
               cursor: "pointer",
-              boxShadow: "inset 0 2px 4px rgba(0,0,0,0.6)",
+              boxShadow: "var(--toggle-track-shadow)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center"
@@ -155,7 +146,7 @@ export function ColorSelector({
                 width: "10px",
                 height: "10px",
                 borderRadius: "50%",
-                background: !showPaintedInOrange ? "#39d353" : "#ff007f",
+                background: !showPaintedInOrange ? "var(--toggle-knob-green)" : "var(--toggle-knob-synth)",
                 top: !showPaintedInOrange ? "4px" : "28px",
                 transition: "all 0.25s cubic-bezier(0.25, 1, 0.5, 1)"
               }}
