@@ -18,10 +18,12 @@
   --level-4: #39d353;
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: none !important;
+  animation: none !important;
 }
 
 body {

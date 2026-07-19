@@ -327,7 +327,6 @@ body {
   border: 1px solid var(--help-card-border) !important;
   box-shadow: var(--card-shadow) !important;
   border-radius: 6px;
-  transition: all 0.2s ease;
 }
 
 .tech-card:hover {
