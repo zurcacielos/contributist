@@ -169,7 +169,7 @@ export function Titlebar({
                     Save
                   </Menubar.Item>
                   <Menubar.Separator 
-                    style={{ height: 1, backgroundColor: "rgba(255, 255, 255, 0.12)", margin: "4px 0" }} 
+                    style={{ height: 1, backgroundColor: "var(--menu-separator)", margin: "4px 0" }} 
                   />
                   <Menubar.Item className="menubar-item" onSelect={() => onTabSwitch('share')}>
                     <Share2 size={15} style={{ marginRight: 8 }} />
@@ -209,7 +209,7 @@ export function Titlebar({
                     {tSidebar('makeAllGreener')}
                   </Menubar.Item>
                   <Menubar.Separator 
-                    style={{ height: 1, backgroundColor: "rgba(255, 255, 255, 0.12)", margin: "4px 0" }} 
+                    style={{ height: 1, backgroundColor: "var(--menu-separator)", margin: "4px 0" }} 
                   />
                   <Menubar.Item 
                     className="menubar-item" 
@@ -255,8 +255,8 @@ export function Titlebar({
               className="menubar-trigger"
               onClick={() => onTabSwitch('help')}
               style={{
-                background: mainTab === 'help' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
-                color: mainTab === 'help' ? '#fff' : '#c9d1d9',
+                background: mainTab === 'help' ? 'var(--menubar-trigger-hover-bg)' : 'transparent',
+                color: mainTab === 'help' ? 'var(--menubar-trigger-hover-color)' : 'var(--menubar-trigger-color)',
                 border: 0,
                 cursor: 'pointer',
               }}

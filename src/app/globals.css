@@ -241,19 +241,19 @@ a:hover {
 }
 
 .day[data-level="1"][data-synth="true"] {
-  background-color: #5c0900;
+  background-color: var(--level-synth-1);
 }
 
 .day[data-level="2"][data-synth="true"] {
-  background-color: #d53a00;
+  background-color: var(--level-synth-2);
 }
 
 .day[data-level="3"][data-synth="true"] {
-  background-color: #ff7f00;
+  background-color: var(--level-synth-3);
 }
 
 .day[data-level="4"][data-synth="true"] {
-  background-color: #ffcf26;
+  background-color: var(--level-synth-4);
 }
 
 

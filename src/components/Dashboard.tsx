@@ -282,14 +282,14 @@ function DashboardContent({ initialConfig }: { initialConfig: GeneratorConfig })
 
       {
         pendingTab && (
-          <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "rgba(0,0,0,0.6)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2000 }}>
+          <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "var(--overlay-bg)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2000 }}>
             <section className="card" style={{ width: "400px", padding: "25px", display: "flex", flexDirection: "column", gap: "20px" }}>
               <h3 style={{ margin: 0, fontSize: "1.2rem", color: "var(--text-main)" }}>{tModal('unsavedChanges')}</h3>
               <p style={{ margin: 0, color: "var(--text-muted)", fontSize: "0.95rem" }}>{tModal('savePrompt')}</p>
               <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "10px" }}>
                 <button className="btn btn-primary" onClick={() => setPendingTab(null)} style={{ backgroundColor: "transparent", border: "1px solid var(--border)", color: "var(--text-muted)", padding: "8px 16px" }}>{tModal('cancel')}</button>
-                <button className="btn btn-primary" onClick={() => { graphRef.current?.discardChanges(); setMainTab(pendingTab); setPendingTab(null); }} style={{ backgroundColor: "transparent", border: "1px solid #b62324", color: "#ff7b72", padding: "8px 16px" }}>{tModal('discard')}</button>
-                <button className="btn btn-primary" onClick={() => { graphRef.current?.saveChanges(); setMainTab(pendingTab); setPendingTab(null); }} style={{ backgroundColor: "#238636", border: "none", color: "#fff", padding: "8px 16px" }}>{tModal('save')}</button>
+                <button className="btn btn-primary" onClick={() => { graphRef.current?.discardChanges(); setMainTab(pendingTab); setPendingTab(null); }} style={{ backgroundColor: "transparent", border: "1px solid var(--banner-error-border)", color: "var(--banner-error-text)", padding: "8px 16px" }}>{tModal('discard')}</button>
+                <button className="btn btn-primary" onClick={() => { graphRef.current?.saveChanges(); setMainTab(pendingTab); setPendingTab(null); }} style={{ backgroundColor: "var(--primary)", border: "none", color: "var(--btn-green-text)", padding: "8px 16px" }}>{tModal('save')}</button>
               </div>
             </section>
           </div>

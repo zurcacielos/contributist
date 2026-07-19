@@ -55,7 +55,7 @@ export function ColorSelector({
           // Glow effect
           let glowColor = color;
           if (color === "var(--surface)") {
-            glowColor = "rgba(255, 255, 255, 0.4)";
+            glowColor = "var(--input-focus-shadow)";
           } else if (isSynth && level === 0) {
             glowColor = "rgba(255, 0, 127, 0.4)";
           }
@@ -63,9 +63,9 @@ export function ColorSelector({
           // Custom Level 0 borders
           const extraStyles: React.CSSProperties = {};
           if (isSynth && level === 0) {
-            extraStyles.border = isSelected ? "2px solid #fff" : "1px solid #ff007f";
+            extraStyles.border = isSelected ? "2px solid var(--swatch-active-border)" : "1px solid #ff007f";
           } else {
-            extraStyles.border = isSelected ? "2px solid #fff" : "1px solid rgba(255,255,255,0.12)";
+            extraStyles.border = isSelected ? "2px solid var(--swatch-active-border)" : "1px solid var(--swatch-border)";
           }
 
           return (

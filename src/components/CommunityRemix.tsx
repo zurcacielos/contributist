@@ -339,8 +339,8 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
                     alignItems: "center",
                     justifyContent: "space-between",
                     padding: "8px 10px",
-                    backgroundColor: isActiveScene ? "rgba(168, 85, 247, 0.12)" : "rgba(168, 85, 247, 0.05)",
-                    border: isActiveScene ? "1.5px solid rgba(168, 85, 247, 0.6)" : "1px solid rgba(168, 85, 247, 0.2)",
+                    backgroundColor: isActiveScene ? "var(--remix-card-active-bg)" : "var(--remix-card-bg)",
+                    border: isActiveScene ? "1.5px solid var(--remix-card-active-border)" : "1px solid var(--remix-card-border)",
                     borderRadius: "8px",
                     gap: "8px",
                     cursor: "pointer",
@@ -348,12 +348,12 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
                     boxShadow: isActiveScene ? "0 0 8px rgba(168, 85, 247, 0.25)" : "none"
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = isActiveScene ? "rgba(168, 85, 247, 0.18)" : "rgba(168, 85, 247, 0.15)";
-                    e.currentTarget.style.borderColor = isActiveScene ? "rgba(168, 85, 247, 0.75)" : "rgba(168, 85, 247, 0.5)";
+                    e.currentTarget.style.backgroundColor = isActiveScene ? "var(--menu-item-hover-bg)" : "var(--preset-hover-bg)";
+                    e.currentTarget.style.borderColor = isActiveScene ? "var(--remix-card-active-border)" : "var(--remix-card-active-border)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = isActiveScene ? "rgba(168, 85, 247, 0.12)" : "rgba(168, 85, 247, 0.05)";
-                    e.currentTarget.style.borderColor = isActiveScene ? "rgba(168, 85, 247, 0.6)" : "rgba(168, 85, 247, 0.2)";
+                    e.currentTarget.style.backgroundColor = isActiveScene ? "var(--remix-card-active-bg)" : "var(--remix-card-bg)";
+                    e.currentTarget.style.borderColor = isActiveScene ? "var(--remix-card-active-border)" : "var(--remix-card-border)";
                   }}
                   title={isDev ? t('tooltipLeftClickRemix') : t('tooltipClickRemix')}
                 >

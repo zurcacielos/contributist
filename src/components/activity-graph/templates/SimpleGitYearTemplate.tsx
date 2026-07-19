@@ -56,7 +56,6 @@ export const SimpleGitYearTemplate: React.FC<SimpleGitYearTemplateProps> = ({
       id={`simplegit-template-card-${year}`}
       style={{
         background: "var(--simplegit-bg)",
-        border: "1px solid var(--simplegit-border)",
         borderRadius: "6px",
         padding: "16px",
         marginBottom: "16px",
@@ -84,7 +83,6 @@ export const SimpleGitYearTemplate: React.FC<SimpleGitYearTemplateProps> = ({
         className="simplegit-template-grid-wrapper" 
         id={`simplegit-template-grid-wrapper-${year}`}
         style={{
-          border: "1px solid var(--simplegit-border)",
           borderRadius: "6px",
           padding: "16px 20px",
           background: "var(--simplegit-bg)"

@@ -21,10 +21,10 @@
   --btn-secondary-bg: rgba(255, 255, 255, 0.06);
   --btn-secondary-border: rgba(255, 255, 255, 0.12);
   --btn-secondary-text: var(--text-main);
-  
+
   --menubar-trigger-color: var(--text-main);
   --menubar-trigger-hover-bg: rgba(255, 255, 255, 0.08);
-  
+
   --github-btn-bg: rgba(255, 255, 255, 0.05);
   --github-btn-border: rgba(255, 255, 255, 0.14);
   --github-btn-text: #d9d8ff;
@@ -79,6 +79,7 @@
   --menu-item-hover-bg: rgba(168, 85, 247, 0.2);
   --menu-item-hover-border: rgba(168, 85, 247, 0.4);
   --menu-item-hover-text: #ffffff;
+  --menu-separator: rgba(255, 255, 255, 0.12);
   --input-focus-border: #58a6ff;
   --input-focus-shadow: rgba(88, 166, 255, 0.3);
   --loader-border: rgba(255, 255, 255, 0.1);
@@ -105,6 +106,32 @@
   --menubar-trigger-color: #c9d1d9;
   --menubar-trigger-hover-bg: rgba(255, 255, 255, 0.08);
   --menubar-trigger-hover-color: #ffffff;
+  --level-synth-1: #5c0900;
+  --level-synth-2: #d53a00;
+  --level-synth-3: #ff7f00;
+  --level-synth-4: #ffcf26;
+  --layer-selected-bg: rgba(88, 166, 255, 0.12);
+  --modal-bg: rgba(10, 10, 15, 0.95);
+  --modal-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --modal-hover-bg: rgba(57, 211, 83, 0.15);
+  --lang-trigger-bg: rgba(255, 255, 255, 0.05);
+  --lang-trigger-hover-border: rgba(168, 85, 247, 0.5);
+  --lang-trigger-hover-bg: rgba(255, 255, 255, 0.08);
+  --lang-menu-bg: rgba(15, 10, 25, 0.96);
+  --lang-menu-border: rgba(168, 85, 247, 0.25);
+  --lang-menu-item-selected-bg: rgba(168, 85, 247, 0.2);
+  --overlay-bg: rgba(0, 0, 0, 0.6);
+  --add-year-bg: rgba(57, 211, 83, 0.08);
+  --add-year-border: rgba(57, 211, 83, 0.3);
+  --add-year-text: #39d353;
+  --swatch-active-border: #ffffff;
+  --swatch-border: rgba(255, 255, 255, 0.12);
+  --preset-hover-bg: rgba(255, 255, 255, 0.05);
+  --preset-hover-border: rgba(255, 255, 255, 0.1);
+  --remix-card-active-bg: rgba(168, 85, 247, 0.12);
+  --remix-card-bg: rgba(168, 85, 247, 0.05);
+  --remix-card-active-border: rgba(168, 85, 247, 0.6);
+  --remix-card-border: rgba(168, 85, 247, 0.2);
 }
 
 /* ==========================================================================
@@ -119,7 +146,7 @@
   --primary-hover: #1f883d;
   --text-main: #24292f;
   --text-muted: #57606a;
-  
+
   --level-0: #ebedf0;
   --level-1: #9be9a8;
   --level-2: #40c463;
@@ -133,7 +160,7 @@
   --title-color: #24292f;
   --panel-bg: #f6f8fa;
   --card-bg: #ffffff;
-  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --card-shadow: none;
   --help-card-bg: #ffffff;
   --help-card-border: #d0d7de;
 
@@ -147,10 +174,10 @@
   --btn-secondary-bg: #f6f8fa;
   --btn-secondary-border: #d0d7de;
   --btn-secondary-text: #24292f;
-  
+
   --menubar-trigger-color: #24292f;
   --menubar-trigger-hover-bg: rgba(0, 0, 0, 0.06);
-  
+
   --github-btn-bg: #f6f8fa;
   --github-btn-border: #d0d7de;
   --github-btn-text: #24292f;
@@ -205,6 +232,7 @@
   --menu-item-hover-bg: #f3f4f6;
   --menu-item-hover-border: #d0d7de;
   --menu-item-hover-text: #24292f;
+  --menu-separator: rgba(0, 0, 0, 0.08);
   --input-focus-border: #0969da;
   --input-focus-shadow: rgba(9, 105, 218, 0.3);
   --loader-border: rgba(0, 0, 0, 0.1);
@@ -231,6 +259,32 @@
   --menubar-trigger-color: #24292f;
   --menubar-trigger-hover-bg: #f3f4f6;
   --menubar-trigger-hover-color: #24292f;
+  --level-synth-1: #ffd8d4;
+  --level-synth-2: #ff9e80;
+  --level-synth-3: #ff6e40;
+  --level-synth-4: #ff3d00;
+  --layer-selected-bg: rgba(9, 105, 218, 0.12);
+  --modal-bg: #ffffff;
+  --modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --modal-hover-bg: rgba(31, 136, 61, 0.1);
+  --lang-trigger-bg: #ffffff;
+  --lang-trigger-hover-border: #d0d7de;
+  --lang-trigger-hover-bg: #f6f8fa;
+  --lang-menu-bg: #ffffff;
+  --lang-menu-border: #d0d7de;
+  --lang-menu-item-selected-bg: #f3f4f6;
+  --overlay-bg: rgba(0, 0, 0, 0.4);
+  --add-year-bg: #eaeef2;
+  --add-year-border: #d0d7de;
+  --add-year-text: #24292f;
+  --swatch-active-border: #24292f;
+  --swatch-border: rgba(0, 0, 0, 0.12);
+  --preset-hover-bg: #f6f8fa;
+  --preset-hover-border: #d0d7de;
+  --remix-card-active-bg: rgba(130, 80, 223, 0.1);
+  --remix-card-bg: #ffffff;
+  --remix-card-active-border: rgba(130, 80, 223, 0.6);
+  --remix-card-border: #d0d7de;
 }
 
 /* ==========================================================================
@@ -248,11 +302,15 @@ body {
 }
 
 .app-shell,
-.year-card,
-.panel,
-.card {
+.panel {
   background: var(--panel-bg) !important;
   box-shadow: var(--card-shadow) !important;
+}
+
+.year-card,
+.card {
+  background: var(--panel-bg) !important;
+  box-shadow: none !important;
 }
 
 .activity-graph-main {
@@ -277,9 +335,11 @@ body {
 [data-theme="light"] .flow-step {
   color: var(--text-muted) !important;
 }
+
 [data-theme="light"] .flow-step:hover {
   color: var(--text-main) !important;
 }
+
 [data-theme="light"] .flow-step.active {
   color: var(--text-main) !important;
   border-bottom-color: var(--greenbash-selected) !important;
@@ -292,6 +352,7 @@ body {
   color: var(--github-btn-text) !important;
   box-shadow: var(--card-shadow) !important;
 }
+
 [data-theme="light"] .github-fork-remix-btn:hover {
   background: var(--github-btn-hover-bg) !important;
   border-color: var(--github-btn-hover-border) !important;
@@ -303,5 +364,6 @@ body {
 input::placeholder,
 textarea::placeholder {
   color: var(--input-placeholder) !important;
-  opacity: 1; /* Override browser defaults */
+  opacity: 1;
+  /* Override browser defaults */
 }

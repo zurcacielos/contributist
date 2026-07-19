@@ -61,8 +61,8 @@ export const Card: React.FC<CardProps> = ({
                   setExpanded(!expanded);
                 }}
                 style={{
-                  background: "rgba(255, 255, 255, 0.05)",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                  background: "var(--preset-hover-bg)",
+                  border: "1px solid var(--preset-hover-border)",
                   borderRadius: "6px",
                   color: "var(--text-main)",
                   cursor: "pointer",

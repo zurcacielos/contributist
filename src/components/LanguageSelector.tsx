@@ -53,7 +53,7 @@ export function LanguageSelector() {
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
-          background: 'rgba(255, 255, 255, 0.05)',
+          background: 'var(--lang-trigger-bg)',
           border: '1px solid var(--border)',
           borderRadius: '14px',
           color: 'var(--text-main)',
@@ -68,13 +68,13 @@ export function LanguageSelector() {
           transition: 'all 0.15s ease-in-out'
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.5)';
-          e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+          e.currentTarget.style.borderColor = 'var(--lang-trigger-hover-border)';
+          e.currentTarget.style.backgroundColor = 'var(--lang-trigger-hover-bg)';
         }}
         onMouseLeave={(e) => {
           if (!isOpen) {
             e.currentTarget.style.borderColor = 'var(--border)';
-            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+            e.currentTarget.style.backgroundColor = 'var(--lang-trigger-bg)';
           }
         }}
       >
@@ -96,11 +96,11 @@ export function LanguageSelector() {
             position: 'absolute',
             top: 'calc(100% + 6px)',
             right: 0,
-            background: 'rgba(15, 10, 25, 0.96)',
+            background: 'var(--lang-menu-bg)',
             backdropFilter: 'blur(12px)',
-            border: '1px solid rgba(168, 85, 247, 0.25)',
+            border: '1px solid var(--lang-menu-border)',
             borderRadius: '8px',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
+            boxShadow: 'var(--modal-shadow)',
             zIndex: 1000,
             display: 'flex',
             flexDirection: 'column',
@@ -121,10 +121,10 @@ export function LanguageSelector() {
                   alignItems: 'center',
                   gap: '8px',
                   padding: '8px 10px',
-                  background: isSelected ? 'rgba(168, 85, 247, 0.2)' : 'transparent',
+                  background: isSelected ? 'var(--lang-menu-item-selected-bg)' : 'transparent',
                   border: 'none',
                   borderRadius: '6px',
-                  color: isSelected ? '#fff' : 'var(--text-muted)',
+                  color: isSelected ? 'var(--menu-item-hover-text)' : 'var(--text-muted)',
                   fontSize: '0.80rem',
                   fontWeight: isSelected ? 'bold' : 'normal',
                   textAlign: 'left',
@@ -133,12 +133,12 @@ export function LanguageSelector() {
                   transition: 'all 0.15s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(168, 85, 247, 0.15)';
-                  e.currentTarget.style.color = '#fff';
+                  e.currentTarget.style.background = 'var(--menu-item-hover-bg)';
+                  e.currentTarget.style.color = 'var(--menu-item-hover-text)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = isSelected ? 'rgba(168, 85, 247, 0.2)' : 'transparent';
-                  e.currentTarget.style.color = isSelected ? '#fff' : 'var(--text-muted)';
+                  e.currentTarget.style.background = isSelected ? 'var(--lang-menu-item-selected-bg)' : 'transparent';
+                  e.currentTarget.style.color = isSelected ? 'var(--menu-item-hover-text)' : 'var(--text-muted)';
                 }}
               >
                 <img

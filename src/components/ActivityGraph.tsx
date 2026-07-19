@@ -114,9 +114,9 @@ export const ActivityGraph = React.forwardRef<ActivityGraphRef, ActivityGraphPro
               padding: "8px 16px",
               fontSize: "0.85rem",
               fontWeight: "600",
-              color: "var(--greenbash-selected, #39d353)",
-              background: "rgba(57, 211, 83, 0.08)",
-              border: "1px solid rgba(57, 211, 83, 0.3)",
+              color: "var(--add-year-text)",
+              background: "var(--add-year-bg)",
+              border: "1px solid var(--add-year-border)",
               borderRadius: "6px",
               cursor: "pointer",
               transition: "all 0.2s ease-in-out",
@@ -126,13 +126,13 @@ export const ActivityGraph = React.forwardRef<ActivityGraphRef, ActivityGraphPro
               fontFamily: "Consolas, Monaco, monospace"
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(57, 211, 83, 0.15)";
-              e.currentTarget.style.borderColor = "rgba(57, 211, 83, 0.6)";
+              e.currentTarget.style.background = "var(--modal-hover-bg)";
+              e.currentTarget.style.borderColor = "var(--greenbash-selected)";
               e.currentTarget.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(57, 211, 83, 0.08)";
-              e.currentTarget.style.borderColor = "rgba(57, 211, 83, 0.3)";
+              e.currentTarget.style.background = "var(--add-year-bg)";
+              e.currentTarget.style.borderColor = "var(--add-year-border)";
               e.currentTarget.style.transform = "translateY(0)";
             }}
           >

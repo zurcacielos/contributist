@@ -169,8 +169,8 @@ export function LayersPanel({
                 padding: "6px 10px",
                 borderRadius: "8px",
                 cursor: isLocked ? "not-allowed" : "pointer",
-                backgroundColor: activeLayerId === layer.id ? "rgba(88, 166, 255, 0.12)" : "var(--surface)",
-                border: activeLayerId === layer.id ? "1px solid #58a6ff" : "1px solid var(--border)",
+                backgroundColor: activeLayerId === layer.id ? "var(--layer-selected-bg)" : "var(--surface)",
+                border: activeLayerId === layer.id ? "1px solid var(--link-text)" : "1px solid var(--border)",
                 opacity: draggedId === layer.id ? 0.5 : 1,
               }}
             >
@@ -306,11 +306,11 @@ export function LayersPanel({
               top: contextMenu.y,
               left: contextMenu.x,
               zIndex: 10000,
-              background: "rgba(10, 10, 15, 0.95)",
+              background: "var(--modal-bg)",
               border: "1px solid var(--border)",
               borderRadius: "6px",
               padding: "4px 0",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.5)",
+              boxShadow: "var(--modal-shadow)",
               fontFamily: "var(--font-mono, monospace)",
               fontSize: "0.75rem"
             }}
@@ -331,8 +331,8 @@ export function LayersPanel({
                 transition: "background 0.2s"
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.15)";
-                e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+                e.currentTarget.style.backgroundColor = "var(--modal-hover-bg)";
+                e.currentTarget.style.color = "var(--weekend-active-text)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = "transparent";
