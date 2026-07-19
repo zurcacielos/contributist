@@ -318,14 +318,11 @@ a:hover {
   --muted: #9ca5cc;
   --green: #36f58b;
   --cyan: #23d6ff;
-  --purple: #9b5cff;
-  --pink: #ff39cf;
   --orange: #ff9f36;
   --yellow: #ffe45c;
   --danger: #ff3c6b;
   --radius: 18px;
   --glow-green: 0 0 16px rgba(54, 245, 139, .55), 0 0 38px rgba(54, 245, 139, .16);
-  --glow-pink: 0 0 18px rgba(255, 57, 207, .55), 0 0 44px rgba(255, 57, 207, .18);
   --glow-cyan: 0 0 18px rgba(35, 214, 255, .45), 0 0 44px rgba(35, 214, 255, .13);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -524,8 +521,8 @@ button {
 
 .top-icons .avatar {
   border-radius: 50%;
-  border-color: var(--pink);
-  box-shadow: var(--glow-pink);
+  border-color: var(--avatar-border);
+  box-shadow: var(--avatar-glow);
 }
 
 .layout {
@@ -619,11 +616,7 @@ h3 {
   border-radius: 9px;
 }
 
-.year-row .purple {
-  color: var(--badge-purple-text);
-  border-color: var(--badge-purple-border);
-  background: var(--badge-purple-bg);
-}
+
 
 .control-row {
   display: grid;
@@ -734,8 +727,8 @@ em {
 }
 
 .presets .selected {
-  border-color: var(--pink);
-  box-shadow: var(--glow-pink);
+  border-color: var(--presets-selected-border);
+  box-shadow: var(--presets-selected-glow);
 }
 
 .presets .ghost {
@@ -996,13 +989,7 @@ em {
   background: #d02cff
 }
 
-.contrib-grid>span.purple {
-  background: #6e34ce
-}
 
-.contrib-grid>span.pink {
-  background: #d34dff
-}
 
 .contrib-grid .days {
   position: absolute;
@@ -1026,7 +1013,7 @@ em {
   padding: 14px 170px 18px 18px;
   margin-bottom: 14px;
   border-color: var(--caption-border);
-  box-shadow: var(--glow-pink);
+  box-shadow: var(--caption-glow);
 }
 
 .caption-box label {
@@ -1121,15 +1108,15 @@ em {
   gap: 12px;
   align-items: center;
   padding: 12px;
-  border: 1px solid rgba(155, 92, 255, .28);
+  border: 1px solid var(--layer-border);
   background: rgba(255, 255, 255, .04);
   border-radius: 13px;
   margin-bottom: 12px;
 }
 
 .layer.selected {
-  border-color: var(--pink);
-  box-shadow: var(--glow-pink);
+  border-color: var(--layer-selected-border);
+  box-shadow: var(--layer-selected-glow);
 }
 
 .layer small {

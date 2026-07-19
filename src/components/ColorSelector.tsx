@@ -156,9 +156,6 @@ export function ColorSelector({
                 height: "10px",
                 borderRadius: "50%",
                 background: !showPaintedInOrange ? "#39d353" : "#ff007f",
-                boxShadow: !showPaintedInOrange
-                  ? "0 0 10px #39d353, 0 0 20px #39d353"
-                  : "0 0 10px #ff007f, 0 0 20px #ff007f",
                 top: !showPaintedInOrange ? "4px" : "28px",
                 transition: "all 0.25s cubic-bezier(0.25, 1, 0.5, 1)"
               }}

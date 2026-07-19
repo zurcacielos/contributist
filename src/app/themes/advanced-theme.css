@@ -74,27 +74,29 @@
   --control-label: #dce1ff;
   --control-value: #cbd3ff;
   --menu-bg: rgba(15, 10, 25, 0.85);
-  --menu-border: rgba(168, 85, 247, 0.25);
+  --menu-border: rgba(57, 211, 83, 0.25);
   --menu-item-text: #c8cdef;
-  --menu-item-hover-bg: rgba(168, 85, 247, 0.2);
-  --menu-item-hover-border: rgba(168, 85, 247, 0.4);
+  --menu-item-hover-bg: rgba(57, 211, 83, 0.15);
+  --menu-item-hover-border: rgba(57, 211, 83, 0.4);
   --menu-item-hover-text: #ffffff;
   --menu-separator: rgba(255, 255, 255, 0.12);
   --input-focus-border: #58a6ff;
   --input-focus-shadow: rgba(88, 166, 255, 0.3);
   --loader-border: rgba(255, 255, 255, 0.1);
   --loader-border-active: #ffffff;
-  --badge-purple-text: #c684ff;
-  --badge-purple-border: rgba(155, 92, 255, .35);
-  --badge-purple-bg: rgba(155, 92, 255, .12);
   --badge-green-text: #07120d;
   --palette-summary-span: #e5ddff;
-  --presets-h2: #ff86e8;
-  --presets-border: rgba(255, 57, 207, .38);
+  --presets-h2: var(--green);
+  --presets-border: rgba(57, 211, 83, 0.25);
+  --presets-selected-border: var(--green);
+  --presets-selected-glow: var(--glow-green);
   --tool-span: #e8e7ff;
   --tool-active-bg: rgba(54, 245, 139, .14);
-  --caption-label: #c675ff;
-  --caption-border: rgba(255, 57, 207, .55);
+  --caption-label: var(--green);
+  --caption-border: rgba(57, 211, 83, 0.3);
+  --caption-glow: var(--glow-green);
+  --avatar-border: var(--green);
+  --avatar-glow: var(--glow-green);
   --export-h3: #b9bff0;
   --achievements-h2: #83ffb4;
   --achievements-b: #51ffc0;
@@ -111,15 +113,18 @@
   --level-synth-3: #ff7f00;
   --level-synth-4: #ffcf26;
   --layer-selected-bg: rgba(88, 166, 255, 0.12);
+  --layer-selected-border: var(--green);
+  --layer-selected-glow: var(--glow-green);
+  --layer-border: rgba(255, 255, 255, 0.12);
   --modal-bg: rgba(10, 10, 15, 0.95);
   --modal-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   --modal-hover-bg: rgba(57, 211, 83, 0.15);
   --lang-trigger-bg: rgba(255, 255, 255, 0.05);
-  --lang-trigger-hover-border: rgba(168, 85, 247, 0.5);
+  --lang-trigger-hover-border: rgba(57, 211, 83, 0.5);
   --lang-trigger-hover-bg: rgba(255, 255, 255, 0.08);
   --lang-menu-bg: rgba(15, 10, 25, 0.96);
-  --lang-menu-border: rgba(168, 85, 247, 0.25);
-  --lang-menu-item-selected-bg: rgba(168, 85, 247, 0.2);
+  --lang-menu-border: rgba(57, 211, 83, 0.25);
+  --lang-menu-item-selected-bg: rgba(57, 211, 83, 0.2);
   --overlay-bg: rgba(0, 0, 0, 0.6);
   --add-year-bg: rgba(57, 211, 83, 0.08);
   --add-year-border: rgba(57, 211, 83, 0.3);
@@ -128,10 +133,6 @@
   --swatch-border: rgba(255, 255, 255, 0.12);
   --preset-hover-bg: rgba(255, 255, 255, 0.05);
   --preset-hover-border: rgba(255, 255, 255, 0.1);
-  --remix-card-active-bg: rgba(168, 85, 247, 0.12);
-  --remix-card-bg: rgba(168, 85, 247, 0.05);
-  --remix-card-active-border: rgba(168, 85, 247, 0.6);
-  --remix-card-border: rgba(168, 85, 247, 0.2);
 }
 
 /* ==========================================================================
@@ -237,17 +238,19 @@
   --input-focus-shadow: rgba(9, 105, 218, 0.3);
   --loader-border: rgba(0, 0, 0, 0.1);
   --loader-border-active: var(--text-main);
-  --badge-purple-text: #8250df;
-  --badge-purple-border: rgba(130, 80, 223, 0.3);
-  --badge-purple-bg: rgba(130, 80, 223, 0.1);
   --badge-green-text: #04140a;
   --palette-summary-span: var(--text-main);
-  --presets-h2: #bf3f8f;
-  --presets-border: rgba(191, 63, 143, 0.25);
+  --presets-h2: var(--primary);
+  --presets-border: var(--border);
+  --presets-selected-border: var(--primary);
+  --presets-selected-glow: none;
   --tool-span: var(--text-main);
   --tool-active-bg: rgba(31, 136, 61, 0.1);
-  --caption-label: #8250df;
-  --caption-border: rgba(130, 80, 223, 0.3);
+  --caption-label: var(--primary);
+  --caption-border: var(--border);
+  --caption-glow: none;
+  --avatar-border: var(--primary);
+  --avatar-glow: none;
   --export-h3: var(--text-main);
   --achievements-h2: #1a7f37;
   --achievements-b: #115e26;
@@ -264,6 +267,9 @@
   --level-synth-3: #ff6e40;
   --level-synth-4: #ff3d00;
   --layer-selected-bg: rgba(9, 105, 218, 0.12);
+  --layer-selected-border: var(--link-text);
+  --layer-selected-glow: none;
+  --layer-border: var(--border);
   --modal-bg: #ffffff;
   --modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   --modal-hover-bg: rgba(31, 136, 61, 0.1);
@@ -281,10 +287,6 @@
   --swatch-border: rgba(0, 0, 0, 0.12);
   --preset-hover-bg: #f6f8fa;
   --preset-hover-border: #d0d7de;
-  --remix-card-active-bg: rgba(130, 80, 223, 0.1);
-  --remix-card-bg: #ffffff;
-  --remix-card-active-border: rgba(130, 80, 223, 0.6);
-  --remix-card-border: #d0d7de;
 }
 
 /* ==========================================================================
