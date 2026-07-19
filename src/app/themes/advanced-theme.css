@@ -69,6 +69,42 @@
   --banner-error-border: rgba(248, 81, 73, 0.4);
   --banner-error-text: #f85149;
   --link-text: #58a6ff;
+  --grid-label: #d9d7f0;
+  --grid-meta-text: #c8cdef;
+  --control-label: #dce1ff;
+  --control-value: #cbd3ff;
+  --menu-bg: rgba(15, 10, 25, 0.85);
+  --menu-border: rgba(168, 85, 247, 0.25);
+  --menu-item-text: #c8cdef;
+  --menu-item-hover-bg: rgba(168, 85, 247, 0.2);
+  --menu-item-hover-border: rgba(168, 85, 247, 0.4);
+  --menu-item-hover-text: #ffffff;
+  --input-focus-border: #58a6ff;
+  --input-focus-shadow: rgba(88, 166, 255, 0.3);
+  --loader-border: rgba(255, 255, 255, 0.1);
+  --loader-border-active: #ffffff;
+  --badge-purple-text: #c684ff;
+  --badge-purple-border: rgba(155, 92, 255, .35);
+  --badge-purple-bg: rgba(155, 92, 255, .12);
+  --badge-green-text: #07120d;
+  --palette-summary-span: #e5ddff;
+  --presets-h2: #ff86e8;
+  --presets-border: rgba(255, 57, 207, .38);
+  --tool-span: #e8e7ff;
+  --tool-active-bg: rgba(54, 245, 139, .14);
+  --caption-label: #c675ff;
+  --caption-border: rgba(255, 57, 207, .55);
+  --export-h3: #b9bff0;
+  --achievements-h2: #83ffb4;
+  --achievements-b: #51ffc0;
+  --achievements-bg: rgba(54, 245, 139, .06);
+  --achievements-border: rgba(54, 245, 139, .54);
+  --primary-export-text: #8dffc0;
+  --primary-export-bg: rgba(54, 245, 139, .13);
+  --primary-export-border: rgba(54, 245, 139, .9);
+  --menubar-trigger-color: #c9d1d9;
+  --menubar-trigger-hover-bg: rgba(255, 255, 255, 0.08);
+  --menubar-trigger-hover-color: #ffffff;
 }
 
 /* ==========================================================================
@@ -159,6 +195,42 @@
   --banner-error-border: rgba(209, 36, 47, 0.2);
   --banner-error-text: #cf222e;
   --link-text: #0969da;
+  --grid-label: var(--text-muted);
+  --grid-meta-text: var(--text-main);
+  --control-label: #57606a;
+  --control-value: #24292f;
+  --menu-bg: #ffffff;
+  --menu-border: #d0d7de;
+  --menu-item-text: #24292f;
+  --menu-item-hover-bg: #f3f4f6;
+  --menu-item-hover-border: #d0d7de;
+  --menu-item-hover-text: #24292f;
+  --input-focus-border: #0969da;
+  --input-focus-shadow: rgba(9, 105, 218, 0.3);
+  --loader-border: rgba(0, 0, 0, 0.1);
+  --loader-border-active: var(--text-main);
+  --badge-purple-text: #8250df;
+  --badge-purple-border: rgba(130, 80, 223, 0.3);
+  --badge-purple-bg: rgba(130, 80, 223, 0.1);
+  --badge-green-text: #04140a;
+  --palette-summary-span: var(--text-main);
+  --presets-h2: #bf3f8f;
+  --presets-border: rgba(191, 63, 143, 0.25);
+  --tool-span: var(--text-main);
+  --tool-active-bg: rgba(31, 136, 61, 0.1);
+  --caption-label: #8250df;
+  --caption-border: rgba(130, 80, 223, 0.3);
+  --export-h3: var(--text-main);
+  --achievements-h2: #1a7f37;
+  --achievements-b: #115e26;
+  --achievements-bg: rgba(31, 136, 61, 0.05);
+  --achievements-border: rgba(31, 136, 61, 0.3);
+  --primary-export-text: #24292f;
+  --primary-export-bg: #eaeef2;
+  --primary-export-border: #d0d7de;
+  --menubar-trigger-color: #24292f;
+  --menubar-trigger-hover-bg: #f3f4f6;
+  --menubar-trigger-hover-color: #24292f;
 }
 
 /* ==========================================================================
@@ -200,15 +272,7 @@ body {
   border-color: var(--greenbash) !important;
 }
 
-/* Adaptación del Titlebar en Light mode */
-[data-theme="light"] .menubar-trigger {
-  color: var(--menubar-trigger-color) !important;
-}
-[data-theme="light"] .menubar-trigger:hover,
-[data-theme="light"] .menubar-trigger[data-state="open"] {
-  background-color: var(--menubar-trigger-hover-bg) !important;
-  color: var(--menubar-trigger-color) !important;
-}
+
 
 [data-theme="light"] .flow-step {
   color: var(--text-muted) !important;
@@ -240,13 +304,4 @@ input::placeholder,
 textarea::placeholder {
   color: var(--input-placeholder) !important;
   opacity: 1; /* Override browser defaults */
-}
-
-/* Day/month labels visibility overrides in light mode */
-[data-theme="light"] .months {
-  color: var(--text-muted) !important;
-}
-
-[data-theme="light"] .contrib-grid .days {
-  color: var(--text-muted) !important;
 }

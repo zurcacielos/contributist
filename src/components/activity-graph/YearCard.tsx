@@ -3,7 +3,6 @@ import { AppState, AppAction } from "@/state/appReducer";
 import { BackgroundLayer, RasterLayer } from "@/types";
 import { SimpleGitYearTemplate } from "./templates/SimpleGitYearTemplate";
 import { FlatGitYearTemplate } from "./templates/FlatGitYearTemplate";
-import { VibeYearTemplate } from "./templates/VibeYearTemplate";
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import { useTranslations } from "next-intl";
 import { applyBackgroundSelected, applyBackgroundAll } from "@/utils/backgroundActions";
@@ -165,26 +164,7 @@ export const YearCard: React.FC<YearCardProps> = ({
 
   let cardContent: React.ReactNode;
 
-  if (template === "simplegit") {
-    cardContent = (
-      <SimpleGitYearTemplate
-        year={year}
-        days={days}
-        meta={meta}
-        state={state}
-        dispatch={dispatch}
-        isCapturing={isCapturing}
-        hoveredDay={hoveredDay}
-        setHoveredDay={setHoveredDay}
-        draggedLayerId={draggedLayerId}
-        handleCellMouseDown={handleCellMouseDown}
-        handleCellMouseEnter={handleCellMouseEnter}
-        formatDate={formatDate}
-        preview={preview}
-        showPaintedInOrangeOverride={showPaintedInOrangeOverride}
-      />
-    );
-  } else if (template === "flatgit") {
+  if (template === "flatgit") {
     cardContent = (
       <FlatGitYearTemplate
         year={year}
@@ -205,7 +185,7 @@ export const YearCard: React.FC<YearCardProps> = ({
     );
   } else {
     cardContent = (
-      <VibeYearTemplate
+      <SimpleGitYearTemplate
         year={year}
         days={days}
         meta={meta}
@@ -220,7 +200,6 @@ export const YearCard: React.FC<YearCardProps> = ({
         formatDate={formatDate}
         preview={preview}
         showPaintedInOrangeOverride={showPaintedInOrangeOverride}
-        isActive={isActive}
       />
     );
   }
