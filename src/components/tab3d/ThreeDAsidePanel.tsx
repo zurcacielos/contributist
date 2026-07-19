@@ -189,9 +189,9 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
                   style={{
                     padding: "6px 10px",
                     borderRadius: "6px",
-                    border: "1px solid var(--border)",
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
-                    color: "var(--text-main)",
+                    border: "1px solid var(--input-border)",
+                    backgroundColor: "var(--input-bg)",
+                    color: "var(--input-text)",
                     fontSize: "0.8rem",
                     outline: "none",
                   }}

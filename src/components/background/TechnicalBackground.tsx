@@ -136,12 +136,12 @@ export function TechnicalBackground({
     >
       <div style={{ display: "flex", gap: "10px", margin: "10px 0", alignItems: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1 }}>
-          <span style={{ fontSize: "0.85rem", color: "#dce1ff" }}>{t('from')}</span>
+          <span style={{ fontSize: "0.85rem", color: "var(--input-label)" }}>{t('from')}</span>
           <input
             type="text"
             name="startDate"
             className="form-control"
-            style={{ width: "100%", minWidth: "50px", padding: "4px 8px", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white", fontSize: "0.85rem", borderRadius: "6px", textAlign: "center" }}
+            style={{ width: "100%", minWidth: "50px", padding: "4px 8px", background: "var(--input-bg)", border: "1px solid var(--input-border)", color: "var(--input-text)", fontSize: "0.85rem", borderRadius: "6px", textAlign: "center" }}
             placeholder="2014"
             value={config.startDate}
             onChange={handleChange}
@@ -149,12 +149,12 @@ export function TechnicalBackground({
           />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: 1 }}>
-          <span style={{ fontSize: "0.85rem", color: "#dce1ff" }}>{t('to')}</span>
+          <span style={{ fontSize: "0.85rem", color: "var(--input-label)" }}>{t('to')}</span>
           <input
             type="text"
             name="endDate"
             className="form-control"
-            style={{ width: "100%", minWidth: "50px", padding: "4px 8px", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white", fontSize: "0.85rem", borderRadius: "6px", textAlign: "center" }}
+            style={{ width: "100%", minWidth: "50px", padding: "4px 8px", background: "var(--input-bg)", border: "1px solid var(--input-border)", color: "var(--input-text)", fontSize: "0.85rem", borderRadius: "6px", textAlign: "center" }}
             placeholder="present"
             value={config.endDate}
             onChange={handleChange}
@@ -171,7 +171,7 @@ export function TechnicalBackground({
           type="text"
           name="frequencies"
           className="form-control"
-          style={{ width: "90px", padding: "4px 8px", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white", fontSize: "0.85rem", borderRadius: "6px", textAlign: "center" }}
+          style={{ width: "90px", padding: "4px 8px", background: "var(--input-bg)", border: "1px solid var(--input-border)", color: "var(--input-text)", fontSize: "0.85rem", borderRadius: "6px", textAlign: "center" }}
           placeholder="30,50,45"
           value={config.frequencies}
           onChange={handleChange}
@@ -184,7 +184,7 @@ export function TechnicalBackground({
           type="number"
           name="maxCommitsPerDay"
           className="form-control"
-          style={{ width: "60px", padding: "4px 8px", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white", fontSize: "0.85rem", borderRadius: "6px", textAlign: "center" }}
+          style={{ width: "60px", padding: "4px 8px", background: "var(--input-bg)", border: "1px solid var(--input-border)", color: "var(--input-text)", fontSize: "0.85rem", borderRadius: "6px", textAlign: "center" }}
           min="1"
           max="20"
           value={config.maxCommitsPerDay}
@@ -199,9 +199,9 @@ export function TechnicalBackground({
           onClick={() => onChange({ ...config, noWeekends: !config.noWeekends })}
           style={{
             cursor: "pointer",
-            background: !config.noWeekends ? "rgba(57, 211, 83, 0.15)" : "rgba(0, 0, 0, 0.4)",
-            color: !config.noWeekends ? "var(--greenbash-selected, #39d353)" : "var(--text-muted)",
-            border: !config.noWeekends ? "1px solid var(--greenbash-selected, #39d353)" : "1px solid var(--border)",
+            background: !config.noWeekends ? "var(--weekend-active-bg)" : "var(--btn-bg)",
+            color: !config.noWeekends ? "var(--weekend-active-text)" : "var(--text-muted)",
+            border: !config.noWeekends ? "1px solid var(--weekend-active-border)" : "1px solid var(--border)",
             padding: "4px 12px",
             borderRadius: "6px",
             fontSize: "0.8rem",
@@ -223,7 +223,7 @@ export function TechnicalBackground({
           type="text"
           name="vacationsPerYear"
           className="form-control"
-          style={{ width: "70px", padding: "4px 8px", background: "rgba(255, 255, 255, 0.05)", border: "1px solid rgba(255, 255, 255, 0.1)", color: "white", fontSize: "0.85rem", borderRadius: "6px", textAlign: "center" }}
+          style={{ width: "70px", padding: "4px 8px", background: "var(--input-bg)", border: "1px solid var(--input-border)", color: "var(--input-text)", fontSize: "0.85rem", borderRadius: "6px", textAlign: "center" }}
           placeholder="1,2,2"
           value={config.vacationsPerYear}
           onChange={handleChange}
@@ -239,7 +239,7 @@ export function TechnicalBackground({
           type="text"
           name="vacationLengthDays"
           className="form-control"
-          style={{ width: "70px", padding: "4px 8px", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white", fontSize: "0.85rem", borderRadius: "6px", textAlign: "center" }}
+          style={{ width: "70px", padding: "4px 8px", background: "var(--input-bg)", border: "1px solid var(--input-border)", color: "var(--input-text)", fontSize: "0.85rem", borderRadius: "6px", textAlign: "center" }}
           placeholder="14,28,21"
           value={config.vacationLengthDays}
           onChange={handleChange}

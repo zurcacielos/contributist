@@ -42,6 +42,19 @@
   --select-bg: #161b22;
   --select-text: var(--text-main);
   --select-border: var(--border);
+
+  /* Text and Number Inputs */
+  --input-bg: rgba(0, 0, 0, 0.25);
+  --input-border: var(--border);
+  --input-text: var(--text-main);
+  --input-placeholder: var(--text-muted);
+  --input-label: #dce1ff;
+  --warn-input-bg: #160505;
+  --warn-input-border: #f85149;
+  --warn-input-text: #ff7b72;
+  --weekend-active-bg: rgba(57, 211, 83, 0.15);
+  --weekend-active-text: var(--greenbash-selected, #39d353);
+  --weekend-active-border: var(--greenbash-selected, #39d353);
 }
 
 /* ==========================================================================
@@ -79,8 +92,8 @@
   --btn-border: #d0d7de;
   --btn-text: #24292f;
   --btn-hover-bg: #eaeef2;
-  --btn-green-text: #1f883d;
-  --btn-green-hover-bg: #ebedf0;
+  --btn-green-text: #24292f;
+  --btn-green-hover-bg: #eaeef2;
   --btn-secondary-bg: #f6f8fa;
   --btn-secondary-border: #d0d7de;
   --btn-secondary-text: #24292f;
@@ -105,6 +118,19 @@
   --select-bg: #ffffff;
   --select-text: #24292f;
   --select-border: #d0d7de;
+
+  /* Text and Number Inputs */
+  --input-bg: #ffffff;
+  --input-border: #d0d7de;
+  --input-text: #24292f;
+  --input-placeholder: #57606a;
+  --input-label: #57606a;
+  --warn-input-bg: #ffeef0;
+  --warn-input-border: #f85149;
+  --warn-input-text: #cf222e;
+  --weekend-active-bg: #e6ffed;
+  --weekend-active-text: #1f883d;
+  --weekend-active-border: #1f883d;
 }
 
 /* ==========================================================================
@@ -179,4 +205,11 @@ body {
   border-color: var(--github-btn-hover-border) !important;
   color: var(--github-btn-hover-text) !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Styling placeholder globally across light and dark themes */
+input::placeholder,
+textarea::placeholder {
+  color: var(--input-placeholder) !important;
+  opacity: 1; /* Override browser defaults */
 }

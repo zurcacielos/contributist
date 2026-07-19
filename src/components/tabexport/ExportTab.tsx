@@ -233,11 +233,11 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                   style={{
                     fontSize: "0.95rem",
                     padding: "8px",
-                    backgroundColor: "var(--surface)",
-                    border: `1px solid ${config.repoUrl && !isValidRepoUrl(config.repoUrl) ? "#f85149" : "var(--border)"}`,
+                    backgroundColor: "var(--input-bg)",
+                    border: `1px solid ${config.repoUrl && !isValidRepoUrl(config.repoUrl) ? "#f85149" : "var(--input-border)"}`,
                     borderRadius: "4px",
                     width: "100%",
-                    color: "white"
+                    color: "var(--input-text)"
                   }}
                 />
               </div>
@@ -254,7 +254,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                     value={config.gitName || ""}
                     onChange={handleChange}
                     placeholder="Your Git user name"
-                    style={{ fontSize: "0.95rem", padding: "8px", backgroundColor: "var(--surface)", border: "1px solid var(--border)", borderRadius: "4px", color: "white", flex: 1 }}
+                    style={{ fontSize: "0.95rem", padding: "8px", backgroundColor: "var(--input-bg)", border: "1px solid var(--input-border)", borderRadius: "4px", color: "var(--input-text)", flex: 1 }}
                   />
                 </div>
 
@@ -272,10 +272,10 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                     style={{
                       fontSize: "0.95rem",
                       padding: "8px",
-                      backgroundColor: "var(--surface)",
-                      border: `1px solid ${config.gitEmail && !isValidEmail(config.gitEmail) ? "#f85149" : "var(--border)"}`,
+                      backgroundColor: "var(--input-bg)",
+                      border: `1px solid ${config.gitEmail && !isValidEmail(config.gitEmail) ? "#f85149" : "var(--input-border)"}`,
                       borderRadius: "4px",
-                      color: "white",
+                      color: "var(--input-text)",
                       flex: 1
                     }}
                   />
@@ -585,9 +585,9 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                         placeholder="OVERRIDE"
                         disabled={isPushDisabled}
                         style={{
-                          backgroundColor: "#160505",
-                          border: "1px solid #f85149",
-                          color: "#ff7b72",
+                          backgroundColor: "var(--warn-input-bg)",
+                          border: "1px solid var(--warn-input-border)",
+                          color: "var(--warn-input-text)",
                           padding: "6px 10px",
                           fontSize: "0.85rem",
                           borderRadius: "6px",

@@ -121,9 +121,9 @@ export function GitProfileLoader({
               padding: "0 14px 0 40px",
               boxSizing: "border-box",
               borderRadius: "8px",
-              border: "1px solid var(--border)",
-              backgroundColor: "rgba(0, 0, 0, 0.25)",
-              color: "var(--text-main)",
+              border: "1px solid var(--input-border)",
+              backgroundColor: "var(--input-bg)",
+              color: "var(--input-text)",
               fontSize: "0.9rem",
               outline: "none",
               fontFamily: "var(--font-mono, monospace)",
@@ -147,11 +147,11 @@ export function GitProfileLoader({
             padding: "0 24px",
             boxSizing: "border-box",
             borderRadius: "8px",
-            border: "1px solid #007acc",
-            background: (!isFetching && isHovered) ? "rgba(0, 122, 204, 0.12)" : "transparent",
+            border: (!isFetching && isHovered) ? "1px solid var(--btn-green-text)" : "1px solid var(--btn-border)",
+            background: (!isFetching && isHovered) ? "var(--btn-green-hover-bg)" : "var(--btn-bg)",
             color: isFetching 
               ? "var(--text-muted)" 
-              : ((!isFetching && isHovered) ? "#ffffff" : "#007acc"),
+              : "var(--btn-green-text)",
             fontWeight: "600",
             fontSize: "0.85rem",
             fontFamily: "var(--font-mono, monospace)",
@@ -160,7 +160,8 @@ export function GitProfileLoader({
             alignItems: "center",
             justifyContent: "center",
             gap: "8px",
-            outline: "none"
+            outline: "none",
+            transition: "all 0.2s ease"
           }}
         >
           {isFetching ? (
