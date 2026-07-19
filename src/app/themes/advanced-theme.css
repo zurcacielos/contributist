@@ -59,6 +59,16 @@
   --simplegit-border: #30363d;
   --simplegit-text: #c9d1d9;
   --simplegit-header: #f0f6fc;
+  --banner-success-bg: rgba(56, 139, 253, 0.15);
+  --banner-success-border: rgba(56, 139, 253, 0.4);
+  --banner-success-text: #58a6ff;
+  --banner-warn-bg: rgba(248, 81, 73, 0.08);
+  --banner-warn-border: rgba(248, 81, 73, 0.25);
+  --banner-warn-text: #ff7b72;
+  --banner-error-bg: rgba(248, 81, 73, 0.15);
+  --banner-error-border: rgba(248, 81, 73, 0.4);
+  --banner-error-text: #f85149;
+  --link-text: #58a6ff;
 }
 
 /* ==========================================================================
@@ -139,6 +149,16 @@
   --simplegit-border: #d0d7de;
   --simplegit-text: #57606a;
   --simplegit-header: #24292f;
+  --banner-success-bg: #ddf4ff;
+  --banner-success-border: rgba(9, 105, 218, 0.2);
+  --banner-success-text: #0969da;
+  --banner-warn-bg: #ffebe9;
+  --banner-warn-border: rgba(209, 36, 47, 0.2);
+  --banner-warn-text: #cf222e;
+  --banner-error-bg: #ffebe9;
+  --banner-error-border: rgba(209, 36, 47, 0.2);
+  --banner-error-text: #cf222e;
+  --link-text: #0969da;
 }
 
 /* ==========================================================================

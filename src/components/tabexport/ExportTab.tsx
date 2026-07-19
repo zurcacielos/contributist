@@ -287,10 +287,10 @@ export const ExportTab: React.FC<ExportTabProps> = ({
               <div style={{
                 marginTop: "8px",
                 padding: "12px 16px",
-                backgroundColor: "rgba(248, 81, 73, 0.08)",
-                border: "1px solid rgba(248, 81, 73, 0.25)",
+                backgroundColor: "var(--banner-warn-bg)",
+                border: "1px solid var(--banner-warn-border)",
                 borderRadius: "6px",
-                color: "#ff7b72",
+                color: "var(--banner-warn-text)",
                 fontSize: "0.85rem",
                 display: "flex",
                 flexDirection: "column",
@@ -320,9 +320,9 @@ export const ExportTab: React.FC<ExportTabProps> = ({
               style={{
                 padding: "12px 16px",
                 borderRadius: "8px",
-                backgroundColor: result.success ? "rgba(56, 139, 253, 0.15)" : "rgba(248, 81, 73, 0.15)",
-                border: `1px solid ${result.success ? "rgba(56, 139, 253, 0.4)" : "rgba(248, 81, 73, 0.4)"}`,
-                color: result.success ? "#58a6ff" : "#f85149",
+                backgroundColor: result.success ? "var(--banner-success-bg)" : "var(--banner-error-bg)",
+                border: `1px solid ${result.success ? "var(--banner-success-border)" : "var(--banner-error-border)"}`,
+                color: result.success ? "var(--banner-success-text)" : "var(--banner-error-text)",
                 fontSize: "0.9rem",
                 display: "flex",
                 alignItems: "center",
@@ -507,7 +507,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                   {localFolder && (
                     <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "8px" }}>
                       <div style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontFamily: "monospace" }}>
-                        {t('generatedAt')} <span style={{ color: "#58a6ff" }}>{localPath || `./generated/${localFolder}`}</span>
+                        {t('generatedAt')} <span style={{ color: "var(--link-text)" }}>{localPath || `./generated/${localFolder}`}</span>
                       </div>
                       <div style={{ display: "flex", gap: "10px" }}>
                         <button
@@ -644,7 +644,7 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                     {config.repoUrl ? ` ➔ ${config.repoUrl}` : ""}
                   </button>
                   {pushFailed && (
-                    <div style={{ fontSize: "0.85rem", color: "#ff7b72", marginTop: "8px", fontWeight: "500", lineHeight: "1.4" }}>
+                    <div style={{ fontSize: "0.85rem", color: "var(--banner-warn-text)", marginTop: "8px", fontWeight: "500", lineHeight: "1.4" }}>
                       💡 {t('pushFailTip')}
                     </div>
                   )}
