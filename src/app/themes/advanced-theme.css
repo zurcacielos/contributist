@@ -1,33 +1,132 @@
 /* src/app/themes/advanced-theme.css */
 
+/* ==========================================================================
+   1. VARIABLES PREDETERMINADAS PARA TEMA OSCURO (Terminal) - Base del root
+   ========================================================================== */
+:root {
+  --title-color: #39d353;
+  --panel-bg: none;
+  --card-bg: none;
+  --card-shadow: none;
+  --help-card-bg: #070707;
+  --help-card-border: #1a1a1a;
+
+  /* Semánticas para botones */
+  --btn-bg: rgba(0, 0, 0, 0.4);
+  --btn-border: var(--border);
+  --btn-text: var(--text-main);
+  --btn-hover-bg: rgba(255, 255, 255, 0.05);
+  --btn-green-text: var(--greenbash-selected, #39d353);
+  --btn-green-hover-bg: rgba(57, 211, 83, 0.12);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.06);
+  --btn-secondary-border: rgba(255, 255, 255, 0.12);
+  --btn-secondary-text: var(--text-main);
+  
+  --menubar-trigger-color: var(--text-main);
+  --menubar-trigger-hover-bg: rgba(255, 255, 255, 0.08);
+  
+  --github-btn-bg: rgba(255, 255, 255, 0.05);
+  --github-btn-border: rgba(255, 255, 255, 0.14);
+  --github-btn-text: #d9d8ff;
+  --github-btn-hover-bg: rgba(255, 255, 255, 0.12);
+  --github-btn-hover-border: rgba(255, 255, 255, 0.3);
+  --github-btn-hover-text: #ffffff;
+
+  /* Scrollbar */
+  --scrollbar-track: rgba(5, 8, 22, 0.5);
+  --scrollbar-thumb-border: rgba(5, 8, 22, 0.8);
+  --scrollbar-thumb: linear-gradient(180deg, var(--greenbash, #086244), var(--primary, #2ea043));
+  --scrollbar-thumb-hover: linear-gradient(180deg, var(--primary, #2ea043), var(--level-4, #39d353));
+
+  /* Select Inputs */
+  --select-bg: #161b22;
+  --select-text: var(--text-main);
+  --select-border: var(--border);
+}
+
+/* ==========================================================================
+   2. VARIABLES PARA TEMA CLARO (GitHub Light) - Pisan al root por orden de cascada
+   ========================================================================== */
+[data-theme="light"] {
+  --background: #ffffff;
+  --surface: #f6f8fa;
+  --surface-hover: #eaeef2;
+  --border: #d0d7de;
+  --primary: #2ea043;
+  --primary-hover: #1f883d;
+  --text-main: #24292f;
+  --text-muted: #57606a;
+  
+  --level-0: #ebedf0;
+  --level-1: #9be9a8;
+  --level-2: #40c463;
+  --level-3: #30a14e;
+  --level-4: #216e39;
+
+  --greenbash: #2da44e;
+  --greenbash-selected: #2da44e;
+
+  /* Semánticas específicas para componentes */
+  --title-color: #24292f;
+  --panel-bg: #f6f8fa;
+  --card-bg: #ffffff;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --help-card-bg: #ffffff;
+  --help-card-border: #d0d7de;
+
+  /* Semánticas para botones */
+  --btn-bg: #f6f8fa;
+  --btn-border: #d0d7de;
+  --btn-text: #24292f;
+  --btn-hover-bg: #eaeef2;
+  --btn-green-text: #1f883d;
+  --btn-green-hover-bg: #ebedf0;
+  --btn-secondary-bg: #f6f8fa;
+  --btn-secondary-border: #d0d7de;
+  --btn-secondary-text: #24292f;
+  
+  --menubar-trigger-color: #24292f;
+  --menubar-trigger-hover-bg: rgba(0, 0, 0, 0.06);
+  
+  --github-btn-bg: #f6f8fa;
+  --github-btn-border: #d0d7de;
+  --github-btn-text: #24292f;
+  --github-btn-hover-bg: #eaeef2;
+  --github-btn-hover-border: #57606a;
+  --github-btn-hover-text: #24292f;
+
+  /* Scrollbar */
+  --scrollbar-track: #f6f8fa;
+  --scrollbar-thumb-border: #d0d7de;
+  --scrollbar-thumb: #d0d7de;
+  --scrollbar-thumb-hover: #afb8c1;
+
+  /* Select Inputs */
+  --select-bg: #ffffff;
+  --select-text: #24292f;
+  --select-border: #d0d7de;
+}
+
+/* ==========================================================================
+   3. APLICACIÓN DE ESTILOS Y COMPORTAMIENTOS DE COLOR
+   ========================================================================== */
 body {
-  --background: #000000;
-  --surface: #0a0a0a;
-  --surface-hover: #151515;
-  --border: #154820;
-  --greenbash: #086244;
-  --greenbash-selected: #39d353;
-  --level-3: #26a641;
-  --level-4: #39d353;
-  background-color: var(--background);
-  background-image: none;
+  background-color: var(--background) !important;
+  color: var(--text-main) !important;
 }
 
-.active-year h2 {
-  color: var(--greenbash-selected);
-}
-
+.active-year h2,
 .layers h2,
 .base-vibe h2 {
-  color: var(--greenbash-selected);
+  color: var(--title-color) !important;
 }
 
 .app-shell,
 .year-card,
 .panel,
 .card {
-  background: none;
-  box-shadow: none;
+  background: var(--panel-bg) !important;
+  box-shadow: var(--card-shadow) !important;
 }
 
 .activity-graph-main {
@@ -36,13 +135,48 @@ body {
 
 .help-card,
 .tech-card {
-  background: #070707;
-  border: 1px solid #1a1a1a;
-  box-shadow: none;
+  background: var(--help-card-bg) !important;
+  border: 1px solid var(--help-card-border) !important;
+  box-shadow: var(--card-shadow) !important;
   border-radius: 6px;
   transition: all 0.2s ease;
 }
 
 .tech-card:hover {
-  border-color: var(--greenbash);
+  border-color: var(--greenbash) !important;
+}
+
+/* Adaptación del Titlebar en Light mode */
+[data-theme="light"] .menubar-trigger {
+  color: var(--menubar-trigger-color) !important;
+}
+[data-theme="light"] .menubar-trigger:hover,
+[data-theme="light"] .menubar-trigger[data-state="open"] {
+  background-color: var(--menubar-trigger-hover-bg) !important;
+  color: var(--menubar-trigger-color) !important;
+}
+
+[data-theme="light"] .flow-step {
+  color: var(--text-muted) !important;
+}
+[data-theme="light"] .flow-step:hover {
+  color: var(--text-main) !important;
+}
+[data-theme="light"] .flow-step.active {
+  color: var(--text-main) !important;
+  border-bottom-color: var(--greenbash-selected) !important;
+}
+
+/* Adaptación del botón GitHub en Light mode */
+[data-theme="light"] .github-fork-remix-btn {
+  background: var(--github-btn-bg) !important;
+  border-color: var(--github-btn-border) !important;
+  color: var(--github-btn-text) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+[data-theme="light"] .github-fork-remix-btn:hover {
+  background: var(--github-btn-hover-bg) !important;
+  border-color: var(--github-btn-hover-border) !important;
+  color: var(--github-btn-hover-text) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
 }

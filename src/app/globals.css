@@ -1,17 +1,17 @@
-@import "./themes/advanced-theme.css";
-
 :root {
-  --background: #0d1117;
-  --surface: #161b22;
-  --surface-hover: #21262d;
+  --background: #000000;
+  --surface: #0a0a0a;
+  --surface-hover: #151515;
   --primary: #2ea043;
   --primary-hover: #3fb950;
   --text-main: #c9d1d9;
   --text-muted: #8b949e;
   --border: #154820;
+  --greenbash: #086244;
+  --greenbash-selected: #39d353;
 
   /* Standard Grid Colors */
-  --level-0: #161b22;
+  --level-0: #0a0a0a;
   --level-1: #0e4429;
   --level-2: #006d32;
   --level-3: #26a641;
@@ -469,7 +469,7 @@ button {
   border-radius: 0;
   background: transparent;
   padding: 4px 8px;
-  color: #c9d1d9;
+  color: var(--text-muted);
   box-shadow: none;
   font-size: 14px;
   font-weight: 500;
@@ -493,13 +493,13 @@ button {
 }
 
 .flow-step:hover {
-  color: #fff;
+  color: var(--text-main);
   text-decoration: none;
 }
 
 .flow-step.active {
-  color: #fff;
-  border-bottom: 2px solid #007acc;
+  color: var(--text-main);
+  border-bottom: 2px solid var(--greenbash-selected);
   text-decoration: none;
 }
 
@@ -537,7 +537,7 @@ button {
   overflow-y: auto;
   min-height: 0;
   scrollbar-width: thin;
-  scrollbar-color: var(--primary, #2ea043) rgba(5, 8, 22, 0.5);
+  scrollbar-color: var(--primary, #2ea043) var(--scrollbar-track);
 }
 
 /* Chrome, Safari, Edge scrollbar custom styling */
@@ -547,18 +547,18 @@ button {
 }
 
 .layout::-webkit-scrollbar-track {
-  background: rgba(5, 8, 22, 0.5);
+  background: var(--scrollbar-track);
   border-radius: 8px;
 }
 
 .layout::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--greenbash, #086244), var(--primary, #2ea043));
+  background: var(--scrollbar-thumb);
   border-radius: 8px;
-  border: 2px solid rgba(5, 8, 22, 0.8);
+  border: 2px solid var(--scrollbar-thumb-border);
 }
 
 .layout::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--primary, #2ea043), var(--level-4, #39d353));
+  background: var(--scrollbar-thumb-hover);
 }
 
 .panel,
@@ -1644,12 +1644,12 @@ em {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  color: #d9d8ff !important;
+  color: var(--github-btn-text) !important;
   padding: 0 16px;
   height: 42px;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, .14);
-  background: rgba(255, 255, 255, .05);
+  border: 1px solid var(--github-btn-border);
+  background: var(--github-btn-bg);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 13px;
@@ -1660,11 +1660,11 @@ em {
 }
 
 .github-fork-remix-btn:hover {
-  background: rgba(255, 255, 255, .12);
-  border-color: rgba(255, 255, 255, .3);
-  color: #ffffff !important;
+  background: var(--github-btn-hover-bg);
+  border-color: var(--github-btn-hover-border);
+  color: var(--github-btn-hover-text) !important;
   transform: translateY(-1px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 12px rgba(155, 92, 255, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.15);
   text-decoration: none !important;
 }
 
@@ -1691,3 +1691,5 @@ em {
     width: 42px;
   }
 }
+
+@import "./themes/advanced-theme.css";

@@ -138,9 +138,9 @@ export const DrawTab: React.FC<DrawTabProps> = ({
             padding: "10px 14px",
             height: "40px",
             borderRadius: "8px",
-            border: "1px solid var(--border)",
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
-            color: "var(--greenbash-selected, #39d353)",
+            border: "1px solid var(--btn-border)",
+            backgroundColor: "var(--btn-bg)",
+            color: "var(--btn-green-text)",
             cursor: "pointer",
             fontSize: "0.85rem",
             fontWeight: "600",
@@ -154,14 +154,14 @@ export const DrawTab: React.FC<DrawTabProps> = ({
             outline: "none",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-            e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-            e.currentTarget.style.color = "#ffffff";
+            e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+            e.currentTarget.style.borderColor = "var(--btn-green-text)";
+            e.currentTarget.style.color = "var(--btn-green-text)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-            e.currentTarget.style.borderColor = "var(--border)";
-            e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+            e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+            e.currentTarget.style.borderColor = "var(--btn-border)";
+            e.currentTarget.style.color = "var(--btn-green-text)";
           }}
         >
           <span>🔗 {t('share2DUrl')}</span>
@@ -218,10 +218,10 @@ export const DrawTab: React.FC<DrawTabProps> = ({
           height: "40px",
           border: "1px solid",
           borderColor: isButtonHovered 
-            ? "var(--greenbash-selected, #39d353)"
-            : "var(--border)",
+            ? "var(--btn-green-text)"
+            : "var(--btn-border)",
           borderRadius: "8px",
-          backgroundColor: isButtonHovered ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.4)",
+          backgroundColor: isButtonHovered ? "var(--btn-green-hover-bg)" : "var(--btn-bg)",
           fontFamily: "var(--font-mono, monospace)",
           fontWeight: "600",
           userSelect: "none",
@@ -238,11 +238,11 @@ export const DrawTab: React.FC<DrawTabProps> = ({
         >
           {t('beforeSad')}
         </span>
-        <span style={{ color: "var(--border)", padding: "0 4px" }}>|</span>
+        <span style={{ color: "var(--btn-border)", padding: "0 4px" }}>|</span>
         <span
           style={{
             color: !isSadPressed 
-              ? "var(--greenbash-selected, #39d353)" 
+              ? "var(--btn-green-text)" 
               : "var(--text-muted)",
             fontSize: !isSadPressed ? "0.8rem" : "0.72rem",
             padding: "0 8px"

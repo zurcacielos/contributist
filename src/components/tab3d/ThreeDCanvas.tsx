@@ -26,15 +26,15 @@ interface ThreeDCanvasProps {
 
 const PALETTES = {
   green: {
-    base: 0x0d1117,
+    base: 0x38414e,
     levels: [0x161b22, 0x0e4429, 0x006d32, 0x26a641, 0x39d353],
   },
   synth: {
-    base: 0x110b03,
+    base: 0x4a3721,
     levels: [0x161b22, 0x5c0900, 0xd53a00, 0xff7f00, 0xffcf26],
   },
   gray: {
-    base: 0x111111,
+    base: 0x555555,
     levels: [0x222222, 0x444444, 0x777777, 0xaaaaaa, 0xdddddd],
   },
 };
@@ -83,8 +83,22 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
 
     // 1. Setup Scene and Camera
     const scene = new THREE.Scene();
-    scene.background = null; // transparent background so CSS theme shows through
     sceneRef.current = scene;
+
+    const updateThemeBackground = () => {
+      const isLight = document.documentElement.getAttribute("data-theme") === "light";
+      scene.background = new THREE.Color(isLight ? 0xffffff : 0x000000);
+    };
+    updateThemeBackground();
+
+    const themeObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "data-theme") {
+          updateThemeBackground();
+        }
+      });
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
     const width = container.clientWidth || 800;
     const height = container.clientHeight || 600;
@@ -198,6 +212,7 @@ export const ThreeDCanvas: React.FC<ThreeDCanvasProps> = ({
 
     // Cleanup
     return () => {
+      themeObserver.disconnect();
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
       controls.dispose();

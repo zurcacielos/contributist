@@ -406,9 +406,9 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
           onClick={handlePublish}
           style={{
             width: "100%",
-            backgroundColor: "rgba(255, 255, 255, 0.04)",
-            border: "1px dashed var(--border)",
-            color: "var(--text-main)",
+            backgroundColor: "var(--btn-secondary-bg)",
+            border: "1px dashed var(--btn-secondary-border)",
+            color: "var(--btn-secondary-text)",
             padding: "8px 12px",
             fontSize: "0.8rem",
             borderRadius: "6px",
@@ -419,12 +419,12 @@ export const CommunityRemix: React.FC<CommunityRemixProps> = ({ config, dispatch
             transition: "all 0.2s"
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
-            e.currentTarget.style.borderColor = "var(--text-muted)";
+            e.currentTarget.style.backgroundColor = "var(--btn-hover-bg)";
+            e.currentTarget.style.borderColor = "var(--btn-border)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.04)";
-            e.currentTarget.style.borderColor = "var(--border)";
+            e.currentTarget.style.backgroundColor = "var(--btn-secondary-bg)";
+            e.currentTarget.style.borderColor = "var(--btn-secondary-border)";
           }}
         >
           {t('publish')}

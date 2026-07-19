@@ -32,8 +32,8 @@ export const PaletteCard: React.FC<PaletteCardProps> = ({ config, onChange }) =>
           onChange={handleSelectChange}
           style={{
             width: "100%",
-            backgroundColor: "rgba(255, 255, 255, 0.04)",
-            border: "1px solid var(--border)",
+            backgroundColor: "var(--select-bg)",
+            border: "1px solid var(--select-border)",
             color: "var(--text-main)",
             padding: "8px 12px",
             borderRadius: "8px",
@@ -42,8 +42,8 @@ export const PaletteCard: React.FC<PaletteCardProps> = ({ config, onChange }) =>
             outline: "none",
           }}
         >
-          <option value="classic" style={{ backgroundColor: "#161b22", color: "#c9d1d9" }}>Classic Green</option>
-          <option value="synthwave" style={{ backgroundColor: "#161b22", color: "#c9d1d9" }}>Amber</option>
+          <option value="classic" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>Classic Green</option>
+          <option value="synthwave" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>Amber</option>
         </select>
         <div style={{ display: "flex", gap: "6px", justifyContent: "center", marginTop: "4px" }}>
           {activeColors.map((color, idx) => (

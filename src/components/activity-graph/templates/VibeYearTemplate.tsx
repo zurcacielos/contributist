@@ -340,7 +340,7 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                 <span
                   className="year-meta-controls"
                   id={`year-meta-controls-${year}`}
-                  style={{ marginLeft: "10px", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "#c8cdef", textTransform: "none" }}
+                  style={{ marginLeft: "10px", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "var(--text-muted)", textTransform: "none" }}
                 >
                   {t('freqLabel', { percentage: meta.freq })}
                   {isActive && bgLayerForYear && (
@@ -359,10 +359,10 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                           });
                         }}
                         style={{
-                          background: "rgba(255, 255, 255, 0.08)",
-                          border: "1px solid rgba(255, 255, 255, 0.15)",
+                          background: "var(--btn-secondary-bg)",
+                          border: "1px solid var(--btn-secondary-border)",
                           borderRadius: "4px",
-                          color: "#fff",
+                          color: "var(--btn-secondary-text)",
                           cursor: "pointer",
                           width: "22px",
                           height: "22px",
@@ -375,12 +375,12 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                           transition: "all 0.15s ease-in-out"
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.18)";
-                          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
+                          e.currentTarget.style.backgroundColor = "var(--btn-hover-bg)";
+                          e.currentTarget.style.borderColor = "var(--btn-border)";
                         }}
                         onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
-                          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
+                          e.currentTarget.style.backgroundColor = "var(--btn-secondary-bg)";
+                          e.currentTarget.style.borderColor = "var(--btn-secondary-border)";
                         }}
                         title="-5%"
                       >
@@ -400,10 +400,10 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                           });
                         }}
                         style={{
-                          background: "rgba(255, 255, 255, 0.08)",
-                          border: "1px solid rgba(255, 255, 255, 0.15)",
+                          background: "var(--btn-secondary-bg)",
+                          border: "1px solid var(--btn-secondary-border)",
                           borderRadius: "4px",
-                          color: "#fff",
+                          color: "var(--btn-secondary-text)",
                           cursor: "pointer",
                           width: "22px",
                           height: "22px",
@@ -416,12 +416,12 @@ export const VibeYearTemplate: React.FC<VibeYearTemplateProps> = ({
                           transition: "all 0.15s ease-in-out"
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.18)";
-                          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
+                          e.currentTarget.style.backgroundColor = "var(--btn-hover-bg)";
+                          e.currentTarget.style.borderColor = "var(--btn-border)";
                         }}
                         onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
-                          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
+                          e.currentTarget.style.backgroundColor = "var(--btn-secondary-bg)";
+                          e.currentTarget.style.borderColor = "var(--btn-secondary-border)";
                         }}
                         title="+5%"
                       >

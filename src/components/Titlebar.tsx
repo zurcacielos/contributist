@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import * as Menubar from '@radix-ui/react-menubar';
-import { FilePlus, FolderOpen, Save, Share2, Link } from 'lucide-react';
+import { FilePlus, FolderOpen, Save, Share2, Link, Sun, Moon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { LanguageSelector } from './LanguageSelector';
 
@@ -36,6 +36,22 @@ export function Titlebar({
   const t = useTranslations('Titlebar');
   const { showToast } = useToast();
   const tSidebar = useTranslations('Sidebar');
+
+  const [mounted, setMounted] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    const savedTheme = (localStorage.getItem("theme") || "dark") as "dark" | "light";
+    setTheme(savedTheme);
+    setMounted(true);
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    localStorage.setItem("theme", nextTheme);
+    document.documentElement.setAttribute("data-theme", nextTheme);
+  };
 
   const handleApplySelected = () => {
     applyBackgroundSelected(state.config, state.activeYear, "advanced", dispatch);
@@ -297,6 +313,40 @@ export function Titlebar({
         aria-label="quick actions"
         style={{ display: 'flex', alignItems: 'center', gap: '12px', zIndex: 10 }}
       >
+        <button
+          onClick={toggleTheme}
+          style={{
+            height: "28px",
+            width: "32px",
+            borderRadius: "6px",
+            border: "1px solid var(--btn-border)",
+            backgroundColor: "var(--btn-bg)",
+            color: "var(--btn-green-text)",
+            cursor: "pointer",
+            outline: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transition: "all 0.2s ease"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+            e.currentTarget.style.borderColor = "var(--btn-green-text)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+            e.currentTarget.style.borderColor = "var(--btn-border)";
+          }}
+          title={mounted ? (theme === "dark" ? "Switch to Light Mode" : "Switch to Terminal Mode") : "Switch to Light Mode"}
+        >
+          {!mounted ? (
+            <Sun size={15} />
+          ) : theme === "dark" ? (
+            <Sun size={15} />
+          ) : (
+            <Moon size={15} />
+          )}
+        </button>
         <LanguageSelector />
         <a 
           href="https://github.com/zurcacielos/contributist"

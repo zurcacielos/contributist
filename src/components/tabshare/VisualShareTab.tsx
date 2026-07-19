@@ -117,9 +117,9 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                     onClick={() => handleStyleChange("simplegit")}
                     style={{
                       flex: 1,
-                      backgroundColor: activeStyle === "simplegit" ? "rgba(57, 211, 83, 0.15)" : "rgba(0, 0, 0, 0.4)",
-                      border: activeStyle === "simplegit" ? "1px solid var(--greenbash-selected, #39d353)" : "1px solid var(--border)",
-                      color: activeStyle === "simplegit" ? "var(--greenbash-selected, #39d353)" : "var(--text-muted)",
+                      backgroundColor: activeStyle === "simplegit" ? "var(--btn-green-hover-bg)" : "var(--btn-bg)",
+                      border: activeStyle === "simplegit" ? "1px solid var(--btn-green-text)" : "1px solid var(--btn-border)",
+                      color: activeStyle === "simplegit" ? "var(--btn-green-text)" : "var(--text-muted)",
                       padding: "8px 0",
                       borderRadius: "8px",
                       fontWeight: "bold",
@@ -136,9 +136,9 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                     onClick={() => handleStyleChange("flatgit")}
                     style={{
                       flex: 1,
-                      backgroundColor: activeStyle === "flatgit" ? "rgba(57, 211, 83, 0.15)" : "rgba(0, 0, 0, 0.4)",
-                      border: activeStyle === "flatgit" ? "1px solid var(--greenbash-selected, #39d353)" : "1px solid var(--border)",
-                      color: activeStyle === "flatgit" ? "var(--greenbash-selected, #39d353)" : "var(--text-muted)",
+                      backgroundColor: activeStyle === "flatgit" ? "var(--btn-green-hover-bg)" : "var(--btn-bg)",
+                      border: activeStyle === "flatgit" ? "1px solid var(--btn-green-text)" : "1px solid var(--btn-border)",
+                      color: activeStyle === "flatgit" ? "var(--btn-green-text)" : "var(--text-muted)",
                       padding: "8px 0",
                       borderRadius: "8px",
                       fontWeight: "bold",
@@ -174,15 +174,15 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                     justifyContent: "space-between",
                     padding: "10px 12px",
                     borderRadius: "8px",
-                    backgroundColor: !localShowPaintedInOrange ? "rgba(57, 211, 83, 0.15)" : "rgba(0, 0, 0, 0.4)",
-                    border: !localShowPaintedInOrange ? "1.5px solid var(--greenbash-selected, #39d353)" : "1.5px solid var(--border)",
+                    backgroundColor: !localShowPaintedInOrange ? "var(--btn-green-hover-bg)" : "var(--btn-bg)",
+                    border: !localShowPaintedInOrange ? "1.5px solid var(--btn-green-text)" : "1.5px solid var(--btn-border)",
                     boxShadow: !localShowPaintedInOrange ? "0 0 10px rgba(57, 211, 83, 0.1)" : "none",
                     cursor: "pointer",
                     fontFamily: "var(--font-mono, monospace)",
                     transition: "all 0.2s ease"
                   }}
                 >
-                  <span style={{ fontSize: "12px", fontWeight: "bold", color: !localShowPaintedInOrange ? "var(--greenbash-selected, #39d353)" : "var(--text-muted)" }}>{t('classicGreen')}</span>
+                  <span style={{ fontSize: "12px", fontWeight: "bold", color: !localShowPaintedInOrange ? "var(--btn-green-text)" : "var(--text-muted)" }}>{t('classicGreen')}</span>
                   <div style={{ display: "flex", gap: "4px" }}>
                     {["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"].map((c, i) => (
                       <div key={i} style={{ width: "12px", height: "12px", borderRadius: "3px", backgroundColor: c, border: i === 0 ? "1px solid rgba(255,255,255,0.08)" : "none" }} />
@@ -201,15 +201,15 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                     justifyContent: "space-between",
                     padding: "10px 12px",
                     borderRadius: "8px",
-                    backgroundColor: localShowPaintedInOrange ? "rgba(57, 211, 83, 0.15)" : "rgba(0, 0, 0, 0.4)",
-                    border: localShowPaintedInOrange ? "1.5px solid var(--greenbash-selected, #39d353)" : "1.5px solid var(--border)",
+                    backgroundColor: localShowPaintedInOrange ? "var(--btn-green-hover-bg)" : "var(--btn-bg)",
+                    border: localShowPaintedInOrange ? "1.5px solid var(--btn-green-text)" : "1.5px solid var(--btn-border)",
                     boxShadow: localShowPaintedInOrange ? "0 0 10px rgba(57, 211, 83, 0.1)" : "none",
                     cursor: "pointer",
                     fontFamily: "var(--font-mono, monospace)",
                     transition: "all 0.2s ease"
                   }}
                 >
-                  <span style={{ fontSize: "12px", fontWeight: "bold", color: localShowPaintedInOrange ? "var(--greenbash-selected, #39d353)" : "var(--text-muted)" }}>Amber</span>
+                  <span style={{ fontSize: "12px", fontWeight: "bold", color: localShowPaintedInOrange ? "var(--btn-green-text)" : "var(--text-muted)" }}>Amber</span>
                   <div style={{ display: "flex", gap: "4px" }}>
                     {["#161b22", "#5c0900", "#d53a00", "#ff7f00", "#ffcf26"].map((c, i) => (
                       <div key={i} style={{ width: "12px", height: "12px", borderRadius: "3px", backgroundColor: c, border: i === 0 ? "1px solid rgba(255, 255, 255, 0.08)" : "none" }} />
@@ -310,9 +310,9 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
             disabled={isCapturing}
             style={{
               width: "100%",
-              backgroundColor: "rgba(0, 0, 0, 0.4)",
-              border: "1px solid var(--border)",
-              color: "var(--greenbash-selected, #39d353)",
+              backgroundColor: "var(--btn-bg)",
+              border: "1px solid var(--btn-border)",
+              color: "var(--btn-green-text)",
               padding: "12px 14px",
               borderRadius: "8px",
               fontWeight: "bold",
@@ -326,14 +326,14 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
               transition: "all 0.2s ease",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-              e.currentTarget.style.color = "#ffffff";
+              e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-green-text)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-border)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
           >
             <Share2 size={16} /> {isCapturing ? t('capturing') : t('exportPng')}
@@ -343,9 +343,9 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
             onClick={handleCopyLink}
             style={{
               width: "100%",
-              backgroundColor: "rgba(0, 0, 0, 0.4)",
-              border: "1px solid var(--border)",
-              color: "var(--greenbash-selected, #39d353)",
+              backgroundColor: "var(--btn-bg)",
+              border: "1px solid var(--btn-border)",
+              color: "var(--btn-green-text)",
               padding: "12px 14px",
               borderRadius: "8px",
               fontWeight: "bold",
@@ -360,14 +360,14 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
               marginTop: "4px"
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-              e.currentTarget.style.color = "#ffffff";
+              e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-green-text)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-border)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
           >
             <Share2 size={16} /> {t('shareUrl')}

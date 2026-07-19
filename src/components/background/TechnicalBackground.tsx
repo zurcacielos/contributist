@@ -76,9 +76,9 @@ export function TechnicalBackground({
               padding: "6px 8px",
               fontSize: "0.75rem",
               borderRadius: "6px",
-              background: "rgba(0, 0, 0, 0.4)",
-              border: "1px solid var(--border)",
-              color: "var(--greenbash-selected, #39d353)",
+              backgroundColor: "var(--btn-bg)",
+              border: "1px solid var(--btn-border)",
+              color: "var(--btn-green-text)",
               cursor: "pointer",
               fontWeight: "bold",
               fontFamily: "var(--font-mono, monospace)",
@@ -87,14 +87,14 @@ export function TechnicalBackground({
               marginBottom: "6px"
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-              e.currentTarget.style.color = "#ffffff";
+              e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-green-text)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-border)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
           >
             {t('makeAllGreener')}
@@ -109,9 +109,9 @@ export function TechnicalBackground({
               padding: "6px 8px",
               fontSize: "0.75rem",
               borderRadius: "6px",
-              background: "rgba(0, 0, 0, 0.4)",
-              border: "1px solid var(--border)",
-              color: "var(--greenbash-selected, #39d353)",
+              backgroundColor: "var(--btn-bg)",
+              border: "1px solid var(--btn-border)",
+              color: "var(--btn-green-text)",
               cursor: "pointer",
               fontWeight: "bold",
               fontFamily: "var(--font-mono, monospace)",
@@ -119,14 +119,14 @@ export function TechnicalBackground({
               textAlign: "center"
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-              e.currentTarget.style.color = "#ffffff";
+              e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-green-text)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-border)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
           >
             {t('makeSelectedGreener')}

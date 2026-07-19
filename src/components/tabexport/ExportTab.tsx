@@ -388,17 +388,57 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                 className="btn btn-primary"
                 onClick={() => handleDownloadScript("bash")}
                 disabled={isWorking || !isConfigValid}
-                style={{ flex: 1, backgroundColor: "var(--surface-hover)", border: "1px solid var(--border)", color: "var(--text-main)", padding: "10px 16px", fontSize: "0.95rem" }}
+                style={{
+                  flex: 1,
+                  backgroundColor: "var(--btn-bg)",
+                  border: "1px solid var(--btn-border)",
+                  color: "var(--btn-green-text)",
+                  padding: "10px 16px",
+                  fontSize: "0.85rem",
+                  fontFamily: "var(--font-mono, monospace)",
+                  fontWeight: "bold",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+                  e.currentTarget.style.borderColor = "var(--btn-green-text)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+                  e.currentTarget.style.borderColor = "var(--btn-border)";
+                }}
               >
-                ⬇️ {t('downloadBash')}
+                {t('downloadBash')}
               </button>
               <button
                 className="btn btn-primary"
                 onClick={() => handleDownloadScript("ps1")}
                 disabled={isWorking || !isConfigValid}
-                style={{ flex: 1, backgroundColor: "var(--surface-hover)", border: "1px solid var(--border)", color: "var(--text-main)", padding: "10px 16px", fontSize: "0.95rem" }}
+                style={{
+                  flex: 1,
+                  backgroundColor: "var(--btn-bg)",
+                  border: "1px solid var(--btn-border)",
+                  color: "var(--btn-green-text)",
+                  padding: "10px 16px",
+                  fontSize: "0.85rem",
+                  fontFamily: "var(--font-mono, monospace)",
+                  fontWeight: "bold",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+                  e.currentTarget.style.borderColor = "var(--btn-green-text)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+                  e.currentTarget.style.borderColor = "var(--btn-border)";
+                }}
               >
-                ⬇️ {t('downloadPowerShell')}
+                {t('downloadPowerShell')}
               </button>
             </div>
           </div>
@@ -433,13 +473,36 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                     className="btn btn-primary"
                     onClick={handleGenerateLocal}
                     disabled={isWorking || !isConfigValid}
-                    style={{ padding: "10px 24px", height: "46px", fontSize: "1rem", width: "fit-content" }}
+                    style={{
+                      padding: "10px 24px",
+                      height: "40px",
+                      fontSize: "0.85rem",
+                      fontFamily: "var(--font-mono, monospace)",
+                      fontWeight: "bold",
+                      borderRadius: "8px",
+                      width: "fit-content",
+                      backgroundColor: "var(--btn-bg)",
+                      border: "1px solid var(--btn-border)",
+                      color: "var(--btn-green-text)",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      transition: "all 0.2s ease"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+                      e.currentTarget.style.borderColor = "var(--btn-green-text)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+                      e.currentTarget.style.borderColor = "var(--btn-border)";
+                    }}
                   >
-                    {isWorking && !localFolder ? (
-                      <span className="loader" style={{ width: "14px", height: "14px", borderWidth: "2px" }} />
-                    ) : (
-                      "💻"
-                    )}{" "}{t('generateLocal')}
+                    {isWorking && !localFolder && (
+                      <span className="loader" style={{ width: "14px", height: "14px", borderWidth: "2px", marginRight: "4px" }} />
+                    )}
+                    {t('generateLocal')}
                   </button>
                   {localFolder && (
                     <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "8px" }}>
@@ -452,44 +515,58 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                           className="btn"
                           onClick={handleReveal}
                           style={{
-                            backgroundColor: "var(--surface-hover)",
-                            border: "1px solid var(--border)",
-                            color: "var(--text-main)",
-                            padding: "6px 12px",
-                            fontSize: "0.85rem",
-                            borderRadius: "4px",
+                            backgroundColor: "var(--btn-secondary-bg)",
+                            border: "1px solid var(--btn-secondary-border)",
+                            color: "var(--btn-secondary-text)",
+                            padding: "8px 14px",
+                            fontSize: "0.8rem",
+                            fontFamily: "var(--font-mono, monospace)",
+                            fontWeight: "bold",
+                            borderRadius: "6px",
                             cursor: "pointer",
                             display: "flex",
                             alignItems: "center",
-                            gap: "6px",
-                            transition: "all 0.2s"
+                            transition: "all 0.2s ease"
                           }}
-                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--border)")}
-                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--surface-hover)")}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = "var(--btn-hover-bg)";
+                            e.currentTarget.style.borderColor = "var(--btn-border)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = "var(--btn-secondary-bg)";
+                            e.currentTarget.style.borderColor = "var(--btn-secondary-border)";
+                          }}
                         >
-                          📁 {t('revealExplorer')}
+                          {t('revealExplorer')}
                         </button>
                         <button
                           type="button"
                           className="btn"
                           onClick={handleOpenTerminal}
                           style={{
-                            backgroundColor: "var(--surface-hover)",
-                            border: "1px solid var(--border)",
-                            color: "var(--text-main)",
-                            padding: "6px 12px",
-                            fontSize: "0.85rem",
-                            borderRadius: "4px",
+                            backgroundColor: "var(--btn-secondary-bg)",
+                            border: "1px solid var(--btn-secondary-border)",
+                            color: "var(--btn-secondary-text)",
+                            padding: "8px 14px",
+                            fontSize: "0.8rem",
+                            fontFamily: "var(--font-mono, monospace)",
+                            fontWeight: "bold",
+                            borderRadius: "6px",
                             cursor: "pointer",
                             display: "flex",
                             alignItems: "center",
-                            gap: "6px",
-                            transition: "all 0.2s"
+                            transition: "all 0.2s ease"
                           }}
-                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--border)")}
-                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--surface-hover)")}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = "var(--btn-hover-bg)";
+                            e.currentTarget.style.borderColor = "var(--btn-border)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = "var(--btn-secondary-bg)";
+                            e.currentTarget.style.borderColor = "var(--btn-secondary-border)";
+                          }}
                         >
-                          💻 {t('openTerminal')}
+                          {t('openTerminal')}
                         </button>
                       </div>
                     </div>
@@ -527,15 +604,42 @@ export const ExportTab: React.FC<ExportTabProps> = ({
                     disabled={isPushDisabled}
                     style={{
                       width: "fit-content",
-                      backgroundColor: localFolder ? (overrideText === "OVERRIDE" ? "#da3633" : "var(--primary)") : "var(--surface-hover)",
-                      color: localFolder ? "#fff" : "var(--text-muted)",
+                      backgroundColor: localFolder ? (overrideText === "OVERRIDE" ? "#da3633" : "var(--btn-bg)") : "var(--btn-secondary-bg)",
+                      color: localFolder ? (overrideText === "OVERRIDE" ? "#fff" : "var(--btn-green-text)") : "var(--text-muted)",
                       padding: "10px 24px",
-                      height: "46px",
-                      fontSize: "1rem",
-                      border: overrideText === "OVERRIDE" && localFolder ? "1px solid #b62324" : "1px solid transparent",
+                      height: "40px",
+                      fontSize: "0.85rem",
+                      fontFamily: "var(--font-mono, monospace)",
+                      fontWeight: "bold",
+                      border: overrideText === "OVERRIDE" && localFolder ? "1px solid #b62324" : (localFolder ? "1px solid var(--btn-border)" : "1px solid var(--btn-secondary-border)"),
+                      borderRadius: "8px",
+                      cursor: isPushDisabled ? "not-allowed" : "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      transition: "all 0.2s ease"
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isPushDisabled) {
+                        if (overrideText === "OVERRIDE") {
+                          e.currentTarget.style.backgroundColor = "#b62324";
+                        } else {
+                          e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+                          e.currentTarget.style.borderColor = "var(--btn-green-text)";
+                        }
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (overrideText === "OVERRIDE" && localFolder) {
+                        e.currentTarget.style.backgroundColor = "#da3633";
+                        e.currentTarget.style.borderColor = "#b62324";
+                      } else {
+                        e.currentTarget.style.backgroundColor = localFolder ? "var(--btn-bg)" : "var(--btn-secondary-bg)";
+                        e.currentTarget.style.borderColor = localFolder ? "var(--btn-border)" : "var(--btn-secondary-border)";
+                      }
                     }}
                   >
-                    {isWorking && localFolder ? <span className="loader" /> : "🚀"}
+                    {isWorking && localFolder && <span className="loader" style={{ width: "14px", height: "14px", borderWidth: "2px" }} />}
                     {overrideText === "OVERRIDE" ? t('pushRemoteOverride') : t('pushRemote')}
                     {config.repoUrl ? ` ➔ ${config.repoUrl}` : ""}
                   </button>

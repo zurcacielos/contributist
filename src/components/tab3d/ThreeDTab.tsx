@@ -315,9 +315,9 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
             style={{
               padding: "8px 16px",
               borderRadius: "8px",
-              border: "1px solid var(--border)",
-              backgroundColor: "rgba(0, 0, 0, 0.4)",
-              color: "var(--greenbash-selected, #39d353)",
+              border: "1px solid var(--btn-border)",
+              backgroundColor: "var(--btn-bg)",
+              color: "var(--btn-green-text)",
               cursor: "pointer",
               fontSize: "0.85rem",
               fontFamily: "var(--font-mono, monospace)",
@@ -325,14 +325,14 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
               outline: "none",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-              e.currentTarget.style.color = "#ffffff";
+              e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-green-text)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-border)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
           >
             {t3d("downloadStl")}
@@ -343,9 +343,9 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
             style={{
               padding: "8px 16px",
               borderRadius: "8px",
-              border: "1px solid var(--border)",
-              backgroundColor: "rgba(0, 0, 0, 0.4)",
-              color: "var(--greenbash-selected, #39d353)",
+              border: "1px solid var(--btn-border)",
+              backgroundColor: "var(--btn-bg)",
+              color: "var(--btn-green-text)",
               cursor: "pointer",
               fontSize: "0.85rem",
               fontFamily: "var(--font-mono, monospace)",
@@ -353,14 +353,14 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
               outline: "none",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-              e.currentTarget.style.color = "#ffffff";
+              e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-green-text)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-border)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
           >
             {t3d("downloadObj")}
@@ -371,9 +371,9 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
             style={{
               padding: "8px 16px",
               borderRadius: "8px",
-              border: "1px solid var(--border)",
-              backgroundColor: "rgba(0, 0, 0, 0.4)",
-              color: "var(--greenbash-selected, #39d353)",
+              border: "1px solid var(--btn-border)",
+              backgroundColor: "var(--btn-bg)",
+              color: "var(--btn-green-text)",
               cursor: "pointer",
               fontSize: "0.85rem",
               fontFamily: "var(--font-mono, monospace)",
@@ -381,14 +381,14 @@ export const ThreeDTab: React.FC<ThreeDTabProps> = ({ state, dispatch }) => {
               outline: "none",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-              e.currentTarget.style.color = "#ffffff";
+              e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-green-text)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-border)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
           >
             {t3d("savePng")}

@@ -91,9 +91,9 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
         style={{
           padding: "10px 14px",
           borderRadius: "8px",
-          border: "1px solid var(--border)",
-          backgroundColor: "rgba(0, 0, 0, 0.4)",
-          color: "var(--greenbash-selected, #39d353)",
+          border: "1px solid var(--btn-border)",
+          backgroundColor: "var(--btn-bg)",
+          color: "var(--btn-green-text)",
           cursor: "pointer",
           fontSize: "0.85rem",
           fontWeight: "600",
@@ -107,14 +107,14 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
           outline: "none",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-          e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-          e.currentTarget.style.color = "#ffffff";
+          e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+          e.currentTarget.style.borderColor = "var(--btn-green-text)";
+          e.currentTarget.style.color = "var(--btn-green-text)";
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-          e.currentTarget.style.borderColor = "var(--border)";
-          e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+          e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+          e.currentTarget.style.borderColor = "var(--btn-border)";
+          e.currentTarget.style.color = "var(--btn-green-text)";
         }}
       >
         <span>🔗 {t('share3DUrl')}</span>
@@ -126,9 +126,9 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
         style={{
           padding: "10px 14px",
           borderRadius: "8px",
-          border: "1px solid var(--border)",
-          backgroundColor: "rgba(0, 0, 0, 0.4)",
-          color: "var(--text-muted)",
+          border: "1px solid var(--btn-secondary-border)",
+          backgroundColor: "var(--btn-secondary-bg)",
+          color: "var(--btn-secondary-text)",
           cursor: "pointer",
           fontSize: "0.85rem",
           fontWeight: "600",
@@ -138,17 +138,18 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
           alignItems: "center",
           justifyContent: "center",
           gap: "8px",
-          outline: "none"
+          outline: "none",
+          transition: "all 0.2s ease"
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
-          e.currentTarget.style.color = "#ffffff";
-          e.currentTarget.style.borderColor = "var(--text-muted)";
+          e.currentTarget.style.backgroundColor = "var(--btn-hover-bg)";
+          e.currentTarget.style.borderColor = "var(--btn-border)";
+          e.currentTarget.style.color = "var(--text-main)";
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-          e.currentTarget.style.color = "var(--text-muted)";
-          e.currentTarget.style.borderColor = "var(--border)";
+          e.currentTarget.style.backgroundColor = "var(--btn-secondary-bg)";
+          e.currentTarget.style.borderColor = "var(--btn-secondary-border)";
+          e.currentTarget.style.color = "var(--btn-secondary-text)";
         }}
       >
         <span>{t("zoomToFit")}</span>
@@ -204,30 +205,30 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
                   style={{
                     padding: "6px 10px",
                     borderRadius: "6px",
-                    border: "1px solid var(--border)",
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
-                    color: "var(--text-main)",
+                    border: "1px solid var(--select-border)",
+                    backgroundColor: "var(--select-bg)",
+                    color: "var(--select-text)",
                     fontSize: "0.8rem",
                     outline: "none",
                     cursor: "pointer",
                   }}
                 >
-                  <option value="recent-left" style={{ backgroundColor: "#111", color: "#fff" }}>
+                  <option value="recent-left" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
                     {t("posRecentLeft")}
                   </option>
-                  <option value="recent-right" style={{ backgroundColor: "#111", color: "#fff" }}>
+                  <option value="recent-right" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
                     {t("posRecentRight")}
                   </option>
-                  <option value="last-left" style={{ backgroundColor: "#111", color: "#fff" }}>
+                  <option value="last-left" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
                     {t("posLastLeft")}
                   </option>
-                  <option value="last-right" style={{ backgroundColor: "#111", color: "#fff" }}>
+                  <option value="last-right" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
                     {t("posLastRight")}
                   </option>
-                  <option value="front-side-left" style={{ backgroundColor: "#111", color: "#fff" }}>
+                  <option value="front-side-left" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
                     {t("posFrontSideLeft")}
                   </option>
-                  <option value="front-side-right" style={{ backgroundColor: "#111", color: "#fff" }}>
+                  <option value="front-side-right" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
                     {t("posFrontSideRight")}
                   </option>
                 </select>
@@ -254,15 +255,15 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
                 flex: 1,
                 padding: "6px 10px",
                 borderRadius: "6px",
-                border: "1px solid var(--border)",
-                backgroundColor: "rgba(255, 255, 255, 0.05)",
-                color: "var(--text-main)",
+                border: "1px solid var(--btn-secondary-border)",
+                backgroundColor: "var(--btn-secondary-bg)",
+                color: "var(--btn-secondary-text)",
                 cursor: "pointer",
                 fontSize: "0.75rem",
-                transition: "background 0.2s",
+                transition: "all 0.2s ease",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)")}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)")}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--btn-hover-bg)")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--btn-secondary-bg)")}
             >
               {t("selectAll")}
             </button>
@@ -272,15 +273,15 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
                 flex: 1,
                 padding: "6px 10px",
                 borderRadius: "6px",
-                border: "1px solid var(--border)",
-                backgroundColor: "rgba(255, 255, 255, 0.05)",
-                color: "var(--text-main)",
+                border: "1px solid var(--btn-secondary-border)",
+                backgroundColor: "var(--btn-secondary-bg)",
+                color: "var(--btn-secondary-text)",
                 cursor: "pointer",
                 fontSize: "0.75rem",
-                transition: "background 0.2s",
+                transition: "all 0.2s ease",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)")}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.05)")}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--btn-hover-bg)")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--btn-secondary-bg)")}
             >
               {t("deselectAll")}
             </button>
@@ -335,21 +336,21 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
               width: "100%",
               padding: "8px 10px",
               borderRadius: "6px",
-              border: "1px solid var(--border)",
-              backgroundColor: "rgba(255, 255, 255, 0.05)",
-              color: "var(--text-main)",
+              border: "1px solid var(--select-border)",
+              backgroundColor: "var(--select-bg)",
+              color: "var(--select-text)",
               fontSize: "0.85rem",
               outline: "none",
               cursor: "pointer",
             }}
           >
-            <option value="green" style={{ backgroundColor: "#161b22", color: "#c9d1d9" }}>
+            <option value="green" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
               Classic Green
             </option>
-            <option value="synth" style={{ backgroundColor: "#110b03", color: "#ffcf26" }}>
+            <option value="synth" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
               Amber
             </option>
-            <option value="gray" style={{ backgroundColor: "#111111", color: "#dddddd" }}>
+            <option value="gray" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
               Monochrome Gray
             </option>
           </select>
@@ -422,9 +423,9 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
             style={{
               padding: "5px 10px",
               borderRadius: "8px",
-              border: "1px solid var(--border)",
-              backgroundColor: "rgba(0, 0, 0, 0.4)",
-              color: "var(--greenbash-selected, #39d353)",
+              border: "1px solid var(--btn-border)",
+              backgroundColor: "var(--btn-bg)",
+              color: "var(--btn-green-text)",
               cursor: "pointer",
               fontSize: "0.75rem",
               fontFamily: "var(--font-mono, monospace)",
@@ -435,14 +436,14 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
               outline: "none",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(57, 211, 83, 0.12)";
-              e.currentTarget.style.borderColor = "var(--greenbash-selected, #39d353)";
-              e.currentTarget.style.color = "#ffffff";
+              e.currentTarget.style.backgroundColor = "var(--btn-green-hover-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-green-text)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--greenbash-selected, #39d353)";
+              e.currentTarget.style.backgroundColor = "var(--btn-bg)";
+              e.currentTarget.style.borderColor = "var(--btn-border)";
+              e.currentTarget.style.color = "var(--btn-green-text)";
             }}
           >
             {t("reset")}
