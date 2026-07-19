@@ -2,6 +2,8 @@ import React from "react";
 import { Card } from "../Card";
 import { GreenFont } from "../GreenFont";
 import { useTranslations } from "next-intl";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { ChevronDown } from "lucide-react";
 
 interface ThreeDAsidePanelProps {
   availableYears: number[];
@@ -49,6 +51,27 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
   onShareUrl,
 }) => {
   const t = useTranslations("ThreeD");
+
+  const getUsernamePositionLabel = (pos: string) => {
+    switch (pos) {
+      case "recent-left": return t("posRecentLeft");
+      case "recent-right": return t("posRecentRight");
+      case "last-left": return t("posLastLeft");
+      case "last-right": return t("posLastRight");
+      case "front-side-left": return t("posFrontSideLeft");
+      case "front-side-right": return t("posFrontSideRight");
+      default: return "";
+    }
+  };
+
+  const getPaletteLabel = (pal: string) => {
+    switch (pal) {
+      case "green": return t("paletteClassicGreen");
+      case "synth": return t("paletteAmber");
+      case "gray": return t("paletteMonochromeGray");
+      default: return "";
+    }
+  };
 
   const handleYearToggle = (year: number) => {
     if (selectedYears.includes(year)) {
@@ -199,39 +222,36 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
               </div>
 
               <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-                <select
-                  value={usernamePosition}
-                  onChange={(e) => onUsernamePositionChange(e.target.value as any)}
-                  style={{
-                    padding: "6px 10px",
-                    borderRadius: "6px",
-                    border: "1px solid var(--select-border)",
-                    backgroundColor: "var(--select-bg)",
-                    color: "var(--select-text)",
-                    fontSize: "0.8rem",
-                    outline: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  <option value="recent-left" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
-                    {t("posRecentLeft")}
-                  </option>
-                  <option value="recent-right" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
-                    {t("posRecentRight")}
-                  </option>
-                  <option value="last-left" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
-                    {t("posLastLeft")}
-                  </option>
-                  <option value="last-right" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
-                    {t("posLastRight")}
-                  </option>
-                  <option value="front-side-left" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
-                    {t("posFrontSideLeft")}
-                  </option>
-                  <option value="front-side-right" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
-                    {t("posFrontSideRight")}
-                  </option>
-                </select>
+                <DropdownMenu.Root modal={false}>
+                  <DropdownMenu.Trigger asChild>
+                    <button className="select-trigger" style={{ padding: "6px 10px", fontSize: "0.8rem" }}>
+                      <span>{getUsernamePositionLabel(usernamePosition)}</span>
+                      <ChevronDown size={14} />
+                    </button>
+                  </DropdownMenu.Trigger>
+                  <DropdownMenu.Portal>
+                    <DropdownMenu.Content className="select-content" align="start">
+                      <DropdownMenu.Item className="select-item" onSelect={() => onUsernamePositionChange("recent-left")}>
+                        {t("posRecentLeft")}
+                      </DropdownMenu.Item>
+                      <DropdownMenu.Item className="select-item" onSelect={() => onUsernamePositionChange("recent-right")}>
+                        {t("posRecentRight")}
+                      </DropdownMenu.Item>
+                      <DropdownMenu.Item className="select-item" onSelect={() => onUsernamePositionChange("last-left")}>
+                        {t("posLastLeft")}
+                      </DropdownMenu.Item>
+                      <DropdownMenu.Item className="select-item" onSelect={() => onUsernamePositionChange("last-right")}>
+                        {t("posLastRight")}
+                      </DropdownMenu.Item>
+                      <DropdownMenu.Item className="select-item" onSelect={() => onUsernamePositionChange("front-side-left")}>
+                        {t("posFrontSideLeft")}
+                      </DropdownMenu.Item>
+                      <DropdownMenu.Item className="select-item" onSelect={() => onUsernamePositionChange("front-side-right")}>
+                        {t("posFrontSideRight")}
+                      </DropdownMenu.Item>
+                    </DropdownMenu.Content>
+                  </DropdownMenu.Portal>
+                </DropdownMenu.Root>
               </div>
             </div>
           )}
@@ -329,31 +349,27 @@ export const ThreeDAsidePanel: React.FC<ThreeDAsidePanelProps> = ({
       {/* Color Palette Card */}
       <Card title="">
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <select
-            value={palette}
-            onChange={(e) => onPaletteChange(e.target.value as any)}
-            style={{
-              width: "100%",
-              padding: "8px 10px",
-              borderRadius: "6px",
-              border: "1px solid var(--select-border)",
-              backgroundColor: "var(--select-bg)",
-              color: "var(--select-text)",
-              fontSize: "0.85rem",
-              outline: "none",
-              cursor: "pointer",
-            }}
-          >
-            <option value="green" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
-              Classic Green
-            </option>
-            <option value="synth" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
-              Amber
-            </option>
-            <option value="gray" style={{ backgroundColor: "var(--select-bg)", color: "var(--select-text)" }}>
-              Monochrome Gray
-            </option>
-          </select>
+          <DropdownMenu.Root modal={false}>
+            <DropdownMenu.Trigger asChild>
+              <button className="select-trigger" style={{ padding: "8px 10px", fontSize: "0.85rem" }}>
+                <span>{getPaletteLabel(palette)}</span>
+                <ChevronDown size={14} />
+              </button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content className="select-content" align="start">
+                <DropdownMenu.Item className="select-item" onSelect={() => onPaletteChange("green")}>
+                  {t("paletteClassicGreen")}
+                </DropdownMenu.Item>
+                <DropdownMenu.Item className="select-item" onSelect={() => onPaletteChange("synth")}>
+                  {t("paletteAmber")}
+                </DropdownMenu.Item>
+                <DropdownMenu.Item className="select-item" onSelect={() => onPaletteChange("gray")}>
+                  {t("paletteMonochromeGray")}
+                </DropdownMenu.Item>
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
         </div>
       </Card>
 

@@ -32,6 +32,13 @@ body {
   min-height: 100vh;
 }
 
+/* Prevent scrollbar shifts caused by Radix UI modal popovers */
+body[data-scroll-locked],
+body[style*="pointer-events: none"] {
+  margin-right: 0px !important;
+  padding-right: 0px !important;
+}
+
 a {
   color: var(--link-text);
   text-decoration: none;
@@ -1658,6 +1665,59 @@ em {
     padding: 0;
     width: 42px;
   }
+}
+
+/* Custom Select Dropdowns via Radix UI DropdownMenu */
+.select-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--select-border);
+  background: var(--select-bg);
+  color: var(--select-text);
+  font-size: 0.85rem;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.select-trigger:focus {
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px var(--input-focus-shadow);
+}
+
+.select-content {
+  min-width: var(--radix-dropdown-menu-trigger-width);
+  background: var(--menu-bg);
+  border: 1px solid var(--menu-border);
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: var(--modal-shadow);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.select-item {
+  padding: 8px 10px;
+  border-radius: 4px;
+  color: var(--menu-item-text);
+  font-size: 0.8rem;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  transition: all 0.1s ease;
+}
+
+.select-item[data-highlighted] {
+  background: var(--menu-item-hover-bg);
+  color: var(--menu-item-hover-text);
 }
 
 @import "./themes/advanced-theme.css";
