@@ -55,12 +55,12 @@ export const SimpleGitYearTemplate: React.FC<SimpleGitYearTemplateProps> = ({
       className="year-card simplegit-template-card"
       id={`simplegit-template-card-${year}`}
       style={{
-        background: "#0d1117",
-        border: "1px solid #30363d",
+        background: "var(--simplegit-bg)",
+        border: "1px solid var(--simplegit-border)",
         borderRadius: "6px",
         padding: "16px",
         marginBottom: "16px",
-        color: "#c9d1d9",
+        color: "var(--simplegit-text)",
         fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
         position: "relative",
         cursor: "default"
@@ -72,10 +72,10 @@ export const SimpleGitYearTemplate: React.FC<SimpleGitYearTemplateProps> = ({
         id={`simplegit-template-header-${year}`} 
         style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px", fontSize: "14px" }}
       >
-        <span style={{ color: "#f0f6fc", fontWeight: "normal" }}>
+        <span style={{ color: "var(--simplegit-header)", fontWeight: "normal" }}>
           {t('totalContributionsInYear', { count: totalContributions, year })}
         </span>
-        <span style={{ color: "#8b949e", fontSize: "12px" }}>
+        <span style={{ color: "var(--simplegit-text)", fontSize: "12px" }}>
           {t('contribSettings')}
         </span>
       </div>
@@ -84,10 +84,10 @@ export const SimpleGitYearTemplate: React.FC<SimpleGitYearTemplateProps> = ({
         className="simplegit-template-grid-wrapper" 
         id={`simplegit-template-grid-wrapper-${year}`}
         style={{
-          border: "1px solid #30363d",
+          border: "1px solid var(--simplegit-border)",
           borderRadius: "6px",
           padding: "16px 20px",
-          background: "#0d1117"
+          background: "var(--simplegit-bg)"
         }}
       >
         <div className="graph-scroll-container">
@@ -97,7 +97,7 @@ export const SimpleGitYearTemplate: React.FC<SimpleGitYearTemplateProps> = ({
             style={{ 
               marginLeft: "0px", 
               marginBottom: "8px", 
-              color: "#8b949e", 
+              color: "var(--simplegit-text)", 
               fontSize: "10px", 
               display: "grid", 
               gridTemplateColumns: "repeat(12, 1fr)" 
@@ -127,9 +127,9 @@ export const SimpleGitYearTemplate: React.FC<SimpleGitYearTemplateProps> = ({
         <div 
           className="simplegit-template-footer" 
           id={`simplegit-template-footer-${year}`} 
-          style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "12px", fontSize: "12px", color: "#8b949e" }}
+          style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "12px", fontSize: "12px", color: "var(--simplegit-text)" }}
         >
-          <span style={{ color: "#8b949e" }}>
+          <span style={{ color: "var(--simplegit-text)" }}>
             {t('learnCount')}
           </span>
           <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
@@ -152,7 +152,7 @@ export const SimpleGitYearTemplate: React.FC<SimpleGitYearTemplateProps> = ({
           paddingLeft: "0px",
           marginTop: "10px",
           fontSize: "0.85rem",
-          color: "#8b949e",
+          color: "var(--simplegit-text)",
           textAlign: "left",
           minHeight: "1.2rem",
           lineHeight: "1.2rem",

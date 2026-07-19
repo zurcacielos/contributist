@@ -55,6 +55,10 @@
   --weekend-active-bg: rgba(57, 211, 83, 0.15);
   --weekend-active-text: var(--greenbash-selected, #39d353);
   --weekend-active-border: var(--greenbash-selected, #39d353);
+  --simplegit-bg: #0d1117;
+  --simplegit-border: #30363d;
+  --simplegit-text: #c9d1d9;
+  --simplegit-header: #f0f6fc;
 }
 
 /* ==========================================================================
@@ -131,6 +135,10 @@
   --weekend-active-bg: #e6ffed;
   --weekend-active-text: #1f883d;
   --weekend-active-border: #1f883d;
+  --simplegit-bg: #ffffff;
+  --simplegit-border: #d0d7de;
+  --simplegit-text: #57606a;
+  --simplegit-header: #24292f;
 }
 
 /* ==========================================================================
@@ -212,4 +220,13 @@ input::placeholder,
 textarea::placeholder {
   color: var(--input-placeholder) !important;
   opacity: 1; /* Override browser defaults */
+}
+
+/* Day/month labels visibility overrides in light mode */
+[data-theme="light"] .months {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="light"] .contrib-grid .days {
+  color: var(--text-muted) !important;
 }
