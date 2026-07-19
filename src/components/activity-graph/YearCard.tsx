@@ -260,7 +260,7 @@ export const YearCard: React.FC<YearCardProps> = ({
           </ContextMenu.Item>
           
           <ContextMenu.Separator 
-            style={{ height: '1px', backgroundColor: 'rgba(168, 85, 247, 0.15)', margin: '5px' }} 
+            style={{ height: '1px', backgroundColor: 'var(--menu-separator)', margin: '5px' }} 
           />
 
           <ContextMenu.Item className="context-menu-item" disabled={!isBgActive} onSelect={handleClearGreener}>
@@ -271,7 +271,7 @@ export const YearCard: React.FC<YearCardProps> = ({
           </ContextMenu.Item>
 
           <ContextMenu.Separator 
-            style={{ height: '1px', backgroundColor: 'rgba(168, 85, 247, 0.15)', margin: '5px' }} 
+            style={{ height: '1px', backgroundColor: 'var(--menu-separator)', margin: '5px' }} 
           />
 
           {/* Painted Layer (pen) Section */}

@@ -52,13 +52,9 @@ export function ColorSelector({
         {colors.map((color, level) => {
           const isSelected = isRowActive && selectedLevel === level;
 
-          // Custom Level 0 borders
-          const extraStyles: React.CSSProperties = {};
-          if (isSynth && level === 0) {
-            extraStyles.border = isSelected ? "2px solid var(--swatch-active-border)" : "1px solid #ff007f";
-          } else {
-            extraStyles.border = isSelected ? "2px solid var(--swatch-active-border)" : "1px solid var(--swatch-border)";
-          }
+          const extraStyles: React.CSSProperties = {
+            border: isSelected ? "2px solid var(--swatch-active-border)" : "1px solid var(--swatch-border)"
+          };
 
           return (
             <button
@@ -157,7 +153,7 @@ export function ColorSelector({
         {/* Right side: Palettes */}
         <div style={{ display: "flex", flexDirection: "column", gap: "10px", flex: 1 }}>
           {renderPaletteRow(greenColors, false)}
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", width: "100%" }} />
+          <div style={{ borderTop: "1px solid var(--border)", width: "100%" }} />
           {renderPaletteRow(synthColors, true)}
         </div>
       </div>

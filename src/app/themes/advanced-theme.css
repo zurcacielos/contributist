@@ -134,6 +134,10 @@
   --toggle-track-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
   --toggle-knob-green: #39d353;
   --toggle-knob-synth: #ff9f36;
+  --toast-bg: rgba(15, 15, 20, 0.95);
+  --toast-border: var(--green);
+  --toast-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --toast-text: #ffffff;
 }
 
 /* ==========================================================================
@@ -289,6 +293,10 @@
   --toggle-track-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
   --toggle-knob-green: #2ea043;
   --toggle-knob-synth: #ff6e40;
+  --toast-bg: #ffffff;
+  --toast-border: var(--border);
+  --toast-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --toast-text: var(--text-main);
 }
 
 /* ==========================================================================

@@ -54,8 +54,7 @@ export const PaletteCard: React.FC<PaletteCardProps> = ({ config, onChange }) =>
                 height: "22px",
                 borderRadius: "5px",
                 backgroundColor: color,
-                border: "1px solid rgba(255, 255, 255, 0.05)",
-                boxShadow: `0 0 10px ${color}33`,
+                border: "1px solid var(--border)",
               }}
               title={`Level ${idx}`}
             />

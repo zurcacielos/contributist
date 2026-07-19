@@ -36,10 +36,10 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             zIndex: 9999,
             padding: "12px 18px",
             borderRadius: "8px",
-            backgroundColor: "rgba(10, 10, 10, 0.95)",
-            border: "1px solid var(--greenbash-selected, #39d353)",
-            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5), 0 0 10px rgba(57, 211, 83, 0.2)",
-            color: "#ffffff",
+            backgroundColor: "var(--toast-bg)",
+            border: "1px solid var(--toast-border)",
+            boxShadow: "var(--toast-shadow)",
+            color: "var(--toast-text)",
             fontFamily: "var(--font-mono, monospace)",
             fontSize: "0.85rem",
             display: "flex",
@@ -51,7 +51,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             pointerEvents: visible ? "auto" : "none"
           }}
         >
-          <span style={{ color: "var(--greenbash-selected, #39d353)", fontWeight: "bold" }}>$</span> {toast}
+          <span style={{ color: "var(--green)", fontWeight: "bold" }}>$</span> {toast}
         </div>
       )}
     </ToastContext.Provider>

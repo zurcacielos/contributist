@@ -78,8 +78,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
       width: "500px",
       height: "500px",
       borderRadius: "16px",
-      boxShadow: "0 0 30px rgba(144, 92, 255, 0.15)",
-      border: "1px solid rgba(144, 92, 255, 0.2)",
+      boxShadow: "none",
     };
   } else if (aspectRatio === "story") {
     previewStyle = {
@@ -87,8 +86,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
       width: "360px",
       height: "640px",
       borderRadius: "16px",
-      boxShadow: "0 0 30px rgba(144, 92, 255, 0.15)",
-      border: "1px solid rgba(144, 92, 255, 0.2)",
+      boxShadow: "none",
     };
   } else {
     previewStyle = {
@@ -176,7 +174,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                     borderRadius: "8px",
                     backgroundColor: !localShowPaintedInOrange ? "var(--btn-green-hover-bg)" : "var(--btn-bg)",
                     border: !localShowPaintedInOrange ? "1.5px solid var(--btn-green-text)" : "1.5px solid var(--btn-border)",
-                    boxShadow: !localShowPaintedInOrange ? "0 0 10px rgba(57, 211, 83, 0.1)" : "none",
+                    boxShadow: "none",
                     cursor: "pointer",
                     fontFamily: "var(--font-mono, monospace)",
                     transition: "all 0.2s ease"
@@ -203,7 +201,7 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
                     borderRadius: "8px",
                     backgroundColor: localShowPaintedInOrange ? "var(--btn-green-hover-bg)" : "var(--btn-bg)",
                     border: localShowPaintedInOrange ? "1.5px solid var(--btn-green-text)" : "1.5px solid var(--btn-border)",
-                    boxShadow: localShowPaintedInOrange ? "0 0 10px rgba(57, 211, 83, 0.1)" : "none",
+                    boxShadow: "none",
                     cursor: "pointer",
                     fontFamily: "var(--font-mono, monospace)",
                     transition: "all 0.2s ease"
@@ -377,21 +375,21 @@ export const VisualShareTab: React.FC<VisualShareTabProps> = ({
             style={{
               fontSize: "10px",
               color: "var(--text-muted)",
-              backgroundColor: "rgba(255, 255, 255, 0.01)",
-              border: "1px dashed rgba(255, 255, 255, 0.08)",
+              backgroundColor: "var(--preset-hover-bg)",
+              border: "1px dashed var(--border)",
               borderRadius: "6px",
               padding: "8px",
               marginTop: "4px",
               lineHeight: "1.4"
             }}
           >
-            <span style={{ display: "block", fontWeight: "bold", color: "#e1e4e8", marginBottom: "4px" }}>
+            <span style={{ display: "block", fontWeight: "bold", color: "var(--text-main)", marginBottom: "4px" }}>
               {t('privacyTitle')}
             </span>
             <span>{t('privacyDesc')}</span>
           </div>
 
-          <div className="share-the-hype-card" id="share-the-hype-card" style={{ display: "flex", flexDirection: "column", gap: "8px", background: "rgba(255,255,255,0.02)", border: "1px solid var(--border)", borderRadius: "10px", padding: "12px", marginTop: "6px" }}>
+          <div className="share-the-hype-card" id="share-the-hype-card" style={{ display: "flex", flexDirection: "column", gap: "8px", background: "var(--preset-hover-bg)", border: "1px solid var(--border)", borderRadius: "10px", padding: "12px", marginTop: "6px" }}>
             <span style={{ fontSize: "11px", fontWeight: "bold", color: "var(--text-muted)", textAlign: "center", display: "block" }}>
               {t('shareHype')}
             </span>
